@@ -39,7 +39,7 @@
 !
 ! -------------------------------------------------------------------------------------------------
 module mo_optical_props
-  use mo_rte_kind,              only: wp
+  use mo_rte_kind,              only: wp, spectral_dim_last
   use mo_rte_util_array,        only: any_vals_less_than, any_vals_outside, extents_are
   use mo_optical_props_kernels, only: &
         increment_1scalar_by_1scalar, increment_1scalar_by_2stream, increment_1scalar_by_nstream, &
@@ -332,7 +332,11 @@ contains
       err_message = "optical_props%alloc: must provide positive extents for ncol, nlay"
     else
       if(allocated(this%tau)) deallocate(this%tau)
-      allocate(this%tau(ncol,nlay,this%get_ngpt()))
+      if(spectral_dim_last) then
+        allocate(this%tau(ncol,nlay,this%get_ngpt()))
+      else
+        allocate(this%tau(this%get_ngpt(), nlay, ncol))
+      end if
     end if
   end function alloc_only_1scl
 
@@ -350,12 +354,19 @@ contains
     if(any([ncol, nlay] <= 0)) then
       err_message = "optical_props%alloc: must provide positive extents for ncol, nlay"
     else
-      if(allocated(this%tau)) deallocate(this%tau)
-      allocate(this%tau(ncol,nlay,this%get_ngpt()))
+      if(spectral_dim_last) then
+        allocate(this%tau(ncol,nlay,this%get_ngpt()))
+      else
+        allocate(this%tau(this%get_ngpt(),nlay,ncol))
+      end if
     end if
     if(allocated(this%ssa)) deallocate(this%ssa)
     if(allocated(this%g  )) deallocate(this%g  )
-    allocate(this%ssa(ncol,nlay,this%get_ngpt()), this%g(ncol,nlay,this%get_ngpt()))
+    if(spectral_dim_last) then
+      allocate(this%ssa(ncol,nlay,this%get_ngpt()), this%g(ncol,nlay,this%get_ngpt()))
+    else
+      allocate(this%ssa(this%get_ngpt(),nlay,ncol), this%g(this%get_ngpt(),nlay,ncol))
+    end if
   end function alloc_only_2str
 
   ! --- n stream ------------------------------------------------------------------------
@@ -374,11 +385,19 @@ contains
       err_message = "optical_props%alloc: must provide positive extents for ncol, nlay"
     else
       if(allocated(this%tau)) deallocate(this%tau)
-      allocate(this%tau(ncol,nlay,this%get_ngpt()))
+      if(spectral_dim_last) then
+        allocate(this%tau(ncol,nlay,this%get_ngpt()))
+      else
+        allocate(this%tau(this%get_ngpt(),nlay,ncol))
+      end if
     end if
     if(allocated(this%ssa)) deallocate(this%ssa)
     if(allocated(this%p  )) deallocate(this%p  )
-    allocate(this%ssa(ncol,nlay,this%get_ngpt()), this%p(nmom,ncol,nlay,this%get_ngpt()))
+    if(spectral_dim_last) then
+      allocate(this%ssa(ncol,nlay,this%get_ngpt()), this%p(nmom,ncol,nlay,this%get_ngpt()))
+    else
+      allocate(this%ssa(this%get_ngpt(),ncol,nlay), this%p(nmom,this%get_ngpt(),ncol,nlay))
+    end if
   end function alloc_only_nstr
   ! ------------------------------------------------------------------------------------------
   !
@@ -515,10 +534,14 @@ contains
     err_message = ""
 
     if(present(for)) then
-      if(.not. extents_are(for, ncol, nlay, ngpt)) then
-        err_message = "delta_scale: dimension of 'for' don't match optical properties arrays"
-        return
+      if(spectral_dim_last) then
+        if(.not. extents_are(for, ncol, nlay, ngpt)) &
+          err_message = "delta_scale: dimension of 'for' don't match optical properties arrays"
+      else
+        if(.not. extents_are(for, ngpt, nlay, nlay)) &
+          err_message = "delta_scale: dimension of 'for' don't match optical properties arrays"
       end if
+      if(err_message /= "") return
       if(any(for < 0._wp .or. for > 1._wp)) then
         err_message = "delta_scale: values of 'for' out of bounds [0,1]"
         return
@@ -676,8 +699,8 @@ contains
         if(allocated(subset%g  )) deallocate(subset%g  )
         err_message = subset%alloc_2str(n, nlay)
         if(err_message /= "") return
-        subset%ssa(1:n,:,:) = 0._wp
-        subset%g  (1:n,:,:) = 0._wp
+        subset%ssa(:,:,:) = 0._wp
+        subset%g  (:,:,:) = 0._wp
       class is (ty_optical_props_nstr)
         if(allocated(subset%ssa)) deallocate(subset%ssa)
         if(allocated(subset%p  )) then
@@ -688,10 +711,10 @@ contains
         end if
         err_message = subset%alloc_nstr(nmom, n, nlay)
         if(err_message /= "") return
-        subset%ssa(1:n,:,:) = 0._wp
-        subset%p(:,1:n,:,:) = 0._wp
+        subset%ssa(:,:,:) = 0._wp
+        subset%p(:,:,:,:) = 0._wp
     end select
-    call extract_subset(ncol, nlay, ngpt, full%tau, start, start+n-1, subset%tau)
+    call extract_subset(ncol, nlay, ngpt, full%tau, start, start+n-1, spectral_dim_last, subset%tau)
 
   end function subset_1scl_range
   ! ------------------------------------------------------------------------------------------
@@ -721,15 +744,15 @@ contains
       class is (ty_optical_props_1scl)
         err_message = subset%alloc_1scl(n, nlay)
         if(err_message /= "") return
-        call extract_subset(ncol, nlay, ngpt, full%tau, full%ssa, start, start+n-1, subset%tau)
+        call extract_subset(ncol, nlay, ngpt, full%tau, full%ssa, start, start+n-1, spectral_dim_last, subset%tau)
       class is (ty_optical_props_2str)
         if(allocated(subset%ssa)) deallocate(subset%ssa)
         if(allocated(subset%g  )) deallocate(subset%g  )
         err_message = subset%alloc_2str(n, nlay)
         if(err_message /= "") return
-        call extract_subset(ncol, nlay, ngpt, full%tau, start, start+n-1, subset%tau)
-        call extract_subset(ncol, nlay, ngpt, full%ssa, start, start+n-1, subset%ssa)
-        call extract_subset(ncol, nlay, ngpt, full%g  , start, start+n-1, subset%g  )
+        call extract_subset(ncol, nlay, ngpt, full%tau, start, start+n-1, spectral_dim_last, subset%tau)
+        call extract_subset(ncol, nlay, ngpt, full%ssa, start, start+n-1, spectral_dim_last, subset%ssa)
+        call extract_subset(ncol, nlay, ngpt, full%g  , start, start+n-1, spectral_dim_last, subset%g  )
       class is (ty_optical_props_nstr)
         if(allocated(subset%ssa)) deallocate(subset%ssa)
         if(allocated(subset%p  )) then
@@ -740,9 +763,13 @@ contains
         end if
         err_message = subset%alloc_nstr(nmom, n, nlay)
         if(err_message /= "") return
-        call extract_subset(ncol, nlay, ngpt, full%tau, start, start+n-1, subset%tau)
-        call extract_subset(ncol, nlay, ngpt, full%ssa, start, start+n-1, subset%ssa)
-        subset%p(1,1:n,:,:) = full%g  (start:start+n-1,:,:)
+        call extract_subset(ncol, nlay, ngpt, full%tau, start, start+n-1, spectral_dim_last, subset%tau)
+        call extract_subset(ncol, nlay, ngpt, full%ssa, start, start+n-1, spectral_dim_last, subset%ssa)
+        if(spectral_dim_last) then
+          subset%p(1,:,:,:)   = full%g  (start:start+n-1,:,:)
+        else
+          subset%p(1,:,:,:)   = full%g  (:,:,start:start+n-1)
+        end if
         subset%p(2:,:, :,:) = 0._wp
     end select
 
@@ -775,23 +802,23 @@ contains
       class is (ty_optical_props_1scl)
         err_message = subset%alloc_1scl(n, nlay)
         if(err_message /= "") return
-        call extract_subset(ncol, nlay, ngpt, full%tau, full%ssa, start, start+n-1, subset%tau)
+        call extract_subset(ncol, nlay, ngpt, full%tau, full%ssa, start, start+n-1, spectral_dim_last, subset%tau)
       class is (ty_optical_props_2str)
         if(allocated(subset%ssa)) deallocate(subset%ssa)
         if(allocated(subset%g  )) deallocate(subset%g  )
         err_message = subset%alloc_2str(n, nlay)
         if(err_message /= "") return
-        call extract_subset(ncol, nlay, ngpt, full%tau, start, start+n-1, subset%tau)
-        call extract_subset(ncol, nlay, ngpt, full%ssa, start, start+n-1, subset%ssa)
+        call extract_subset(ncol, nlay, ngpt, full%tau, start, start+n-1, spectral_dim_last, subset%tau)
+        call extract_subset(ncol, nlay, ngpt, full%ssa, start, start+n-1, spectral_dim_last, subset%ssa)
         subset%g  (1:n,:,:) = full%p(1,start:start+n-1,:,:)
       class is (ty_optical_props_nstr)
         if(allocated(subset%ssa)) deallocate(subset%ssa)
         if(allocated(subset%p  )) deallocate(subset%p  )
         err_message = subset%alloc_nstr(nmom, n, nlay)
         if(err_message /= "") return
-        call extract_subset(      ncol, nlay, ngpt, full%tau, start, start+n-1, subset%tau)
-        call extract_subset(      ncol, nlay, ngpt, full%ssa, start, start+n-1, subset%ssa)
-        call extract_subset(nmom, ncol, nlay, ngpt, full%p  , start, start+n-1, subset%p  )
+        call extract_subset(      ncol, nlay, ngpt, full%tau, start, start+n-1, spectral_dim_last, subset%tau)
+        call extract_subset(      ncol, nlay, ngpt, full%ssa, start, start+n-1, spectral_dim_last, subset%ssa)
+        call extract_subset(nmom, ncol, nlay, ngpt, full%p  , start, start+n-1, spectral_dim_last, subset%p  )
     end select
   end function subset_nstr_range
 
@@ -817,7 +844,7 @@ contains
     if(.not. all([op_in%get_ncol(), op_in%get_nlay()] == [ncol, nlay])) &
       err_message = "ty_optical_props%increment: optical properties objects have different ncol and/or nlay"
     if(err_message /= "")  return
-    
+
     if(op_in%gpoints_are_equal(op_io)) then
       !
       ! Increment by gpoint
@@ -966,7 +993,9 @@ contains
     class(ty_optical_props_arry), intent(in   ) :: this
     integer                                     :: get_ncol
 
-    get_ncol = get_arry_extent(this, 1)
+    get_ncol = merge(get_arry_extent(this, 1), &
+                     get_arry_extent(this, 3), &
+                     spectral_dim_last)
   end function get_ncol
   ! ------------------------------------------------------------------------------------------
   pure function get_nlay(this)

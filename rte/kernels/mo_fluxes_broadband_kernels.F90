@@ -3,7 +3,7 @@
 ! Contacts: Robert Pincus and Eli Mlawer
 ! email:  rrtmgp@aer.com
 !
-! Copyright 2015-2018,  Atmospheric and Environmental Research and
+! Copyright 2015-2020,  Atmospheric and Environmental Research and
 ! Regents of the University of Colorado.  All right reserved.
 !
 ! Use and duplication is permitted under the terms of the
@@ -15,7 +15,7 @@
 ! -------------------------------------------------------------------------------------------------
 module mo_fluxes_broadband_kernels
   use, intrinsic :: iso_c_binding
-  use mo_rte_kind, only: wp
+  use mo_rte_kind, only: wp, spectral_dim_last
   implicit none
   private
   public :: sum_broadband, net_broadband
@@ -37,19 +37,30 @@ contains
     real(wp) :: bb_flux_s ! local scalar version
 
     !$acc enter data copyin(spectral_flux) create(broadband_flux)
-    !$acc parallel loop gang vector collapse(2)
-    do ilev = 1, nlev
-      do icol = 1, ncol
-
-        bb_flux_s = 0.0_wp
-
-        do igpt = 1, ngpt
-          bb_flux_s = bb_flux_s + spectral_flux(icol, ilev, igpt)
+    if(spectral_dim_last) then
+      !$acc parallel loop gang vector collapse(2)
+      do ilev = 1, nlev
+        do icol = 1, ncol
+          bb_flux_s = 0.0_wp
+          do igpt = 1, ngpt
+            bb_flux_s = bb_flux_s + spectral_flux(icol, ilev, igpt)
+          end do
+          broadband_flux(icol, ilev) = bb_flux_s
         end do
-
-        broadband_flux(icol, ilev) = bb_flux_s
       end do
-    end do
+    else
+      !$acc parallel loop gang vector collapse(2)
+      do icol = 1, ncol
+        do ilev = 1, nlev
+          bb_flux_s = 0.0_wp
+          do igpt = 1, ngpt
+            bb_flux_s = bb_flux_s + spectral_flux(igpt, ilev, icol)
+          end do
+          broadband_flux(icol, ilev) = bb_flux_s
+        end do
+      end do
+    end if
+
     !$acc exit data delete(spectral_flux) copyout(broadband_flux)
   end subroutine sum_broadband
   ! ----------------------------------------------------------------------------
@@ -66,23 +77,37 @@ contains
     real(wp) :: diff
 
     !$acc enter data copyin(spectral_flux_dn, spectral_flux_up) create(broadband_flux_net)
-    !$acc parallel loop collapse(2)
-    do ilev = 1, nlev
-      do icol = 1, ncol
-        diff = spectral_flux_dn(icol, ilev, 1   ) - spectral_flux_up(icol, ilev,     1)
-        broadband_flux_net(icol, ilev) = diff
-      end do
-    end do
-    !$acc parallel loop collapse(3)
-    do igpt = 2, ngpt
+    if(spectral_dim_last) then
+      !$acc parallel loop collapse(2)
       do ilev = 1, nlev
         do icol = 1, ncol
-          diff = spectral_flux_dn(icol, ilev, igpt) - spectral_flux_up(icol, ilev, igpt)
-          !$acc atomic update
-          broadband_flux_net(icol, ilev) = broadband_flux_net(icol, ilev) + diff
+          diff = spectral_flux_dn(icol, ilev, 1   ) - spectral_flux_up(icol, ilev,     1)
+          broadband_flux_net(icol, ilev) = diff
         end do
       end do
-    end do
+      !$acc parallel loop collapse(3)
+      do igpt = 2, ngpt
+        do ilev = 1, nlev
+          do icol = 1, ncol
+            diff = spectral_flux_dn(icol, ilev, igpt) - spectral_flux_up(icol, ilev, igpt)
+            !$acc atomic update
+            broadband_flux_net(icol, ilev) = broadband_flux_net(icol, ilev) + diff
+          end do
+        end do
+      end do
+    else
+      !$acc parallel loop collapse(2)
+      do ilev = 1, nlev
+        do icol = 1, ncol
+          diff = 0._wp
+          do igpt = 1, ngpt
+            !$acc atomic update
+            diff = diff + spectral_flux_dn(igpt, ilev, icol) - spectral_flux_up(igpt, ilev, icol)
+          end do
+          broadband_flux_net(icol, ilev) = diff
+        end do
+      end do
+    end if
     !$acc exit data delete(spectral_flux_dn, spectral_flux_up) copyout(broadband_flux_net)
   end subroutine net_broadband_full
   ! ----------------------------------------------------------------------------

@@ -38,5 +38,8 @@ module mo_rte_kind
 #else
   integer, parameter :: wl = kind(.true.)
 #endif
-
+ !
+ ! Temporary - will include with mo_rte_config as protected variable
+ !
+ logical(wl), parameter :: spectral_dim_last = .true.
 end module mo_rte_kind

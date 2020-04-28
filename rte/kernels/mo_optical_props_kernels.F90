@@ -625,69 +625,104 @@ contains
   ! Subsetting, meaning extracting some portion of the 3D domain
   !
   ! -------------------------------------------------------------------------------------------------
-  pure subroutine extract_subset_dim1_3d(ncol, nlay, ngpt, array_in, colS, colE, array_out) &
+  pure subroutine extract_subset_dim1_3d(ncol, nlay, ngpt, array_in, colS, colE, col_dim_1, array_out) &
     bind (C, name="extract_subset_dim1_3d")
     integer,                             intent(in ) :: ncol, nlay, ngpt
     real(wp), dimension(ncol,nlay,ngpt), intent(in ) :: array_in
     integer,                             intent(in ) :: colS, colE
+    logical(wl),                         intent(in ) :: col_dim_1
     real(wp), dimension(colE-colS+1,&
                              nlay,ngpt), intent(out) :: array_out
 
     integer :: icol, ilay, igpt
-    do igpt = 1, ngpt
+    if(col_dim_1) then
       do ilay = 1, nlay
-        do icol = colS, colE
-          array_out(icol-colS+1, ilay, igpt) = array_in(icol, ilay, igpt)
+        do igpt = 1, ngpt
+          do icol = colS, colE
+            array_out(icol-colS+1, ilay, igpt) = array_in(icol, ilay, igpt)
+          end do
         end do
       end do
-    end do
+    else
+      do icol = colS, colE
+        do igpt = 1, ngpt
+          do ilay = 1, nlay
+            array_out(ilay, igpt, icol-colS+1) = array_in(ilay, igpt, icol)
+          end do
+        end do
+      end do
+    end if
 
   end subroutine extract_subset_dim1_3d
   ! ---------------------------------
-  pure subroutine extract_subset_dim2_4d(nmom, ncol, nlay, ngpt, array_in, colS, colE, array_out) &
+  pure subroutine extract_subset_dim2_4d(nmom, ncol, nlay, ngpt, array_in, colS, colE, col_dim_1, array_out) &
     bind (C, name="extract_subset_dim2_4d")
     integer,                                  intent(in ) :: nmom, ncol, nlay, ngpt
     real(wp), dimension(nmom,ncol,nlay,ngpt), intent(in ) :: array_in
     integer,                                  intent(in ) :: colS, colE
+    logical(wl),                              intent(in ):: col_dim_1
     real(wp), dimension(nmom,colE-colS+1,&
                                   nlay,ngpt), intent(out) :: array_out
 
     integer :: icol, ilay, igpt, imom
 
-    do igpt = 1, ngpt
-      do ilay = 1, nlay
-        do icol = colS, colE
-          do imom = 1, nmom
-            array_out(imom, icol-colS+1, ilay, igpt) = array_in(imom, icol, ilay, igpt)
+    if(col_dim_1) then
+      do igpt = 1, ngpt
+        do ilay = 1, nlay
+          do icol = colS, colE
+            do imom = 1, nmom
+              array_out(imom, icol-colS+1, ilay, igpt) = array_in(imom, icol, ilay, igpt)
+            end do
           end do
         end do
       end do
-    end do
-
+    else
+      do icol = colS, colE
+        do igpt = 1, ngpt
+          do ilay = 1, nlay
+              do imom = 1, nmom
+              array_out(imom, igpt, ilay, icol-colS+1) = array_in(imom, igpt, ilay, icol)
+            end do
+          end do
+        end do
+      end do
+    end if
   end subroutine extract_subset_dim2_4d
   ! ---------------------------------
   !
   ! Extract the absorption optical thickness which requires mulitplying by 1 - ssa
   !
   pure subroutine extract_subset_absorption_tau(ncol, nlay, ngpt, tau_in, ssa_in, &
-                                                colS, colE, tau_out)              &
+                                                colS, colE, col_dim_1, tau_out)   &
     bind (C, name="extract_subset_absorption_tau")
     integer,                             intent(in ) :: ncol, nlay, ngpt
     real(wp), dimension(ncol,nlay,ngpt), intent(in ) :: tau_in, ssa_in
     integer,                             intent(in ) :: colS, colE
+    logical(wl),                         intent(in ) :: col_dim_1
     real(wp), dimension(colE-colS+1,&
                              nlay,ngpt), intent(out) :: tau_out
 
     integer :: icol, ilay, igpt
 
-    do igpt = 1, ngpt
-      do ilay = 1, nlay
-        do icol = colS, colE
-          tau_out(icol-colS+1, ilay, igpt) = &
-            tau_in(icol, ilay, igpt) * (1._wp - ssa_in(icol, ilay, igpt))
+    if(col_dim_1) then
+      do igpt = 1, ngpt
+        do ilay = 1, nlay
+          do icol = colS, colE
+            tau_out(icol-colS+1, ilay, igpt) = &
+              tau_in(icol, ilay, igpt) * (1._wp - ssa_in(icol, ilay, igpt))
+          end do
         end do
       end do
-    end do
+    else
+      do icol = colS, colE
+        do ilay = 1, nlay
+          do igpt = 1, ngpt
+            tau_out(ilay, igpt, icol-colS+1) = &
+              tau_in(ilay, igpt, icol) * (1._wp - ssa_in(ilay, igpt, icol))
+          end do
+        end do
+      end do
+    end if
 
   end subroutine extract_subset_absorption_tau
 end module mo_optical_props_kernels
