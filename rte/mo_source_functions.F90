@@ -15,7 +15,9 @@
 !
 ! -------------------------------------------------------------------------------------------------
 module mo_source_functions
-  use mo_rte_kind,      only: wp
+  use mo_rte_kind,      only: wp, spectral_dim_last
+  use mo_optical_props_kernels, &
+                        only: extract_subset
   use mo_optical_props, only: ty_optical_props
   implicit none
   ! -------------------------------------------------------------------------------------------------
@@ -32,7 +34,7 @@ module mo_source_functions
                                                                   ! Includes spectral weighting that accounts for state-dependent
                                                                   ! frequency to g-space mapping
     real(wp), allocatable, dimension(:,:  ) :: sfc_source
-    real(wp), allocatable, dimension(:,:  ) :: sfc_source_Jac     ! surface source Jacobian 
+    real(wp), allocatable, dimension(:,:  ) :: sfc_source_Jac     ! surface source Jacobian
   contains
     generic,   public :: alloc => alloc_lw, copy_and_alloc_lw
     procedure, private:: alloc_lw
@@ -100,9 +102,15 @@ contains
     if(allocated(this%lev_source_dec)) deallocate(this%lev_source_dec)
 
     ngpt = this%get_ngpt()
-    allocate(this%sfc_source    (ncol,     ngpt), this%lay_source    (ncol,nlay,ngpt), &
-             this%lev_source_inc(ncol,nlay,ngpt), this%lev_source_dec(ncol,nlay,ngpt))
-    allocate(this%sfc_source_Jac(ncol,     ngpt))
+    if(spectral_dim_last) then
+      allocate(this%sfc_source    (ncol,     ngpt), this%lay_source    (ncol,nlay,ngpt), &
+               this%lev_source_inc(ncol,nlay,ngpt), this%lev_source_dec(ncol,nlay,ngpt))
+      allocate(this%sfc_source_Jac(ncol,     ngpt))
+    else
+      allocate(this%sfc_source    (ngpt,     ncol), this%lay_source    (ngpt,nlay,ncol), &
+               this%lev_source_inc(ngpt,nlay,ncol), this%lev_source_dec(ngpt,nlay,ncol))
+      allocate(this%sfc_source_Jac(ngpt,     ncol))
+    end if
   end function alloc_lw
   ! --------------------------------------------------------------
   function copy_and_alloc_lw(this, ncol, nlay, spectral_desc) result(err_message)
@@ -148,7 +156,11 @@ contains
 
     if(allocated(this%toa_source)) deallocate(this%toa_source)
 
-    allocate(this%toa_source(ncol, this%get_ngpt()))
+    if(spectral_dim_last) then
+      allocate(this%toa_source(ncol, this%get_ngpt()))
+    else
+      allocate(this%toa_source(this%get_ngpt(), ncol))
+    end if
   end function alloc_sw
   ! --------------------------------------------------------------
   function copy_and_alloc_sw(this, ncol, spectral_desc) result(err_message)
@@ -198,7 +210,9 @@ contains
     integer :: get_ncol_lw
 
     if(this%is_allocated()) then
-      get_ncol_lw = size(this%lay_source,1)
+      get_ncol_lw = merge(size(this%lay_source,1), &
+                          size(this%lay_source,3), &
+                          spectral_dim_last)
     else
       get_ncol_lw = 0
     end if
@@ -220,7 +234,9 @@ contains
     integer :: get_ncol_sw
 
     if(this%is_allocated()) then
-      get_ncol_sw = size(this%toa_source,1)
+      get_ncol_sw = merge(size(this%toa_source,1), &
+                          size(this%toa_source,2), &
+                          spectral_dim_last)
     else
       get_ncol_sw = 0
     end if
@@ -251,11 +267,20 @@ contains
     if(subset%is_allocated()) call subset%finalize()
     err_message = subset%alloc(n, full%get_nlay(), full)
     if(err_message /= "") return
-    subset%sfc_source    (1:n,  :) = full%sfc_source    (start:start+n-1,  :)
-    subset%sfc_source_Jac(1:n,  :) = full%sfc_source_Jac(start:start+n-1,  :)
-    subset%lay_source    (1:n,:,:) = full%lay_source    (start:start+n-1,:,:)
-    subset%lev_source_inc(1:n,:,:) = full%lev_source_inc(start:start+n-1,:,:)
-    subset%lev_source_dec(1:n,:,:) = full%lev_source_dec(start:start+n-1,:,:)
+
+    call extract_subset(full%get_ncol(), full%get_nlay(), full%get_ngpt(), &
+                        full%lay_source,     start, start+n-1, spectral_dim_last, subset%lay_source)
+    call extract_subset(full%get_ncol(), full%get_nlay(), full%get_ngpt(), &
+                        full%lev_source_inc, start, start+n-1, spectral_dim_last, subset%lev_source_inc)
+    call extract_subset(full%get_ncol(), full%get_nlay(), full%get_ngpt(), &
+                        full%lev_source_dec, start, start+n-1, spectral_dim_last, subset%lev_source_dec)
+    if(spectral_dim_last) then
+      subset%sfc_source    (1:n,:) = full%sfc_source    (start:start+n-1,:)
+      subset%sfc_source_Jac(1:n,:) = full%sfc_source_Jac(start:start+n-1,:)
+    else
+      subset%sfc_source    (:,1:n) = full%sfc_source    (:,start:start+n-1)
+      subset%sfc_source_Jac(:,1:n) = full%sfc_source_Jac(:,start:start+n-1)
+    end if
   end function get_subset_range_lw
   ! ------------------------------------------------------------------------------------------
   function get_subset_range_sw(full, start, n, subset) result(err_message)
@@ -280,6 +305,10 @@ contains
     ! Seems like I should be able to call "alloc" generically but the compilers are complaining
     err_message = subset%copy_and_alloc_sw(n, full)
 
-    subset%toa_source(1:n,  :) = full%toa_source(start:start+n-1,  :)
+    if(spectral_dim_last) then
+      subset%toa_source(1:n,:) = full%toa_source(start:start+n-1,:)
+    else
+      subset%toa_source(:,1:n) = full%toa_source(:,start:start+n-1)
+    end if
   end function get_subset_range_sw
 end module mo_source_functions

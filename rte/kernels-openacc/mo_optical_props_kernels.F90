@@ -800,9 +800,6 @@ contains
                              nlay,ngpt), intent(out) :: array_out
     integer :: icol, ilay, igpt
 
-    !$acc parallel loop collapse(3) &
-    !$acc&     copyout(array_out(:cole-cols+1,:nlay,:ngpt)) &
-    !$acc&     copyin(array_in(cols:cole,:nlay,:ngpt))
     if(col_dim_1) then
       !$acc parallel loop collapse(3) &
       !$acc&     copyout(array_out(:cole-cols+1,:nlay,:ngpt)) &
@@ -840,9 +837,6 @@ contains
 
     integer :: icol, ilay, igpt, imom
 
-    !$acc parallel loop collapse(4) &
-    !$acc&     copyout(array_out(:nmom,:cole-cols+1,:nlay,:ngpt)) &
-    !$acc&     copyin(array_in(:nmom,cols:cole,:nlay,:ngpt))
     if(col_dim_1) then
       !$acc parallel loop collapse(4) &
       !$acc&     copyout(array_out(:nmom,:cole-cols+1,:nlay,:ngpt)) &
