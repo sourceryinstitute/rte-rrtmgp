@@ -101,7 +101,6 @@ contains
         do icol = 1, ncol
           diff = 0._wp
           do igpt = 1, ngpt
-            !$acc atomic update
             diff = diff + spectral_flux_dn(igpt, ilev, icol) - spectral_flux_up(igpt, ilev, icol)
           end do
           broadband_flux_net(icol, ilev) = diff
