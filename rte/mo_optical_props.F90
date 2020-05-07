@@ -541,11 +541,10 @@ contains
         if(.not. extents_are(for, ngpt, nlay, nlay)) &
           err_message = "delta_scale: dimension of 'for' don't match optical properties arrays"
       end if
-      if(err_message /= "") return
-      if(any(for < 0._wp .or. for > 1._wp)) then
+      if(any_vals_outside(for, 0._wp, 1._wp)) then
         err_message = "delta_scale: values of 'for' out of bounds [0,1]"
-        return
       end if
+      if(err_message /= "") return
       call delta_scale_2str_kernel(ncol, nlay, ngpt, this%tau, this%ssa, this%g, for)
     else
       call delta_scale_2str_kernel(ncol, nlay, ngpt, this%tau, this%ssa, this%g)
