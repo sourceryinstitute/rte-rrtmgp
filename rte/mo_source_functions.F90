@@ -15,7 +15,8 @@
 !
 ! -------------------------------------------------------------------------------------------------
 module mo_source_functions
-  use mo_rte_kind,      only: wp, spectral_dim_last
+  use mo_rte_kind,      only: wp
+  use mo_rte_config,    only: spectral_dim_last
   use mo_optical_props_kernels, &
                         only: extract_subset
   use mo_optical_props, only: ty_optical_props

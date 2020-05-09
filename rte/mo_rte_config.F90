@@ -18,9 +18,17 @@ module mo_rte_config
   use mo_rte_kind, only: wl
   implicit none
   private
-
+  !
+  ! Check array extents and/or validity  of values
+  !
   logical(wl), protected, public :: check_extents = .true.
   logical(wl), protected, public :: check_values  = .true.
+  !
+  ! Array ordering -
+  !  when spectral_dim_last is true,  order is col, lay, gpt
+  !  when spectral_dim_last is fales, order is gpt, lay, col
+  !
+  logical(wl), protected, public :: spectral_dim_last = .true.
 
   interface rte_config_checks
     module procedure rte_config_checks_each, rte_config_checks_all
@@ -41,5 +49,11 @@ contains
     check_extents = do_checks
     check_values  = do_checks
   end subroutine rte_config_checks_all
+  ! --------------------------------------------------------------
+  subroutine rte_config_spectral_dim(spectral_dim_is_last)
+    logical(wl), intent(in) :: spectral_dim_is_last
+
+    spectral_dim_last = spectral_dim_is_last
+  end subroutine rte_config_spectral_dim
   ! --------------------------------------------------------------
 end module mo_rte_config

@@ -15,7 +15,8 @@
 ! -------------------------------------------------------------------------------------------------
 module mo_fluxes_broadband_kernels
   use, intrinsic :: iso_c_binding
-  use mo_rte_kind, only: wp, spectral_dim_last
+  use mo_rte_kind,   only: wp
+  use mo_rte_config, only: spectral_dim_last
   implicit none
   private
   public :: sum_broadband, net_broadband
