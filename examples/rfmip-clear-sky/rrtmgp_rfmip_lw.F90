@@ -236,6 +236,7 @@ program rrtmgp_rfmip_lw
   ret = gptlsetoption (gptlpercent, 1)        ! Turn on "% of" print
   ret = gptlsetoption (gptloverhead, 0)       ! Turn off overhead estimate
   ret = gptlinitialize()
+  ret = gptlstart('rfmip_lw')
 #endif
   !
   ! Loop over blocks
@@ -261,7 +262,7 @@ program rrtmgp_rfmip_lw
     !    from pressures, temperatures, and gas concentrations...
     !
 #ifdef USE_TIMING
-    ret =  gptlstart('gas_optics (LW)')
+    ret =  gptlstart('gas_optics_lw')
 #endif
     call stop_on_err(k_dist%gas_optics(p_lay(:,:,b), &
                                        p_lev(:,:,b),       &
@@ -272,7 +273,7 @@ program rrtmgp_rfmip_lw
                                        source,             &
                                        tlev = t_lev(:,:,b)))
 #ifdef USE_TIMING
-    ret =  gptlstop('gas_optics (LW)')
+    ret =  gptlstop('gas_optics_lw')
 #endif
     !
     ! ... and compute the spectrally-resolved fluxes, providing reduced values
@@ -292,6 +293,7 @@ program rrtmgp_rfmip_lw
   end do
 #ifdef USE_TIMING
   end do
+  ret =  gptlstop('rfmip_lw')
   !
   ! End timers
   !

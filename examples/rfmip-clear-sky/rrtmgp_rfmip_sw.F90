@@ -239,6 +239,8 @@ program rrtmgp_rfmip_sw
   ret = gptlsetoption (gptlpercent, 1)        ! Turn on "% of" print
   ret = gptlsetoption (gptloverhead, 0)       ! Turn off overhead estimate
   ret =  gptlinitialize()
+  ret =  gptlstart("rfmip_sw")
+
 #endif
   !
   ! Loop over blocks
@@ -254,7 +256,7 @@ program rrtmgp_rfmip_sw
     !    from pressures, temperatures, and gas concentrations...
     !
 #ifdef USE_TIMING
-    ret =  gptlstart('gas_optics (SW)')
+    ret =  gptlstart('gas_optics_sw')
 #endif
     call stop_on_err(k_dist%gas_optics(p_lay(:,:,b), &
                                        p_lev(:,:,b),       &
@@ -263,7 +265,7 @@ program rrtmgp_rfmip_sw
                                        optical_props,      &
                                        toa_flux))
 #ifdef USE_TIMING
-    ret =  gptlstop('gas_optics (SW)')
+    ret =  gptlstop('gas_optics_sw')
 #endif
     ! Boundary conditions
     !   (This is partly to show how to keep work on GPUs using OpenACC in a host application)
@@ -342,6 +344,7 @@ program rrtmgp_rfmip_sw
   !
 #ifdef USE_TIMING
   end do
+  ret =  gptlstop("rfmip_sw")
   ret = gptlpr(block_size)
   ret = gptlfinalize()
 #endif
