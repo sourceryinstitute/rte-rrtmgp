@@ -243,7 +243,7 @@ contains
       ! Not part of the RFMIP specification, but oxygen is included because it's a major
       !    gas in some bands in the SW
       !
-      names_in_kdist = ['h2o  ', , 'o3   ', 'co2  ', 'ch4  ', 'n2o  ', 'o2   ', 'cfc12', 'cfc11']
+      names_in_kdist = ['h2o  ', 'o3   ', 'co2  ', 'ch4  ', 'n2o  ', 'o2   ', 'cfc12', 'cfc11']
       names_in_file =  ['water_vapor   ', &
                         'ozone         ', &
                         'carbon_dioxide', &
@@ -259,7 +259,7 @@ contains
       ! Not part of the RFMIP specification, but oxygen is included because it's a major
       !    gas in some bands in the SW
       !
-      names_in_kdist = ['h2o  ', , 'o3   ', 'co2    ', 'ch4    ', 'n2o    ', 'o2     ', 'cfc12  ', &
+      names_in_kdist = ['h2o  ', 'o3   ', 'co2    ', 'ch4    ', 'n2o    ', 'o2     ', 'cfc12  ', &
                         'hfc134a']
       names_in_file =  ['water_vapor   ', &
                         'ozone         ', &
