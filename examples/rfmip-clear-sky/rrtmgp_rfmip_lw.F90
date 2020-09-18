@@ -125,15 +125,15 @@ program rrtmgp_rfmip_lw
   integer :: ret, i
 #endif
   ! -------------------------------------------------------------------------------------------------
-  #ifdef USE_TIMING
-    !
-    ! Initialize timers
-    !
-    ret = gptlsetoption (gptlpercent, 1)        ! Turn on "% of" print
-    ret = gptlsetoption (gptloverhead, 0)       ! Turn off overhead estimate
-    ret = gptlinitialize()
-    ret = gptlstart('rfmip_lw')
-  #endif
+#ifdef USE_TIMING
+  !
+  ! Initialize timers
+  !
+  ret = gptlsetoption (gptlpercent, 1)        ! Turn on "% of" print
+  ret = gptlsetoption (gptloverhead, 0)       ! Turn off overhead estimate
+  ret = gptlinitialize()
+  ret = gptlstart('rfmip_lw')
+#endif
   !
   ! Code starts
   !   all arguments are optional
