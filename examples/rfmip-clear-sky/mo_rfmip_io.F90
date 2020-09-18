@@ -237,29 +237,33 @@ contains
           names_in_file(i) = conc_name(string_loc_in_array(names_in_file(i), chem_name))
       end do
     case (2)
-      num_gases = 6
+      num_gases = 8
       allocate(names_in_kdist(num_gases), names_in_file(num_gases))
       !
       ! Not part of the RFMIP specification, but oxygen is included because it's a major
       !    gas in some bands in the SW
       !
-      names_in_kdist = ['co2  ', 'ch4  ', 'n2o  ', 'o2   ', 'cfc12', 'cfc11']
-      names_in_file =  ['carbon_dioxide', &
+      names_in_kdist = ['h2o  ', , 'o3   ', 'co2  ', 'ch4  ', 'n2o  ', 'o2   ', 'cfc12', 'cfc11']
+      names_in_file =  ['water_vapor   ', &
+                        'ozone         ', &
+                        'carbon_dioxide', &
                         'methane       ', &
                         'nitrous_oxide ', &
                         'oxygen        ', &
                         'cfc12         ', &
                         'cfc11eq       ']
     case (3)
-      num_gases = 6
+      num_gases = 8
       allocate(names_in_kdist(num_gases), names_in_file(num_gases))
       !
       ! Not part of the RFMIP specification, but oxygen is included because it's a major
       !    gas in some bands in the SW
       !
-      names_in_kdist = ['co2    ', 'ch4    ', 'n2o    ', 'o2     ', 'cfc12  ', &
+      names_in_kdist = ['h2o  ', , 'o3   ', 'co2    ', 'ch4    ', 'n2o    ', 'o2     ', 'cfc12  ', &
                         'hfc134a']
-      names_in_file =  ['carbon_dioxide', &
+      names_in_file =  ['water_vapor   ', &
+                        'ozone         ', &
+                        'carbon_dioxide', &
                         'methane       ', &
                         'nitrous_oxide ', &
                         'oxygen        ', &
@@ -389,11 +393,13 @@ contains
       end do
       !
       ! NO2 is the one gas known to the k-distribution that isn't provided by RFMIP
-      !   It would be better to remove it from
+      !   When using the k-distribution gas names to choose the gases to read we set the concentrations to 0.
       !
-      do b = 1, nblocks
-        call stop_on_err(gas_conc_array(b)%set_vmr('no2', 0._wp))
-      end do
+      if(string_in_array('no2', gas_names)) then
+        do b = 1, nblocks
+          call stop_on_err(gas_conc_array(b)%set_vmr('no2', 0._wp))
+        end do
+      end if
 
 
     end do
