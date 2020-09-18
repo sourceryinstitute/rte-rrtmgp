@@ -125,6 +125,15 @@ program rrtmgp_rfmip_lw
   integer :: ret, i
 #endif
   ! -------------------------------------------------------------------------------------------------
+  #ifdef USE_TIMING
+    !
+    ! Initialize timers
+    !
+    ret = gptlsetoption (gptlpercent, 1)        ! Turn on "% of" print
+    ret = gptlsetoption (gptloverhead, 0)       ! Turn off overhead estimate
+    ret = gptlinitialize()
+    ret = gptlstart('rfmip_lw')
+  #endif
   !
   ! Code starts
   !   all arguments are optional
@@ -229,15 +238,6 @@ program rrtmgp_rfmip_lw
   !$acc enter data create(optical_props, optical_props%tau)
   !$acc enter data create(source, source%lay_source, source%lev_source_inc, source%lev_source_dec, source%sfc_source)
   ! --------------------------------------------------
-#ifdef USE_TIMING
-  !
-  ! Initialize timers
-  !
-  ret = gptlsetoption (gptlpercent, 1)        ! Turn on "% of" print
-  ret = gptlsetoption (gptloverhead, 0)       ! Turn off overhead estimate
-  ret = gptlinitialize()
-  ret = gptlstart('rfmip_lw')
-#endif
   !
   ! Loop over blocks
   !

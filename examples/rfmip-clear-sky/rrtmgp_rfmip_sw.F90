@@ -128,7 +128,16 @@ program rrtmgp_rfmip_sw
   integer :: ret, i
 #endif
   ! -------------------------------------------------------------------------------------------------
-  !
+  #ifdef USE_TIMING
+    !
+    ! Initialize timers
+    !
+    ret = gptlsetoption (gptlpercent, 1)        ! Turn on "% of" print
+    ret = gptlsetoption (gptloverhead, 0)       ! Turn off overhead estimate
+    ret =  gptlinitialize()
+    ret =  gptlstart("rfmip_sw")
+  #endif
+!
   ! Code starts
   !   all arguments are optional
   !
@@ -232,16 +241,6 @@ program rrtmgp_rfmip_sw
   !$acc enter data create (toa_flux, def_tsi)
   !$acc enter data create (sfc_alb_spec, mu0)
   ! --------------------------------------------------
-#ifdef USE_TIMING
-  !
-  ! Initialize timers
-  !
-  ret = gptlsetoption (gptlpercent, 1)        ! Turn on "% of" print
-  ret = gptlsetoption (gptloverhead, 0)       ! Turn off overhead estimate
-  ret =  gptlinitialize()
-  ret =  gptlstart("rfmip_sw")
-
-#endif
   !
   ! Loop over blocks
   !
