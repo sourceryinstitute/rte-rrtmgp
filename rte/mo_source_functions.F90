@@ -204,7 +204,7 @@ contains
     integer :: get_nlay_lw
 
     if(this%is_allocated()) then
-      get_nlay_lw = size(this%sfc_source,2)
+      get_nlay_lw = size(this%lev_source_inc,2)-1
     else
       get_nlay_lw = 0
     end if
