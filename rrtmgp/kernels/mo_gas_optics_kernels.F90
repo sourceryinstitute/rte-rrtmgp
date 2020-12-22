@@ -566,7 +566,7 @@ contains
         gptS = band_lims_gpt(1, ibnd)
         gptE = band_lims_gpt(2, ibnd)
         do igpt = gptS, gptE
-          lev_src_inc(igpt,     1,icol) = pfrac(igpt,     1,icol) * planck_function(ibnd,     1,icol)
+          lev_src_inc(igpt,     1,icol) = pfrac(igpt,     1,icol) * planck_function(ibnd,1,icol)
         end do
       end do
       !
