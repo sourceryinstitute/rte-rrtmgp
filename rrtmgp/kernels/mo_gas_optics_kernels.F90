@@ -581,8 +581,8 @@ contains
           gptS = band_lims_gpt(1, ibnd)
           gptE = band_lims_gpt(2, ibnd)
           do igpt = gptS, gptE
-            lev_src_inc(igpt,ilay,icol) = pfrac(igpt,ilay,icol) * planck_function(ibnd,ilay+1,icol)
-            lev_src_dec(igpt,ilay,icol) = pfrac(igpt,ilay,icol) * planck_function(ibnd,ilay,  icol)
+            lev_src_inc(igpt,ilay+1,icol) = pfrac(igpt,ilay,icol) * planck_function(ibnd,ilay+1,icol)
+            lev_src_dec(igpt,ilay  ,icol) = pfrac(igpt,ilay,icol) * planck_function(ibnd,ilay,  icol)
           end do
         end do
       end do ! ilay
