@@ -483,7 +483,7 @@ contains
                     fmajor, jeta, tropo, jtemp, jpress,    &
                     gpoint_bands, band_lims_gpt,           &
                     pfracin, temp_ref_min, totplnk_delta, totplnk, gpoint_flavor, &
-                    sfc_src, lay_src, lev_src_inc, lev_src_dec, sfc_source_Jac) bind(C, name="compute_Planck_source")
+                    sfc_src, lev_src_inc, lev_src_dec, sfc_source_Jac) bind(C, name="compute_Planck_source")
     integer,                                    intent(in) :: ncol, nlay, nbnd, ngpt
     integer,                                    intent(in) :: nflav, neta, npres, ntemp, nPlanckTemp
     real(wp),    dimension(ncol,nlay  ),        intent(in) :: tlay
@@ -503,11 +503,9 @@ contains
     real(wp), dimension(nPlanckTemp,nbnd),        intent(in) :: totplnk
     integer,  dimension(2,ngpt),                  intent(in) :: gpoint_flavor
 
-    real(wp), dimension(ngpt,     ncol), intent(out) :: sfc_src
-    real(wp), dimension(ngpt,nlay,ncol), intent(out) :: lay_src
-    real(wp), dimension(ngpt,nlay,ncol), intent(out) :: lev_src_inc, lev_src_dec
-
-    real(wp), dimension(ngpt,     ncol), intent(out) :: sfc_source_Jac
+    real(wp), dimension(ngpt,       ncol), intent(out) :: sfc_src
+    real(wp), dimension(ngpt,nlay+1,ncol), intent(out) :: lev_src_inc, lev_src_dec
+    real(wp), dimension(ngpt,       ncol), intent(out) :: sfc_source_Jac
     ! -----------------
     ! local
     real(wp), parameter                             :: delta_Tsurf = 1.0_wp
@@ -558,26 +556,22 @@ contains
       end do
     end do ! icol
 
-    do icol = 1, ncol
-      do ilay = 1, nlay
-        ! Compute layer source irradiance for g-point, equals band irradiance x fraction for g-point
-        planck_function(1:nbnd,ilay,icol) = interpolate1D(tlay(icol,ilay), temp_ref_min, totplnk_delta, totplnk)
-        !
-        ! Map to g-points
-        !
-        do ibnd = 1, nbnd
-          gptS = band_lims_gpt(1, ibnd)
-          gptE = band_lims_gpt(2, ibnd)
-          do igpt = gptS, gptE
-            lay_src(igpt,ilay,icol) = pfrac(igpt,ilay,icol) * planck_function(ibnd,ilay,icol)
-          end do
-        end do
-      end do ! ilay
-    end do ! icol
-
     ! compute level source irradiances for each g-point, one each for upward and downward paths
     do icol = 1, ncol
       planck_function(1:nbnd,       1,icol) = interpolate1D(tlev(icol,     1), temp_ref_min, totplnk_delta, totplnk)
+      !
+      ! Lowest level - increasing direction uses spectral mapping of lowest layer
+      !
+      do ibnd = 1, nbnd
+        gptS = band_lims_gpt(1, ibnd)
+        gptE = band_lims_gpt(2, ibnd)
+        do igpt = gptS, gptE
+          lev_src_inc(igpt,ilay,icol) = pfrac(igpt,     1,icol) * planck_function(ibnd,     1,icol)
+        end do
+      end do
+      !
+      ! Source function uses spectral mapping of layer the radiation is about to enter
+      !
       do ilay = 1, nlay
         planck_function(1:nbnd,ilay+1,icol) = interpolate1D(tlev(icol,ilay+1), temp_ref_min, totplnk_delta, totplnk)
         !
@@ -592,6 +586,16 @@ contains
           end do
         end do
       end do ! ilay
+      !
+      ! Top level
+      !
+      do ibnd = 1, nbnd
+        gptS = band_lims_gpt(1, ibnd)
+        gptE = band_lims_gpt(2, ibnd)
+        do igpt = gptS, gptE
+          lev_src_dec(igpt,nlay+1,icol) = pfrac(igpt,nlay+1,icol) * planck_function(ibnd,nlay+1,icol)
+        end do
+      end do
     end do ! icol
 
   end subroutine compute_Planck_source

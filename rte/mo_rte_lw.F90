@@ -236,7 +236,7 @@ contains
     allocate(gpt_flux_up (ncol, nlay+1, ngpt), gpt_flux_dn(ncol, nlay+1, ngpt))
     allocate(gpt_flux_upJac(ncol, nlay+1, ngpt))
     allocate(sfc_emis_gpt(ncol,         ngpt))
-    !!$acc enter data copyin(sources, sources%lay_source, sources%lev_source_inc, sources%lev_source_dec, sources%sfc_source)
+    !!$acc enter data copyin(sources, sources%lev_source_inc, sources%lev_source_dec, sources%sfc_source)
     !$acc enter data copyin(optical_props)
     !$acc enter data create(gpt_flux_dn, gpt_flux_up)
     !$acc enter data create(gpt_flux_upJac)
@@ -274,8 +274,9 @@ contains
           call lw_solver_noscat(ncol, nlay, ngpt, &
                                 logical(top_at_1, wl), &
                                 lw_Ds, gauss_wts(1,1), &
-                                optical_props%tau, &
-                                sources%lay_source, sources%lev_source_inc, sources%lev_source_dec, &
+                                optical_props%tau,     &
+                                sources%lev_source_inc, &
+                                sources%lev_source_dec, &
                                 sfc_emis_gpt, sources%sfc_source,  &
                                 gpt_flux_up, gpt_flux_dn, sources%sfc_source_Jac, gpt_flux_upJac)
         else
@@ -284,8 +285,8 @@ contains
                                 n_quad_angs, &
                                 gauss_Ds(1:n_quad_angs,n_quad_angs), &
                                 gauss_wts(1:n_quad_angs,n_quad_angs), &
-                                optical_props%tau, &
-                                sources%lay_source, sources%lev_source_inc, &
+                                optical_props%tau,      &
+                                sources%lev_source_inc, &
                                 sources%lev_source_dec, &
                                 sfc_emis_gpt, sources%sfc_source,  &
                                 gpt_flux_up, gpt_flux_dn, sources%sfc_source_Jac, gpt_flux_upJac)
@@ -308,7 +309,7 @@ contains
           if(len_trim(error_msg) > 0) return
           call lw_solver_2stream(ncol, nlay, ngpt, logical(top_at_1, wl), &
                                  optical_props%tau, optical_props%ssa, optical_props%g,              &
-                                 sources%lay_source, sources%lev_source_inc, sources%lev_source_dec, &
+                                 sources%lev_source_inc, sources%lev_source_dec, &
                                  sfc_emis_gpt, sources%sfc_source,       &
                                  gpt_flux_up, gpt_flux_dn)
           !$acc exit data delete(optical_props%tau, optical_props%ssa, optical_props%g)
@@ -323,7 +324,7 @@ contains
                                  n_quad_angs, gauss_Ds(1:n_quad_angs,n_quad_angs), &
                                  gauss_wts(1:n_quad_angs,n_quad_angs), &
                                  optical_props%tau, optical_props%ssa, optical_props%g, &
-                                 sources%lay_source, sources%lev_source_inc, &
+                                 sources%lev_source_inc, &
                                  sources%lev_source_dec, &
                                  sfc_emis_gpt, sources%sfc_source,&
                                  gpt_flux_up, gpt_flux_dn, &
@@ -369,7 +370,7 @@ contains
     !$acc exit data delete(sfc_emis_gpt)
     !$acc exit data delete(gpt_flux_up,gpt_flux_dn)
     !$acc exit data delete(optical_props)
-    !!$acc exit data delete(sources%lay_source, sources%lev_source_inc, sources%lev_source_dec, sources%sfc_source,sources)
+    !!$acc exit data delete(sources%lev_source_inc, sources%lev_source_dec, sources%sfc_source,sources)
   end function rte_lw
   !--------------------------------------------------------------------------------------------------------------------
   !

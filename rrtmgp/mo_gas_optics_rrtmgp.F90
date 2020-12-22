@@ -744,10 +744,10 @@ contains
                                       optional, target :: tlev          ! level temperatures [K]
     character(len=128)                                 :: error_msg
     ! ----------------------------------------------------------
-    integer                                      :: icol, ilay, igpt
-    real(wp), dimension(ngpt,nlay,ncol)          :: lay_source_t, lev_source_inc_t, lev_source_dec_t
-    real(wp), dimension(ngpt,     ncol)          :: sfc_source_t
-    real(wp), dimension(ngpt,     ncol)          :: sfc_source_Jac
+    integer                                        :: icol, ilay, igpt
+    real(wp), dimension(ngpt,nlay+1,ncol)          :: lev_source_inc_t, lev_source_dec_t
+    real(wp), dimension(ngpt,       ncol)          :: sfc_source_t
+    real(wp), dimension(ngpt,       ncol)          :: sfc_source_Jac
 
     ! Variables for temperature at layer edges [K] (ncol, nlay+1)
     real(wp), dimension(   ncol,nlay+1), target  :: tlev_arr
@@ -789,8 +789,8 @@ contains
     ! Compute internal (Planck) source functions at layers and levels,
     !  which depend on mapping from spectral space that creates k-distribution.
     !$acc enter data copyin(sources)
-    !$acc enter data create(sources%lay_source, sources%lev_source_inc, sources%lev_source_dec, sources%sfc_source)
-    !$acc enter data create(sfc_source_t, lay_source_t, lev_source_inc_t, lev_source_dec_t) attach(tlev_wk)
+    !$acc enter data create(sources%sfc_source, sources%lev_source_inc, sources%lev_source_dec)
+    !$acc enter data create(sfc_source_t, lev_source_inc_t, lev_source_dec_t) attach(tlev_wk)
     !$acc enter data create(sfc_source_Jac)
     !$acc enter data create(sources%sfc_source_Jac)
     call compute_Planck_source(ncol, nlay, nbnd, ngpt, &
@@ -799,7 +799,7 @@ contains
                 fmajor, jeta, tropo, jtemp, jpress,                    &
                 this%get_gpoint_bands(), this%get_band_lims_gpoint(), this%planck_frac, this%temp_ref_min,&
                 this%totplnk_delta, this%totplnk, this%gpoint_flavor,  &
-                sfc_source_t, lay_source_t, lev_source_inc_t, lev_source_dec_t, &
+                sfc_source_t, lev_source_inc_t, lev_source_dec_t, &
                 sfc_source_Jac)
     !$acc parallel loop collapse(2)
     do igpt = 1, ngpt
@@ -808,16 +808,15 @@ contains
         sources%sfc_source_Jac(icol,igpt) = sfc_source_Jac(igpt,icol)
       end do
     end do
-    call reorder123x321(lay_source_t, sources%lay_source)
     call reorder123x321(lev_source_inc_t, sources%lev_source_inc)
     call reorder123x321(lev_source_dec_t, sources%lev_source_dec)
     !
     ! Transposition of a 2D array, for which we don't have a routine in mo_rrtmgp_util_reorder.
     !
     !$acc exit data delete(sfc_source_Jac)
-    !$acc exit data delete(sfc_source_t, lay_source_t, lev_source_inc_t, lev_source_dec_t) detach(tlev_wk)
+    !$acc exit data delete(sfc_source_t, lev_source_inc_t, lev_source_dec_t) detach(tlev_wk)
     !$acc exit data copyout(sources%sfc_source_Jac)
-    !$acc exit data copyout(sources%lay_source, sources%lev_source_inc, sources%lev_source_dec, sources%sfc_source)
+    !$acc exit data copyout(sources%sfc_source, sources%lev_source_inc, sources%lev_source_dec)
     !$acc exit data copyout(sources)
   end function source
   !--------------------------------------------------------------------------------------------------------------------

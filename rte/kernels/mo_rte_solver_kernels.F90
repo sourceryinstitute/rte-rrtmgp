@@ -61,7 +61,7 @@ contains
   !
   ! ---------------------------------------------------------------
   subroutine lw_solver_noscat(ncol, nlay, ngpt, top_at_1, D, weight,                             &
-                              tau, lay_source, lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
+                              tau, lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
                               radn_up, radn_dn, &
                               sfc_srcJac, radn_upJac) bind(C, name="lw_solver_noscat")
     integer,                               intent(in   ) :: ncol, nlay, ngpt ! Number of columns, layers, g-points
@@ -69,11 +69,10 @@ contains
     real(wp), dimension(ncol,       ngpt), intent(in   ) :: D            ! secant of propagation angle  []
     real(wp),                              intent(in   ) :: weight       ! quadrature weight
     real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: tau          ! Absorption optical thickness []
-    real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: lay_source   ! Planck source at layer average temperature [W/m2]
     ! Planck source at layer edge for radiation in increasing/decreasing ilay direction
     ! lev_source_dec applies the mapping in layer i to the Planck function at layer i
     ! lev_source_inc applies the mapping in layer i to the Planck function at layer i+1
-    real(wp), dimension(ncol,nlay,  ngpt), target, &
+    real(wp), dimension(ncol,nlay+1,ngpt), target, &
                                            intent(in   ) :: lev_source_inc, lev_source_dec
     real(wp), dimension(ncol,       ngpt), intent(in   ) :: sfc_emis     ! Surface emissivity      []
     real(wp), dimension(ncol,       ngpt), intent(in   ) :: sfc_src      ! Surface source function [W/m2]
@@ -126,7 +125,7 @@ contains
       ! Source function for diffuse radiation
       !
       call lw_source_noscat(ncol, nlay, &
-                            lay_source(:,:,igpt), lev_source_up(:,:,igpt), lev_source_dn(:,:,igpt), &
+                            lev_source_up(:,:,igpt), lev_source_dn(:,:,igpt), &
                             tau_loc, trans, source_dn, source_up)
       !
       ! Surface albedo, surface source function
@@ -158,7 +157,7 @@ contains
   !
   ! ---------------------------------------------------------------
   subroutine lw_solver_noscat_GaussQuad(ncol, nlay, ngpt, top_at_1, nmus, Ds, weights, &
-                                   tau, lay_source, lev_source_inc, lev_source_dec, sfc_emis, sfc_src, flux_up, flux_dn,&
+                                   tau, lev_source_inc, lev_source_dec, sfc_emis, sfc_src, flux_up, flux_dn,&
                                    sfc_srcJac, flux_upJac) &
                                    bind(C, name="lw_solver_noscat_GaussQuad")
     integer,                               intent(in   ) :: ncol, nlay, ngpt ! Number of columns, layers, g-points
@@ -166,11 +165,10 @@ contains
     integer,                               intent(in   ) :: nmus         ! number of quadrature angles
     real(wp), dimension(nmus),             intent(in   ) :: Ds, weights  ! quadrature secants, weights
     real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: tau          ! Absorption optical thickness []
-    real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: lay_source   ! Planck source at layer average temperature [W/m2]
-    real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: lev_source_inc
+    real(wp), dimension(ncol,nlay+1,ngpt), intent(in   ) :: lev_source_inc
                                         ! Planck source at layer edge for radiation in increasing ilay direction [W/m2]
                                         ! Includes spectral weighting that accounts for state-dependent frequency to g-space mapping
-    real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: lev_source_dec
+    real(wp), dimension(ncol,nlay+1,ngpt), intent(in   ) :: lev_source_dec
                                                ! Planck source at layer edge for radiation in decreasing ilay direction [W/m2]
     real(wp), dimension(ncol,       ngpt), intent(in   ) :: sfc_emis     ! Surface emissivity      []
     real(wp), dimension(ncol,       ngpt), intent(in   ) :: sfc_src      ! Surface source function [W/m2]
@@ -192,7 +190,7 @@ contains
     Ds_ncol(:,:) = Ds(1)
     call lw_solver_noscat(ncol, nlay, ngpt, &
                           top_at_1, Ds_ncol, weights(1), tau, &
-                          lay_source, lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
+                          lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
                           flux_up, flux_dn, &
                           sfc_srcJac, flux_upJac)
     !
@@ -205,7 +203,7 @@ contains
       Ds_ncol(:,:) = Ds(imu)
       call lw_solver_noscat(ncol, nlay, ngpt, &
                             top_at_1, Ds_ncol, weights(imu), tau, &
-                            lay_source, lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
+                            lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
                             radn_up, radn_dn, &
                             sfc_srcJac, radn_upJac)
       flux_up   (:,:,:) = flux_up   (:,:,:) + radn_up   (:,:,:)
@@ -225,14 +223,13 @@ contains
   ! -------------------------------------------------------------------------------------------------
    subroutine lw_solver_2stream (ncol, nlay, ngpt, top_at_1, &
                                  tau, ssa, g,                &
-                                 lay_source, lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
+                                 lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
                                  flux_up, flux_dn) bind(C, name="lw_solver_2stream")
     integer,                               intent(in   ) :: ncol, nlay, ngpt ! Number of columns, layers, g-points
     logical(wl),                           intent(in   ) :: top_at_1
     real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: tau, &  ! Optical thickness,
                                                             ssa, &  ! single-scattering albedo,
                                                             g       ! asymmetry parameter []
-    real(wp), dimension(ncol,nlay,ngpt),   intent(in   ) :: lay_source   ! Planck source at layer average temperature [W/m2]
     real(wp), dimension(ncol,nlay,ngpt), target, &
                                            intent(in   ) :: lev_source_inc, lev_source_dec
                                         ! Planck source at layer edge for radiation in increasing/decreasing ilay direction [W/m2]
@@ -273,7 +270,7 @@ contains
       !
       call lw_source_2str(ncol, nlay, top_at_1, &
                           sfc_emis(:,igpt), sfc_src(:,igpt), &
-                          lay_source(:,:,igpt), lev_source, &
+                          lev_source, &
                           gamma1, gamma2, Rdif, Tdif, tau(:,:,igpt), &
                           source_dn, source_up, source_sfc)
       !
@@ -400,15 +397,13 @@ contains
   ! See Clough et al., 1992, doi: 10.1029/92JD01419, Eq 13
   !
   ! ---------------------------------------------------------------
-  subroutine lw_source_noscat(ncol, nlay, lay_source, lev_source_up, lev_source_dn, tau, trans, &
+  subroutine lw_source_noscat(ncol, nlay, lev_source_up, lev_source_dn, tau, trans, &
                               source_dn, source_up) bind(C, name="lw_source_noscat")
     integer,                         intent(in) :: ncol, nlay
-    real(wp), dimension(ncol, nlay), intent(in) :: lay_source, & ! Planck source at layer center
-                                                   lev_source_up, & ! Planck source at levels (layer edges),
-                                                   lev_source_dn, & !   increasing/decreasing layer index
-                                                   tau,        & ! Optical path (tau/mu)
-                                                   trans         ! Transmissivity (exp(-tau))
-    real(wp), dimension(ncol, nlay), intent(out):: source_dn, source_up
+    real(wp), dimension(ncol, nlay+1), intent(in) :: lev_source_up, &  ! Planck source at levels (layer edges),
+                                                     lev_source_dn     !   increasing/decreasing layer index
+    real(wp), dimension(ncol, nlay  ), intent(in) :: tau, trans        ! Optical path (tau/mu), Transmissivity (exp(-tau))
+    real(wp), dimension(ncol, nlay  ), intent(out) :: source_dn, source_up
                                                                    ! Source function at layer edges
                                                                    ! Down at the bottom of the layer, up at the top
     ! --------------------------------
@@ -432,9 +427,9 @@ contains
       ! Equation below is developed in Clough et al., 1992, doi:10.1029/92JD01419, Eq 13
       !
       source_dn(icol,ilay) = (1._wp - trans(icol,ilay)) * lev_source_dn(icol,ilay) + &
-                              2._wp * fact * (lay_source(icol,ilay) - lev_source_dn(icol,ilay))
+                             fact * (lev_source_dn(icol,ilay  ) - lev_source_dn(icol,ilay+1))
       source_up(icol,ilay) = (1._wp - trans(icol,ilay)) * lev_source_up(icol,ilay  ) + &
-                              2._wp * fact * (lay_source(icol,ilay) - lev_source_up(icol,ilay))
+                             fact * (lev_source_up(icol,ilay+1) - lev_source_up(icol,ilay  ))
       end do
     end do
   end subroutine lw_source_noscat
@@ -452,7 +447,7 @@ contains
     real(wp), dimension(ncol,nlay  ), intent(in   ) :: tau, &     ! Absorption optical thickness, pre-divided by mu []
                                                        trans      ! transmissivity = exp(-tau)
     real(wp), dimension(ncol       ), intent(in   ) :: sfc_albedo ! Surface albedo
-    real(wp), dimension(ncol,nlay  ), intent(in   ) :: source_dn, &
+    real(wp), dimension(ncol,nlay+1), intent(in   ) :: source_dn, &
                                                        source_up  ! Diffuse radiation emitted by the layer
     real(wp), dimension(ncol       ), intent(in   ) :: source_sfc ! Surface source function [W/m2]
     real(wp), dimension(ncol,nlay+1), intent(  out) :: radn_up    ! Radiances [W/m2-str]
@@ -608,14 +603,13 @@ contains
   ! ---------------------------------------------------------------
   subroutine lw_source_2str(ncol, nlay, top_at_1,   &
                             sfc_emis, sfc_src,      &
-                            lay_source, lev_source, &
+                            lev_source, &
                             gamma1, gamma2, rdif, tdif, tau, source_dn, source_up, source_sfc) &
                             bind (C, name="lw_source_2str")
     integer,                         intent(in) :: ncol, nlay
     logical(wl),                     intent(in) :: top_at_1
     real(wp), dimension(ncol      ), intent(in) :: sfc_emis, sfc_src
-    real(wp), dimension(ncol, nlay), intent(in) :: lay_source,    & ! Planck source at layer center
-                                                   tau,           & ! Optical depth (tau)
+    real(wp), dimension(ncol, nlay), intent(in) :: tau,           & ! Optical depth (tau)
                                                    gamma1, gamma2,& ! Coupling coefficients
                                                    rdif, tdif       ! Layer reflectance and transmittance
     real(wp), dimension(ncol, nlay+1), target, &
@@ -988,7 +982,7 @@ end subroutine apply_BC_0
 !
 ! -------------------------------------------------------------------------------------------------
 subroutine lw_solver_1rescl(ncol, nlay, ngpt, top_at_1, D,                             &
-                            tau, scaling, lay_source, lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
+                            tau, scaling, lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
                             radn_up, radn_dn, &
                             sfc_srcJac, rad_up_Jac, rad_dn_Jac) bind(C, name="lw_solver_1rescl")
   integer,                               intent(in   ) :: ncol, nlay, ngpt ! Number of columns, layers, g-points
@@ -996,11 +990,10 @@ subroutine lw_solver_1rescl(ncol, nlay, ngpt, top_at_1, D,                      
   real(wp), dimension(ncol,       ngpt), intent(in   ) :: D            ! secant of propagation angle  []
   real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: tau          ! Absorption optical thickness []
   real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: scaling          ! single scattering albedo []
-  real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: lay_source   ! Planck source at layer average temperature [W/m2]
   ! Planck source at layer edge for radiation in increasing/decreasing ilay direction
   ! lev_source_dec applies the mapping in layer i to the Planck function at layer i
   ! lev_source_inc applies the mapping in layer i to the Planck function at layer i+1
-  real(wp), dimension(ncol,nlay,  ngpt), target, &
+  real(wp), dimension(ncol,nlay+1,ngpt), target, &
                                          intent(in   ) :: lev_source_inc, lev_source_dec
   real(wp), dimension(ncol,       ngpt), intent(in   ) :: sfc_emis     ! Surface emissivity      []
   real(wp), dimension(ncol,       ngpt), intent(in   ) :: sfc_src      ! Surface source function [W/m2]
@@ -1063,7 +1056,7 @@ subroutine lw_solver_1rescl(ncol, nlay, ngpt, top_at_1, D,                      
     ! Source function for diffuse radiation
     !
     call lw_source_noscat(ncol, nlay, &
-                          lay_source(:,:,igpt), lev_source_up(:,:,igpt), lev_source_dn(:,:,igpt), &
+                          lev_source_up(:,:,igpt), lev_source_dn(:,:,igpt), &
                           tau_loc, trans, source_dn, source_up)
 
     !
@@ -1099,7 +1092,7 @@ end subroutine lw_solver_1rescl
 !
 ! ---------------------------------------------------------------
 subroutine lw_solver_1rescl_GaussQuad(ncol, nlay, ngpt, top_at_1, nmus, Ds, weights, &
-                                 tau, ssa, g, lay_source, lev_source_inc, lev_source_dec, &
+                                 tau, ssa, g, lev_source_inc, lev_source_dec, &
                                  sfc_emis, sfc_src, &
                                  flux_up, flux_dn,  &
                                  sfc_src_Jac, flux_up_Jac, flux_dn_Jac) &
@@ -1111,11 +1104,10 @@ subroutine lw_solver_1rescl_GaussQuad(ncol, nlay, ngpt, top_at_1, nmus, Ds, weig
   real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: tau  ! Optical thickness,
   real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: ssa  ! single-scattering albedo,
   real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: g       ! asymmetry parameter []
-  real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: lay_source   ! Planck source at layer average temperature [W/m2]
-  real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: lev_source_inc
+  real(wp), dimension(ncol,nlay+1,ngpt), intent(in   ) :: lev_source_inc
                                       ! Planck source at layer edge for radiation in increasing ilay direction [W/m2]
                                       ! Includes spectral weighting that accounts for state-dependent frequency to g-space mapping
-  real(wp), dimension(ncol,nlay,  ngpt), intent(in   ) :: lev_source_dec
+  real(wp), dimension(ncol,nlay+1,ngpt), intent(in   ) :: lev_source_dec
                                              ! Planck source at layer edge for radiation in decreasing ilay direction [W/m2]
   real(wp), dimension(ncol,       ngpt), intent(in   ) :: sfc_emis     ! Surface emissivity      []
   real(wp), dimension(ncol,       ngpt), intent(in   ) :: sfc_src      ! Surface source function [W/m2]
@@ -1158,7 +1150,7 @@ subroutine lw_solver_1rescl_GaussQuad(ncol, nlay, ngpt, top_at_1, nmus, Ds, weig
   radn_dn(1:ncol, top_level, 1:ngpt)  = fluxTOA(1:ncol, 1:ngpt) / weight
   call lw_solver_1rescl(ncol, nlay, ngpt, &
                         top_at_1, Ds_ncol, tauLoc, scaling, &
-                        lay_source, lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
+                        lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
                         flux_up, flux_dn, sfc_src_Jac, flux_up_Jac, flux_dn_Jac)
 
   flux_up     = flux_up     * weight
@@ -1174,7 +1166,7 @@ subroutine lw_solver_1rescl_GaussQuad(ncol, nlay, ngpt, top_at_1, nmus, Ds, weig
     radn_dn(1:ncol, top_level, 1:ngpt)  = fluxTOA(1:ncol, 1:ngpt) / weight
     call lw_solver_1rescl(ncol, nlay, ngpt, &
                           top_at_1, Ds_ncol, tauLoc, scaling, &
-                          lay_source, lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
+                          lev_source_inc, lev_source_dec, sfc_emis, sfc_src, &
                           radn_up, radn_dn,sfc_src_Jac,radn_up_Jac,radn_dn_Jac)
 
     flux_up    (:,:,:) = flux_up    (:,:,:) + weight*radn_up    (:,:,:)

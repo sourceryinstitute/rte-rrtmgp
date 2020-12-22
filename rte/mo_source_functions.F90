@@ -24,15 +24,13 @@ module mo_source_functions
   !   spectral mapping in each direction separately, and at the surface
   !
   type, extends(ty_optical_props), public :: ty_source_func_lw
-    real(wp), allocatable, dimension(:,:,:) :: lay_source,     & ! Planck source at layer average temperature
-                                                                 ! [W/m2] (ncol, nlay, ngpt)
-                                               lev_source_inc, &  ! Planck source at layer edge,
-                                               lev_source_dec     ! [W/m2] (ncol, nlay, ngpt)
+    real(wp), allocatable, dimension(:,:,:) :: lev_source_inc, &  ! Planck source at layer edge,
+                                               lev_source_dec     ! [W/m2] (ncol, nlay+1, ngpt)
                                                                   ! in increasing/decreasing ilay direction
                                                                   ! Includes spectral weighting that accounts for state-dependent
                                                                   ! frequency to g-space mapping
     real(wp), allocatable, dimension(:,:  ) :: sfc_source
-    real(wp), allocatable, dimension(:,:  ) :: sfc_source_Jac     ! surface source Jacobian 
+    real(wp), allocatable, dimension(:,:  ) :: sfc_source_Jac     ! surface source Jacobian
   contains
     generic,   public :: alloc => alloc_lw, copy_and_alloc_lw
     procedure, private:: alloc_lw
@@ -95,14 +93,12 @@ contains
 
     if(allocated(this%sfc_source))     deallocate(this%sfc_source)
     if(allocated(this%sfc_source_Jac)) deallocate(this%sfc_source_Jac)
-    if(allocated(this%lay_source))     deallocate(this%lay_source)
     if(allocated(this%lev_source_inc)) deallocate(this%lev_source_inc)
     if(allocated(this%lev_source_dec)) deallocate(this%lev_source_dec)
 
     ngpt = this%get_ngpt()
-    allocate(this%sfc_source    (ncol,     ngpt), this%lay_source    (ncol,nlay,ngpt), &
-             this%lev_source_inc(ncol,nlay,ngpt), this%lev_source_dec(ncol,nlay,ngpt))
-    allocate(this%sfc_source_Jac(ncol,     ngpt))
+    allocate(this%lev_source_inc(ncol,nlay+1,ngpt), this%lev_source_dec(ncol,nlay+1,ngpt))
+    allocate(this%sfc_source    (ncol,       ngpt), this%sfc_source_Jac(ncol,       ngpt))
   end function alloc_lw
   ! --------------------------------------------------------------
   function copy_and_alloc_lw(this, ncol, nlay, spectral_desc) result(err_message)
@@ -174,7 +170,6 @@ contains
   subroutine finalize_lw(this)
     class(ty_source_func_lw),    intent(inout) :: this
 
-    if(allocated(this%lay_source    )) deallocate(this%lay_source)
     if(allocated(this%lev_source_inc)) deallocate(this%lev_source_inc)
     if(allocated(this%lev_source_dec)) deallocate(this%lev_source_dec)
     if(allocated(this%sfc_source    )) deallocate(this%sfc_source)
@@ -198,7 +193,7 @@ contains
     integer :: get_ncol_lw
 
     if(this%is_allocated()) then
-      get_ncol_lw = size(this%lay_source,1)
+      get_ncol_lw = size(this%sfc_source,1)
     else
       get_ncol_lw = 0
     end if
@@ -209,7 +204,7 @@ contains
     integer :: get_nlay_lw
 
     if(this%is_allocated()) then
-      get_nlay_lw = size(this%lay_source,2)
+      get_nlay_lw = size(this%sfc_source,2)
     else
       get_nlay_lw = 0
     end if
@@ -253,7 +248,6 @@ contains
     if(err_message /= "") return
     subset%sfc_source    (1:n,  :) = full%sfc_source    (start:start+n-1,  :)
     subset%sfc_source_Jac(1:n,  :) = full%sfc_source_Jac(start:start+n-1,  :)
-    subset%lay_source    (1:n,:,:) = full%lay_source    (start:start+n-1,:,:)
     subset%lev_source_inc(1:n,:,:) = full%lev_source_inc(start:start+n-1,:,:)
     subset%lev_source_dec(1:n,:,:) = full%lev_source_dec(start:start+n-1,:,:)
   end function get_subset_range_lw
