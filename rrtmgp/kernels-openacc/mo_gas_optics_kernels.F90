@@ -643,7 +643,6 @@ contains
         lev_src_inc(igpt,     1,icol+1) = pfrac(igpt,     1,icol+1) * planck_function(ibnd,     1,icol+1)
         lev_src_dec(igpt,nlay+1,icol+1) = pfrac(igpt,nlay  ,icol+1) * planck_function(ibnd,nlay+1,icol+1)
         end if
-      end do
       end do ! ilay
     end do ! icol
     !

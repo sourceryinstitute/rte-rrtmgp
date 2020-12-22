@@ -530,7 +530,7 @@ contains
     !
     source_dn(icol,ilay,igpt) = (1._wp - trans(icol,ilay,igpt)) * lev_source_dn(icol,ilay  ,igpt) + &
                            fact * (lev_source_dn(icol,ilay+1,igpt) - lev_source_dn(icol,ilay  ,igpt))
-    source_up(icol,ilay,igpt) = (1._wp - trans(icol,ilay)) * lev_source_up(icol,ilay+1,igpt) + &
+    source_up(icol,ilay,igpt) = (1._wp - trans(icol,ilay,igpt)) * lev_source_up(icol,ilay+1,igpt) + &
                            fact * (lev_source_up(icol,ilay  ,igpt) - lev_source_up(icol,ilay+1,igpt))
 
   end subroutine lw_source_noscat_stencil
