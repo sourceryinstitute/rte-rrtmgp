@@ -427,9 +427,9 @@ contains
       ! Equation below is developed in Clough et al., 1992, doi:10.1029/92JD01419, Eq 13
       !
       source_dn(icol,ilay) = (1._wp - trans(icol,ilay)) * lev_source_dn(icol,ilay  ) + &
-                             fact * (lev_source_dn(icol,ilay  ) - lev_source_dn(icol,ilay+1))
+                             fact * (lev_source_dn(icol,ilay+1) - lev_source_dn(icol,ilay  ))
       source_up(icol,ilay) = (1._wp - trans(icol,ilay)) * lev_source_up(icol,ilay+1) + &
-                             fact * (lev_source_up(icol,ilay+1) - lev_source_up(icol,ilay  ))
+                             fact * (lev_source_up(icol,ilay  ) - lev_source_up(icol,ilay+1))
       end do
     end do
   end subroutine lw_source_noscat
