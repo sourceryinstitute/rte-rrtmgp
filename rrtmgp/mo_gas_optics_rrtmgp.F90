@@ -1355,7 +1355,7 @@ contains
                    this%solar_source_quiet, this%solar_source_facular, this%solar_source_sunspot)
       end if
       !$acc exit data delete(this)
-      !$omp target exit data map(release:this)
+      !!$omp target exit data map(release:this)
     end if
 
   end subroutine finalize
