@@ -1349,7 +1349,7 @@ contains
       if(allocated(this%solar_source)) then
         !$acc exit data delete(this%solar_source, this%solar_source_quiet) &
         !$acc           delete(this%solar_source_facular,this%solar_source_sunspot)
-        !$omp target exit data map(release:this%solar_source, this%solar_source_quiet)
+        !$omp target exit data map(release:this%solar_source, this%solar_source_quiet) &
         !$omp map(release:this%solar_source_facular,this%solar_source_sunspot)
         deallocate(this%solar_source, &
                    this%solar_source_quiet, this%solar_source_facular, this%solar_source_sunspot)
