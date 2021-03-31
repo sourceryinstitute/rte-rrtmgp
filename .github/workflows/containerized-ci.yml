@@ -22,13 +22,13 @@ jobs:
 
     - name: Environmental variables
       run: |
-        echo "RRTMGP_ROOT=${GITHUB_WORKSPACE}"        >> $GITHUB_ENV
-        echo "RRTMGP_BUILD=${GITHUB_WORKSPACE}/build" >> $GITHUB_ENV
+        echo "RRTMGP_ROOT=${GITHUB_WORKSPACE}"    >> $GITHUB_ENV
+        echo "PROF_DIR=${GITHUB_WORKSPACE}/tests" >> $GITHUB_ENV
     - name: Environmental variables - ifort
       if: contains(matrix.container, 'ifort')
       run: |
         echo "FC=ifort"        >> $GITHUB_ENV
-        echo "FCFLAGS=-m64 -g  -traceback -heap-arrays -assume realloc_lhs -extend-source 132 -check bounds,uninit,pointers,stack -stand f08" >> $GITHUB_ENV
+        echo "FCFLAGS=-m64 -g  -traceback -heap-arrays -assume realloc_lhs -extend-source 132 -check bounds,uninit,pointers,stack -stand f08 -prof-gen=srcpos" >> $GITHUB_ENV
     - name: Environmental variables - nvfortran
       if: contains(matrix.container, 'nvfortran')
       run:
@@ -90,6 +90,19 @@ jobs:
         cd ${RRTMGP_ROOT}/tests
         python3 verification.py
     ############################################################################
+    - name: Code coverage
+      if: contains(matrix.container, 'ifort')
+      run: |
+        cd ${PROF_DIR}
+        profmerge -a
+        echo "
+        mo_
+        ~mo_simple_netcdf
+        ~mo_rfmip_io
+        ~mo_testing_io
+        ~mo_garand_atmos_io
+        ~mo_load" > intel_codecov_filter.txt
+        codecov -prj rte-rrtmgp -comp intel_codecov_filter.txt
     - name: Validation plots
       if: contains(matrix.rte-kernels, 'default')
       run: |
