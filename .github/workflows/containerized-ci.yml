@@ -89,6 +89,7 @@ jobs:
     - name: Code coverage
       if: contains(matrix.container, 'ifort')
       run: |
+        source /opt/intel/oneapi/setvars.sh || true
         cd ${PROF_DIR}
         profmerge -a
         echo "
