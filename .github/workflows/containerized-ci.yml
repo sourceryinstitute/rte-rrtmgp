@@ -87,6 +87,7 @@ jobs:
         python3 verification.py
     ############################################################################
     - name: Code coverage
+      shell: bash
       if: contains(matrix.container, 'ifort')
       run: |
         source /opt/intel/oneapi/setvars.sh || true
