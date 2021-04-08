@@ -107,8 +107,12 @@ jobs:
         cd ${RRTMGP_ROOT}/tests
         python3 validation-plots.py
     - name: Upload plots
-      if: contains(matrix.rte-kernels, 'default')
+      if: contains(matrix.container, 'ifort') && contains(matrix.rte-kernels, 'default')
       uses: actions/upload-artifact@v2
       with:
         name: validation-and-code-coverage
-        path: tests/validation-figures.pdf tests/CODE_COVERAGE.html tests/CodeCoverage/ tests/*.xml
+        path:
+          tests/validation-figures.pdf
+          tests/CODE_COVERAGE.html
+          tests/CodeCoverage/
+          tests/*.xml
