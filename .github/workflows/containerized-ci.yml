@@ -111,7 +111,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: validation-and-code-coverage
-        path:
+        path: |
           tests/validation-figures.pdf
           tests/CODE_COVERAGE.html
           tests/CodeCoverage/
