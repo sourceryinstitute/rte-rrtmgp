@@ -86,7 +86,7 @@ jobs:
       if: contains(matrix.container, 'ifort')
       with:
         token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-        files: test/${{ matrix.rte-kernels }}_bcvrg.xml
+        files: tests/${{ matrix.rte-kernels }}_bcvrg.xml
         # flags: unittests # optional
         name: codecov-umbrella # optional
         fail_ci_if_error: false # optional (default = false)
