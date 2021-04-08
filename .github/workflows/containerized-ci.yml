@@ -24,7 +24,9 @@ jobs:
       run: echo "RRTMGP_ROOT=${GITHUB_WORKSPACE}"        >> $GITHUB_ENV
     - name: Environmental variables - ifort
       if: contains(matrix.container, 'ifort')
-      run: echo "FCFLAGS=-m64 -g  -traceback -heap-arrays -assume realloc_lhs -extend-source 132 -check bounds,uninit,pointers,stack -stand f08 -prof-gen=srcpos" >> $GITHUB_ENV
+      run: |
+        echo "FCFLAGS=-m64 -g  -traceback -heap-arrays -assume realloc_lhs -extend-source 132 -check bounds,uninit,pointers,stack -stand f08 -prof-gen=srcpos" >> $GITHUB_ENV
+        echo "PROF_DIR=${RRTMGP_ROOT}/tests" >> $GITHUB_ENV
     - name: Environmental variables - nvfortran
       if: contains(matrix.container, 'nvfortran')
       run: echo "FCFLAGS=-Mallocatable=03 -Mstandard -Mbounds -Mchkptr -Kieee -Mchkstk" >> $GITHUB_ENV
@@ -84,7 +86,7 @@ jobs:
       if: contains(matrix.container, 'ifort')
       with:
         token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-        files: ${{ matrix.rte-kernels }}_bcvrg.xml
+        files: test/${{ matrix.rte-kernels }}_bcvrg.xml
         # flags: unittests # optional
         name: codecov-umbrella # optional
         fail_ci_if_error: false # optional (default = false)
