@@ -100,7 +100,7 @@ jobs:
         ~mo_testing_io
         ~mo_garand_atmos_io
         ~mo_load" > intel_codecov_filter.txt
-        codecov -prj rte-rrtmgp -comp intel_codecov_filter.txt
+        codecov -prj rte-rrtmgp -comp intel_codecov_filter.txt -xmlbcvrg ${{ matrix.rte-kernels }}_bcvrg.xml
     - name: Validation plots
       if: contains(matrix.rte-kernels, 'default')
       run: |
@@ -110,5 +110,5 @@ jobs:
       if: contains(matrix.rte-kernels, 'default')
       uses: actions/upload-artifact@v2
       with:
-        name: valdiation-plot
-        path: tests/validation-figures.pdf
+        name: validation-and-code-coverage
+        path: tests/validation-figures.pdf tests/CODE_COVERAGE.html tests/CodeCoverage/ tests/*.xml
