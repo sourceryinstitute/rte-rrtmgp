@@ -86,7 +86,7 @@ jobs:
         cd ${RRTMGP_ROOT}/tests
         python3 verification.py
     ############################################################################
-    - name: Code coverage
+    - name: Generate code coverage XML
       shell: bash
       if: contains(matrix.container, 'ifort')
       run: |
@@ -101,6 +101,16 @@ jobs:
         ~mo_garand_atmos_io
         ~mo_load" > intel_codecov_filter.txt
         codecov -prj rte-rrtmgp -comp intel_codecov_filter.txt -xmlbcvrg ${{ matrix.rte-kernels }}_bcvrg.xml
+    - name: Code coverage upload
+    - uses: codecov/codecov-action@v1
+      if: contains(matrix.container, 'ifort')
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        files: ${{ matrix.rte-kernels }}_bcvrg.xml
+        # flags: unittests # optional
+        name: codecov-umbrella # optional
+        fail_ci_if_error: false # optional (default = false)
+        verbose: true # optional (default = false)
     - name: Validation plots
       if: contains(matrix.rte-kernels, 'default')
       run: |
@@ -111,8 +121,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: validation-and-code-coverage
-        path: |
-          tests/validation-figures.pdf
-          tests/CODE_COVERAGE.html
-          tests/CodeCoverage/
-          tests/*.xml
+        path: tests/validation-figures.pdf
