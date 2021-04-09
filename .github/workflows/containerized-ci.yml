@@ -80,7 +80,7 @@ jobs:
         ~mo_testing_io
         ~mo_garand_atmos_io
         ~mo_load" > intel_codecov_filter.txt
-        codecov -prj rte-rrtmgp -comp intel_codecov_filter.txt -xmlbcvrg ${{ matrix.rte-kernels }}_bcvrg.xml
+        codecov -prj rte-rrtmgp -comp intel_codecov_filter.txt -xmlbcvrgfull ${{ matrix.rte-kernels }}_bcvrg.xml
     - name: Code coverage upload
       uses: codecov/codecov-action@v1
       if: contains(matrix.container, 'ifort')
