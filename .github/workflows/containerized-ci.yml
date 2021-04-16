@@ -81,7 +81,6 @@ jobs:
         ~mo_garand_atmos_io
         ~mo_load" > intel_codecov_filter.txt
         codecov -prj rte-rrtmgp -comp intel_codecov_filter.txt -xmlbcvrgfull ${{ matrix.rte-kernels }}_bcvrg.xml
-        ls 
     - name: Validation plots
       if: contains(matrix.container, 'ifort') && contains(matrix.rte-kernels, 'default')
       run: |
@@ -95,5 +94,5 @@ jobs:
         path: |
           tests/validation-figures.pdf
           tests/*_bcvrg.xml
-          tests/*.html
+          tests/CODE_COVERAGE.HTML
           tests/CodeCoverage/
