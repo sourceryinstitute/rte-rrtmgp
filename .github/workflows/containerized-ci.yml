@@ -90,7 +90,8 @@ jobs:
          # flags: unittests # optional
          name: codecov-umbrella # optional
          fail_ci_if_error: false # optional (default = false)
-         verbose: true # optional (default = false)    - name: Validation plots
+         verbose: true # optional (default = false)
+    - name: Validation plots
       if: contains(matrix.container, 'ifort') && contains(matrix.rte-kernels, 'default')
       run: |
         cd ${RRTMGP_ROOT}/tests
