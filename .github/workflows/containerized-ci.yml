@@ -100,5 +100,9 @@ jobs:
       if: contains(matrix.container, 'ifort') && contains(matrix.rte-kernels, 'default')
       uses: actions/upload-artifact@v2
       with:
-        name: validation-and-code-coverage
-        path: tests/validation-figures.pdf
+        name: validation-and-code-coverage-${{ matrix.rte-kernels }}
+        path: |
+          tests/validation-figures.pdf
+          tests/${{ matrix.rte-kernels }}_bcvrg.xml
+          tests/CODE_COVERAGE.html
+          tests/CodeCoverage/
