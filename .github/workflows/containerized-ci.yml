@@ -81,16 +81,7 @@ jobs:
         ~mo_garand_atmos_io
         ~mo_load" > intel_codecov_filter.txt
         codecov -prj rte-rrtmgp -comp intel_codecov_filter.txt -xmlbcvrgfull ${{ matrix.rte-kernels }}_bcvrg.xml
-    - name: Code coverage upload
-      uses: codecov/codecov-action@v1
-      if: contains(matrix.container, 'ifort')
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-        files: tests/${{ matrix.rte-kernels }}_bcvrg.xml
-        # flags: unittests # optional
-        name: codecov-umbrella # optional
-        fail_ci_if_error: false # optional (default = false)
-        verbose: true # optional (default = false)
+        ls 
     - name: Validation plots
       if: contains(matrix.container, 'ifort') && contains(matrix.rte-kernels, 'default')
       run: |
@@ -100,9 +91,9 @@ jobs:
       if: contains(matrix.container, 'ifort') && contains(matrix.rte-kernels, 'default')
       uses: actions/upload-artifact@v2
       with:
-        name: validation-and-code-coverage-${{ matrix.rte-kernels }}
+        name: validation-and-code-coverage
         path: |
           tests/validation-figures.pdf
-          tests/${{ matrix.rte-kernels }}_bcvrg.xml
-          tests/CODE_COVERAGE.html
+          tests/*_bcvrg.xml
+          tests/*.html
           tests/CodeCoverage/
