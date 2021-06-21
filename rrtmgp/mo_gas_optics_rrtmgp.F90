@@ -785,6 +785,8 @@ contains
     ! Variables for temperature at layer edges [K] (ncol, nlay+1)
     real(wp), dimension(   ncol,nlay+1), target  :: tlev_arr
     real(wp), dimension(:,:),            pointer :: tlev_wk
+    ! Local variables
+    logical :: top_at_1
     ! ----------------------------------------------------------
     error_msg = ""
     !
@@ -818,6 +820,12 @@ contains
       end do
     end if
 
+    !$acc kernels copyout(top_at_1)
+    !$omp target map(from:top_at_1)
+    top_at_1 = play(1,1) < play(1, nlay)
+    !$acc end kernels
+    !$omp end target
+
     !-------------------------------------------------------------------
     ! Compute internal (Planck) source functions at layers and levels,
     !  which depend on mapping from spectral space that creates k-distribution.
@@ -832,7 +840,7 @@ contains
     !$omp target enter data map(alloc:sources%sfc_source_Jac)
     call compute_Planck_source(ncol, nlay, nbnd, ngpt, &
                 get_nflav(this), this%get_neta(), this%get_npres(), this%get_ntemp(), this%get_nPlanckTemp(), &
-                tlay, tlev_wk, tsfc, merge(1,nlay,play(1,1) > play(1,nlay)), &
+                tlay, tlev_wk, tsfc, merge(nlay, 1, top_at_1), &
                 fmajor, jeta, tropo, jtemp, jpress,                    &
                 this%get_gpoint_bands(), this%get_band_lims_gpoint(), this%planck_frac, this%temp_ref_min,&
                 this%totplnk_delta, this%totplnk, this%gpoint_flavor,  &
