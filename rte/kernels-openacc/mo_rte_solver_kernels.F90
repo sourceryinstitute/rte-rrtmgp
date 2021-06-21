@@ -150,7 +150,7 @@ contains
       end do
     end do
 
-    !$acc parallel loop collapse(3)
+    !$acc parallel loop no_create(An, Cn) collapse(3)
     !$omp target teams distribute parallel do simd collapse(3)
     do igpt = 1, ngpt
       do ilay = 1, nlay
@@ -196,7 +196,7 @@ contains
     !
     ! Surface reflection and emission
     !
-    !$acc parallel loop collapse(2) no_create(gpt_Jac)
+    !$acc parallel loop collapse(2) no_create(gpt_Jac, sfc_srcJac)
     !$omp target teams distribute parallel do simd collapse(2)
     do igpt = 1, ngpt
       do icol = 1, ncol
