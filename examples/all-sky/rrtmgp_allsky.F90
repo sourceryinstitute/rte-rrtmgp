@@ -49,6 +49,7 @@ program rte_rrtmgp_clouds
   use mo_load_cloud_coefficients, &
                              only: load_cld_lutcoeff, load_cld_padecoeff
   use mo_garand_atmos_io,    only: read_atmos, write_lw_fluxes, write_sw_fluxes
+  use mo_rte_config,         only: rte_config_checks
   implicit none
   ! ----------------------------------------------------------------------------------
   ! Variables
@@ -337,18 +338,20 @@ program rte_rrtmgp_clouds
   call system_clock(start_all)
   !
   !!$omp parallel do firstprivate(fluxes)
+  call rte_config_checks(.false.)
   do iloop = 1, nloops
-    call system_clock(start)
-    call stop_on_err(                                      &
-      cloud_optics%cloud_optics(lwp, iwp, rel, rei, clouds))
     !
     ! Solvers
     !
     fluxes%flux_up => flux_up(:,:)
     fluxes%flux_dn => flux_dn(:,:)
     if(is_lw) then
-      !$acc enter data create(lw_sources, lw_sources%lay_source, lw_sources%lev_source_inc, lw_sources%lev_source_dec, lw_sources%sfc_source)
-      !$omp target enter data map(alloc:lw_sources%lay_source, lw_sources%lev_source_inc, lw_sources%lev_source_dec, lw_sources%sfc_source)
+      !$acc enter data create(lw_sources, lw_sources%lay_source, lw_sources%lev_source_inc, lw_sources%lev_source_dec, lw_sources%sfc_source, lw_sources%sfc_source_Jac)
+      !$omp target enter data map(alloc:lw_sources%lay_source, lw_sources%lev_source_inc, lw_sources%lev_source_dec, lw_sources%sfc_source, lw_sources%sfc_source_Jac)
+      call system_clock(start)
+      call stop_on_err(                                      &
+        cloud_optics%cloud_optics(lwp, iwp, rel, rei, clouds))
+      
       call stop_on_err(k_dist%gas_optics(p_lay, p_lev, &
                                          t_lay, t_sfc, &
                                          gas_concs,    &
@@ -360,12 +363,18 @@ program rte_rrtmgp_clouds
                               lw_sources,      &
                               emis_sfc,        &
                               fluxes))
-      !$acc exit data delete(lw_sources%lay_source, lw_sources%lev_source_inc, lw_sources%lev_source_dec, lw_sources%sfc_source, lw_sources)
-      !$omp target exit data map(release:lw_sources%lay_source, lw_sources%lev_source_inc, lw_sources%lev_source_dec, lw_sources%sfc_source)
+
+      call system_clock(finish, clock_rate)
+      !$acc exit data delete(lw_sources%lay_source, lw_sources%lev_source_inc, lw_sources%lev_source_dec, lw_sources%sfc_source, lw_sources%sfc_source_Jac, lw_sources)
+      !$omp target exit data map(release:lw_sources%lay_source, lw_sources%lev_source_inc, lw_sources%lev_source_dec, lw_sources%sfc_source, lw_sources%sfc_source_Jac)
     else
       !$acc enter data create(toa_flux)
       !$omp target enter data map(alloc:toa_flux)
       fluxes%flux_dn_dir => flux_dir(:,:)
+
+      call system_clock(start)
+      call stop_on_err(                                      &
+        cloud_optics%cloud_optics(lwp, iwp, rel, rei, clouds))
 
       call stop_on_err(k_dist%gas_optics(p_lay, p_lev, &
                                          t_lay,        &
@@ -378,11 +387,12 @@ program rte_rrtmgp_clouds
                               mu0,   toa_flux, &
                               sfc_alb_dir, sfc_alb_dif, &
                               fluxes))
+
+      call system_clock(finish, clock_rate)
       !$acc exit data delete(toa_flux)
       !$omp target exit data map(release:toa_flux)
     end if
     !print *, "******************************************************************"
-    call system_clock(finish, clock_rate)
     elapsed(iloop) = finish - start
   end do
   !
