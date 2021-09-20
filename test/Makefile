@@ -1,7 +1,7 @@
 #
 # Location of RTE+RRTMGP libraries, module files.
 #
-RRTMGP_BUILD = $(RRTMGP_ROOT)/build
+RRTMGP_BUILD = $(RRTMGP_ROOT)/build-with-make
 #
 # RRTMGP library, module files
 #
