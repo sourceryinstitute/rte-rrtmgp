@@ -23,7 +23,7 @@
 !   to add properties defined at lower spectral resolution to a set defined at higher spectral
 !   resolution (adding properties defined by band to those defined by g-point)
 
-module mo_optical_props_kernels
+module mo_optical_props_kernels_acc
   use, intrinsic :: iso_c_binding
   use mo_rte_kind, only: wp, wl
   implicit none
@@ -968,4 +968,4 @@ contains
     end do
 
   end subroutine extract_subset_absorption_tau
-end module mo_optical_props_kernels
+end module mo_optical_props_kernels_acc

@@ -25,7 +25,7 @@
 !   Application of boundary conditions
 !
 ! -------------------------------------------------------------------------------------------------
-module mo_rte_solver_kernels
+module mo_rte_solver_kernels_acc
   use,  intrinsic :: iso_c_binding
   use mo_rte_kind, only: wp, wl
   implicit none
@@ -1485,4 +1485,4 @@ subroutine lw_transport_1rescl(ncol, nlay, ngpt, top_at_1, &
       enddo
     end if
   end subroutine lw_transport_1rescl
-end module mo_rte_solver_kernels
+end module mo_rte_solver_kernels_acc
