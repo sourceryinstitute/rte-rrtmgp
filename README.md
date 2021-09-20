@@ -27,6 +27,16 @@ Relative to commit `69d36c9` to `master` on Apr 20, 2020, the required arguments
 5. Evaluating the results of the tests requires `Python` with the `xarray` package and its depdencies installed. Comparisons can be made with `make check` in the top level directory.
 6. `make` invoked without a target in the top level attempts all three steps.
 
+## Building the documentation
+To generate and view HTML documentation after installing [`ford`], 
+execute the following command in a `bash`-like shell:
+```
+ford doc/ford-documentation.md
+```
+and then open the file `doc/html/index.html` in a web browser.
+
 ## Examples
 
 Two examples are provided in `examples/`, one for clear skies and one including clouds. Directory `tests/` contains regression testing (e.g. to ensure that answers are independent of orientation) and unit testing (to be sure all the code paths are tested). See the README file and codes in each directory for further information.
+
+[`ford`]: https://github.com/Fortran-FOSS-Programmers/ford
