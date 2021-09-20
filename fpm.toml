@@ -1,0 +1,6 @@
+name = "RTE-RRTMGP"
+version = "2.0.0"
+license = "BSD"
+author = ["Robert Pincus"]
+maintainer = "robertp@ldeo.columbia.edu"
+copyright = "2021 Columbia University"
