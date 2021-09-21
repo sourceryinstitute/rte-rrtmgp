@@ -4,3 +4,6 @@ license = "BSD"
 author = ["Robert Pincus"]
 maintainer = "robertp@ldeo.columbia.edu"
 copyright = "2021 Columbia University"
+
+[dependencies]
+netcdf-interfaces = {git = "https://github.com/LKedward/netcdf-interfaces.git"}
