@@ -1,0 +1,5591 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+   <meta name="description" content="A set of codes for computing radiative fluxes in planetary atmospheres.">
+    
+    <meta name="author" content="" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mo_rte_util_array &ndash; rte-rrtmgp</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">rte-rrtmgp </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+        
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+        
+        
+        
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+        
+        
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+               
+            <li><a href="../lists/types.html">Derived Types</a></li>
+        
+               
+        
+        
+            </ul>
+        
+            </li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>mo_rte_util_array 
+    <small>Module</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+    data-placement="bottom" data-html="true"
+    title=" 2.9% of total for modules and submodules.">205 statements</a>
+     </li> 
+     
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/mo_rte_util_array.F90"> Source File</a></li>
+     
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+    
+     <li><a href='../sourcefile/mo_rte_util_array.f90.html'>mo_rte_util_array.F90</a></li>
+    
+  
+     <li class="active">mo_rte_util_array</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+<h3>Contents</h3>
+ 
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-0">Interfaces</a></h3></div>
+  <div id="inters-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#interface-any_vals_less_than">any_vals_less_than</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#interface-any_vals_outside">any_vals_outside</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#interface-extents_are">extents_are</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#interface-zero_array">zero_array</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-0">Functions</a></h3></div>
+  <div id="funcs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_less_than_1d">any_vals_less_than_1D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_less_than_1d_masked">any_vals_less_than_1D_masked</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_less_than_2d">any_vals_less_than_2D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_less_than_2d_masked">any_vals_less_than_2D_masked</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_less_than_3d">any_vals_less_than_3D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_less_than_3d_masked">any_vals_less_than_3D_masked</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_outside_1d">any_vals_outside_1D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_outside_1d_masked">any_vals_outside_1D_masked</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_outside_2d">any_vals_outside_2D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_outside_2d_masked">any_vals_outside_2D_masked</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_outside_3d">any_vals_outside_3D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_outside_3d_masked">any_vals_outside_3D_masked</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_1d">extents_are_1d</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_2d">extents_are_2d</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_2d_int">extents_are_2d_int</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_3d">extents_are_3d</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_4d">extents_are_4d</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_5d">extents_are_5d</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_6d">extents_are_6d</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#subs-0">Subroutines</a></h3></div>
+  <div class="list-group">
+    <div id="subs-0" class="panel-collapse collapse">
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-zero_array_1d">zero_array_1D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-zero_array_2d">zero_array_2D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-zero_array_3d">zero_array_3D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-zero_array_4d">zero_array_4D</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    
+      <br>
+    
+  
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
+      
+      <li class="list-group-item">
+  <ul class="list-inline">
+    
+    <li><a href='../module/mo_rte_kind.html'>mo_rte_kind</a></li>
+    
+  </ul>
+      </li>
+      
+      
+      
+      <li class="list-group-item">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mo_rte_util_array~~UsesGraph Pages: 1 -->
+<svg id="modulemo_rte_util_arrayUsesGraph" width="348pt" height="32pt"
+ viewBox="0.00 0.00 348.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mo_rte_util_array~~UsesGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>module~~mo_rte_util_array~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 344,-28 344,4 -4,4"/>
+<!-- module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsesGraph_node1" class="node">
+<title>module~mo_rte_util_array</title>
+<polygon fill="none" stroke="black" points="340,-24 234,-24 234,0 340,0 340,-24"/>
+<text text-anchor="middle" x="287" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">mo_rte_util_array</text>
+</g>
+<!-- module~mo_rte_kind -->
+<g id="module~~mo_rte_util_array~~UsesGraph_node2" class="node">
+<title>module~mo_rte_kind</title>
+<g id="a_module~~mo_rte_util_array~~UsesGraph_node2"><a xlink:href=".././module/mo_rte_kind.html" xlink:title="mo_rte_kind">
+<polygon fill="#337ab7" stroke="#337ab7" points="198,-24 120,-24 120,0 198,0 198,-24"/>
+<text text-anchor="middle" x="159" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_kind</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rte_util_array&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rte_util_array~~UsesGraph_edge1" class="edge">
+<title>module~mo_rte_util_array&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M233.66,-12C225.29,-12 216.67,-12 208.4,-12"/>
+<polygon fill="#000000" stroke="#000000" points="208.16,-8.5 198.16,-12 208.16,-15.5 208.16,-8.5"/>
+</g>
+<!-- iso_c_binding -->
+<g id="module~~mo_rte_util_array~~UsesGraph_node3" class="node">
+<title>iso_c_binding</title>
+<g id="a_module~~mo_rte_util_array~~UsesGraph_node3"><a xlink:href="http://fortranwiki.org/fortran/show/iso_c_binding" xlink:title="iso_c_binding">
+<polygon fill="#337ab7" stroke="#337ab7" points="84,-24 0,-24 0,0 84,0 84,-24"/>
+<text text-anchor="middle" x="42" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_c_binding</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rte_kind&#45;&gt;iso_c_binding -->
+<g id="module~~mo_rte_util_array~~UsesGraph_edge2" class="edge">
+<title>module~mo_rte_kind&#45;&gt;iso_c_binding</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M119.71,-12C111.62,-12 102.97,-12 94.49,-12"/>
+<polygon fill="#000000" stroke="#000000" points="94.29,-8.5 84.29,-12 94.29,-15.5 94.29,-8.5"/>
+</g>
+</g>
+</svg>
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses.
+    </p>
+    </div></div></div></div>
+      </li>
+      
+      </ul>
+    </div>
+    
+
+    
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Used by</h3>
+      </div>
+      <ul class="list-group">
+  
+  
+  <li class="list-group-item">
+    <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mo_rte_util_array~~UsedByGraph Pages: 1 -->
+<svg id="modulemo_rte_util_arrayUsedByGraph" width="641pt" height="483pt"
+ viewBox="0.00 0.00 641.00 482.97" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mo_rte_util_array~~UsedByGraph" class="graph" transform="scale(1.22 1.22) rotate(0) translate(4 585.96)">
+<title>module~~mo_rte_util_array~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-585.96 779,-585.96 779,4 -4,4"/>
+<!-- module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node1" class="node">
+<title>module~mo_rte_util_array</title>
+<polygon fill="none" stroke="black" points="106,-413.45 0,-413.45 0,-389.45 106,-389.45 106,-413.45"/>
+<text text-anchor="middle" x="53" y="-399.05" font-family="Helvetica,sans-Serif" font-size="10.50">mo_rte_util_array</text>
+</g>
+<!-- module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node2" class="node">
+<title>module~mo_optical_props</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node2"><a xlink:href=".././module/mo_optical_props.html" xlink:title="mo_optical_props">
+<polygon fill="#337ab7" stroke="#337ab7" points="262.5,-301.45 156.5,-301.45 156.5,-277.45 262.5,-277.45 262.5,-301.45"/>
+<text text-anchor="middle" x="209.5" y="-287.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_optical_props</text>
+</a>
+</g>
+</g>
+<!-- module~mo_optical_props&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge1" class="edge">
+<title>module~mo_optical_props&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M191.67,-301.65C164.51,-321.35 110.84,-360.25 79.13,-383.24"/>
+<polygon fill="#000000" stroke="#000000" points="76.85,-380.57 70.81,-389.27 80.96,-386.23 76.85,-380.57"/>
+</g>
+<!-- module~mo_fluxes -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node3" class="node">
+<title>module~mo_fluxes</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node3"><a xlink:href=".././module/mo_fluxes.html" xlink:title="mo_fluxes">
+<polygon fill="#337ab7" stroke="#337ab7" points="416,-497.45 349,-497.45 349,-473.45 416,-473.45 416,-497.45"/>
+<text text-anchor="middle" x="382.5" y="-483.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_fluxes</text>
+</a>
+</g>
+</g>
+<!-- module~mo_fluxes&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge2" class="edge">
+<title>module~mo_fluxes&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M348.98,-476.55C337.07,-472.43 323.86,-466.79 313,-459.45 293.45,-446.25 297.09,-432.82 277,-420.45 250.82,-404.34 241.21,-402.74 210.5,-401.45"/>
+</g>
+<!-- module~mo_fluxes&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge16" class="edge">
+<title>module~mo_fluxes&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M365.68,-473.45C351.21,-462.11 329.6,-444.24 313,-426.45 277.3,-388.22 242.22,-337.76 223.79,-309.99"/>
+<polygon fill="#000000" stroke="#000000" points="226.62,-307.92 218.2,-301.49 220.77,-311.77 226.62,-307.92"/>
+</g>
+<!-- module~mo_rte_lw -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node4" class="node">
+<title>module~mo_rte_lw</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node4"><a xlink:href=".././module/mo_rte_lw.html" xlink:title="mo_rte_lw">
+<polygon fill="#337ab7" stroke="#337ab7" points="580.5,-341.45 513.5,-341.45 513.5,-317.45 580.5,-317.45 580.5,-341.45"/>
+<text text-anchor="middle" x="547" y="-327.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_lw</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rte_lw&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge3" class="edge">
+<title>module~mo_rte_lw&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M381.5,-327.45C298.78,-331.24 293.27,-404.08 210.5,-401.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M208.5,-401.45C178.18,-400.49 144.49,-400.38 116.33,-400.55"/>
+<polygon fill="#000000" stroke="#000000" points="116.19,-397.05 106.22,-400.63 116.24,-404.05 116.19,-397.05"/>
+</g>
+<!-- module~mo_rte_lw&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge17" class="edge">
+<title>module~mo_rte_lw&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M513.3,-327.94C480.47,-326.68 428.45,-325.4 383.5,-327.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M381.5,-327.45C336.15,-329.53 285.55,-316.27 251.24,-304.85"/>
+<polygon fill="#000000" stroke="#000000" points="252.17,-301.46 241.58,-301.53 249.9,-308.09 252.17,-301.46"/>
+</g>
+<!-- module~mo_rte_lw&#45;&gt;module~mo_fluxes -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge28" class="edge">
+<title>module~mo_rte_lw&#45;&gt;module~mo_fluxes</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M513.46,-336.31C504.42,-339.45 495.13,-343.97 488,-350.45 460.35,-375.6 474.65,-396.72 452,-426.45 440.11,-442.07 423.49,-456.5 409.6,-467.19"/>
+<polygon fill="#000000" stroke="#000000" points="407.29,-464.55 401.37,-473.33 411.48,-470.15 407.29,-464.55"/>
+</g>
+<!-- module~mo_rte_solver_kernels~2 -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node15" class="node">
+<title>module~mo_rte_solver_kernels~2</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node15"><a xlink:href=".././module/mo_rte_solver_kernels~2.html" xlink:title="mo_rte_solver_kernels">
+<polygon fill="#337ab7" stroke="#337ab7" points="448.5,-417.45 316.5,-417.45 316.5,-393.45 448.5,-393.45 448.5,-417.45"/>
+<text text-anchor="middle" x="382.5" y="-403.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_solver_kernels</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rte_lw&#45;&gt;module~mo_rte_solver_kernels~2 -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge43" class="edge">
+<title>module~mo_rte_lw&#45;&gt;module~mo_rte_solver_kernels~2</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M513.48,-340.34C505.09,-343.39 496.13,-346.86 488,-350.45 462.14,-361.88 433.82,-376.95 413.2,-388.43"/>
+<polygon fill="#000000" stroke="#000000" points="411.3,-385.48 404.3,-393.42 414.73,-391.58 411.3,-385.48"/>
+</g>
+<!-- module~mo_source_functions -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node20" class="node">
+<title>module~mo_source_functions</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node20"><a xlink:href=".././module/mo_source_functions.html" xlink:title="mo_source_functions">
+<polygon fill="#337ab7" stroke="#337ab7" points="444.5,-261.45 320.5,-261.45 320.5,-237.45 444.5,-237.45 444.5,-261.45"/>
+<text text-anchor="middle" x="382.5" y="-247.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_source_functions</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rte_lw&#45;&gt;module~mo_source_functions -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge48" class="edge">
+<title>module~mo_rte_lw&#45;&gt;module~mo_source_functions</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M518.12,-317.33C508.52,-313.06 497.74,-308.15 488,-303.45 463.27,-291.53 435.7,-277.24 415.09,-266.36"/>
+<polygon fill="#000000" stroke="#000000" points="416.62,-263.21 406.15,-261.62 413.34,-269.39 416.62,-263.21"/>
+</g>
+<!-- module~mo_heating_rates -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node5" class="node">
+<title>module~mo_heating_rates</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node5"><a xlink:href=".././module/mo_heating_rates.html" xlink:title="mo_heating_rates">
+<polygon fill="#337ab7" stroke="#337ab7" points="263.5,-537.45 155.5,-537.45 155.5,-513.45 263.5,-513.45 263.5,-537.45"/>
+<text text-anchor="middle" x="209.5" y="-523.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_heating_rates</text>
+</a>
+</g>
+</g>
+<!-- module~mo_heating_rates&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge5" class="edge">
+<title>module~mo_heating_rates&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M159.12,-513.32C153.11,-510.86 147.25,-507.93 142,-504.45 109.25,-482.77 81.78,-445.55 66.64,-422.29"/>
+<polygon fill="#000000" stroke="#000000" points="69.41,-420.12 61.1,-413.54 63.5,-423.86 69.41,-420.12"/>
+</g>
+<!-- module~mo_rte_solver_kernels -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node6" class="node">
+<title>module~mo_rte_solver_kernels</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node6"><a xlink:href=".././module/mo_rte_solver_kernels.html" xlink:title="mo_rte_solver_kernels">
+<polygon fill="#337ab7" stroke="#337ab7" points="275.5,-495.45 143.5,-495.45 143.5,-471.45 275.5,-471.45 275.5,-495.45"/>
+<text text-anchor="middle" x="209.5" y="-481.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_solver_kernels</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rte_solver_kernels&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge4" class="edge">
+<title>module~mo_rte_solver_kernels&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M163.78,-471.37C156.35,-468.79 148.85,-465.81 142,-462.45 118.27,-450.81 93.74,-433.28 76.63,-420"/>
+<polygon fill="#000000" stroke="#000000" points="78.42,-416.95 68.41,-413.49 74.08,-422.44 78.42,-416.95"/>
+</g>
+<!-- module~mo_gas_optics_kernels -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node7" class="node">
+<title>module~mo_gas_optics_kernels</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node7"><a xlink:href=".././module/mo_gas_optics_kernels.html" xlink:title="mo_gas_optics_kernels">
+<polygon fill="#337ab7" stroke="#337ab7" points="277,-453.45 142,-453.45 142,-429.45 277,-429.45 277,-453.45"/>
+<text text-anchor="middle" x="209.5" y="-439.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_optics_kernels</text>
+</a>
+</g>
+</g>
+<!-- module~mo_gas_optics_kernels&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge6" class="edge">
+<title>module~mo_gas_optics_kernels&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M162.14,-429.45C145.87,-425.24 127.41,-420.46 110.41,-416.06"/>
+<polygon fill="#000000" stroke="#000000" points="111.15,-412.63 100.59,-413.52 109.39,-419.41 111.15,-412.63"/>
+</g>
+<!-- module~mo_compute_bc -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node8" class="node">
+<title>module~mo_compute_bc</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node8"><a xlink:href=".././module/mo_compute_bc.html" xlink:title="mo_compute_bc">
+<polygon fill="#337ab7" stroke="#337ab7" points="758.5,-341.45 658.5,-341.45 658.5,-317.45 758.5,-317.45 758.5,-341.45"/>
+<text text-anchor="middle" x="708.5" y="-327.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_compute_bc</text>
+</a>
+</g>
+</g>
+<!-- module~mo_compute_bc&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge7" class="edge">
+<title>module~mo_compute_bc&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M706.02,-341.47C700.67,-379.2 678.65,-495.76 606,-546.45 524.61,-603.25 482.09,-554.03 383.5,-565.45"/>
+</g>
+<!-- module~mo_compute_bc&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge19" class="edge">
+<title>module~mo_compute_bc&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M546,-289.45C452.01,-272.17 340.68,-277.04 272.85,-282.77"/>
+<polygon fill="#000000" stroke="#000000" points="272.41,-279.29 262.76,-283.65 273.02,-286.27 272.41,-279.29"/>
+</g>
+<!-- module~mo_compute_bc&#45;&gt;module~mo_fluxes -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge29" class="edge">
+<title>module~mo_compute_bc&#45;&gt;module~mo_fluxes</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M690.61,-341.7C671.02,-355.47 637.4,-377.83 606,-392.45 581.41,-403.91 571.59,-398.06 548,-411.45"/>
+</g>
+<!-- module~mo_compute_bc&#45;&gt;module~mo_rte_lw -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge35" class="edge">
+<title>module~mo_compute_bc&#45;&gt;module~mo_rte_lw</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M658.34,-329.45C636.73,-329.45 611.59,-329.45 590.76,-329.45"/>
+<polygon fill="#000000" stroke="#000000" points="590.62,-325.95 580.62,-329.45 590.62,-332.95 590.62,-325.95"/>
+</g>
+<!-- module~mo_rte_sw -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node11" class="node">
+<title>module~mo_rte_sw</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node11"><a xlink:href=".././module/mo_rte_sw.html" xlink:title="mo_rte_sw">
+<polygon fill="#337ab7" stroke="#337ab7" points="581.5,-383.45 512.5,-383.45 512.5,-359.45 581.5,-359.45 581.5,-383.45"/>
+<text text-anchor="middle" x="547" y="-369.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_sw</text>
+</a>
+</g>
+</g>
+<!-- module~mo_compute_bc&#45;&gt;module~mo_rte_sw -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge38" class="edge">
+<title>module~mo_compute_bc&#45;&gt;module~mo_rte_sw</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M661.79,-341.49C639.6,-347.33 613.08,-354.32 591.22,-360.07"/>
+<polygon fill="#000000" stroke="#000000" points="590.32,-356.69 581.54,-362.62 592.11,-363.46 590.32,-356.69"/>
+</g>
+<!-- module~mo_gas_concentrations -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node12" class="node">
+<title>module~mo_gas_concentrations</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node12"><a xlink:href=".././module/mo_gas_concentrations.html" xlink:title="mo_gas_concentrations">
+<polygon fill="#337ab7" stroke="#337ab7" points="452,-59.45 313,-59.45 313,-35.45 452,-35.45 452,-59.45"/>
+<text text-anchor="middle" x="382.5" y="-45.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_concentrations</text>
+</a>
+</g>
+</g>
+<!-- module~mo_compute_bc&#45;&gt;module~mo_gas_concentrations -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge41" class="edge">
+<title>module~mo_compute_bc&#45;&gt;module~mo_gas_concentrations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M679.56,-317.31C666.61,-310.47 651.92,-300.79 642,-288.45 612.15,-251.31 640.13,-220.71 606,-187.45 586.57,-168.52 569.5,-185 548,-168.45"/>
+</g>
+<!-- module~mo_gas_optics -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node19" class="node">
+<title>module~mo_gas_optics</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node19"><a xlink:href=".././module/mo_gas_optics.html" xlink:title="mo_gas_optics">
+<polygon fill="#337ab7" stroke="#337ab7" points="592.5,-220.45 501.5,-220.45 501.5,-196.45 592.5,-196.45 592.5,-220.45"/>
+<text text-anchor="middle" x="547" y="-206.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_optics</text>
+</a>
+</g>
+</g>
+<!-- module~mo_compute_bc&#45;&gt;module~mo_gas_optics -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge46" class="edge">
+<title>module~mo_compute_bc&#45;&gt;module~mo_gas_optics</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M683.05,-317.41C669.93,-310.19 654.03,-300.14 642,-288.45 621.31,-268.35 628.02,-253.08 606,-234.45 601.84,-230.94 597.13,-227.81 592.23,-225.05"/>
+<polygon fill="#000000" stroke="#000000" points="593.79,-221.92 583.29,-220.48 590.6,-228.15 593.79,-221.92"/>
+</g>
+<!-- module~mo_compute_bc&#45;&gt;module~mo_source_functions -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge49" class="edge">
+<title>module~mo_compute_bc&#45;&gt;module~mo_source_functions</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M665.51,-317.36C633.53,-308.54 588.29,-296.86 548,-289.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M546,-289.45C509,-282.65 467.86,-272.49 436.23,-264.12"/>
+<polygon fill="#000000" stroke="#000000" points="436.87,-260.67 426.31,-261.47 435.07,-267.43 436.87,-260.67"/>
+</g>
+<!-- module~mo_fluxes_byband -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node9" class="node">
+<title>module~mo_fluxes_byband</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node9"><a xlink:href=".././module/mo_fluxes_byband.html" xlink:title="mo_fluxes_byband">
+<polygon fill="#337ab7" stroke="#337ab7" points="603,-495.45 491,-495.45 491,-471.45 603,-471.45 603,-495.45"/>
+<text text-anchor="middle" x="547" y="-481.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_fluxes_byband</text>
+</a>
+</g>
+</g>
+<!-- module~mo_fluxes_byband&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge8" class="edge">
+<title>module~mo_fluxes_byband&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M505.64,-495.54C499.53,-498.08 493.45,-501.04 488,-504.45 469.09,-516.3 470.82,-527.47 452,-539.45 424.53,-556.94 415.82,-561.52 383.5,-565.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M381.5,-565.45C275.5,-578.36 232.91,-602.47 142,-546.45 96.08,-518.16 70.82,-456.12 60.16,-423.11"/>
+<polygon fill="#000000" stroke="#000000" points="63.49,-422.02 57.21,-413.49 56.8,-424.08 63.49,-422.02"/>
+</g>
+<!-- module~mo_fluxes_byband&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge21" class="edge">
+<title>module~mo_fluxes_byband&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M509.1,-495.53C464.81,-509.62 395.05,-530.41 383.5,-525.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M381.5,-525.45C352.47,-512.99 335.6,-528.53 313,-506.45 273.48,-467.84 300.78,-437.33 277,-387.45 263.26,-358.65 241.73,-328.74 226.91,-309.66"/>
+<polygon fill="#000000" stroke="#000000" points="229.57,-307.38 220.63,-301.7 224.08,-311.72 229.57,-307.38"/>
+</g>
+<!-- module~mo_fluxes_byband&#45;&gt;module~mo_fluxes -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge30" class="edge">
+<title>module~mo_fluxes_byband&#45;&gt;module~mo_fluxes</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M490.98,-484.13C469.91,-484.39 446.2,-484.68 426.42,-484.93"/>
+<polygon fill="#000000" stroke="#000000" points="426.13,-481.43 416.18,-485.05 426.22,-488.43 426.13,-481.43"/>
+</g>
+<!-- module~mo_gas_optics_kernels~2 -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node10" class="node">
+<title>module~mo_gas_optics_kernels~2</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node10"><a xlink:href=".././module/mo_gas_optics_kernels~2.html" xlink:title="mo_gas_optics_kernels">
+<polygon fill="#337ab7" stroke="#337ab7" points="277,-39.45 142,-39.45 142,-15.45 277,-15.45 277,-39.45"/>
+<text text-anchor="middle" x="209.5" y="-25.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_optics_kernels</text>
+</a>
+</g>
+</g>
+<!-- module~mo_gas_optics_kernels~2&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge9" class="edge">
+<title>module~mo_gas_optics_kernels~2&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M184,-39.63C169.77,-47.9 152.6,-60.11 142,-75.45 73.88,-174.04 58.44,-323.05 54.98,-379.09"/>
+<polygon fill="#000000" stroke="#000000" points="51.47,-379.13 54.42,-389.3 58.46,-379.51 51.47,-379.13"/>
+</g>
+<!-- module~mo_rte_sw&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge10" class="edge">
+<title>module~mo_rte_sw&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M515.15,-383.53C506.15,-387.51 496.47,-392.26 488,-397.45 470.48,-408.19 471.38,-419.62 452,-426.45 393.74,-447 374.34,-433.83 313,-426.45 266.44,-420.86 257.35,-403.41 210.5,-401.45"/>
+</g>
+<!-- module~mo_rte_sw&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge22" class="edge">
+<title>module~mo_rte_sw&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M512.45,-370.7C466.48,-368.87 381.8,-362.64 313,-341.45 286.21,-333.2 257.95,-318.35 237.91,-306.62"/>
+<polygon fill="#000000" stroke="#000000" points="239.69,-303.61 229.31,-301.49 236.11,-309.62 239.69,-303.61"/>
+</g>
+<!-- module~mo_rte_sw&#45;&gt;module~mo_fluxes -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge31" class="edge">
+<title>module~mo_rte_sw&#45;&gt;module~mo_fluxes</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M512.27,-382.36C503.71,-386.2 494.97,-391.18 488,-397.45 464.32,-418.78 476.29,-438.84 452,-459.45 444.44,-465.87 435.14,-470.79 425.85,-474.53"/>
+<polygon fill="#000000" stroke="#000000" points="424.46,-471.31 416.25,-478.01 426.85,-477.89 424.46,-471.31"/>
+</g>
+<!-- module~mo_rte_sw&#45;&gt;module~mo_rte_solver_kernels~2 -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge44" class="edge">
+<title>module~mo_rte_sw&#45;&gt;module~mo_rte_solver_kernels~2</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M512.33,-378.5C494.59,-382.21 472.19,-386.9 451.05,-391.32"/>
+<polygon fill="#000000" stroke="#000000" points="450.2,-387.92 441.13,-393.4 451.64,-394.77 450.2,-387.92"/>
+</g>
+<!-- module~mo_gas_concentrations&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge11" class="edge">
+<title>module~mo_gas_concentrations&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M312.97,-52.61C279.62,-57.88 240.37,-68.43 210.5,-89.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M208.5,-89.45C106.34,-161.36 68.43,-320.52 57.62,-379.18"/>
+<polygon fill="#000000" stroke="#000000" points="54.14,-378.77 55.86,-389.22 61.03,-379.98 54.14,-378.77"/>
+</g>
+<!-- module~mo_gas_optics_rrtmgp -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node13" class="node">
+<title>module~mo_gas_optics_rrtmgp</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node13"><a xlink:href=".././module/mo_gas_optics_rrtmgp.html" xlink:title="mo_gas_optics_rrtmgp">
+<polygon fill="#337ab7" stroke="#337ab7" points="775,-181.45 642,-181.45 642,-157.45 775,-157.45 775,-181.45"/>
+<text text-anchor="middle" x="708.5" y="-167.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_optics_rrtmgp</text>
+</a>
+</g>
+</g>
+<!-- module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge12" class="edge">
+<title>module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M665.5,-157.43C633.51,-148.64 588.27,-136.98 548,-129.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M546,-129.45C485.08,-118.06 504.81,-58.89 452,-26.45 425.08,-9.92 413.5,-17.36 383.5,-7.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M381.5,-7.45C362.79,-1.27 148.88,-0.93 142,-6.45 82.82,-53.9 60.87,-302.3 55.44,-378.92"/>
+<polygon fill="#000000" stroke="#000000" points="51.92,-379.1 54.74,-389.32 58.91,-379.58 51.92,-379.1"/>
+</g>
+<!-- module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge23" class="edge">
+<title>module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M546,-129.45C475.01,-116.18 453.38,-111.21 383.5,-129.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M381.5,-129.45C350.93,-137.43 338.96,-130.45 313,-148.45 268.12,-179.58 235.58,-236.89 220.28,-268"/>
+<polygon fill="#000000" stroke="#000000" points="217.08,-266.58 215.93,-277.12 223.4,-269.6 217.08,-266.58"/>
+</g>
+<!-- module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_gas_optics_kernels~2 -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge36" class="edge">
+<title>module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_gas_optics_kernels~2</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M381.5,-7.45C339.39,6.46 288.66,-2.47 253.44,-12.44"/>
+<polygon fill="#000000" stroke="#000000" points="252.08,-9.2 243.49,-15.4 254.07,-15.91 252.08,-9.2"/>
+</g>
+<!-- module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_gas_concentrations -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge42" class="edge">
+<title>module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_gas_concentrations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M546,-129.45C497.05,-120.3 497.13,-89.51 452,-68.45 447.72,-66.46 443.2,-64.59 438.6,-62.86"/>
+<polygon fill="#000000" stroke="#000000" points="439.72,-59.54 429.12,-59.49 437.38,-66.13 439.72,-59.54"/>
+</g>
+<!-- module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_gas_optics -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge47" class="edge">
+<title>module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_gas_optics</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M658.34,-181.47C640.66,-185.8 620.61,-190.7 602.49,-195.13"/>
+<polygon fill="#000000" stroke="#000000" points="601.54,-191.76 592.66,-197.53 603.2,-198.56 601.54,-191.76"/>
+</g>
+<!-- module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_source_functions -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge51" class="edge">
+<title>module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_source_functions</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M546,-129.45C529.35,-126.34 445.29,-196.27 405.04,-230.77"/>
+<polygon fill="#000000" stroke="#000000" points="402.68,-228.18 397.38,-237.36 407.24,-233.49 402.68,-228.18"/>
+</g>
+<!-- module~mo_fluxes_bygpoint -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node14" class="node">
+<title>module~mo_fluxes_bygpoint</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node14"><a xlink:href=".././module/mo_fluxes_bygpoint.html" xlink:title="mo_fluxes_bygpoint">
+<polygon fill="#337ab7" stroke="#337ab7" points="606,-537.45 488,-537.45 488,-513.45 606,-513.45 606,-537.45"/>
+<text text-anchor="middle" x="547" y="-523.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_fluxes_bygpoint</text>
+</a>
+</g>
+</g>
+<!-- module~mo_fluxes_bygpoint&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge13" class="edge">
+<title>module~mo_fluxes_bygpoint&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M508.73,-537.47C476.11,-547.31 427.22,-560.39 383.5,-565.45"/>
+</g>
+<!-- module~mo_fluxes_bygpoint&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge24" class="edge">
+<title>module~mo_fluxes_bygpoint&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M487.73,-536.35C455.72,-539.7 416.03,-539.42 383.5,-525.45"/>
+</g>
+<!-- module~mo_fluxes_bygpoint&#45;&gt;module~mo_fluxes -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge32" class="edge">
+<title>module~mo_fluxes_bygpoint&#45;&gt;module~mo_fluxes</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M497.24,-513.45C474.65,-507.89 448.03,-501.34 426.23,-495.97"/>
+<polygon fill="#000000" stroke="#000000" points="426.82,-492.51 416.27,-493.52 425.15,-499.31 426.82,-492.51"/>
+</g>
+<!-- module~mo_rte_solver_kernels~2&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge14" class="edge">
+<title>module~mo_rte_solver_kernels~2&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M316.12,-404.49C284.25,-403.87 245.36,-402.91 210.5,-401.45"/>
+</g>
+<!-- module~mo_cloud_optics -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node16" class="node">
+<title>module~mo_cloud_optics</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node16"><a xlink:href=".././module/mo_cloud_optics.html" xlink:title="mo_cloud_optics">
+<polygon fill="#337ab7" stroke="#337ab7" points="433,-101.45 332,-101.45 332,-77.45 433,-77.45 433,-101.45"/>
+<text text-anchor="middle" x="382.5" y="-87.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_cloud_optics</text>
+</a>
+</g>
+</g>
+<!-- module~mo_cloud_optics&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge15" class="edge">
+<title>module~mo_cloud_optics&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M341.66,-77.42C304.29,-68.7 248.61,-62.63 210.5,-89.45"/>
+</g>
+<!-- module~mo_cloud_optics&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge27" class="edge">
+<title>module~mo_cloud_optics&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M336.34,-101.59C328.01,-105.17 319.81,-109.71 313,-115.45 262.99,-157.63 231.43,-230.75 217.99,-267.31"/>
+<polygon fill="#000000" stroke="#000000" points="214.6,-266.41 214.54,-277 221.19,-268.76 214.6,-266.41"/>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node17" class="node">
+<title>module~mo_rrtmgp_clr_all_sky</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node17"><a xlink:href=".././module/mo_rrtmgp_clr_all_sky.html" xlink:title="mo_rrtmgp_clr_all_sky">
+<polygon fill="#337ab7" stroke="#337ab7" points="774,-279.45 643,-279.45 643,-255.45 774,-255.45 774,-279.45"/>
+<text text-anchor="middle" x="708.5" y="-265.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rrtmgp_clr_all_sky</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge25" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M642.71,-259.66C613.74,-256.2 579.16,-252.09 548,-248.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M546,-248.45C503.57,-243.51 494.48,-232.92 452,-228.45 390.56,-221.99 372.57,-212.07 313,-228.45 282.91,-236.73 252.73,-256.4 232.99,-271.18"/>
+<polygon fill="#000000" stroke="#000000" points="230.74,-268.5 224.94,-277.37 235,-274.05 230.74,-268.5"/>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_fluxes -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge33" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_fluxes</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680.55,-279.52C667.52,-286.45 652.47,-296.23 642,-308.45 615.58,-339.3 635.96,-365.03 606,-392.45 585.99,-410.77 571.59,-398.06 548,-411.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M546,-411.45C505.21,-434.62 494.88,-440.44 452,-459.45 443.55,-463.2 434.37,-466.92 425.56,-470.32"/>
+<polygon fill="#000000" stroke="#000000" points="424.31,-467.05 416.2,-473.87 426.79,-473.6 424.31,-467.05"/>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_rte_lw -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge34" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_rte_lw</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M676.37,-279.56C651.34,-289.28 615.97,-303.03 588.7,-313.63"/>
+<polygon fill="#000000" stroke="#000000" points="587.11,-310.5 579.05,-317.38 589.64,-317.02 587.11,-310.5"/>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_rte_sw -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge37" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_rte_sw</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M684.51,-279.55C671.39,-287 655.01,-297.25 642,-308.45 623.37,-324.49 626.22,-336.48 606,-350.45 601.43,-353.61 596.33,-356.35 591.1,-358.72"/>
+<polygon fill="#000000" stroke="#000000" points="589.59,-355.55 581.65,-362.57 592.23,-362.04 589.59,-355.55"/>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_gas_concentrations -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge39" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_gas_concentrations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M695.08,-255.24C676.92,-237.98 641.4,-206.43 606,-187.45 582.09,-174.64 569.5,-185 548,-168.45"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M546,-168.45C523.76,-151.33 508.25,-162.9 488,-143.45 461.33,-117.84 480.03,-92.57 452,-68.45 450.44,-67.12 448.8,-65.86 447.1,-64.69"/>
+<polygon fill="#000000" stroke="#000000" points="448.49,-61.45 438.09,-59.46 444.98,-67.51 448.49,-61.45"/>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_gas_optics -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge45" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_gas_optics</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M674.84,-255.37C650.32,-246.3 616.56,-233.82 590.03,-224"/>
+<polygon fill="#000000" stroke="#000000" points="591.21,-220.71 580.62,-220.52 588.78,-227.27 591.21,-220.71"/>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_source_functions -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge52" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_source_functions</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M546,-248.45C516.3,-244.99 483.34,-244.57 454.91,-245.26"/>
+<polygon fill="#000000" stroke="#000000" points="454.55,-241.77 444.65,-245.56 454.75,-248.77 454.55,-241.77"/>
+</g>
+<!-- module~mo_cloud_sampling -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_node18" class="node">
+<title>module~mo_cloud_sampling</title>
+<g id="a_module~~mo_rte_util_array~~UsedByGraph_node18"><a xlink:href=".././module/mo_cloud_sampling.html" xlink:title="mo_cloud_sampling">
+<polygon fill="#337ab7" stroke="#337ab7" points="441.5,-181.45 323.5,-181.45 323.5,-157.45 441.5,-157.45 441.5,-181.45"/>
+<text text-anchor="middle" x="382.5" y="-167.05" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_cloud_sampling</text>
+</a>
+</g>
+</g>
+<!-- module~mo_cloud_sampling&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge26" class="edge">
+<title>module~mo_cloud_sampling&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M341.89,-181.57C332.1,-185.35 321.88,-189.98 313,-195.45 279.43,-216.15 246.98,-248.7 227.88,-269.55"/>
+<polygon fill="#000000" stroke="#000000" points="225.1,-267.41 221.01,-277.18 230.3,-272.09 225.1,-267.41"/>
+</g>
+<!-- module~mo_gas_optics&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge20" class="edge">
+<title>module~mo_gas_optics&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M513.98,-196.4C505.24,-192.5 495.98,-187.79 488,-182.45 469.7,-170.23 471.17,-159.27 452,-148.45 424.48,-132.93 414.07,-121.47 383.5,-129.45"/>
+</g>
+<!-- module~mo_gas_optics&#45;&gt;module~mo_gas_concentrations -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge40" class="edge">
+<title>module~mo_gas_optics&#45;&gt;module~mo_gas_concentrations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M506.77,-196.36C499.8,-192.78 493.14,-188.22 488,-182.45 452.66,-142.78 489.73,-105.87 452,-68.45 450.9,-67.36 449.74,-66.32 448.53,-65.34"/>
+<polygon fill="#000000" stroke="#000000" points="450.22,-62.25 439.96,-59.59 446.32,-68.07 450.22,-62.25"/>
+</g>
+<!-- module~mo_gas_optics&#45;&gt;module~mo_source_functions -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge50" class="edge">
+<title>module~mo_gas_optics&#45;&gt;module~mo_source_functions</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M501.17,-219.77C482.6,-224.45 460.84,-229.94 441.11,-234.92"/>
+<polygon fill="#000000" stroke="#000000" points="440.15,-231.55 431.31,-237.39 441.87,-238.34 440.15,-231.55"/>
+</g>
+<!-- module~mo_source_functions&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rte_util_array~~UsedByGraph_edge18" class="edge">
+<title>module~mo_source_functions&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M330.19,-261.46C311.85,-265.75 290.99,-270.63 271.88,-275.1"/>
+<polygon fill="#000000" stroke="#000000" points="271,-271.71 262.06,-277.39 272.6,-278.52 271,-271.71"/>
+</g>
+</g>
+</svg>
+</div><script>var panmodulemo_rte_util_arrayUsedByGraph = svgPanZoom('#modulemo_rte_util_arrayUsedByGraph', {zoomEnabled: true,controlIconsEnabled: true, fit: true, center: true,}); </script><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses.
+    </p>
+    </div></div></div></div>
+  </li>
+  
+      </ul>
+    </div>
+    
+
+    <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+<h3>Contents</h3>
+ 
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-1">Interfaces</a></h3></div>
+  <div id="inters-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#interface-any_vals_less_than">any_vals_less_than</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#interface-any_vals_outside">any_vals_outside</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#interface-extents_are">extents_are</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#interface-zero_array">zero_array</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-1">Functions</a></h3></div>
+  <div id="funcs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_less_than_1d">any_vals_less_than_1D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_less_than_1d_masked">any_vals_less_than_1D_masked</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_less_than_2d">any_vals_less_than_2D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_less_than_2d_masked">any_vals_less_than_2D_masked</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_less_than_3d">any_vals_less_than_3D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_less_than_3d_masked">any_vals_less_than_3D_masked</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_outside_1d">any_vals_outside_1D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_outside_1d_masked">any_vals_outside_1D_masked</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_outside_2d">any_vals_outside_2D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_outside_2d_masked">any_vals_outside_2D_masked</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_outside_3d">any_vals_outside_3D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-any_vals_outside_3d_masked">any_vals_outside_3D_masked</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_1d">extents_are_1d</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_2d">extents_are_2d</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_2d_int">extents_are_2d_int</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_3d">extents_are_3d</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_4d">extents_are_4d</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_5d">extents_are_5d</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-extents_are_6d">extents_are_6d</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#subs-1">Subroutines</a></h3></div>
+  <div class="list-group">
+    <div id="subs-1" class="panel-collapse collapse">
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-zero_array_1d">zero_array_1D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-zero_array_2d">zero_array_2D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-zero_array_3d">zero_array_3D</a>
+      
+      <a class="list-group-item" href="../module/mo_rte_util_array.html#proc-zero_array_4d">zero_array_4D</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+
+    
+    
+    
+    
+    
+    <section>
+   <h2>Interfaces</h2>
+   
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-any_vals_less_than"></span><h3>public interface <a href='../interface/any_vals_less_than.html'>any_vals_less_than</a>
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/any_vals_less_than_1d.html'>any_vals_less_than_1D</a>(array, check_value)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>check_value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/any_vals_less_than_2d.html'>any_vals_less_than_2D</a>(array, check_value)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>check_value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/any_vals_less_than_3d.html'>any_vals_less_than_3D</a>(array, check_value)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>check_value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/any_vals_less_than_1d_masked.html'>any_vals_less_than_1D_masked</a>(array, mask, check_value)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>mask</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>check_value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/any_vals_less_than_2d_masked.html'>any_vals_less_than_2D_masked</a>(array, mask, check_value)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>mask</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>check_value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/any_vals_less_than_3d_masked.html'>any_vals_less_than_3D_masked</a>(array, mask, check_value)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:)</td><td>::</td>
+  <td><strong>mask</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>check_value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-any_vals_outside"></span><h3>public interface <a href='../interface/any_vals_outside.html'>any_vals_outside</a>
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/any_vals_outside_1d.html'>any_vals_outside_1D</a>(array, checkMin, checkMax)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMin</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMax</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/any_vals_outside_2d.html'>any_vals_outside_2D</a>(array, checkMin, checkMax)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMin</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMax</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/any_vals_outside_3d.html'>any_vals_outside_3D</a>(array, checkMin, checkMax)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMin</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMax</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/any_vals_outside_1d_masked.html'>any_vals_outside_1D_masked</a>(array, mask, checkMin, checkMax)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>mask</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMin</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMax</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/any_vals_outside_2d_masked.html'>any_vals_outside_2D_masked</a>(array, mask, checkMin, checkMax)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>mask</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMin</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMax</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/any_vals_outside_3d_masked.html'>any_vals_outside_3D_masked</a>(array, mask, checkMin, checkMax)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:)</td><td>::</td>
+  <td><strong>mask</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMin</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMax</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-extents_are"></span><h3>public interface <a href='../interface/extents_are.html'>extents_are</a>
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/extents_are_1d.html'>extents_are_1d</a>(array, n1)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:          )</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/extents_are_2d.html'>extents_are_2d</a>(array, n1, n2)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:        )</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n2</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/extents_are_3d.html'>extents_are_3d</a>(array, n1, n2, n3)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:      )</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n3</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/extents_are_4d.html'>extents_are_4d</a>(array, n1, n2, n3, n4)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:,:    )</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n3</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n4</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/extents_are_5d.html'>extents_are_5d</a>(array, n1, n2, n3, n4, n5)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:,:,:  )</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n3</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n4</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n5</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/extents_are_6d.html'>extents_are_6d</a>(array, n1, n2, n3, n4, n5, n6)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:,:,:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n3</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n4</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n5</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n6</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function <a href='../proc/extents_are_2d_int.html'>extents_are_2d_int</a>(array, n1, n2)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:        )</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n2</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-zero_array"></span><h3>public interface <a href='../interface/zero_array.html'>zero_array</a>
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine <a href='../proc/zero_array_1d.html'>zero_array_1D</a>(ni, array) bind(C, name="0")
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ni</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(ni)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine <a href='../proc/zero_array_2d.html'>zero_array_2D</a>(ni, nj, array) bind(C, name="0")
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ni</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nj</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(ni, nj)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine <a href='../proc/zero_array_3d.html'>zero_array_3D</a>(ni, nj, nk, array) bind(C, name="0")
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ni</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nj</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nk</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(ni, nj, nk)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine <a href='../proc/zero_array_4d.html'>zero_array_4D</a>(ni, nj, nk, nl, array) bind(C, name="0")
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ni</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nj</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nk</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nl</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(ni, nj, nk, nl)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+    
+    </section>
+  <br>
+    
+
+    
+    
+    
+    
+     
+    <section>
+    <h2>Functions</h2>
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-any_vals_less_than_1d"></span><h3>
+private function <a href='../proc/any_vals_less_than_1d.html'>any_vals_less_than_1D</a>(array, check_value)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>check_value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-any_vals_less_than_1d_masked"></span><h3>
+private function <a href='../proc/any_vals_less_than_1d_masked.html'>any_vals_less_than_1D_masked</a>(array, mask, check_value)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>mask</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>check_value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-any_vals_less_than_2d"></span><h3>
+private function <a href='../proc/any_vals_less_than_2d.html'>any_vals_less_than_2D</a>(array, check_value)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>check_value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-any_vals_less_than_2d_masked"></span><h3>
+private function <a href='../proc/any_vals_less_than_2d_masked.html'>any_vals_less_than_2D_masked</a>(array, mask, check_value)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>mask</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>check_value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-any_vals_less_than_3d"></span><h3>
+private function <a href='../proc/any_vals_less_than_3d.html'>any_vals_less_than_3D</a>(array, check_value)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>check_value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-any_vals_less_than_3d_masked"></span><h3>
+private function <a href='../proc/any_vals_less_than_3d_masked.html'>any_vals_less_than_3D_masked</a>(array, mask, check_value)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:)</td><td>::</td>
+  <td><strong>mask</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>check_value</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-any_vals_outside_1d"></span><h3>
+private function <a href='../proc/any_vals_outside_1d.html'>any_vals_outside_1D</a>(array, checkMin, checkMax)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMin</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMax</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-any_vals_outside_1d_masked"></span><h3>
+private function <a href='../proc/any_vals_outside_1d_masked.html'>any_vals_outside_1D_masked</a>(array, mask, checkMin, checkMax)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>mask</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMin</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMax</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-any_vals_outside_2d"></span><h3>
+private function <a href='../proc/any_vals_outside_2d.html'>any_vals_outside_2D</a>(array, checkMin, checkMax)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMin</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMax</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-any_vals_outside_2d_masked"></span><h3>
+private function <a href='../proc/any_vals_outside_2d_masked.html'>any_vals_outside_2D_masked</a>(array, mask, checkMin, checkMax)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>mask</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMin</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMax</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-any_vals_outside_3d"></span><h3>
+private function <a href='../proc/any_vals_outside_3d.html'>any_vals_outside_3D</a>(array, checkMin, checkMax)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMin</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMax</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-any_vals_outside_3d_masked"></span><h3>
+private function <a href='../proc/any_vals_outside_3d_masked.html'>any_vals_outside_3D_masked</a>(array, mask, checkMin, checkMax)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:)</td><td>::</td>
+  <td><strong>mask</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMin</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>checkMax</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-extents_are_1d"></span><h3>
+private function <a href='../proc/extents_are_1d.html'>extents_are_1d</a>(array, n1)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:          )</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-extents_are_2d"></span><h3>
+private function <a href='../proc/extents_are_2d.html'>extents_are_2d</a>(array, n1, n2)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:        )</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n2</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-extents_are_2d_int"></span><h3>
+private function <a href='../proc/extents_are_2d_int.html'>extents_are_2d_int</a>(array, n1, n2)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:        )</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n2</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-extents_are_3d"></span><h3>
+private function <a href='../proc/extents_are_3d.html'>extents_are_3d</a>(array, n1, n2, n3)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:      )</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n3</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-extents_are_4d"></span><h3>
+private function <a href='../proc/extents_are_4d.html'>extents_are_4d</a>(array, n1, n2, n3, n4)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:,:    )</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n3</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n4</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-extents_are_5d"></span><h3>
+private function <a href='../proc/extents_are_5d.html'>extents_are_5d</a>(array, n1, n2, n3, n4, n5)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:,:,:  )</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n3</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n4</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n5</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-extents_are_6d"></span><h3>
+private function <a href='../proc/extents_are_6d.html'>extents_are_6d</a>(array, n1, n2, n3, n4, n5, n6)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:,:,:,:,:)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n3</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n4</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n5</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n6</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical(kind=wl)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    </section>
+    <br>
+    
+
+    
+    <section>
+    <h2>Subroutines</h2>
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-zero_array_1d"></span><h3>
+private subroutine <a href='../proc/zero_array_1d.html'>zero_array_1D</a>(ni, array) bind(C, name="0")
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ni</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(ni)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-zero_array_2d"></span><h3>
+private subroutine <a href='../proc/zero_array_2d.html'>zero_array_2D</a>(ni, nj, array) bind(C, name="0")
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ni</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nj</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(ni, nj)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-zero_array_3d"></span><h3>
+private subroutine <a href='../proc/zero_array_3d.html'>zero_array_3D</a>(ni, nj, nk, array) bind(C, name="0")
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ni</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nj</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nk</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(ni, nj, nk)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-zero_array_4d"></span><h3>
+private subroutine <a href='../proc/zero_array_4d.html'>zero_array_4D</a>(ni, nj, nk, nl, array) bind(C, name="0")
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ni</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nj</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nk</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nl</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(ni, nj, nk, nl)</td><td>::</td>
+  <td><strong>array</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    </section>    
+    <br>
+    
+    
+    
+    </div>
+  </div>
+
+  
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-6"><p>rte-rrtmgp was developed by <br>&copy; 2021 
+                                          </p>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            
+            
+          </p>
+        </div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
+  </body>
+</html>

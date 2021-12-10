@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+   <meta name="description" content="A set of codes for computing radiative fluxes in planetary atmospheres.">
+    
+    <meta name="author" content="" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mo_gas_optics &ndash; rte-rrtmgp</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">rte-rrtmgp </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+        
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+        
+        
+        
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+        
+        
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+               
+            <li><a href="../lists/types.html">Derived Types</a></li>
+        
+               
+        
+        
+            </ul>
+        
+            </li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>mo_gas_optics 
+    <small>Module</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+    data-placement="bottom" data-html="true"
+    title=" 0.7% of total for modules and submodules.">51 statements</a>
+     </li> 
+     
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/mo_gas_optics.F90"> Source File</a></li>
+     
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+    
+     <li><a href='../sourcefile/mo_gas_optics.f90.html'>mo_gas_optics.F90</a></li>
+    
+  
+     <li class="active">mo_gas_optics</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+<h3>Contents</h3>
+ 
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#absints-0">Abstract Interfaces</a></h3></div>
+  <div id="absints-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/mo_gas_optics.html#interface-gas_optics_ext_abstract">gas_optics_ext_abstract</a>
+      
+      <a class="list-group-item" href="../module/mo_gas_optics.html#interface-gas_optics_int_abstract">gas_optics_int_abstract</a>
+      
+      <a class="list-group-item" href="../module/mo_gas_optics.html#interface-logical_abstract">logical_abstract</a>
+      
+      <a class="list-group-item" href="../module/mo_gas_optics.html#interface-real_abstract">real_abstract</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#types-0">Derived Types</a></h3></div>
+  <div id="types-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/mo_gas_optics.html#type-ty_gas_optics">ty_gas_optics</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    
+      <br>
+    
+  
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
+      
+      <li class="list-group-item">
+  <ul class="list-inline">
+    
+    <li><a href='../module/mo_source_functions.html'>mo_source_functions</a></li>
+    
+    <li><a href='../module/mo_rte_kind.html'>mo_rte_kind</a></li>
+    
+    <li><a href='../module/mo_gas_concentrations.html'>mo_gas_concentrations</a></li>
+    
+    <li><a href='../module/mo_optical_props.html'>mo_optical_props</a></li>
+    
+  </ul>
+      </li>
+      
+      
+      
+      <li class="list-group-item">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mo_gas_optics~~UsesGraph Pages: 1 -->
+<svg id="modulemo_gas_opticsUsesGraph" width="641pt" height="210pt"
+ viewBox="0.00 0.00 641.00 210.29" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mo_gas_optics~~UsesGraph" class="graph" transform="scale(1.33 1.33) rotate(0) translate(4 276.17)">
+<title>module~~mo_gas_optics~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-276.17 850,-276.17 850,4 -4,4"/>
+<!-- module~mo_gas_optics -->
+<g id="module~~mo_gas_optics~~UsesGraph_node1" class="node">
+<title>module~mo_gas_optics</title>
+<polygon fill="none" stroke="black" points="846,-206 755,-206 755,-182 846,-182 846,-206"/>
+<text text-anchor="middle" x="800.5" y="-191.6" font-family="Helvetica,sans-Serif" font-size="10.50">mo_gas_optics</text>
+</g>
+<!-- module~mo_optical_props -->
+<g id="module~~mo_gas_optics~~UsesGraph_node2" class="node">
+<title>module~mo_optical_props</title>
+<g id="a_module~~mo_gas_optics~~UsesGraph_node2"><a xlink:href=".././module/mo_optical_props.html" xlink:title="mo_optical_props">
+<polygon fill="#337ab7" stroke="#337ab7" points="542.5,-124 436.5,-124 436.5,-100 542.5,-100 542.5,-124"/>
+<text text-anchor="middle" x="489.5" y="-109.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_optical_props</text>
+</a>
+</g>
+</g>
+<!-- module~mo_gas_optics&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge1" class="edge">
+<title>module~mo_gas_optics&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M754.9,-182.16C699.68,-167.51 605.63,-142.55 545.86,-126.69"/>
+<polygon fill="#000000" stroke="#000000" points="546.41,-123.21 535.84,-124.03 544.61,-129.98 546.41,-123.21"/>
+</g>
+<!-- module~mo_rte_kind -->
+<g id="module~~mo_gas_optics~~UsesGraph_node3" class="node">
+<title>module~mo_rte_kind</title>
+<g id="a_module~~mo_gas_optics~~UsesGraph_node3"><a xlink:href=".././module/mo_rte_kind.html" xlink:title="mo_rte_kind">
+<polygon fill="#337ab7" stroke="#337ab7" points="198,-104 120,-104 120,-80 198,-80 198,-104"/>
+<text text-anchor="middle" x="159" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_kind</text>
+</a>
+</g>
+</g>
+<!-- module~mo_gas_optics&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge2" class="edge">
+<title>module~mo_gas_optics&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M656,-254C582.68,-259.94 563.78,-247.69 490.5,-254"/>
+</g>
+<!-- module~mo_gas_concentrations -->
+<g id="module~~mo_gas_optics~~UsesGraph_node4" class="node">
+<title>module~mo_gas_concentrations</title>
+<g id="a_module~~mo_gas_optics~~UsesGraph_node4"><a xlink:href=".././module/mo_gas_concentrations.html" xlink:title="mo_gas_concentrations">
+<polygon fill="#337ab7" stroke="#337ab7" points="559,-186 420,-186 420,-162 559,-162 559,-186"/>
+<text text-anchor="middle" x="489.5" y="-171.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_concentrations</text>
+</a>
+</g>
+</g>
+<!-- module~mo_gas_optics&#45;&gt;module~mo_gas_concentrations -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge3" class="edge">
+<title>module~mo_gas_optics&#45;&gt;module~mo_gas_concentrations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M781.28,-206.25C755.26,-222.66 705.34,-250.17 658,-254"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M656,-254C599.3,-258.59 541.33,-218.01 511.34,-192.93"/>
+<polygon fill="#000000" stroke="#000000" points="513.51,-190.18 503.65,-186.32 508.95,-195.49 513.51,-190.18"/>
+</g>
+<!-- module~mo_source_functions -->
+<g id="module~~mo_gas_optics~~UsesGraph_node5" class="node">
+<title>module~mo_source_functions</title>
+<g id="a_module~~mo_gas_optics~~UsesGraph_node5"><a xlink:href=".././module/mo_source_functions.html" xlink:title="mo_source_functions">
+<polygon fill="#337ab7" stroke="#337ab7" points="719,-206 595,-206 595,-182 719,-182 719,-206"/>
+<text text-anchor="middle" x="657" y="-191.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_source_functions</text>
+</a>
+</g>
+</g>
+<!-- module~mo_gas_optics&#45;&gt;module~mo_source_functions -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge4" class="edge">
+<title>module~mo_gas_optics&#45;&gt;module~mo_source_functions</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M754.73,-194C746.58,-194 737.9,-194 729.21,-194"/>
+<polygon fill="#000000" stroke="#000000" points="729.04,-190.5 719.04,-194 729.04,-197.5 729.04,-190.5"/>
+</g>
+<!-- module~mo_optical_props&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge5" class="edge">
+<title>module~mo_optical_props&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M465.18,-99.92C444.49,-89.93 413.11,-76.51 384,-71 318.49,-58.61 300.03,-61.81 234,-71 224.38,-72.34 214.25,-74.61 204.68,-77.18"/>
+<polygon fill="#000000" stroke="#000000" points="203.62,-73.84 194.96,-79.94 205.53,-80.58 203.62,-73.84"/>
+</g>
+<!-- module~mo_rte_util_array -->
+<g id="module~~mo_gas_optics~~UsesGraph_node6" class="node">
+<title>module~mo_rte_util_array</title>
+<g id="a_module~~mo_gas_optics~~UsesGraph_node6"><a xlink:href=".././module/mo_rte_util_array.html" xlink:title="mo_rte_util_array">
+<polygon fill="#337ab7" stroke="#337ab7" points="362,-104 256,-104 256,-80 362,-80 362,-104"/>
+<text text-anchor="middle" x="309" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_util_array</text>
+</a>
+</g>
+</g>
+<!-- module~mo_optical_props&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge6" class="edge">
+<title>module~mo_optical_props&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M436.39,-106.16C416.32,-103.91 393.19,-101.32 372.25,-98.98"/>
+<polygon fill="#000000" stroke="#000000" points="372.5,-95.48 362.17,-97.85 371.72,-102.44 372.5,-95.48"/>
+</g>
+<!-- module~mo_optical_props_kernels~2 -->
+<g id="module~~mo_gas_optics~~UsesGraph_node7" class="node">
+<title>module~mo_optical_props_kernels~2</title>
+<g id="a_module~~mo_gas_optics~~UsesGraph_node7"><a xlink:href=".././module/mo_optical_props_kernels~2.html" xlink:title="mo_optical_props_kernels">
+<polygon fill="#337ab7" stroke="#337ab7" points="384,-24 234,-24 234,0 384,0 384,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_optical_props_kernels</text>
+</a>
+</g>
+</g>
+<!-- module~mo_optical_props&#45;&gt;module~mo_optical_props_kernels~2 -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge7" class="edge">
+<title>module~mo_optical_props&#45;&gt;module~mo_optical_props_kernels~2</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M474.11,-99.83C454.7,-83.88 418.56,-55.86 384,-38 376.52,-34.14 368.34,-30.62 360.23,-27.51"/>
+<polygon fill="#000000" stroke="#000000" points="361.39,-24.21 350.79,-24.06 358.98,-30.78 361.39,-24.21"/>
+</g>
+<!-- module~mo_rte_config -->
+<g id="module~~mo_gas_optics~~UsesGraph_node8" class="node">
+<title>module~mo_rte_config</title>
+<g id="a_module~~mo_gas_optics~~UsesGraph_node8"><a xlink:href=".././module/mo_rte_config.html" xlink:title="mo_rte_config">
+<polygon fill="#337ab7" stroke="#337ab7" points="353,-146 265,-146 265,-122 353,-122 353,-146"/>
+<text text-anchor="middle" x="309" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_config</text>
+</a>
+</g>
+</g>
+<!-- module~mo_optical_props&#45;&gt;module~mo_rte_config -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge8" class="edge">
+<title>module~mo_optical_props&#45;&gt;module~mo_rte_config</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M436.39,-118.42C413.35,-121.26 386.3,-124.6 363.14,-127.45"/>
+<polygon fill="#000000" stroke="#000000" points="362.64,-123.99 353.14,-128.68 363.5,-130.93 362.64,-123.99"/>
+</g>
+<!-- iso_c_binding -->
+<g id="module~~mo_gas_optics~~UsesGraph_node9" class="node">
+<title>iso_c_binding</title>
+<g id="a_module~~mo_gas_optics~~UsesGraph_node9"><a xlink:href="http://fortranwiki.org/fortran/show/iso_c_binding" xlink:title="iso_c_binding">
+<polygon fill="#337ab7" stroke="#337ab7" points="84,-64 0,-64 0,-40 84,-40 84,-64"/>
+<text text-anchor="middle" x="42" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_c_binding</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rte_kind&#45;&gt;iso_c_binding -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge9" class="edge">
+<title>module~mo_rte_kind&#45;&gt;iso_c_binding</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M123.5,-80C112.23,-76.08 99.55,-71.67 87.65,-67.53"/>
+<polygon fill="#000000" stroke="#000000" points="88.47,-64.11 77.88,-64.13 86.17,-70.72 88.47,-64.11"/>
+</g>
+<!-- module~mo_gas_concentrations&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge10" class="edge">
+<title>module~mo_gas_concentrations&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M419.97,-180.15C367.18,-182.27 293.42,-179.42 234,-155 211.22,-145.64 190.36,-126.47 176.64,-111.72"/>
+<polygon fill="#000000" stroke="#000000" points="179.06,-109.18 169.78,-104.07 173.85,-113.86 179.06,-109.18"/>
+</g>
+<!-- module~mo_gas_concentrations&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge11" class="edge">
+<title>module~mo_gas_concentrations&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M468.17,-161.76C440.29,-145.04 392.65,-116.68 384,-113 379.21,-110.96 374.16,-109.05 369.04,-107.29"/>
+<polygon fill="#000000" stroke="#000000" points="369.76,-103.84 359.17,-104.07 367.59,-110.5 369.76,-103.84"/>
+</g>
+<!-- module~mo_gas_concentrations&#45;&gt;module~mo_rte_config -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge13" class="edge">
+<title>module~mo_gas_concentrations&#45;&gt;module~mo_rte_config</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M434.94,-162C412.13,-156.89 385.6,-150.94 362.86,-145.85"/>
+<polygon fill="#000000" stroke="#000000" points="363.57,-142.42 353.04,-143.65 362.04,-149.25 363.57,-142.42"/>
+</g>
+<!-- module~mo_rrtmgp_util_string -->
+<g id="module~~mo_gas_optics~~UsesGraph_node10" class="node">
+<title>module~mo_rrtmgp_util_string</title>
+<g id="a_module~~mo_gas_optics~~UsesGraph_node10"><a xlink:href=".././module/mo_rrtmgp_util_string.html" xlink:title="mo_rrtmgp_util_string">
+<polygon fill="#337ab7" stroke="#337ab7" points="373.5,-226 244.5,-226 244.5,-202 373.5,-202 373.5,-226"/>
+<text text-anchor="middle" x="309" y="-211.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rrtmgp_util_string</text>
+</a>
+</g>
+</g>
+<!-- module~mo_gas_concentrations&#45;&gt;module~mo_rrtmgp_util_string -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge12" class="edge">
+<title>module~mo_gas_concentrations&#45;&gt;module~mo_rrtmgp_util_string</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M434.94,-186C415.71,-190.31 393.82,-195.22 373.79,-199.7"/>
+<polygon fill="#000000" stroke="#000000" points="372.82,-196.34 363.83,-201.94 374.35,-203.17 372.82,-196.34"/>
+</g>
+<!-- module~mo_source_functions&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge14" class="edge">
+<title>module~mo_source_functions&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M631.58,-181.9C603.14,-167.81 556,-144.45 524.12,-128.66"/>
+<polygon fill="#000000" stroke="#000000" points="525.27,-125.32 514.75,-124.02 522.16,-131.59 525.27,-125.32"/>
+</g>
+<!-- module~mo_source_functions&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge15" class="edge">
+<title>module~mo_source_functions&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M634.1,-206.11C603.2,-222.21 544.54,-249.2 490.5,-254"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M488.5,-254C375.52,-264.04 328.63,-297.53 234,-235 191.67,-207.03 172.17,-146.85 164.4,-114.19"/>
+<polygon fill="#000000" stroke="#000000" points="167.78,-113.26 162.2,-104.25 160.95,-114.77 167.78,-113.26"/>
+</g>
+<!-- module~mo_rte_util_array&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge16" class="edge">
+<title>module~mo_rte_util_array&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M255.82,-92C240.4,-92 223.6,-92 208.43,-92"/>
+<polygon fill="#000000" stroke="#000000" points="208.22,-88.5 198.22,-92 208.22,-95.5 208.22,-88.5"/>
+</g>
+<!-- module~mo_optical_props_kernels~2&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge17" class="edge">
+<title>module~mo_optical_props_kernels~2&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M266.77,-24.09C255.84,-27.94 244.24,-32.61 234,-38 215.35,-47.81 196.18,-61.93 182.03,-73.27"/>
+<polygon fill="#000000" stroke="#000000" points="179.44,-70.87 173.91,-79.91 183.87,-76.29 179.44,-70.87"/>
+</g>
+<!-- module~mo_optical_props_kernels~2&#45;&gt;iso_c_binding -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge18" class="edge">
+<title>module~mo_optical_props_kernels~2&#45;&gt;iso_c_binding</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M233.83,-23.2C189.32,-29.91 133.84,-38.29 94.19,-44.27"/>
+<polygon fill="#000000" stroke="#000000" points="93.58,-40.83 84.21,-45.78 94.62,-47.75 93.58,-40.83"/>
+</g>
+<!-- module~mo_rte_config&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_gas_optics~~UsesGraph_edge19" class="edge">
+<title>module~mo_rte_config&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M265.59,-121.96C247.63,-116.87 226.62,-110.91 208.09,-105.65"/>
+<polygon fill="#000000" stroke="#000000" points="208.95,-102.25 198.37,-102.89 207.04,-108.99 208.95,-102.25"/>
+</g>
+</g>
+</svg>
+</div><script>var panmodulemo_gas_opticsUsesGraph = svgPanZoom('#modulemo_gas_opticsUsesGraph', {zoomEnabled: true,controlIconsEnabled: true, fit: true, center: true,}); </script><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses.
+    </p>
+    </div></div></div></div>
+      </li>
+      
+      </ul>
+    </div>
+    
+
+    
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Used by</h3>
+      </div>
+      <ul class="list-group">
+  
+  
+  <li class="list-group-item">
+    <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mo_gas_optics~~UsedByGraph Pages: 1 -->
+<svg id="modulemo_gas_opticsUsedByGraph" width="268pt" height="116pt"
+ viewBox="0.00 0.00 268.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mo_gas_optics~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>module~~mo_gas_optics~~UsedByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-112 264,-112 264,4 -4,4"/>
+<!-- module~mo_gas_optics -->
+<g id="module~~mo_gas_optics~~UsedByGraph_node1" class="node">
+<title>module~mo_gas_optics</title>
+<polygon fill="none" stroke="black" points="91,-66 0,-66 0,-42 91,-42 91,-66"/>
+<text text-anchor="middle" x="45.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">mo_gas_optics</text>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky -->
+<g id="module~~mo_gas_optics~~UsedByGraph_node2" class="node">
+<title>module~mo_rrtmgp_clr_all_sky</title>
+<g id="a_module~~mo_gas_optics~~UsedByGraph_node2"><a xlink:href=".././module/mo_rrtmgp_clr_all_sky.html" xlink:title="mo_rrtmgp_clr_all_sky">
+<polygon fill="#337ab7" stroke="#337ab7" points="259,-108 128,-108 128,-84 259,-84 259,-108"/>
+<text text-anchor="middle" x="193.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rrtmgp_clr_all_sky</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_gas_optics -->
+<g id="module~~mo_gas_optics~~UsedByGraph_edge1" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_gas_optics</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M150.66,-83.96C134.32,-79.26 115.41,-73.82 98.23,-68.88"/>
+<polygon fill="#000000" stroke="#000000" points="98.92,-65.44 88.34,-66.04 96.99,-72.17 98.92,-65.44"/>
+</g>
+<!-- module~mo_compute_bc -->
+<g id="module~~mo_gas_optics~~UsedByGraph_node3" class="node">
+<title>module~mo_compute_bc</title>
+<g id="a_module~~mo_gas_optics~~UsedByGraph_node3"><a xlink:href=".././module/mo_compute_bc.html" xlink:title="mo_compute_bc">
+<polygon fill="#337ab7" stroke="#337ab7" points="243.5,-66 143.5,-66 143.5,-42 243.5,-42 243.5,-66"/>
+<text text-anchor="middle" x="193.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_compute_bc</text>
+</a>
+</g>
+</g>
+<!-- module~mo_compute_bc&#45;&gt;module~mo_gas_optics -->
+<g id="module~~mo_gas_optics~~UsedByGraph_edge2" class="edge">
+<title>module~mo_compute_bc&#45;&gt;module~mo_gas_optics</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M143.48,-54C130.01,-54 115.32,-54 101.54,-54"/>
+<polygon fill="#000000" stroke="#000000" points="101.21,-50.5 91.21,-54 101.21,-57.5 101.21,-50.5"/>
+</g>
+<!-- module~mo_gas_optics_rrtmgp -->
+<g id="module~~mo_gas_optics~~UsedByGraph_node4" class="node">
+<title>module~mo_gas_optics_rrtmgp</title>
+<g id="a_module~~mo_gas_optics~~UsedByGraph_node4"><a xlink:href=".././module/mo_gas_optics_rrtmgp.html" xlink:title="mo_gas_optics_rrtmgp">
+<polygon fill="#337ab7" stroke="#337ab7" points="260,-24 127,-24 127,0 260,0 260,-24"/>
+<text text-anchor="middle" x="193.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_optics_rrtmgp</text>
+</a>
+</g>
+</g>
+<!-- module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_gas_optics -->
+<g id="module~~mo_gas_optics~~UsedByGraph_edge3" class="edge">
+<title>module~mo_gas_optics_rrtmgp&#45;&gt;module~mo_gas_optics</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M150.66,-24.04C134.32,-28.74 115.41,-34.18 98.23,-39.12"/>
+<polygon fill="#000000" stroke="#000000" points="96.99,-35.83 88.34,-41.96 98.92,-42.56 96.99,-35.83"/>
+</g>
+</g>
+</svg>
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses.
+    </p>
+    </div></div></div></div>
+  </li>
+  
+      </ul>
+    </div>
+    
+
+    <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+<h3>Contents</h3>
+ 
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#absints-1">Abstract Interfaces</a></h3></div>
+  <div id="absints-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/mo_gas_optics.html#interface-gas_optics_ext_abstract">gas_optics_ext_abstract</a>
+      
+      <a class="list-group-item" href="../module/mo_gas_optics.html#interface-gas_optics_int_abstract">gas_optics_int_abstract</a>
+      
+      <a class="list-group-item" href="../module/mo_gas_optics.html#interface-logical_abstract">logical_abstract</a>
+      
+      <a class="list-group-item" href="../module/mo_gas_optics.html#interface-real_abstract">real_abstract</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#types-1">Derived Types</a></h3></div>
+  <div id="types-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/mo_gas_optics.html#type-ty_gas_optics">ty_gas_optics</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+
+    
+    
+    
+    
+    
+
+    
+    <section>
+     <h2>Abstract Interfaces</h2>
+   
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-gas_optics_ext_abstract"></span><h3>abstract interface
+    
+  </h3></div>
+  
+  <ul class="list-group">
+    <li class="list-group-item">
+    
+    
+    <h3>
+public function gas_optics_ext_abstract(this, play, plev, tlay, gas_desc, optical_props, toa_src, col_dry) result(error_msg)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_gas_optics.html'>ty_gas_optics</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>this</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>play</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>plev</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>tlay</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/ty_gas_concs.html'>ty_gas_concs</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>gas_desc</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_optical_props_arry.html'>ty_optical_props_arry</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>optical_props</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>toa_src</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:,:), target</td><td>::</td>
+  <td><strong>col_dry</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>character(len=128)
+  </small></h4>
+  
+    
+
+    </li>
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-gas_optics_int_abstract"></span><h3>abstract interface
+    
+  </h3></div>
+  
+  <ul class="list-group">
+    <li class="list-group-item">
+    
+    
+    <h3>
+public function gas_optics_int_abstract(this, play, plev, tlay, tsfc, gas_desc, optical_props, sources, col_dry, tlev) result(error_msg)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_gas_optics.html'>ty_gas_optics</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>this</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>play</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>plev</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>tlay</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>tsfc</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/ty_gas_concs.html'>ty_gas_concs</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>gas_desc</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_optical_props_arry.html'>ty_optical_props_arry</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>optical_props</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_source_func_lw.html'>ty_source_func_lw</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>sources</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:,:), target</td><td>::</td>
+  <td><strong>col_dry</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:,:), target</td><td>::</td>
+  <td><strong>tlev</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>character(len=128)
+  </small></h4>
+  
+    
+
+    </li>
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-logical_abstract"></span><h3>abstract interface
+    
+  </h3></div>
+  
+  <ul class="list-group">
+    <li class="list-group-item">
+    
+    
+    <h3>
+public function logical_abstract(this)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_gas_optics.html'>ty_gas_optics</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>this</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>logical
+  </small></h4>
+  
+    
+
+    </li>
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-real_abstract"></span><h3>abstract interface
+    
+  </h3></div>
+  
+  <ul class="list-group">
+    <li class="list-group-item">
+    
+    
+    <h3>
+public function real_abstract(this)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_gas_optics.html'>ty_gas_optics</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>this</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>real(kind=wp)
+  </small></h4>
+  
+    
+
+    </li>
+  </ul>
+</div>
+
+    
+    </section>
+  <br>
+    
+    
+    
+    <section>
+     <h2>Derived Types</h2>
+   
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="type-ty_gas_optics"></span><h3>type, public, abstract, extends(<a href='../type/ty_optical_props.html'>ty_optical_props</a>) :: <a href='../type/ty_gas_optics.html'>ty_gas_optics</a>
+    
+  </h3></div>
+  <div class="panel-body">
+    
+     
+     <h4>Components</h4>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-band2gpt"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>dimension(:,:), allocatable</td><td>::</td>
+  <td><strong>band2gpt</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-band_lims_wvn"></span>real(kind=wp),</td>
+  
+  <td>public,</td>
+  <td>dimension(:,:), allocatable</td><td>::</td>
+  <td><strong>band_lims_wvn</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-gpt2band"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>dimension(:), allocatable</td><td>::</td>
+  <td><strong>gpt2band</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-name"></span>character(len=name_len),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>name</strong></td><td> =</td><td>""</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+     
+     
+          
+     
+     <h4>Type-Bound Procedures</h4>
+      <table class="table table-striped varlist">
+      <tbody>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-bands_are_equal'>bands_are_equal</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-convert_band2gpt'>convert_band2gpt</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-convert_gpt2band'>convert_gpt2band</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-expand'>expand</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-finalize'>finalize</a></strong>  => finalize_base </td>
+       <td></td></tr>
+      
+       <tr><td>generic, public :: <strong><a href='../type/ty_gas_optics.html#boundprocedure-gas_optics~2'>gas_optics</a></strong>  => gas_optics_int, gas_optics_ext </td>
+       <td></td></tr>
+      
+       <tr><td>procedure(gas_optics_ext_abstract), public :: <strong><a href='../type/ty_gas_optics.html#boundprocedure-gas_optics_ext~2'>gas_optics_ext</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure(gas_optics_int_abstract), public :: <strong><a href='../type/ty_gas_optics.html#boundprocedure-gas_optics_int~2'>gas_optics_int</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_band_lims_gpoint'>get_band_lims_gpoint</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_band_lims_wavelength'>get_band_lims_wavelength</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_band_lims_wavenumber'>get_band_lims_wavenumber</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_gpoint_bands'>get_gpoint_bands</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_name'>get_name</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_nband'>get_nband</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_ngpt'>get_ngpt</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure(real_abstract), public :: <strong><a href='../type/ty_gas_optics.html#boundprocedure-get_press_max~2'>get_press_max</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure(real_abstract), public :: <strong><a href='../type/ty_gas_optics.html#boundprocedure-get_press_min~2'>get_press_min</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure(real_abstract), public :: <strong><a href='../type/ty_gas_optics.html#boundprocedure-get_temp_max~2'>get_temp_max</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure(real_abstract), public :: <strong><a href='../type/ty_gas_optics.html#boundprocedure-get_temp_min~2'>get_temp_min</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-gpoints_are_equal'>gpoints_are_equal</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>generic, public :: <strong><a href='../type/ty_gas_optics.html#boundprocedure-init~9'>init</a></strong>  => init_base, init_base_from_copy </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-is_initialized'>is_initialized</a></strong>  => is_initialized_base </td>
+       <td></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-set_name'>set_name</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure(logical_abstract), public :: <strong><a href='../type/ty_gas_optics.html#boundprocedure-source_is_external~2'>source_is_external</a></strong>  </td>
+       <td></td></tr>
+      
+       <tr><td>procedure(logical_abstract), public :: <strong><a href='../type/ty_gas_optics.html#boundprocedure-source_is_internal~2'>source_is_internal</a></strong>  </td>
+       <td></td></tr>
+      
+       </tbody>
+       </table>
+     
+  </div>
+</div>
+
+     
+    </section>
+  <br>
+    
+    
+    
+
+    
+    
+    
+    </div>
+  </div>
+
+  
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-6"><p>rte-rrtmgp was developed by <br>&copy; 2021 
+                                          </p>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            
+            
+          </p>
+        </div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
+  </body>
+</html>
