@@ -136,7 +136,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 5.3% of total for modules and submodules.">367 statements</a>
+    title=" 4.9% of total for modules and submodules.">344 statements</a>
      </li> 
      
      
@@ -193,11 +193,7 @@
       
       <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-interpolate2d">interpolate2D</a>
       
-      <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-interpolate2d_byflav">interpolate2D_byflav</a>
-      
       <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-interpolate3d">interpolate3D</a>
-      
-      <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-interpolate3d_byflav">interpolate3D_byflav</a>
       
     </div>
   </div>
@@ -221,6 +217,8 @@
       <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-gas_optical_depths_minor">gas_optical_depths_minor</a>
       
       <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-interpolation">interpolation</a>
+      
+      <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-minmaxloc">minmaxloc</a>
       
     </div>
   </div>
@@ -533,11 +531,7 @@
       
       <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-interpolate2d">interpolate2D</a>
       
-      <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-interpolate2d_byflav">interpolate2D_byflav</a>
-      
       <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-interpolate3d">interpolate3D</a>
-      
-      <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-interpolate3d_byflav">interpolate3D_byflav</a>
       
     </div>
   </div>
@@ -561,6 +555,8 @@
       <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-gas_optical_depths_minor">gas_optical_depths_minor</a>
       
       <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-interpolation">interpolation</a>
+      
+      <a class="list-group-item" href="../module/mo_gas_optics_kernels~2.html#proc-minmaxloc">minmaxloc</a>
       
     </div>
   </div>
@@ -597,7 +593,7 @@
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-interpolate1d"></span><h3>
-public pure function <a href='../proc/interpolate1d.html'>interpolate1D</a>(val, offset, delta, table) result(res)
+public function <a href='../proc/interpolate1d.html'>interpolate1D</a>(val, offset, delta, table) result(res)
     
     
    
@@ -674,7 +670,7 @@ public pure function <a href='../proc/interpolate1d.html'>interpolate1D</a>(val,
   <td>intent(in),</td>
   <td></td>
   
-  <td>dimension(:,:)</td><td>::</td>
+  <td>dimension(:)</td><td>::</td>
   <td><strong>table</strong></td><td></td>
   
 </tr>
@@ -690,8 +686,8 @@ public pure function <a href='../proc/interpolate1d.html'>interpolate1D</a>(val,
   
   
   
-     <h4>Return Value <small>real(kind=wp),
-  dimension(size(table,dim=2))</small></h4>
+     <h4>Return Value <small>real(kind=wp)
+  </small></h4>
   
     
 
@@ -702,7 +698,7 @@ public pure function <a href='../proc/interpolate1d.html'>interpolate1D</a>(val,
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-interpolate2d"></span><h3>
-public pure function <a href='../proc/interpolate2d.html'>interpolate2D</a>(fminor, k, igpt, jeta, jtemp) result(res)
+public function <a href='../proc/interpolate2d.html'>interpolate2D</a>(fminor, k, igpt, jeta, jtemp) result(res)
     
     
    
@@ -812,141 +808,6 @@ public pure function <a href='../proc/interpolate2d.html'>interpolate2D</a>(fmin
   
      <h4>Return Value <small>real(kind=wp)
   </small></h4>
-  
-    
-
-  </div>
-  </div>
-
-    
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-interpolate2d_byflav"></span><h3>
-public pure function <a href='../proc/interpolate2d_byflav.html'>interpolate2D_byflav</a>(fminor, k, gptS, gptE, jeta, jtemp) result(res)
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,2)</td><td>::</td>
-  <td><strong>fminor</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:,:)</td><td>::</td>
-  <td><strong>k</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>gptS</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>gptE</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2)</td><td>::</td>
-  <td><strong>jeta</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>jtemp</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>real(kind=wp),
-  dimension(gptE-gptS+1)</small></h4>
   
     
 
@@ -957,7 +818,7 @@ public pure function <a href='../proc/interpolate2d_byflav.html'>interpolate2D_b
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-interpolate3d"></span><h3>
-public pure function <a href='../proc/interpolate3d.html'>interpolate3D</a>(scaling, fmajor, k, igpt, jeta, jtemp, jpress) result(res)
+public function <a href='../proc/interpolate3d.html'>interpolate3D</a>(scaling, fmajor, k, igpt, jeta, jtemp, jpress) result(res)
     
     
    
@@ -1097,171 +958,6 @@ public pure function <a href='../proc/interpolate3d.html'>interpolate3D</a>(scal
   
      <h4>Return Value <small>real(kind=wp)
   </small></h4>
-  
-    
-
-  </div>
-  </div>
-
-    
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-interpolate3d_byflav"></span><h3>
-public pure function <a href='../proc/interpolate3d_byflav.html'>interpolate3D_byflav</a>(scaling, fmajor, k, gptS, gptE, jeta, jtemp, jpress) result(res)
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2)</td><td>::</td>
-  <td><strong>scaling</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,2,2)</td><td>::</td>
-  <td><strong>fmajor</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:,:,:)</td><td>::</td>
-  <td><strong>k</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>gptS</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>gptE</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2)</td><td>::</td>
-  <td><strong>jeta</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>jtemp</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>jpress</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>real(kind=wp),
-  dimension(gptE-gptS+1)</small></h4>
   
     
 
@@ -3074,7 +2770,7 @@ public subroutine <a href='../proc/gas_optical_depths_major.html'>gas_optical_de
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-gas_optical_depths_minor"></span><h3>
-public subroutine <a href='../proc/gas_optical_depths_minor.html'>gas_optical_depths_minor</a>(ncol, nlay, ngpt, ngas, nflav, ntemp, neta, nminor, nminork, idx_h2o, gpt_flv, kminor, minor_limits_gpt, minor_scales_with_density, scale_by_complement, idx_minor, idx_minor_scaling, kminor_start, play, tlay, col_gas, fminor, jeta, layer_limits, jtemp, tau) bind(C, name="0")
+public subroutine <a href='../proc/gas_optical_depths_minor.html'>gas_optical_depths_minor</a>(ncol, nlay, ngpt, ngas, nflav, ntemp, neta, nminor, nminork, idx_h2o, idx_tropo, gpt_flv, kminor, minor_limits_gpt, minor_scales_with_density, scale_by_complement, idx_minor, idx_minor_scaling, kminor_start, play, tlay, col_gas, fminor, jeta, layer_limits, jtemp, tau) bind(C, name="0")
     
     
    
@@ -3253,10 +2949,25 @@ public subroutine <a href='../proc/gas_optical_depths_minor.html'>gas_optical_de
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>idx_tropo</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
   <td>intent(in),</td>
   <td></td>
   
-  <td>dimension(ngpt)</td><td>::</td>
+  <td>dimension(2, ngpt)</td><td>::</td>
   <td><strong>gpt_flv</strong></td><td></td>
   
 </tr>
@@ -3894,6 +3605,117 @@ public subroutine <a href='../proc/interpolation.html'>interpolation</a>(ncol, n
   
   <td>dimension(ncol,nlay)</td><td>::</td>
   <td><strong>jpress</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-minmaxloc"></span><h3>
+public subroutine <a href='../proc/minmaxloc.html'>minmaxloc</a>(i, mask, a, minl, maxl)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>i</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=wl)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>mask</strong>(:,:)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>a</strong>(:,:)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>minl</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>maxl</strong></td><td></td>
   
 </tr>
 

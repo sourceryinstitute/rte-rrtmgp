@@ -176,24 +176,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
-  <div id="vars-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/ty_fluxes_broadband.html#variable-flux_dn">flux_dn</a>
-      
-      <a class="list-group-item" href="../type/ty_fluxes_broadband.html#variable-flux_dn_dir">flux_dn_dir</a>
-      
-      <a class="list-group-item" href="../type/ty_fluxes_broadband.html#variable-flux_net">flux_net</a>
-      
-      <a class="list-group-item" href="../type/ty_fluxes_broadband.html#variable-flux_up">flux_up</a>
-      
-    </div>
-  </div>
-</div>
-
-
 
 
 
@@ -400,24 +382,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
-  <div id="vars-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/ty_fluxes_broadband.html#variable-flux_dn">flux_dn</a>
-      
-      <a class="list-group-item" href="../type/ty_fluxes_broadband.html#variable-flux_dn_dir">flux_dn_dir</a>
-      
-      <a class="list-group-item" href="../type/ty_fluxes_broadband.html#variable-flux_net">flux_net</a>
-      
-      <a class="list-group-item" href="../type/ty_fluxes_broadband.html#variable-flux_up">flux_up</a>
-      
-    </div>
-  </div>
-</div>
-
-
 
 
 
@@ -455,80 +419,6 @@
     <br class="visible-xs visible-sm hidden-md">
 
     
-    <section>
-    <h2>Components</h2>
-    
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th><th>Visibility</th>
-
-<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-flux_dn"></span>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>dimension(:,:), pointer</td><td>::</td>
-  <td><strong>flux_dn</strong></td><td>=> </td><td>NULL()</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-flux_dn_dir"></span>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>dimension(:,:), pointer</td><td>::</td>
-  <td><strong>flux_dn_dir</strong></td><td>=> </td><td>NULL()</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-flux_net"></span>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>dimension(:,:), pointer</td><td>::</td>
-  <td><strong>flux_net</strong></td><td>=> </td><td>NULL()</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-flux_up"></span>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>dimension(:,:), pointer</td><td>::</td>
-  <td><strong>flux_up</strong></td><td>=> </td><td>NULL()</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-    </section>
-    <br>
-    
     
     
     
@@ -540,7 +430,7 @@
     
      
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-are_desired~2"></span><h3>procedure, public :: <strong>are_desired</strong>  => <a href='../proc/are_desired_broadband.html'>are_desired_broadband</a> 
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-are_desired~2"></span><h3>procedure, public :: <strong>are_desired</strong>  => are_desired_broadband 
     
   </h3></div>
   
@@ -552,7 +442,7 @@
           
     
     <h3>
-private function <a href='../proc/are_desired_broadband.html'>are_desired_broadband</a>(this)
+private function are_desired_broadband(this)
     
     
    
@@ -613,7 +503,7 @@ private function <a href='../proc/are_desired_broadband.html'>are_desired_broadb
     
      
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-reduce~2"></span><h3>procedure, public :: <strong>reduce</strong>  => <a href='../proc/reduce_broadband.html'>reduce_broadband</a> 
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-reduce~2"></span><h3>procedure, public :: <strong>reduce</strong>  => reduce_broadband 
     
   </h3></div>
   
@@ -625,7 +515,7 @@ private function <a href='../proc/are_desired_broadband.html'>are_desired_broadb
           
     
     <h3>
-private function <a href='../proc/reduce_broadband.html'>reduce_broadband</a>(this, gpt_flux_up, gpt_flux_dn, spectral_disc, top_at_1, gpt_flux_dn_dir) result(error_msg)
+private function reduce_broadband(this, gpt_flux_up, gpt_flux_dn, spectral_disc, top_at_1, gpt_flux_dn_dir) result(error_msg)
     
     
    

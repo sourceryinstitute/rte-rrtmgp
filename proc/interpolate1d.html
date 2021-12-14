@@ -136,7 +136,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.2% of total for procedures.">12 statements</a>
+    title=" 0.3% of total for procedures.">12 statements</a>
      </li> 
      
      
@@ -203,7 +203,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public pure function interpolate1D(val, offset, delta, table) result(res)
+public function interpolate1D(val, offset, delta, table) result(res)
     
     
    
@@ -281,7 +281,7 @@ public pure function interpolate1D(val, offset, delta, table) result(res)
   <td>intent(in),</td>
   <td></td>
   
-  <td>dimension(:,:)</td><td>::</td>
+  <td>dimension(:)</td><td>::</td>
   <td><strong>table</strong></td><td></td>
   
 </tr>
@@ -296,8 +296,8 @@ public pure function interpolate1D(val, offset, delta, table) result(res)
     
     
     
-   <h3>Return Value <small><span class="anchor" id="variable-res"></span>real(kind=wp),
-  dimension(size(table,dim=2))</small></h3>
+   <h3>Return Value <small><span class="anchor" id="variable-res"></span>real(kind=wp)
+  </small></h3>
     
     
     

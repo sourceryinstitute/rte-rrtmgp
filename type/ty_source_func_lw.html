@@ -267,10 +267,6 @@
       
       <a class="list-group-item" href="../type/ty_source_func_lw.html#boundprocedure-set_name">set_name</a>
       
-      <a class="list-group-item" href="../type/ty_source_func_lw.html#boundprocedure-alloc_lw">alloc_lw</a>
-      
-      <a class="list-group-item" href="../type/ty_source_func_lw.html#boundprocedure-copy_and_alloc_lw">copy_and_alloc_lw</a>
-      
     </div>
   </div>
 </div>
@@ -466,10 +462,6 @@
       
       <a class="list-group-item" href="../type/ty_source_func_lw.html#boundprocedure-set_name">set_name</a>
       
-      <a class="list-group-item" href="../type/ty_source_func_lw.html#boundprocedure-alloc_lw">alloc_lw</a>
-      
-      <a class="list-group-item" href="../type/ty_source_func_lw.html#boundprocedure-copy_and_alloc_lw">copy_and_alloc_lw</a>
-      
     </div>
   </div>
 </div>
@@ -637,7 +629,7 @@
     
      
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-alloc"></span><h3>generic, public :: <strong>alloc</strong>  => <a href='../type/ty_source_func_lw.html#boundprocedure-alloc_lw'>alloc_lw</a>, <a href='../type/ty_source_func_lw.html#boundprocedure-copy_and_alloc_lw'>copy_and_alloc_lw</a> 
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-alloc"></span><h3>generic, public :: <strong>alloc</strong>  => alloc_lw, copy_and_alloc_lw 
     
   </h3></div>
   
@@ -2125,7 +2117,7 @@ public pure function <a href='../proc/gpoints_are_equal.html'>gpoints_are_equal<
     
      
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-init~6"></span><h3>generic, public :: <strong>init</strong>  => <a href='../type/ty_optical_props.html#boundprocedure-init_base'>init_base</a>, <a href='../type/ty_optical_props.html#boundprocedure-init_base_from_copy'>init_base_from_copy</a> 
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-init~6"></span><h3>generic, public :: <strong>init</strong>  => init_base, init_base_from_copy 
     
   </h3></div>
   
@@ -2532,227 +2524,6 @@ public subroutine <a href='../proc/set_name.html'>set_name</a>(this, name)
 
       
     
-    
-
-        
-      
-      </li>
-    
-  </ul>
-</div>
-
-    
-     
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-alloc_lw"></span><h3>procedure, private :: <strong>alloc_lw</strong>  
-    
-  </h3></div>
-  
-  <ul class="list-group">
-    
-      <li class="list-group-item">
-      
-        
-          
-    
-    <h3>
-public function <a href='../proc/alloc_lw.html'>alloc_lw</a>(this, ncol, nlay) result(err_message)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/ty_source_func_lw.html'>ty_source_func_lw</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>this</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>ncol</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>nlay</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>character(len=128)
-  </small></h4>
-  
-    
-
-        
-      
-      </li>
-    
-  </ul>
-</div>
-
-    
-     
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-copy_and_alloc_lw"></span><h3>procedure, private :: <strong>copy_and_alloc_lw</strong>  
-    
-  </h3></div>
-  
-  <ul class="list-group">
-    
-      <li class="list-group-item">
-      
-        
-          
-    
-    <h3>
-public function <a href='../proc/copy_and_alloc_lw.html'>copy_and_alloc_lw</a>(this, ncol, nlay, spectral_desc) result(err_message)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/ty_source_func_lw.html'>ty_source_func_lw</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>this</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>ncol</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>nlay</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>class(<a href='../type/ty_optical_props.html'>ty_optical_props</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>spectral_desc</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>character(len=128)
-  </small></h4>
-  
     
 
         

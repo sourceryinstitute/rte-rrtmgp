@@ -136,7 +136,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 6.6% of total for modules and submodules.">462 statements</a>
+    title=" 6.0% of total for modules and submodules.">416 statements</a>
      </li> 
      
      
@@ -172,18 +172,6 @@
 <h3>Contents</h3>
  
 
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
-  <div id="vars-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/mo_optical_props_kernels.html#variable-eps~2">eps</a>
-      
-    </div>
-  </div>
-</div>
 
 
 
@@ -434,18 +422,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
-  <div id="vars-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/mo_optical_props_kernels.html#variable-eps~2">eps</a>
-      
-    </div>
-  </div>
-</div>
-
-
 
 
 
@@ -541,38 +517,6 @@
     
 
     
-    <section>
-    <h2>Variables</h2>
-    
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th><th>Visibility</th>
-
-<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-eps~2"></span>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>eps</strong></td><td> =</td><td>3.0_wp*tiny(1.0_wp)</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-    </section>
-    <br>
-    
     
     
     
@@ -594,7 +538,7 @@
     
     
     <h3>
-public subroutine <a href='../proc/delta_scale_2str_f_k~2.html'>delta_scale_2str_f_k</a>(ncol, nlay, ngpt, tau, ssa, g, f) bind(C, name="0")
+public pure subroutine <a href='../proc/delta_scale_2str_f_k~2.html'>delta_scale_2str_f_k</a>(ncol, nlay, ngpt, tau, ssa, g, f) bind(C, name="0")
     
     
    
@@ -732,7 +676,7 @@ public subroutine <a href='../proc/delta_scale_2str_f_k~2.html'>delta_scale_2str
     
     
     <h3>
-public subroutine <a href='../proc/delta_scale_2str_k~2.html'>delta_scale_2str_k</a>(ncol, nlay, ngpt, tau, ssa, g) bind(C, name="0")
+public pure subroutine <a href='../proc/delta_scale_2str_k~2.html'>delta_scale_2str_k</a>(ncol, nlay, ngpt, tau, ssa, g) bind(C, name="0")
     
     
    
@@ -870,7 +814,7 @@ public subroutine <a href='../proc/delta_scale_2str_k~2.html'>delta_scale_2str_k
     
     
     <h3>
-public subroutine <a href='../proc/extract_subset_dim1_3d~2.html'>extract_subset_dim1_3d</a>(ncol, nlay, ngpt, array_in, colS, colE, array_out) bind(C, name="0")
+public pure subroutine <a href='../proc/extract_subset_dim1_3d~2.html'>extract_subset_dim1_3d</a>(ncol, nlay, ngpt, array_in, colS, colE, array_out) bind(C, name="0")
     
     
    
@@ -1008,7 +952,7 @@ public subroutine <a href='../proc/extract_subset_dim1_3d~2.html'>extract_subset
     
     
     <h3>
-public subroutine <a href='../proc/extract_subset_dim2_4d~2.html'>extract_subset_dim2_4d</a>(nmom, ncol, nlay, ngpt, array_in, colS, colE, array_out) bind(C, name="0")
+public pure subroutine <a href='../proc/extract_subset_dim2_4d~2.html'>extract_subset_dim2_4d</a>(nmom, ncol, nlay, ngpt, array_in, colS, colE, array_out) bind(C, name="0")
     
     
    
@@ -1161,7 +1105,7 @@ public subroutine <a href='../proc/extract_subset_dim2_4d~2.html'>extract_subset
     
     
     <h3>
-public subroutine <a href='../proc/extract_subset_absorption_tau~2.html'>extract_subset_absorption_tau</a>(ncol, nlay, ngpt, tau_in, ssa_in, colS, colE, tau_out) bind(C, name="0")
+public pure subroutine <a href='../proc/extract_subset_absorption_tau~2.html'>extract_subset_absorption_tau</a>(ncol, nlay, ngpt, tau_in, ssa_in, colS, colE, tau_out) bind(C, name="0")
     
     
    
@@ -1332,7 +1276,7 @@ public subroutine <a href='../proc/extract_subset_absorption_tau~2.html'>extract
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-delta_scale_2str_f_k~2"></span><h3>
-public subroutine <a href='../proc/delta_scale_2str_f_k~2.html'>delta_scale_2str_f_k</a>(ncol, nlay, ngpt, tau, ssa, g, f) bind(C, name="0")
+public pure subroutine <a href='../proc/delta_scale_2str_f_k~2.html'>delta_scale_2str_f_k</a>(ncol, nlay, ngpt, tau, ssa, g, f) bind(C, name="0")
     
     
    
@@ -1473,7 +1417,7 @@ public subroutine <a href='../proc/delta_scale_2str_f_k~2.html'>delta_scale_2str
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-delta_scale_2str_k~2"></span><h3>
-public subroutine <a href='../proc/delta_scale_2str_k~2.html'>delta_scale_2str_k</a>(ncol, nlay, ngpt, tau, ssa, g) bind(C, name="0")
+public pure subroutine <a href='../proc/delta_scale_2str_k~2.html'>delta_scale_2str_k</a>(ncol, nlay, ngpt, tau, ssa, g) bind(C, name="0")
     
     
    
@@ -1599,7 +1543,7 @@ public subroutine <a href='../proc/delta_scale_2str_k~2.html'>delta_scale_2str_k
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-extract_subset_absorption_tau~2"></span><h3>
-public subroutine <a href='../proc/extract_subset_absorption_tau~2.html'>extract_subset_absorption_tau</a>(ncol, nlay, ngpt, tau_in, ssa_in, colS, colE, tau_out) bind(C, name="0")
+public pure subroutine <a href='../proc/extract_subset_absorption_tau~2.html'>extract_subset_absorption_tau</a>(ncol, nlay, ngpt, tau_in, ssa_in, colS, colE, tau_out) bind(C, name="0")
     
     
    
@@ -1755,7 +1699,7 @@ public subroutine <a href='../proc/extract_subset_absorption_tau~2.html'>extract
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-extract_subset_dim1_3d~2"></span><h3>
-public subroutine <a href='../proc/extract_subset_dim1_3d~2.html'>extract_subset_dim1_3d</a>(ncol, nlay, ngpt, array_in, colS, colE, array_out) bind(C, name="0")
+public pure subroutine <a href='../proc/extract_subset_dim1_3d~2.html'>extract_subset_dim1_3d</a>(ncol, nlay, ngpt, array_in, colS, colE, array_out) bind(C, name="0")
     
     
    
@@ -1896,7 +1840,7 @@ public subroutine <a href='../proc/extract_subset_dim1_3d~2.html'>extract_subset
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-extract_subset_dim2_4d~2"></span><h3>
-public subroutine <a href='../proc/extract_subset_dim2_4d~2.html'>extract_subset_dim2_4d</a>(nmom, ncol, nlay, ngpt, array_in, colS, colE, array_out) bind(C, name="0")
+public pure subroutine <a href='../proc/extract_subset_dim2_4d~2.html'>extract_subset_dim2_4d</a>(nmom, ncol, nlay, ngpt, array_in, colS, colE, array_out) bind(C, name="0")
     
     
    
@@ -2052,7 +1996,7 @@ public subroutine <a href='../proc/extract_subset_dim2_4d~2.html'>extract_subset
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-inc_1scalar_by_1scalar_bybnd~2"></span><h3>
-public subroutine <a href='../proc/inc_1scalar_by_1scalar_bybnd~2.html'>inc_1scalar_by_1scalar_bybnd</a>(ncol, nlay, ngpt, tau1, tau2, nbnd, gpt_lims) bind(C, name="0")
+public pure subroutine <a href='../proc/inc_1scalar_by_1scalar_bybnd~2.html'>inc_1scalar_by_1scalar_bybnd</a>(ncol, nlay, ngpt, tau1, tau2, nbnd, gpt_lims) bind(C, name="0")
     
     
    
@@ -2193,7 +2137,7 @@ public subroutine <a href='../proc/inc_1scalar_by_1scalar_bybnd~2.html'>inc_1sca
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-inc_1scalar_by_2stream_bybnd~2"></span><h3>
-public subroutine <a href='../proc/inc_1scalar_by_2stream_bybnd~2.html'>inc_1scalar_by_2stream_bybnd</a>(ncol, nlay, ngpt, tau1, tau2, ssa2, nbnd, gpt_lims) bind(C, name="0")
+public pure subroutine <a href='../proc/inc_1scalar_by_2stream_bybnd~2.html'>inc_1scalar_by_2stream_bybnd</a>(ncol, nlay, ngpt, tau1, tau2, ssa2, nbnd, gpt_lims) bind(C, name="0")
     
     
    
@@ -2349,7 +2293,7 @@ public subroutine <a href='../proc/inc_1scalar_by_2stream_bybnd~2.html'>inc_1sca
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-inc_1scalar_by_nstream_bybnd~2"></span><h3>
-public subroutine <a href='../proc/inc_1scalar_by_nstream_bybnd~2.html'>inc_1scalar_by_nstream_bybnd</a>(ncol, nlay, ngpt, tau1, tau2, ssa2, nbnd, gpt_lims) bind(C, name="0")
+public pure subroutine <a href='../proc/inc_1scalar_by_nstream_bybnd~2.html'>inc_1scalar_by_nstream_bybnd</a>(ncol, nlay, ngpt, tau1, tau2, ssa2, nbnd, gpt_lims) bind(C, name="0")
     
     
    
@@ -2505,7 +2449,7 @@ public subroutine <a href='../proc/inc_1scalar_by_nstream_bybnd~2.html'>inc_1sca
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-inc_2stream_by_1scalar_bybnd~2"></span><h3>
-public subroutine <a href='../proc/inc_2stream_by_1scalar_bybnd~2.html'>inc_2stream_by_1scalar_bybnd</a>(ncol, nlay, ngpt, tau1, ssa1, tau2, nbnd, gpt_lims) bind(C, name="0")
+public pure subroutine <a href='../proc/inc_2stream_by_1scalar_bybnd~2.html'>inc_2stream_by_1scalar_bybnd</a>(ncol, nlay, ngpt, tau1, ssa1, tau2, nbnd, gpt_lims) bind(C, name="0")
     
     
    
@@ -2661,7 +2605,7 @@ public subroutine <a href='../proc/inc_2stream_by_1scalar_bybnd~2.html'>inc_2str
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-inc_2stream_by_2stream_bybnd~2"></span><h3>
-public subroutine <a href='../proc/inc_2stream_by_2stream_bybnd~2.html'>inc_2stream_by_2stream_bybnd</a>(ncol, nlay, ngpt, tau1, ssa1, g1, tau2, ssa2, g2, nbnd, gpt_lims) bind(C, name="0")
+public pure subroutine <a href='../proc/inc_2stream_by_2stream_bybnd~2.html'>inc_2stream_by_2stream_bybnd</a>(ncol, nlay, ngpt, tau1, ssa1, g1, tau2, ssa2, g2, nbnd, gpt_lims) bind(C, name="0")
     
     
    
@@ -2862,7 +2806,7 @@ public subroutine <a href='../proc/inc_2stream_by_2stream_bybnd~2.html'>inc_2str
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-inc_2stream_by_nstream_bybnd~2"></span><h3>
-public subroutine <a href='../proc/inc_2stream_by_nstream_bybnd~2.html'>inc_2stream_by_nstream_bybnd</a>(ncol, nlay, ngpt, nmom2, tau1, ssa1, g1, tau2, ssa2, p2, nbnd, gpt_lims) bind(C, name="0")
+public pure subroutine <a href='../proc/inc_2stream_by_nstream_bybnd~2.html'>inc_2stream_by_nstream_bybnd</a>(ncol, nlay, ngpt, nmom2, tau1, ssa1, g1, tau2, ssa2, p2, nbnd, gpt_lims) bind(C, name="0")
     
     
    
@@ -3078,7 +3022,7 @@ public subroutine <a href='../proc/inc_2stream_by_nstream_bybnd~2.html'>inc_2str
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-inc_nstream_by_1scalar_bybnd~2"></span><h3>
-public subroutine <a href='../proc/inc_nstream_by_1scalar_bybnd~2.html'>inc_nstream_by_1scalar_bybnd</a>(ncol, nlay, ngpt, tau1, ssa1, tau2, nbnd, gpt_lims) bind(C, name="0")
+public pure subroutine <a href='../proc/inc_nstream_by_1scalar_bybnd~2.html'>inc_nstream_by_1scalar_bybnd</a>(ncol, nlay, ngpt, tau1, ssa1, tau2, nbnd, gpt_lims) bind(C, name="0")
     
     
    
@@ -3234,7 +3178,7 @@ public subroutine <a href='../proc/inc_nstream_by_1scalar_bybnd~2.html'>inc_nstr
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-inc_nstream_by_2stream_bybnd~2"></span><h3>
-public subroutine <a href='../proc/inc_nstream_by_2stream_bybnd~2.html'>inc_nstream_by_2stream_bybnd</a>(ncol, nlay, ngpt, nmom1, tau1, ssa1, p1, tau2, ssa2, g2, nbnd, gpt_lims) bind(C, name="0")
+public pure subroutine <a href='../proc/inc_nstream_by_2stream_bybnd~2.html'>inc_nstream_by_2stream_bybnd</a>(ncol, nlay, ngpt, nmom1, tau1, ssa1, p1, tau2, ssa2, g2, nbnd, gpt_lims) bind(C, name="0")
     
     
    
@@ -3450,7 +3394,7 @@ public subroutine <a href='../proc/inc_nstream_by_2stream_bybnd~2.html'>inc_nstr
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-inc_nstream_by_nstream_bybnd~2"></span><h3>
-public subroutine <a href='../proc/inc_nstream_by_nstream_bybnd~2.html'>inc_nstream_by_nstream_bybnd</a>(ncol, nlay, ngpt, nmom1, nmom2, tau1, ssa1, p1, tau2, ssa2, p2, nbnd, gpt_lims) bind(C, name="0")
+public pure subroutine <a href='../proc/inc_nstream_by_nstream_bybnd~2.html'>inc_nstream_by_nstream_bybnd</a>(ncol, nlay, ngpt, nmom1, nmom2, tau1, ssa1, p1, tau2, ssa2, p2, nbnd, gpt_lims) bind(C, name="0")
     
     
    
@@ -3681,7 +3625,7 @@ public subroutine <a href='../proc/inc_nstream_by_nstream_bybnd~2.html'>inc_nstr
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-increment_1scalar_by_1scalar~2"></span><h3>
-public subroutine <a href='../proc/increment_1scalar_by_1scalar~2.html'>increment_1scalar_by_1scalar</a>(ncol, nlay, ngpt, tau1, tau2) bind(C, name="0")
+public pure subroutine <a href='../proc/increment_1scalar_by_1scalar~2.html'>increment_1scalar_by_1scalar</a>(ncol, nlay, ngpt, tau1, tau2) bind(C, name="0")
     
     
    
@@ -3792,7 +3736,7 @@ public subroutine <a href='../proc/increment_1scalar_by_1scalar~2.html'>incremen
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-increment_1scalar_by_2stream~2"></span><h3>
-public subroutine <a href='../proc/increment_1scalar_by_2stream~2.html'>increment_1scalar_by_2stream</a>(ncol, nlay, ngpt, tau1, tau2, ssa2) bind(C, name="0")
+public pure subroutine <a href='../proc/increment_1scalar_by_2stream~2.html'>increment_1scalar_by_2stream</a>(ncol, nlay, ngpt, tau1, tau2, ssa2) bind(C, name="0")
     
     
    
@@ -3918,7 +3862,7 @@ public subroutine <a href='../proc/increment_1scalar_by_2stream~2.html'>incremen
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-increment_1scalar_by_nstream~2"></span><h3>
-public subroutine <a href='../proc/increment_1scalar_by_nstream~2.html'>increment_1scalar_by_nstream</a>(ncol, nlay, ngpt, tau1, tau2, ssa2) bind(C, name="0")
+public pure subroutine <a href='../proc/increment_1scalar_by_nstream~2.html'>increment_1scalar_by_nstream</a>(ncol, nlay, ngpt, tau1, tau2, ssa2) bind(C, name="0")
     
     
    
@@ -4044,7 +3988,7 @@ public subroutine <a href='../proc/increment_1scalar_by_nstream~2.html'>incremen
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-increment_2stream_by_1scalar~2"></span><h3>
-public subroutine <a href='../proc/increment_2stream_by_1scalar~2.html'>increment_2stream_by_1scalar</a>(ncol, nlay, ngpt, tau1, ssa1, tau2) bind(C, name="0")
+public pure subroutine <a href='../proc/increment_2stream_by_1scalar~2.html'>increment_2stream_by_1scalar</a>(ncol, nlay, ngpt, tau1, ssa1, tau2) bind(C, name="0")
     
     
    
@@ -4170,7 +4114,7 @@ public subroutine <a href='../proc/increment_2stream_by_1scalar~2.html'>incremen
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-increment_2stream_by_2stream~2"></span><h3>
-public subroutine <a href='../proc/increment_2stream_by_2stream~2.html'>increment_2stream_by_2stream</a>(ncol, nlay, ngpt, tau1, ssa1, g1, tau2, ssa2, g2) bind(C, name="0")
+public pure subroutine <a href='../proc/increment_2stream_by_2stream~2.html'>increment_2stream_by_2stream</a>(ncol, nlay, ngpt, tau1, ssa1, g1, tau2, ssa2, g2) bind(C, name="0")
     
     
    
@@ -4341,7 +4285,7 @@ public subroutine <a href='../proc/increment_2stream_by_2stream~2.html'>incremen
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-increment_2stream_by_nstream~2"></span><h3>
-public subroutine <a href='../proc/increment_2stream_by_nstream~2.html'>increment_2stream_by_nstream</a>(ncol, nlay, ngpt, nmom2, tau1, ssa1, g1, tau2, ssa2, p2) bind(C, name="0")
+public pure subroutine <a href='../proc/increment_2stream_by_nstream~2.html'>increment_2stream_by_nstream</a>(ncol, nlay, ngpt, nmom2, tau1, ssa1, g1, tau2, ssa2, p2) bind(C, name="0")
     
     
    
@@ -4527,7 +4471,7 @@ public subroutine <a href='../proc/increment_2stream_by_nstream~2.html'>incremen
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-increment_nstream_by_1scalar~2"></span><h3>
-public subroutine <a href='../proc/increment_nstream_by_1scalar~2.html'>increment_nstream_by_1scalar</a>(ncol, nlay, ngpt, tau1, ssa1, tau2) bind(C, name="0")
+public pure subroutine <a href='../proc/increment_nstream_by_1scalar~2.html'>increment_nstream_by_1scalar</a>(ncol, nlay, ngpt, tau1, ssa1, tau2) bind(C, name="0")
     
     
    
@@ -4653,7 +4597,7 @@ public subroutine <a href='../proc/increment_nstream_by_1scalar~2.html'>incremen
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-increment_nstream_by_2stream~2"></span><h3>
-public subroutine <a href='../proc/increment_nstream_by_2stream~2.html'>increment_nstream_by_2stream</a>(ncol, nlay, ngpt, nmom1, tau1, ssa1, p1, tau2, ssa2, g2) bind(C, name="0")
+public pure subroutine <a href='../proc/increment_nstream_by_2stream~2.html'>increment_nstream_by_2stream</a>(ncol, nlay, ngpt, nmom1, tau1, ssa1, p1, tau2, ssa2, g2) bind(C, name="0")
     
     
    
@@ -4839,7 +4783,7 @@ public subroutine <a href='../proc/increment_nstream_by_2stream~2.html'>incremen
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-increment_nstream_by_nstream~2"></span><h3>
-public subroutine <a href='../proc/increment_nstream_by_nstream~2.html'>increment_nstream_by_nstream</a>(ncol, nlay, ngpt, nmom1, nmom2, tau1, ssa1, p1, tau2, ssa2, p2) bind(C, name="0")
+public pure subroutine <a href='../proc/increment_nstream_by_nstream~2.html'>increment_nstream_by_nstream</a>(ncol, nlay, ngpt, nmom1, nmom2, tau1, ssa1, p1, tau2, ssa2, p2) bind(C, name="0")
     
     
    

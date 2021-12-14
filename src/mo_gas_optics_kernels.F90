@@ -15,8 +15,8 @@
 !   source functions.
 
 module mo_gas_optics_kernels
-  use mo_rte_kind,      only: wp, wl
-  use mo_rte_util_array,only: zero_array
+  use mo_rte_kind,      only : wp, wl
+  use mo_rte_util_array,only : zero_array
   implicit none
   public
 contains
@@ -67,15 +67,6 @@ contains
     ! local indexes
     integer :: icol, ilay, iflav, igases(2), itropo, itemp
 
-    !$acc data copyin(flavor,press_ref_log,temp_ref,vmr_ref,play,tlay,col_gas) &
-    !$acc      copyout(jtemp,jpress,tropo,jeta,col_mix,fmajor,fminor) &
-    !$acc      create(ftemp,fpress)
-    !$omp target data map(to:flavor, press_ref_log, temp_ref, vmr_ref, play, tlay, col_gas) &
-    !$omp             map(alloc:jtemp, jpress, tropo, jeta, col_mix, fmajor, fminor) &
-    !$omp             map(alloc:ftemp, fpress)
-
-    !$acc parallel loop gang vector collapse(2) default(none)
-    !$omp target teams distribute parallel do simd collapse(2)
     do ilay = 1, nlay
       do icol = 1, ncol
         ! index and factor for temperature interpolation
@@ -93,19 +84,14 @@ contains
       end do
     end do
 
-    ! loop over implemented combinations of major species
-    ! PGI BUG WORKAROUND: if present(vmr_ref) isn't there, OpenACC runtime
-    ! thinks it isn't present.
-    !$acc parallel loop gang vector collapse(4) default(none) private(igases) present(vmr_ref)
-    !$omp target teams distribute parallel do simd collapse(4) private(igases)
     do iflav = 1, nflav
+      igases(:) = flavor(:,iflav)
       do ilay = 1, nlay
-        ! loop over implemented combinations of major species
         do icol = 1, ncol
+        ! itropo = 1 lower atmosphere; itropo = 2 upper atmosphere
+        itropo = merge(1,2,tropo(icol,ilay))
+        ! loop over implemented combinations of major species
           do itemp = 1, 2
-            igases(:) = flavor(:,iflav)
-            ! itropo = 1 lower atmosphere; itropo = 2 upper atmosphere
-            itropo = merge(1,2,tropo(icol,ilay))
             ! compute interpolation fractions needed for lower, then upper reference temperature level
             ! compute binary species parameter (eta) for flavor and temperature and
             !  associated interpolation index and factors
@@ -131,9 +117,6 @@ contains
         end do ! icol
       end do ! ilay
     end do ! iflav
-
-    !$acc end data
-    !$omp end target data
 
   end subroutine interpolation
   ! --------------------------------------------------------------------------------------
@@ -211,55 +194,24 @@ contains
     ! ---------------------
     ! Local variables
     !
-    logical(wl)                :: top_at_1
+    logical                    :: top_at_1
     integer, dimension(ncol,2) :: itropo_lower, itropo_upper
-    integer                    :: icol, idx_tropo
-
     ! ----------------------------------------------------------------
-
-    !$acc enter data create(itropo_lower, itropo_upper)
-    !$omp target enter data map(alloc:itropo_lower, itropo_upper)
-    !$acc enter data copyin(play, tlay, tropo, gpoint_flavor, jeta, jtemp, col_gas, fminor, tau)
-    !$omp target enter data map(to:play, tlay, tropo, gpoint_flavor, jeta, jtemp, col_gas, fminor, tau)
 
     ! ---------------------
     ! Layer limits of upper, lower atmospheres
     ! ---------------------
-
-    !$acc kernels copyout(top_at_1)
-    !$omp target map(from:top_at_1)
     top_at_1 = play(1,1) < play(1, nlay)
-    !$acc end kernels
-    !$omp end target
-
     if(top_at_1) then
-      !$acc parallel loop
-      !$omp target teams distribute parallel do simd
-      do icol = 1,ncol
-        itropo_lower(icol,2) = nlay
-#if defined(_CRAYFTN) || defined(__NVCOMPILER)
-        itropo_upper(icol,1) = 1
-        call minmaxloc(icol, tropo, play, itropo_lower(icol,1), itropo_upper(icol,2))
-#else
-        itropo_lower(icol,1) = minloc(play(icol,:), dim=1, mask=tropo(icol,:))
-        itropo_upper(icol,1) = 1
-        itropo_upper(icol,2) = maxloc(play(icol,:), dim=1, mask=(.not. tropo(icol,:)))
-#endif
-      end do
+      itropo_lower(:, 1) = minloc(play, dim=2, mask=tropo)
+      itropo_lower(:, 2) = nlay
+      itropo_upper(:, 1) = 1
+      itropo_upper(:, 2) = maxloc(play, dim=2, mask=(.not. tropo))
     else
-      !$acc parallel loop
-      !$omp target teams distribute parallel do simd
-      do icol = 1,ncol
-        itropo_lower(icol,1) = 1
-#if defined(_CRAYFTN) || defined(__NVCOMPILER)
-        itropo_upper(icol,2) = nlay
-        call minmaxloc(icol, tropo, play, itropo_lower(icol,2), itropo_upper(icol,1))
-#else
-        itropo_lower(icol,2) = minloc(play(icol,:), dim=1, mask=tropo(icol,:))
-        itropo_upper(icol,2) = nlay
-        itropo_upper(icol,1) = maxloc(play(icol,:), dim=1, mask=(.not.tropo(icol,:)))
-#endif
-      end do
+      itropo_lower(:, 1) = 1
+      itropo_lower(:, 2) = minloc(play, dim=2, mask= tropo)
+      itropo_upper(:, 1) = maxloc(play, dim=2, mask=(.not. tropo))
+      itropo_upper(:, 2) = nlay
     end if
     ! ---------------------
     ! Major Species
@@ -276,13 +228,12 @@ contains
     ! ---------------------
     ! Minor Species - lower
     ! ---------------------
-    idx_tropo = 1
     call gas_optical_depths_minor(     &
            ncol,nlay,ngpt,             & ! dimensions
            ngas,nflav,ntemp,neta,      &
            nminorlower,nminorklower,   &
-           idx_h2o,idx_tropo,          &
-           gpoint_flavor,              &
+           idx_h2o,                    &
+           gpoint_flavor(1,:),         &
            kminor_lower,               &
            minor_limits_gpt_lower,     &
            minor_scales_with_density_lower, &
@@ -297,13 +248,12 @@ contains
     ! ---------------------
     ! Minor Species - upper
     ! ---------------------
-    idx_tropo = 2
     call gas_optical_depths_minor(     &
            ncol,nlay,ngpt,             & ! dimensions
            ngas,nflav,ntemp,neta,      &
            nminorupper,nminorkupper,   &
-           idx_h2o,idx_tropo,          &
-           gpoint_flavor,              &
+           idx_h2o,                    &
+           gpoint_flavor(2,:),         &
            kminor_upper,               &
            minor_limits_gpt_upper,     &
            minor_scales_with_density_upper, &
@@ -315,14 +265,6 @@ contains
            col_gas,fminor,jeta,        &
            itropo_upper,jtemp,         &
            tau)
-
-    !$acc exit data delete(itropo_lower,itropo_upper)
-    !$omp target exit data map(release:itropo_lower, itropo_upper)
-    !$acc exit data delete(play, tlay, tropo, gpoint_flavor, jeta, jtemp, col_gas, fminor)
-    !$omp target exit data map(release:play, tlay, tropo, gpoint_flavor, jeta, jtemp, col_gas, fminor)
-    !$acc exit data copyout(tau)
-    !$omp target exit data map(from:tau)
-
   end subroutine compute_tau_absorption
   ! --------------------------------------------------------------------------------------
 
@@ -356,37 +298,31 @@ contains
     real(wp), dimension(ncol,nlay,ngpt), intent(inout) :: tau
     ! -----------------
     ! local variables
-    real(wp) :: tau_major ! major species optical depth
+    real(wp) :: tau_major(ngpt) ! major species optical depth
     ! local index
-    integer :: icol, ilay, iflav, igpt, itropo
-
-    ! -----------------
-
-    ! -----------------
+    integer :: icol, ilay, iflav, ibnd, itropo
+    integer :: gptS, gptE
 
     ! optical depth calculation for major species
-    !$acc parallel loop collapse(2)
-    !$omp target teams distribute parallel do simd collapse(2)
-    do ilay = 1, nlay
-      do icol = 1, ncol
-
-        !$acc loop seq
-        do igpt = 1, ngpt
+    do ibnd = 1, nbnd
+      gptS = band_lims_gpt(1, ibnd)
+      gptE = band_lims_gpt(2, ibnd)
+      do ilay = 1, nlay
+        do icol = 1, ncol
           ! itropo = 1 lower atmosphere; itropo = 2 upper atmosphere
-          itropo = merge(1,2,tropo(icol,ilay))  ! WS: moved inside innermost loop
-
-          ! binary species parameter (eta) and col_mix depend on band flavor
-          iflav = gpoint_flavor(itropo, igpt)
-          tau_major = &
+          itropo = merge(1,2,tropo(icol,ilay))
+          iflav = gpoint_flavor(itropo, gptS) !eta interpolation depends on band's flavor
+          tau_major(gptS:gptE) = &
             ! interpolation in temperature, pressure, and eta
-            interpolate3D(col_mix(:,icol,ilay,iflav), &
-                          fmajor(:,:,:,icol,ilay,iflav), kmajor, &
-                          igpt, jeta(:,icol,ilay,iflav), jtemp(icol,ilay),jpress(icol,ilay)+itropo)
-          tau(icol,ilay,igpt) = tau(icol,ilay,igpt) + tau_major
-        end do ! igpt
-
+            interpolate3D_byflav(col_mix(:,icol,ilay,iflav),                                     &
+                                 fmajor(:,:,:,icol,ilay,iflav), kmajor,                          &
+                                 band_lims_gpt(1, ibnd), band_lims_gpt(2, ibnd),                 &
+                                 jeta(:,icol,ilay,iflav), jtemp(icol,ilay),jpress(icol,ilay)+itropo)
+            tau(icol,ilay,gptS:gptE) = tau(icol,ilay,gptS:gptE) + tau_major(gptS:gptE)
+        end do
       end do
-    end do ! ilay
+    end do
+
   end subroutine gas_optical_depths_major
 
   ! ----------------------------------------------------------
@@ -396,23 +332,23 @@ contains
   subroutine gas_optical_depths_minor(ncol,nlay,ngpt,        &
                                       ngas,nflav,ntemp,neta, &
                                       nminor,nminork,        &
-                                      idx_h2o,idx_tropo,     &
+                                      idx_h2o,               &
                                       gpt_flv,               &
                                       kminor,                &
                                       minor_limits_gpt,      &
                                       minor_scales_with_density,    &
                                       scale_by_complement,   &
                                       idx_minor, idx_minor_scaling, &
-                                      kminor_start,        &
-                                      play, tlay,          &
-                                      col_gas,fminor,jeta, &
-                                      layer_limits,jtemp,  &
+                                      kminor_start,          &
+                                      play, tlay,            &
+                                      col_gas,fminor,jeta,   &
+                                      layer_limits,jtemp,    &
                                       tau) bind(C, name="gas_optical_depths_minor")
     integer,                                     intent(in   ) :: ncol,nlay,ngpt
     integer,                                     intent(in   ) :: ngas,nflav
     integer,                                     intent(in   ) :: ntemp,neta,nminor,nminork
-    integer,                                     intent(in   ) :: idx_h2o, idx_tropo
-    integer,     dimension(2, ngpt),             intent(in   ) :: gpt_flv
+    integer,                                     intent(in   ) :: idx_h2o
+    integer,     dimension(ngpt),                intent(in   ) :: gpt_flv
     real(wp),    dimension(ntemp,neta,nminork),  intent(in   ) :: kminor
     integer,     dimension(2,nminor),            intent(in   ) :: minor_limits_gpt
     logical(wl), dimension(  nminor),            intent(in   ) :: minor_scales_with_density
@@ -430,75 +366,66 @@ contains
     ! local variables
     real(wp), parameter :: PaTohPa = 0.01_wp
     real(wp) :: vmr_fact, dry_fact             ! conversion from column abundance to dry vol. mixing ratio;
-    real(wp) :: scaling, kminor_loc, tau_minor ! minor species absorption coefficient, optical depth
-    integer  :: icol, ilay, iflav, igpt, imnr
-    integer  :: minor_start, minor_loc, extent
-
-    real(wp) :: myplay, mytlay, mycol_gas_h2o, mycol_gas_imnr, mycol_gas_0
-    real(wp) :: myfminor(2,2)
-    integer  :: myjtemp, myjeta(2)
+    real(wp) :: scaling                        ! optical depth
+    integer  :: icol, ilay, iflav, imnr
+    integer  :: gptS, gptE
+    real(wp), dimension(ngpt) :: tau_minor
     ! -----------------
+    !
+    ! Guard against layer limits being 0 -- that means don't do anything i.e. there are no
+    !   layers with pressures in the upper or lower atmosphere respectively
+    ! First check skips the routine entirely if all columns are out of bounds...
+    !
 
-    extent = size(scale_by_complement,dim=1)
-
-    !$acc parallel loop gang vector collapse(2)
-    !$omp target teams distribute parallel do simd collapse(2)
-    do ilay = 1 , nlay
-      do icol = 1, ncol
-        !
-        ! This check skips individual columns with no pressures in range
-        !
-        if ( layer_limits(icol,1) <= 0 .or. ilay < layer_limits(icol,1) .or. ilay > layer_limits(icol,2) ) cycle
-
-        myplay  = play (icol,ilay)
-        mytlay  = tlay (icol,ilay)
-        myjtemp = jtemp(icol,ilay)
-        mycol_gas_h2o = col_gas(icol,ilay,idx_h2o)
-        mycol_gas_0   = col_gas(icol,ilay,0)
-
-        !$acc loop seq
-        do imnr = 1, extent
-          ! What is the starting point in the stored array of minor absorption coefficients?
-          minor_start = kminor_start(imnr)
-
-          !$acc loop seq
-          do igpt = minor_limits_gpt(1,imnr), minor_limits_gpt(2,imnr)
-
-            scaling = col_gas(icol,ilay,idx_minor(imnr))
-            if (minor_scales_with_density(imnr)) then
+    if(any(layer_limits(:,1) > 0)) then
+      do imnr = 1, size(scale_by_complement,dim=1) ! loop over minor absorbers in each band
+        do icol = 1, ncol
+          !
+          ! This check skips individual columns with no pressures in range
+          !
+          if(layer_limits(icol,1) > 0) then
+            do ilay = layer_limits(icol,1), layer_limits(icol,2)
               !
-              ! NOTE: P needed in hPa to properly handle density scaling.
+              ! Scaling of minor gas absortion coefficient begins with column amount of minor gas
               !
-              scaling = scaling * (PaTohPa * myplay/mytlay)
-
-              if(idx_minor_scaling(imnr) > 0) then  ! there is a second gas that affects this gas's absorption
-                mycol_gas_imnr = col_gas(icol,ilay,idx_minor_scaling(imnr))
-                vmr_fact = 1._wp / mycol_gas_0
-                dry_fact = 1._wp / (1._wp + mycol_gas_h2o * vmr_fact)
-                ! scale by density of special gas
-                if (scale_by_complement(imnr)) then ! scale by densities of all gases but the special one
-                  scaling = scaling * (1._wp - mycol_gas_imnr * vmr_fact * dry_fact)
-                else
-                  scaling = scaling *         (mycol_gas_imnr * vmr_fact * dry_fact)
+              scaling = col_gas(icol,ilay,idx_minor(imnr))
+              !
+              ! Density scaling (e.g. for h2o continuum, collision-induced absorption)
+              !
+              if (minor_scales_with_density(imnr)) then
+                !
+                ! NOTE: P needed in hPa to properly handle density scaling.
+                !
+                scaling = scaling * (PaTohPa*play(icol,ilay)/tlay(icol,ilay))
+                if(idx_minor_scaling(imnr) > 0) then  ! there is a second gas that affects this gas's absorption
+                  vmr_fact = 1._wp / col_gas(icol,ilay,0)
+                  dry_fact = 1._wp / (1._wp + col_gas(icol,ilay,idx_h2o) * vmr_fact)
+                  ! scale by density of special gas
+                  if (scale_by_complement(imnr)) then ! scale by densities of all gases but the special one
+                    scaling = scaling * (1._wp - col_gas(icol,ilay,idx_minor_scaling(imnr)) * vmr_fact * dry_fact)
+                  else
+                    scaling = scaling *         (col_gas(icol,ilay,idx_minor_scaling(imnr)) * vmr_fact * dry_fact)
+                  endif
                 endif
               endif
-            endif
-
-            !
-            ! Interpolation of absorption coefficient and calculation of optical depth
-            !
-            tau_minor = 0._wp
-            iflav = gpt_flv(idx_tropo,igpt) ! eta interpolation depends on flavor
-            minor_loc = minor_start + (igpt - minor_limits_gpt(1,imnr)) ! add offset to starting point
-            kminor_loc = interpolate2D(fminor(:,:,icol,ilay,iflav), kminor, minor_loc, &
-                                        jeta(:,icol,ilay,iflav), myjtemp)
-            tau_minor = kminor_loc * scaling
-            tau(icol,ilay,igpt) = tau(icol,ilay,igpt) + tau_minor
-          enddo
+              !
+              ! Interpolation of absorption coefficient and calculation of optical depth
+              !
+              ! Which gpoint range does this minor gas affect?
+              gptS = minor_limits_gpt(1,imnr)
+              gptE = minor_limits_gpt(2,imnr)
+              iflav = gpt_flv(gptS)
+              tau_minor(gptS:gptE) = scaling *                   &
+                                      interpolate2D_byflav(fminor(:,:,icol,ilay,iflav), &
+                                                           kminor, &
+                                                           kminor_start(imnr), kminor_start(imnr)+(gptE-gptS), &
+                                                           jeta(:,icol,ilay,iflav), jtemp(icol,ilay))
+              tau(icol,ilay,gptS:gptE) = tau(icol,ilay,gptS:gptE) + tau_minor(gptS:gptE)
+            enddo
+          end if
         enddo
-
       enddo
-    enddo
+    end if
 
   end subroutine gas_optical_depths_minor
   ! ----------------------------------------------------------
@@ -528,26 +455,27 @@ contains
     real(wp),    dimension(ncol,nlay,ngpt),      intent(out) :: tau_rayleigh
     ! -----------------
     ! local variables
-    real(wp) :: k ! rayleigh scattering coefficient
-    integer  :: icol, ilay, iflav, igpt
+    real(wp) :: k(ngpt) ! rayleigh scattering coefficient
+    integer  :: icol, ilay, iflav, ibnd, igpt, gptS, gptE
     integer  :: itropo
     ! -----------------
 
-    !$acc parallel loop collapse(2)
-    !$omp target teams distribute parallel do simd collapse(2)
-    do ilay = 1, nlay
-      do icol = 1, ncol
-        !$acc loop seq
-        do igpt = 1, ngpt
-          itropo = merge(1,2,tropo(icol,ilay)) ! itropo = 1 lower atmosphere; itropo = 2 upper atmosphere
-          iflav = gpoint_flavor(itropo, igpt)
-          k = interpolate2D(fminor(:,:,icol,ilay,iflav), &
-                            krayl(:,:,:,itropo),      &
-                            igpt, jeta(:,icol,ilay,iflav), jtemp(icol,ilay))
-          tau_rayleigh(icol,ilay,igpt) =  k * (col_gas(icol,ilay,idx_h2o)+col_dry(icol,ilay))
+    do ibnd = 1, nbnd
+      gptS = band_lims_gpt(1, ibnd)
+      gptE = band_lims_gpt(2, ibnd)
+      do ilay = 1, nlay
+        do icol = 1, ncol
+          itropo = merge(1,2,tropo(icol,ilay)) ! itropo = 1 lower atmosphere;itropo = 2 upper atmosphere
+          iflav = gpoint_flavor(itropo, gptS) !eta interpolation depends on band's flavor
+          k(gptS:gptE) = interpolate2D_byflav(fminor(:,:,icol,ilay,iflav), &
+                                              krayl(:,:,:,itropo),      &
+                                              gptS, gptE, jeta(:,icol,ilay,iflav), jtemp(icol,ilay))
+          tau_rayleigh(icol,ilay,gptS:gptE) = k(gptS:gptE) * &
+                                              (col_gas(icol,ilay,idx_h2o)+col_dry(icol,ilay))
         end do
       end do
     end do
+
   end subroutine compute_tau_rayleigh
 
   ! ----------------------------------------------------------
@@ -589,72 +517,110 @@ contains
     integer  :: ilay, icol, igpt, ibnd, itropo, iflav
     integer  :: gptS, gptE
     real(wp), dimension(2), parameter :: one = [1._wp, 1._wp]
-    real(wp) :: pfrac
-    real(wp) :: planck_function_1, planck_function_2
+    real(wp) :: pfrac          (ncol,nlay  ,ngpt)
+    real(wp) :: planck_function(ncol,nlay+1,nbnd)
     ! -----------------
 
-    !$acc        data copyin(   tlay,tlev,tsfc,fmajor,jeta,tropo,jtemp,jpress,gpoint_bands,pfracin,totplnk,gpoint_flavor) &
-    !$acc             copyout(  sfc_src,lay_src,lev_src_inc,lev_src_dec,sfc_source_Jac)
-    !$omp target data map(   to:tlay,tlev,tsfc,fmajor,jeta,tropo,jtemp,jpress,gpoint_bands,pfracin,totplnk,gpoint_flavor) &
-    !$omp             map(from: sfc_src,lay_src,lev_src_inc,lev_src_dec,sfc_source_Jac) 
-
     ! Calculation of fraction of band's Planck irradiance associated with each g-point
-    !$acc parallel loop tile(128,2)
-    !$omp target teams distribute parallel do simd collapse(2)
+    do ibnd = 1, nbnd
+      gptS = band_lims_gpt(1, ibnd)
+      gptE = band_lims_gpt(2, ibnd)
+      do ilay = 1, nlay
+        do icol = 1, ncol
+          ! itropo = 1 lower atmosphere; itropo = 2 upper atmosphere
+          itropo = merge(1,2,tropo(icol,ilay))
+          iflav = gpoint_flavor(itropo, gptS) !eta interpolation depends on band's flavor
+          pfrac(icol,ilay,gptS:gptE) = &
+            ! interpolation in temp-m64 -O3 -g -traceback -heap-arrays -assume
+            ! realloc_lhs -extend-source 132erature, pressure, and eta
+            interpolate3D_byflav(one, fmajor(:,:,:,icol,ilay,iflav), pfracin, &
+                          band_lims_gpt(1, ibnd), band_lims_gpt(2, ibnd),                 &
+                          jeta(:,icol,ilay,iflav), jtemp(icol,ilay),jpress(icol,ilay)+itropo)
+        end do ! column
+      end do   ! layer
+    end do     ! band
+
+    !
+    ! Planck function by band for the surface
+    ! Compute surface source irradiance for g-point, equals band irradiance x fraction for g-point
+    !
+    do icol = 1, ncol
+      planck_function(icol,1,1:nbnd) = interpolate1D(tsfc(icol), temp_ref_min, totplnk_delta, totplnk)
+      planck_function(icol,2,1:nbnd) = interpolate1D(tsfc(icol) + delta_Tsurf, temp_ref_min, totplnk_delta, totplnk) 
+      !
+      ! Map to g-points
+      !
+      do ibnd = 1, nbnd
+        gptS = band_lims_gpt(1, ibnd)
+        gptE = band_lims_gpt(2, ibnd)
+        do igpt = gptS, gptE
+            sfc_src(icol,igpt) = pfrac(icol,sfc_lay,igpt) * planck_function(icol,1,ibnd)
+            sfc_source_Jac(icol, igpt) = pfrac(icol,sfc_lay,igpt) * &
+                                (planck_function(icol, 2, ibnd) - planck_function(icol,1,ibnd))
+        end do
+      end do
+    end do !icol 
+
     do ilay = 1, nlay
       do icol = 1, ncol
+        ! Compute layer source irradiance for g-point, equals band irradiance x fraction for g-point
+        planck_function(icol,ilay,1:nbnd) = interpolate1D(tlay(icol,ilay), temp_ref_min, totplnk_delta, totplnk)
+      end do
+    end do
 
-        !$acc loop seq
-        do igpt = 1, ngpt
-          ibnd = gpoint_bands(igpt)
-          ! itropo = 1 lower atmosphere; itropo = 2 upper atmosphere
-          itropo = merge(1,2,tropo(icol,ilay))  !WS moved itropo inside loop for GPU
-          iflav = gpoint_flavor(itropo, igpt) !eta interpolation depends on band's flavor
-          pfrac = &
-            ! interpolation in temperature, pressure, and eta
-            interpolate3D(one, fmajor(:,:,:,icol,ilay,iflav), pfracin, &
-                          igpt, jeta(:,icol,ilay,iflav), jtemp(icol,ilay),jpress(icol,ilay)+itropo)
-       
-          ! Compute layer source irradiance for g-point, equals band irradiance x fraction for g-point
-          planck_function_1 = interpolate1D(tlay(icol,ilay), temp_ref_min, totplnk_delta, totplnk(:,ibnd))
-          lay_src(icol,ilay,igpt) = pfrac * planck_function_1
-        
-          ! Compute layer source irradiance for g-point, equals band irradiance x fraction for g-point
-          planck_function_1 = interpolate1D(tlev(icol,ilay),   temp_ref_min, totplnk_delta, totplnk(:,ibnd))
-          planck_function_2 = interpolate1D(tlev(icol,ilay+1), temp_ref_min, totplnk_delta, totplnk(:,ibnd))
-          lev_src_dec(icol,ilay,igpt) = pfrac * planck_function_1
-          lev_src_inc(icol,ilay,igpt) = pfrac * planck_function_2
+    !
+    ! Map to g-points
+    !
+    do ibnd = 1, nbnd
+      gptS = band_lims_gpt(1, ibnd)
+      gptE = band_lims_gpt(2, ibnd)
+      do igpt = gptS, gptE
+        do ilay = 1, nlay
+          do icol = 1, ncol    
+            lay_src(icol,ilay,igpt) = pfrac(icol,ilay,igpt) * planck_function(icol,ilay,ibnd)
+          end do
+        end do
+      end do
+    end do
 
-          if (ilay == sfc_lay) then
-            planck_function_1 = interpolate1D(tsfc(icol)              , temp_ref_min, totplnk_delta, totplnk(:,ibnd))
-            planck_function_2 = interpolate1D(tsfc(icol) + delta_Tsurf, temp_ref_min, totplnk_delta, totplnk(:,ibnd))
+    ! compute level source irradiances for each g-point, one each for upward and downward paths
+    do ilay = 1, nlay
+      do icol = 1, ncol
+      planck_function(icol,     1,1:nbnd) = interpolate1D(tlev(icol,     1),temp_ref_min, totplnk_delta, totplnk)
+      planck_function(icol,ilay+1,1:nbnd) = interpolate1D(tlev(icol,ilay+1),temp_ref_min, totplnk_delta, totplnk)
+      end do
+    end do
     
-            sfc_src       (icol,igpt) = pfrac * planck_function_1
-            sfc_source_Jac(icol,igpt) = pfrac * (planck_function_2 - planck_function_1)
-          end if
-        end do ! igpt
+    !
+    ! Map to g-points
+    !
+    do ibnd = 1, nbnd
+      gptS = band_lims_gpt(1, ibnd)
+      gptE = band_lims_gpt(2, ibnd)
+      do igpt = gptS, gptE
+        do ilay = 1, nlay
+          do icol = 1, ncol
+            lev_src_inc(icol,ilay,igpt) = pfrac(icol,ilay,igpt) *planck_function(icol,ilay+1,ibnd)
+            lev_src_dec(icol,ilay,igpt) = pfrac(icol,ilay,igpt) *planck_function(icol,ilay  ,ibnd)
+          end do
+        end do
+      end do
+    end do
 
-      end do ! icol
-    end do ! ilay
-
-    !$acc end        data
-    !$omp end target data
   end subroutine compute_Planck_source
   ! ----------------------------------------------------------
   !
-  ! One dimensional interpolation
+  ! One dimensional interpolation -- return all values along second table dimension
   !
-  function interpolate1D(val, offset, delta, table) result(res)
-    !$acc routine seq
-    !$omp declare target
+  pure function interpolate1D(val, offset, delta, table) result(res)
     ! input
     real(wp), intent(in) :: val,    & ! axis value at which to evaluate table
                             offset, & ! minimum of table axis
                             delta     ! step size of table axis
-    real(wp), dimension(:), &
+    real(wp), dimension(:,:), &
               intent(in) :: table ! dimensions (axis, values)
     ! output
-    real(wp)             :: res
+    real(wp), dimension(size(table,dim=2)) :: res
 
     ! local
     real(wp) :: val0 ! fraction index adjusted by offset and delta
@@ -664,14 +630,12 @@ contains
     val0 = (val - offset) / delta
     frac = val0 - int(val0) ! get fractional part
     index = min(size(table,dim=1)-1, max(1, int(val0)+1)) ! limit the index range
-    res = table(index) + frac * (table(index+1) - table(index))
+    res(:) = table(index,:) + frac * (table(index+1,:) - table(index,:))
   end function interpolate1D
-  ! ------------
+  ! ----------------------------------------------------------------------------------------
   !   This function returns a single value from a subset (in gpoint) of the k table
   !
-  function interpolate2D(fminor, k, igpt, jeta, jtemp) result(res)
-  !$acc routine seq
-  !$omp declare target
+  pure function interpolate2D(fminor, k, igpt, jeta, jtemp) result(res)
     real(wp), dimension(2,2), intent(in) :: fminor ! interpolation fractions for minor species
                                        ! index(1) : reference eta level (temperature dependent)
                                        ! index(2) : reference temperature level
@@ -686,12 +650,33 @@ contains
       fminor(1,2) * k(jtemp+1, jeta(2)  , igpt) + &
       fminor(2,2) * k(jtemp+1, jeta(2)+1, igpt)
   end function interpolate2D
+  ! ----------------------------------------------------------
+  !   This function returns a range of values from a subset (in gpoint) of the k table
+  !
+  pure function interpolate2D_byflav(fminor, k, gptS, gptE, jeta, jtemp) result(res)
+    real(wp), dimension(2,2), intent(in) :: fminor ! interpolation fractions for minor species
+                                       ! index(1) : reference eta level (temperature dependent)
+                                       ! index(2) : reference temperature level
+    real(wp), dimension(:,:,:), intent(in) :: k ! (g-point, eta, temp)
+    integer,                    intent(in) :: gptS, gptE, jtemp ! interpolation index for temperature
+    integer, dimension(2),      intent(in) :: jeta ! interpolation index for binary species parameter (eta)
+    real(wp), dimension(gptE-gptS+1)       :: res ! the result
 
+    ! Local variable
+    integer :: igpt
+    ! each code block is for a different reference temperature
+
+    do igpt = 1, gptE-gptS+1
+      res(igpt) = fminor(1,1) * k(jtemp  , jeta(1)  , gptS+igpt-1) + &
+                  fminor(2,1) * k(jtemp  , jeta(1)+1, gptS+igpt-1) + &
+                  fminor(1,2) * k(jtemp+1, jeta(2)  , gptS+igpt-1) + &
+                  fminor(2,2) * k(jtemp+1, jeta(2)+1, gptS+igpt-1)
+    end do
+
+  end function interpolate2D_byflav
   ! ----------------------------------------------------------
   ! interpolation in temperature, pressure, and eta
-  function interpolate3D(scaling, fmajor, k, igpt, jeta, jtemp, jpress) result(res)
-  !$acc routine seq
-  !$omp declare target
+  pure function interpolate3D(scaling, fmajor, k, igpt, jeta, jtemp, jpress) result(res)
     real(wp), dimension(2),     intent(in) :: scaling
     real(wp), dimension(2,2,2), intent(in) :: fmajor ! interpolation fractions for major species
                                                      ! index(1) : reference eta level (temperature dependent)
@@ -717,37 +702,35 @@ contains
         fmajor(2,2,2) * k(jtemp+1, jeta(2)+1, jpress  , igpt) )
   end function interpolate3D
   ! ----------------------------------------------------------
-  !
-  ! In-house subroutine for handling minloc and maxloc for
-  ! compilers which do not support GPU versions
-  !
-  subroutine minmaxloc(i, mask, a, minl, maxl)
-    implicit none
-    !$acc routine seq
-    !$omp declare target
-    integer :: i, minl, maxl
-    logical(wl) :: mask(:,:)
-    real(wp) :: a(:,:)
-    integer :: j, n
-    real(wp) :: aij, amax, amin
-    n = size(a,2)
-    amax = -huge(amax)
-    amin = huge(amin)
-    do j = 1, n
-      aij = a(i,j)
-      if (mask(i,j)) then
-        if (aij.lt.amin) then
-          amin = aij
-          minl = j
-        end if
-      else
-        if (aij.gt.amax) then
-          amax = aij
-          maxl = j
-        end if
-      end if
+  pure function interpolate3D_byflav(scaling, fmajor, k, gptS, gptE, jeta, jtemp, jpress) result(res)
+    real(wp), dimension(2),     intent(in) :: scaling
+    real(wp), dimension(2,2,2), intent(in) :: fmajor ! interpolation fractions for major species
+                                                     ! index(1) : reference eta level (temperature dependent)
+                                                     ! index(2) : reference pressure level
+                                                     ! index(3) : reference temperature level
+    real(wp), dimension(:,:,:,:),intent(in) :: k ! (gpt, eta,temp,press)
+    integer,                     intent(in) :: gptS, gptE
+    integer, dimension(2),       intent(in) :: jeta ! interpolation index for binary species parameter (eta)
+    integer,                     intent(in) :: jtemp ! interpolation index for temperature
+    integer,                     intent(in) :: jpress ! interpolation index for pressure
+    real(wp), dimension(gptE-gptS+1)        :: res ! the result
+
+    ! Local variable
+    integer :: igpt
+    ! each code block is for a different reference temperature
+    do igpt = 1, gptE-gptS+1
+      res(igpt) =  &
+        scaling(1) * &
+        ( fmajor(1,1,1) * k(jtemp, jeta(1)  , jpress-1, gptS+igpt-1 ) + &
+          fmajor(2,1,1) * k(jtemp, jeta(1)+1, jpress-1, gptS+igpt-1 ) + &
+          fmajor(1,2,1) * k(jtemp, jeta(1)  , jpress  , gptS+igpt-1 ) + &
+          fmajor(2,2,1) * k(jtemp, jeta(1)+1, jpress  , gptS+igpt-1 ) ) + &
+        scaling(2) * &
+        ( fmajor(1,1,2) * k(jtemp+1, jeta(2)  , jpress-1, gptS+igpt-1) + &
+          fmajor(2,1,2) * k(jtemp+1, jeta(2)+1, jpress-1, gptS+igpt-1) + &
+          fmajor(1,2,2) * k(jtemp+1, jeta(2)  , jpress  , gptS+igpt-1) + &
+          fmajor(2,2,2) * k(jtemp+1, jeta(2)+1, jpress  , gptS+igpt-1) )
     end do
-  end subroutine
-  ! ----------------------------------------------------------
+  end function interpolate3D_byflav
 
 end module mo_gas_optics_kernels
