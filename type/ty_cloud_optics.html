@@ -490,7 +490,7 @@
   
   <td>public,</td>
   <td>dimension(:,:), allocatable</td><td>::</td>
-  <td><strong>band2gpt</strong></td><td></td><td></td><td></td>
+  <td><strong>band2gpt</strong></td><td></td><td></td><td><p>(begin g-point, end g-point) = band2gpt(2,band)</p></td>
   
 </tr>
 
@@ -504,7 +504,7 @@
   
   <td>public,</td>
   <td>dimension(:,:), allocatable</td><td>::</td>
-  <td><strong>band_lims_wvn</strong></td><td></td><td></td><td></td>
+  <td><strong>band_lims_wvn</strong></td><td></td><td></td><td><p>(upper and lower wavenumber by band) = band_lims_wvn(2,band)</p></td>
   
 </tr>
 
@@ -518,7 +518,7 @@
   
   <td>public,</td>
   <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>gpt2band</strong></td><td></td><td></td><td></td>
+  <td><strong>gpt2band</strong></td><td></td><td></td><td><p>band = gpt2band(g-point)</p></td>
   
 </tr>
 
@@ -571,6 +571,14 @@ public pure function <a href='../proc/bands_are_equal.html'>bands_are_equal</a>(
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Are the bands of two objects the same? (same number, same wavelength limits)</p>
     
     <h4>Arguments</h4>
     
@@ -807,6 +815,14 @@ public pure function <a href='../proc/convert_band2gpt.html'>convert_band2gpt</a
    
 </h3>
     
+
+
+
+
+
+
+
+<p>First and last g-point of a specific band</p>
     
     <h4>Arguments</h4>
     
@@ -895,6 +911,14 @@ public pure function <a href='../proc/convert_gpt2band.html'>convert_gpt2band</a
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Band associated with a specific g-point</p>
     
     <h4>Arguments</h4>
     
@@ -983,6 +1007,14 @@ public pure function <a href='../proc/expand.html'>expand</a>(this, arr_in) resu
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Expand an array of dimension arr_in(nband) to dimension arr_out(ngpt)</p>
     
     <h4>Arguments</h4>
     
@@ -1135,6 +1167,15 @@ public pure function <a href='../proc/get_band_lims_gpoint.html'>get_band_lims_g
    
 </h3>
     
+
+
+
+
+
+
+
+<p>The first and last g-point of all bands at once
+ dimension (2, nbands)</p>
     
     <h4>Arguments</h4>
     
@@ -1208,6 +1249,14 @@ public pure function <a href='../proc/get_band_lims_wavelength.html'>get_band_li
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Lower and upper wavelength of all bands</p>
     
     <h4>Arguments</h4>
     
@@ -1281,6 +1330,15 @@ public pure function <a href='../proc/get_band_lims_wavenumber.html'>get_band_li
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Lower and upper wavenumber of all bands
+ (upper and lower wavenumber by band) = band_lims_wvn(2,band)</p>
     
     <h4>Arguments</h4>
     
@@ -1354,6 +1412,15 @@ public pure function <a href='../proc/get_gpoint_bands.html'>get_gpoint_bands</a
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Bands for all the g-points at once
+ dimension (ngpt)</p>
     
     <h4>Arguments</h4>
     
@@ -1792,6 +1859,14 @@ public pure function <a href='../proc/get_nband.html'>get_nband</a>(this)
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Number of bands</p>
     
     <h4>Arguments</h4>
     
@@ -1865,6 +1940,14 @@ public pure function <a href='../proc/get_ngpt.html'>get_ngpt</a>(this)
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Number of g-points</p>
     
     <h4>Arguments</h4>
     
@@ -2011,6 +2094,15 @@ public pure function <a href='../proc/gpoints_are_equal.html'>gpoints_are_equal<
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Is the g-point structure of two objects the same?
+   (same bands, same number of g-points, same mapping between bands and g-points)</p>
     
     <h4>Arguments</h4>
     
@@ -2106,7 +2198,8 @@ public function <a href='../proc/init_base.html'>init_base</a>(this, band_lims_w
 
 
 
-<p>Routines for the base class: initialization, validity checking, finalization</p><a href="../proc/init_base.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+<p>Base class: Initialization
+  Values are assumed to be defined in bands a mapping between bands and g-points is provided</p><a href="../proc/init_base.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -2301,6 +2394,14 @@ public pure function <a href='../proc/is_initialized_base.html'>is_initialized_b
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Base class: return true if initialized, false otherwise</p><a href="../proc/is_initialized_base.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -2986,6 +3087,14 @@ public subroutine <a href='../proc/set_name.html'>set_name</a>(this, name)
    
 </h3>
     
+
+
+
+
+
+
+
+<p>--- Setting/getting the name</p><a href="../proc/set_name.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
