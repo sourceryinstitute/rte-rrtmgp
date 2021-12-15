@@ -265,7 +265,7 @@
       
       <a class="list-group-item" href="../type/ty_optical_props_1scl.html#boundprocedure-set_name">set_name</a>
       
-      <a class="list-group-item" href="../type/ty_optical_props_1scl.html#boundprocedure-validate">validate</a>
+      <a class="list-group-item" href="../type/ty_optical_props_1scl.html#boundprocedure-validate~2">validate</a>
       
     </div>
   </div>
@@ -281,7 +281,12 @@
     
     <div class="col-md-9" id='text'>
       <h2>type, public, extends(<a href='../type/ty_optical_props_arry.html'>ty_optical_props_arry</a>) :: ty_optical_props_1scl</h2>
-    
+    <p>ty_optical_props_arry  includes only (extinction) optical depth
+   Class two-stream adds arrays for single scattering albedo ssa and
+     asymmetry parameter needed in two-stream methods
+   Class n-stream adds arrays for single scattering albedo ssa and
+     phase function moments (index 1 = g) for use with discrete ordinate methods</p>
+<hr>
     <br>
     
     <div class="panel panel-default">
@@ -473,7 +478,7 @@
       
       <a class="list-group-item" href="../type/ty_optical_props_1scl.html#boundprocedure-set_name">set_name</a>
       
-      <a class="list-group-item" href="../type/ty_optical_props_1scl.html#boundprocedure-validate">validate</a>
+      <a class="list-group-item" href="../type/ty_optical_props_1scl.html#boundprocedure-validate~2">validate</a>
       
     </div>
   </div>
@@ -2390,6 +2395,13 @@ public pure function <a href='../proc/gpoints_are_equal.html'>gpoints_are_equal<
     
   </h3></div>
   
+  <div class="panel-body">
+    
+
+
+    <p>Increment another set of values</p>
+  </div>
+  
   <ul class="list-group">
     
       <li class="list-group-item">
@@ -2492,6 +2504,14 @@ public function <a href='../proc/init_base.html'>init_base</a>(this, band_lims_w
    
 </h3>
     
+
+
+
+
+
+
+
+<p>Routines for the base class: initialization, validity checking, finalization</p><a href="../proc/init_base.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -2820,7 +2840,7 @@ public subroutine <a href='../proc/set_name.html'>set_name</a>(this, name)
     
      
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-validate"></span><h3>procedure, public :: <strong>validate</strong>  => <a href='../proc/validate_1scalar.html'>validate_1scalar</a> 
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-validate~2"></span><h3>procedure, public :: <strong>validate</strong>  => <a href='../proc/validate_1scalar.html'>validate_1scalar</a> 
     
   </h3></div>
   
