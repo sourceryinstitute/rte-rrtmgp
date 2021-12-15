@@ -216,7 +216,39 @@
 
     </div>
     <div class="col-md-9" id='text'>
-      
+      <blockquote>
+<p>This code is part of Radiative Transfer for Energetics (RTE)</p>
+</blockquote>
+<p>Contacts: Robert Pincus and Eli Mlawer
+email:  rrtmgp@aer.com</p>
+<p>Copyright 2015-2018,  Atmospheric and Environmental Research and
+Regents of the University of Colorado.  All right reserved.</p>
+<p>Use and duplication is permitted under the terms of the
+   BSD 3-clause license, see http://opensource.org/licenses/BSD-3-Clause</p>
+<hr>
+<p>Encapsulate optical properties defined on a spectral grid of N bands.
+  The bands are described by their limiting wavenumbers. They need not be contiguous or complete.
+  A band may contain more than one spectral sub-point (g-point) in which case a mapping must be supplied.
+  A name may be provided and will be prepended to error messages.
+  The base class (ty_optical_props) encapsulates only this spectral discretization and must be initialized
+     with the spectral information before use.</p>
+<p>Optical properties may be represented as arrays with dimensions ncol, nlay, ngpt
+  (abstract class ty_optical_props_arry).
+  The type holds arrays depending on how much information is needed
+  There are three possibilites
+     ty_optical_props_1scl holds absorption optical depth tau, used in calculations accounting for extinction and emission
+     ty_optical_props_2str holds extincion optical depth tau, single-scattering albedo ssa, and
+       asymmetry parameter g. These fields are what's needed for two-stream calculations.
+     ty_optical_props_nstr holds extincion optical depth tau, single-scattering albedo ssa, and
+       phase function moments p with leading dimension nmom. These fields are what's needed for multi-stream calculations.
+  These classes must be allocated before use. Initialization and allocation can be combined.
+  The classes have a validate() function that checks all arrays for valid values (e.g. tau &gt; 0.)</p>
+<p>Optical properties can be delta-scaled (though this is currently implemented only for two-stream arrays)</p>
+<p>Optical properties can increment or "add themselves to" a set of properties represented with arrays
+  as long as both sets have the same underlying band structure. Properties defined by band
+  may be added to properties defined by g-point; the same value is assumed for all g-points with each band.</p>
+<p>Subsets of optical properties held as arrays may be extracted along the column dimension.</p>
+<hr>
       <br>
     
     <div class="panel panel-default">
@@ -271,33 +303,33 @@
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M343.94,-82.2C328.49,-83.96 311.83,-85.86 295.96,-87.67"/>
 <polygon fill="#000000" stroke="#000000" points="295.21,-84.24 285.67,-88.85 296,-91.19 295.21,-84.24"/>
 </g>
-<!-- sourcefile~mo_rte_config.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~EfferentGraph_node4" class="node">
-<title>sourcefile~mo_rte_config.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~EfferentGraph_node4"><a xlink:href=".././sourcefile/mo_rte_config.f90.html" xlink:title="mo_rte_config.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="277.5,-66 166.5,-66 166.5,-42 277.5,-42 277.5,-66"/>
-<text text-anchor="middle" x="222" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_config.F90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~mo_optical_props.f90&#45;&gt;sourcefile~mo_rte_config.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~EfferentGraph_edge4" class="edge">
-<title>sourcefile~mo_optical_props.f90&#45;&gt;sourcefile~mo_rte_config.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M343.94,-67.8C325.77,-65.73 305.92,-63.46 287.65,-61.38"/>
-<polygon fill="#000000" stroke="#000000" points="288.02,-57.9 277.69,-60.24 287.23,-64.85 288.02,-57.9"/>
-</g>
 <!-- sourcefile~mo_optical_props_kernels.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~EfferentGraph_node5" class="node">
+<g id="sourcefile~~mo_optical_props.f90~~EfferentGraph_node4" class="node">
 <title>sourcefile~mo_optical_props_kernels.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~EfferentGraph_node5"><a xlink:href=".././sourcefile/mo_optical_props_kernels.f90.html" xlink:title="mo_optical_props_kernels.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="308,-24 136,-24 136,0 308,0 308,-24"/>
-<text text-anchor="middle" x="222" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_optical_props_kernels.F90</text>
+<g id="a_sourcefile~~mo_optical_props.f90~~EfferentGraph_node4"><a xlink:href=".././sourcefile/mo_optical_props_kernels.f90.html" xlink:title="mo_optical_props_kernels.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="308,-66 136,-66 136,-42 308,-42 308,-66"/>
+<text text-anchor="middle" x="222" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_optical_props_kernels.F90</text>
 </a>
 </g>
 </g>
 <!-- sourcefile~mo_optical_props.f90&#45;&gt;sourcefile~mo_optical_props_kernels.f90 -->
 <g id="sourcefile~~mo_optical_props.f90~~EfferentGraph_edge3" class="edge">
 <title>sourcefile~mo_optical_props.f90&#45;&gt;sourcefile~mo_optical_props_kernels.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M343.94,-67.8C335.64,-66.86 326.99,-65.87 318.3,-64.88"/>
+<polygon fill="#000000" stroke="#000000" points="318.43,-61.37 308.1,-63.71 317.64,-68.32 318.43,-61.37"/>
+</g>
+<!-- sourcefile~mo_rte_config.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~EfferentGraph_node5" class="node">
+<title>sourcefile~mo_rte_config.f90</title>
+<g id="a_sourcefile~~mo_optical_props.f90~~EfferentGraph_node5"><a xlink:href=".././sourcefile/mo_rte_config.f90.html" xlink:title="mo_rte_config.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="277.5,-24 166.5,-24 166.5,0 277.5,0 277.5,-24"/>
+<text text-anchor="middle" x="222" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_config.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mo_optical_props.f90&#45;&gt;sourcefile~mo_rte_config.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~EfferentGraph_edge4" class="edge">
+<title>sourcefile~mo_optical_props.f90&#45;&gt;sourcefile~mo_rte_config.f90</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M381.79,-62.99C362.03,-53.9 333.68,-41.56 308,-33 301.26,-30.75 294.14,-28.63 287.02,-26.65"/>
 <polygon fill="#000000" stroke="#000000" points="287.89,-23.26 277.33,-24.05 286.08,-30.02 287.89,-23.26"/>
 </g>
@@ -307,16 +339,16 @@
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M158.18,-88.24C142.43,-86.29 125.59,-84.21 110.03,-82.29"/>
 <polygon fill="#000000" stroke="#000000" points="110.37,-78.81 100.02,-81.05 109.51,-85.75 110.37,-78.81"/>
 </g>
-<!-- sourcefile~mo_rte_config.f90&#45;&gt;sourcefile~mo_rte_kind.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~EfferentGraph_edge6" class="edge">
-<title>sourcefile~mo_rte_config.f90&#45;&gt;sourcefile~mo_rte_kind.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M166.28,-60.76C148.34,-62.98 128.34,-65.45 110.09,-67.7"/>
-<polygon fill="#000000" stroke="#000000" points="109.66,-64.23 100.16,-68.93 110.52,-71.17 109.66,-64.23"/>
-</g>
 <!-- sourcefile~mo_optical_props_kernels.f90&#45;&gt;sourcefile~mo_rte_kind.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~EfferentGraph_edge7" class="edge">
+<g id="sourcefile~~mo_optical_props.f90~~EfferentGraph_edge6" class="edge">
 <title>sourcefile~mo_optical_props_kernels.f90&#45;&gt;sourcefile~mo_rte_kind.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M164.7,-24.08C155.02,-26.68 145.14,-29.66 136,-33 117.13,-39.9 96.94,-49.77 80.97,-58.2"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M135.5,-64.56C127.01,-65.61 118.53,-66.66 110.4,-67.66"/>
+<polygon fill="#000000" stroke="#000000" points="109.8,-64.21 100.3,-68.91 110.65,-71.16 109.8,-64.21"/>
+</g>
+<!-- sourcefile~mo_rte_config.f90&#45;&gt;sourcefile~mo_rte_kind.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~EfferentGraph_edge7" class="edge">
+<title>sourcefile~mo_rte_config.f90&#45;&gt;sourcefile~mo_rte_kind.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M166.06,-23.72C155.95,-26.4 145.56,-29.5 136,-33 117.13,-39.9 96.94,-49.77 80.97,-58.2"/>
 <polygon fill="#000000" stroke="#000000" points="79.24,-55.15 72.09,-62.97 82.56,-61.32 79.24,-55.15"/>
 </g>
 </g>
@@ -370,303 +402,304 @@
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: sourcefile~~mo_optical_props.f90~~AfferentGraph Pages: 1 -->
-<svg id="sourcefilemo_optical_propsf90AfferentGraph" width="641pt" height="383pt"
- viewBox="0.00 0.00 641.00 382.82" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph" class="graph" transform="scale(1.07 1.07) rotate(0) translate(4 406.29)">
+<svg id="sourcefilemo_optical_propsf90AfferentGraph" width="641pt" height="438pt"
+ viewBox="0.00 0.00 641.00 438.48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph" class="graph" transform="scale(1.07 1.07) rotate(0) translate(4 465.94)">
 <title>sourcefile~~mo_optical_props.f90~~AfferentGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-406.29 683,-406.29 683,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-465.94 683,-465.94 683,4 -4,4"/>
 <!-- sourcefile~mo_optical_props.f90 -->
 <g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node1" class="node">
 <title>sourcefile~mo_optical_props.f90</title>
-<polygon fill="none" stroke="black" points="128,-146 0,-146 0,-122 128,-122 128,-146"/>
-<text text-anchor="middle" x="64" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50">mo_optical_props.F90</text>
-</g>
-<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node2" class="node">
-<title>sourcefile~mo_rrtmgp_clr_all_sky.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node2"><a xlink:href=".././sourcefile/mo_rrtmgp_clr_all_sky.f90.html" xlink:title="mo_rrtmgp_clr_all_sky.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="677.5,-216 525.5,-216 525.5,-192 677.5,-192 677.5,-216"/>
-<text text-anchor="middle" x="601.5" y="-201.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rrtmgp_clr_all_sky.F90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge2" class="edge">
-<title>sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M595.74,-216.34C583.33,-246.59 546.82,-324.38 488,-357 390.75,-410.94 342.45,-415.52 238.5,-376"/>
-</g>
-<!-- sourcefile~mo_gas_optics.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node3" class="node">
-<title>sourcefile~mo_gas_optics.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node3"><a xlink:href=".././sourcefile/mo_gas_optics.f90.html" xlink:title="mo_gas_optics.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="474,-104 361,-104 361,-80 474,-80 474,-104"/>
-<text text-anchor="middle" x="417.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_optics.F90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_gas_optics.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge15" class="edge">
-<title>sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_gas_optics.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M557.89,-191.98C546.1,-187.31 533.85,-181.1 524,-173 501.43,-154.45 510.82,-136.25 488,-118 483.36,-114.29 478.13,-111.07 472.69,-108.29"/>
-<polygon fill="#000000" stroke="#000000" points="473.92,-105 463.37,-104.01 471,-111.36 473.92,-105"/>
-</g>
-<!-- sourcefile~mo_fluxes.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node5" class="node">
-<title>sourcefile~mo_fluxes.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node5"><a xlink:href=".././sourcefile/mo_fluxes.f90.html" xlink:title="mo_fluxes.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="282,-246 193,-246 193,-222 282,-222 282,-246"/>
-<text text-anchor="middle" x="237.5" y="-231.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_fluxes.F90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_fluxes.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge16" class="edge">
-<title>sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_fluxes.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M566.83,-216.04C530.71,-228.29 471.39,-246.52 418.5,-254"/>
-</g>
-<!-- sourcefile~mo_rte_lw.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node6" class="node">
-<title>sourcefile~mo_rte_lw.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node6"><a xlink:href=".././sourcefile/mo_rte_lw.f90.html" xlink:title="mo_rte_lw.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="461.5,-184 373.5,-184 373.5,-160 461.5,-160 461.5,-184"/>
-<text text-anchor="middle" x="417.5" y="-169.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_lw.F90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_rte_lw.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge23" class="edge">
-<title>sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_rte_lw.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M532.21,-191.99C512.12,-188.46 490.45,-184.65 471.47,-181.31"/>
-<polygon fill="#000000" stroke="#000000" points="471.98,-177.85 461.52,-179.56 470.77,-184.74 471.98,-177.85"/>
-</g>
-<!-- sourcefile~mo_rte_sw.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node7" class="node">
-<title>sourcefile~mo_rte_sw.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node7"><a xlink:href=".././sourcefile/mo_rte_sw.f90.html" xlink:title="mo_rte_sw.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="463,-226 372,-226 372,-202 463,-202 463,-226"/>
-<text text-anchor="middle" x="417.5" y="-211.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_sw.F90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_rte_sw.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge25" class="edge">
-<title>sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_rte_sw.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M525.42,-208.13C508.07,-209.08 489.93,-210.08 473.61,-210.97"/>
-<polygon fill="#000000" stroke="#000000" points="472.98,-207.5 463.18,-211.54 473.36,-214.49 472.98,-207.5"/>
-</g>
-<!-- sourcefile~mo_source_functions.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node8" class="node">
-<title>sourcefile~mo_source_functions.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node8"><a xlink:href=".././sourcefile/mo_source_functions.f90.html" xlink:title="mo_source_functions.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="311,-146 164,-146 164,-122 311,-122 311,-146"/>
-<text text-anchor="middle" x="237.5" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_source_functions.F90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_source_functions.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge27" class="edge">
-<title>sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_source_functions.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M567.22,-191.88C553.6,-186.57 537.82,-179.96 524,-173 507.25,-164.56 505.21,-158.43 488,-151 458.6,-138.3 450.3,-135.74 418.5,-132"/>
-</g>
-<!-- sourcefile~mo_gas_optics.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge1" class="edge">
-<title>sourcefile~mo_gas_optics.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M380.17,-80C336.3,-66.17 265.09,-46.08 238.5,-52"/>
-</g>
-<!-- sourcefile~mo_gas_optics.f90&#45;&gt;sourcefile~mo_source_functions.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge26" class="edge">
-<title>sourcefile~mo_gas_optics.f90&#45;&gt;sourcefile~mo_source_functions.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M365.49,-104.04C344.92,-108.89 321.01,-114.53 299.52,-119.6"/>
-<polygon fill="#000000" stroke="#000000" points="298.44,-116.26 289.52,-121.96 300.05,-123.07 298.44,-116.26"/>
-</g>
-<!-- sourcefile~mo_fluxes_bygpoint.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node4" class="node">
-<title>sourcefile~mo_fluxes_bygpoint.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node4"><a xlink:href=".././sourcefile/mo_fluxes_bygpoint.f90.html" xlink:title="mo_fluxes_bygpoint.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="488,-348 347,-348 347,-324 488,-324 488,-348"/>
-<text text-anchor="middle" x="417.5" y="-333.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_fluxes_bygpoint.F90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~mo_fluxes_bygpoint.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge3" class="edge">
-<title>sourcefile~mo_fluxes_bygpoint.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M383.22,-348.05C339.34,-363.16 264.63,-385.93 238.5,-376"/>
-</g>
-<!-- sourcefile~mo_fluxes_bygpoint.f90&#45;&gt;sourcefile~mo_fluxes.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge17" class="edge">
-<title>sourcefile~mo_fluxes_bygpoint.f90&#45;&gt;sourcefile~mo_fluxes.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M368.54,-323.91C361.16,-321.37 353.75,-318.41 347,-315 313.65,-298.17 279.9,-271.02 259.09,-252.85"/>
-<polygon fill="#000000" stroke="#000000" points="261.33,-250.16 251.52,-246.14 256.68,-255.39 261.33,-250.16"/>
-</g>
-<!-- sourcefile~mo_fluxes.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge4" class="edge">
-<title>sourcefile~mo_fluxes.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M196.07,-221.9C185.37,-218.05 174.01,-213.38 164,-208 135.19,-192.52 105.58,-169.23 86.35,-152.93"/>
-<polygon fill="#000000" stroke="#000000" points="88.39,-150.07 78.53,-146.2 83.82,-155.37 88.39,-150.07"/>
-</g>
-<!-- sourcefile~mo_rte_lw.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge5" class="edge">
-<title>sourcefile~mo_rte_lw.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M374.28,-184.02C338.13,-192.69 284.74,-201.64 238.5,-194"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M236.5,-194C187.5,-185.91 133.89,-165.07 99.89,-150.23"/>
-<polygon fill="#000000" stroke="#000000" points="100.97,-146.88 90.41,-146.03 98.14,-153.28 100.97,-146.88"/>
-</g>
-<!-- sourcefile~mo_rte_lw.f90&#45;&gt;sourcefile~mo_fluxes.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge18" class="edge">
-<title>sourcefile~mo_rte_lw.f90&#45;&gt;sourcefile~mo_fluxes.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M374.01,-184.09C365.04,-186.85 355.66,-189.9 347,-193 330.68,-198.85 327.16,-201.74 311,-208 301.93,-211.51 292.16,-215.13 282.82,-218.5"/>
-<polygon fill="#000000" stroke="#000000" points="281.53,-215.25 273.3,-221.92 283.89,-221.84 281.53,-215.25"/>
-</g>
-<!-- sourcefile~mo_rte_lw.f90&#45;&gt;sourcefile~mo_source_functions.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge28" class="edge">
-<title>sourcefile~mo_rte_lw.f90&#45;&gt;sourcefile~mo_source_functions.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M373.41,-162.8C352.89,-158.42 327.88,-153.08 304.99,-148.19"/>
-<polygon fill="#000000" stroke="#000000" points="305.5,-144.73 294.99,-146.06 304.04,-151.57 305.5,-144.73"/>
-</g>
-<!-- sourcefile~mo_rte_sw.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge6" class="edge">
-<title>sourcefile~mo_rte_sw.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M371.7,-210.26C335.6,-206.94 283.6,-201.45 238.5,-194"/>
-</g>
-<!-- sourcefile~mo_rte_sw.f90&#45;&gt;sourcefile~mo_fluxes.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge19" class="edge">
-<title>sourcefile~mo_rte_sw.f90&#45;&gt;sourcefile~mo_fluxes.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M371.58,-219.05C347.51,-221.75 317.67,-225.1 292.35,-227.95"/>
-<polygon fill="#000000" stroke="#000000" points="291.72,-224.5 282.17,-229.09 292.5,-231.45 291.72,-224.5"/>
-</g>
-<!-- sourcefile~mo_source_functions.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge7" class="edge">
-<title>sourcefile~mo_source_functions.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M163.77,-134C155.33,-134 146.72,-134 138.28,-134"/>
-<polygon fill="#000000" stroke="#000000" points="138.08,-130.5 128.08,-134 138.08,-137.5 138.08,-130.5"/>
-</g>
-<!-- sourcefile~mo_cloud_optics.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node9" class="node">
-<title>sourcefile~mo_cloud_optics.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node9"><a xlink:href=".././sourcefile/mo_cloud_optics.f90.html" xlink:title="mo_cloud_optics.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="299.5,-104 175.5,-104 175.5,-80 299.5,-80 299.5,-104"/>
-<text text-anchor="middle" x="237.5" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_cloud_optics.F90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~mo_cloud_optics.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge8" class="edge">
-<title>sourcefile~mo_cloud_optics.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M187.35,-104.04C167.62,-108.87 144.7,-114.48 124.07,-119.53"/>
-<polygon fill="#000000" stroke="#000000" points="123.03,-116.18 114.15,-121.96 124.7,-122.98 123.03,-116.18"/>
-</g>
-<!-- sourcefile~mo_gas_optics_rrtmgp.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node10" class="node">
-<title>sourcefile~mo_gas_optics_rrtmgp.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node10"><a xlink:href=".././sourcefile/mo_gas_optics_rrtmgp.f90.html" xlink:title="mo_gas_optics_rrtmgp.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="679,-84 524,-84 524,-60 679,-60 679,-84"/>
-<text text-anchor="middle" x="601.5" y="-69.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_optics_rrtmgp.F90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~mo_gas_optics_rrtmgp.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge9" class="edge">
-<title>sourcefile~mo_gas_optics_rrtmgp.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M579.6,-59.89C546.43,-41.94 479.26,-10.71 418.5,-14"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M416.5,-14C376.11,-16.19 278,-43.29 238.5,-52"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M236.5,-52C203.97,-59.17 194.53,-57.68 164,-71 136.64,-82.94 108.16,-101.86 88.81,-115.85"/>
-<polygon fill="#000000" stroke="#000000" points="86.58,-113.14 80.6,-121.89 90.73,-118.78 86.58,-113.14"/>
-</g>
-<!-- sourcefile~mo_gas_optics_rrtmgp.f90&#45;&gt;sourcefile~mo_gas_optics.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge13" class="edge">
-<title>sourcefile~mo_gas_optics_rrtmgp.f90&#45;&gt;sourcefile~mo_gas_optics.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M523.84,-80.42C510.66,-81.87 497.06,-83.37 484.2,-84.78"/>
-<polygon fill="#000000" stroke="#000000" points="483.62,-81.32 474.06,-85.89 484.38,-88.28 483.62,-81.32"/>
-</g>
-<!-- sourcefile~mo_gas_optics_rrtmgp.f90&#45;&gt;sourcefile~mo_source_functions.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge29" class="edge">
-<title>sourcefile~mo_gas_optics_rrtmgp.f90&#45;&gt;sourcefile~mo_source_functions.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M416.5,-14C376.61,-16.16 375.55,-43.06 347,-71 329.43,-88.19 331.67,-99.69 311,-113 308.25,-114.77 305.34,-116.4 302.33,-117.89"/>
-<polygon fill="#000000" stroke="#000000" points="300.81,-114.74 293.08,-121.98 303.64,-121.14 300.81,-114.74"/>
-</g>
-<!-- sourcefile~mo_compute_bc.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node11" class="node">
-<title>sourcefile~mo_compute_bc.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node11"><a xlink:href=".././sourcefile/mo_compute_bc.f90.html" xlink:title="mo_compute_bc.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="663,-164 540,-164 540,-140 663,-140 663,-164"/>
-<text text-anchor="middle" x="601.5" y="-149.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_compute_bc.F90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge10" class="edge">
-<title>sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M584.51,-139.75C556.11,-118.09 498.8,-74.94 488,-71 383.53,-32.86 347.06,-27.85 238.5,-52"/>
-</g>
-<!-- sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_gas_optics.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge14" class="edge">
-<title>sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_gas_optics.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M563.67,-139.86C535.08,-130.43 495.28,-117.31 464.59,-107.19"/>
-<polygon fill="#000000" stroke="#000000" points="465.56,-103.83 454.96,-104.02 463.37,-110.48 465.56,-103.83"/>
-</g>
-<!-- sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_fluxes.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge20" class="edge">
-<title>sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_fluxes.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M558.42,-164.03C546.51,-168.71 534.07,-174.94 524,-183 502.06,-200.57 510.94,-218.76 488,-235 461.86,-253.5 450.21,-249.51 418.5,-254"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M416.5,-254C374.88,-259.89 327.59,-253.98 292.22,-247.1"/>
-<polygon fill="#000000" stroke="#000000" points="292.61,-243.6 282.11,-245.04 291.21,-250.46 292.61,-243.6"/>
-</g>
-<!-- sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_rte_lw.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge22" class="edge">
-<title>sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_rte_lw.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M539.9,-158.66C517.86,-161.08 493.13,-163.8 471.78,-166.15"/>
-<polygon fill="#000000" stroke="#000000" points="471.15,-162.69 461.59,-167.27 471.91,-169.65 471.15,-162.69"/>
-</g>
-<!-- sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_rte_sw.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge24" class="edge">
-<title>sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_rte_sw.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M568.66,-164.14C546.23,-172.57 515.42,-183.87 488,-193 482.04,-194.99 475.76,-197 469.51,-198.94"/>
-<polygon fill="#000000" stroke="#000000" points="468.31,-195.65 459.78,-201.94 470.37,-202.34 468.31,-195.65"/>
-</g>
-<!-- sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_source_functions.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge30" class="edge">
-<title>sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_source_functions.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M539.81,-145.56C504.41,-141.75 458.91,-136.75 418.5,-132"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M416.5,-132C385.48,-128.36 351.2,-127.9 321.08,-128.69"/>
-<polygon fill="#000000" stroke="#000000" points="320.92,-125.19 311.04,-129 321.14,-132.18 320.92,-125.19"/>
+<polygon fill="none" stroke="black" points="128,-242.94 0,-242.94 0,-218.94 128,-218.94 128,-242.94"/>
+<text text-anchor="middle" x="64" y="-228.54" font-family="Helvetica,sans-Serif" font-size="10.50">mo_optical_props.F90</text>
 </g>
 <!-- sourcefile~mo_fluxes_byband.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node12" class="node">
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node2" class="node">
 <title>sourcefile~mo_fluxes_byband.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node12"><a xlink:href=".././sourcefile/mo_fluxes_byband.f90.html" xlink:title="mo_fluxes_byband.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="484.5,-306 350.5,-306 350.5,-282 484.5,-282 484.5,-306"/>
-<text text-anchor="middle" x="417.5" y="-291.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_fluxes_byband.F90</text>
+<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node2"><a xlink:href=".././sourcefile/mo_fluxes_byband.f90.html" xlink:title="mo_fluxes_byband.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="484.5,-461.94 350.5,-461.94 350.5,-437.94 484.5,-437.94 484.5,-461.94"/>
+<text text-anchor="middle" x="417.5" y="-447.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_fluxes_byband.F90</text>
 </a>
 </g>
 </g>
 <!-- sourcefile~mo_fluxes_byband.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge11" class="edge">
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge2" class="edge">
 <title>sourcefile~mo_fluxes_byband.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M371.49,-306.02C363.23,-308.67 354.77,-311.69 347,-315 296.11,-336.69 290.21,-395.66 238.5,-376"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M236.5,-376C138.56,-338.76 87.96,-207.83 71.33,-155.67"/>
-<polygon fill="#000000" stroke="#000000" points="74.66,-154.6 68.37,-146.07 67.97,-156.66 74.66,-154.6"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M350.17,-443.07C315.57,-437.62 273.32,-427.95 238.5,-410.94"/>
+</g>
+<!-- sourcefile~mo_fluxes.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node9" class="node">
+<title>sourcefile~mo_fluxes.f90</title>
+<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node9"><a xlink:href=".././sourcefile/mo_fluxes.f90.html" xlink:title="mo_fluxes.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="282,-262.94 193,-262.94 193,-238.94 282,-238.94 282,-262.94"/>
+<text text-anchor="middle" x="237.5" y="-248.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_fluxes.F90</text>
+</a>
+</g>
 </g>
 <!-- sourcefile~mo_fluxes_byband.f90&#45;&gt;sourcefile~mo_fluxes.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge21" class="edge">
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge17" class="edge">
 <title>sourcefile~mo_fluxes_byband.f90&#45;&gt;sourcefile~mo_fluxes.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M380.48,-281.86C352.64,-272.47 313.93,-259.43 283.96,-249.32"/>
-<polygon fill="#000000" stroke="#000000" points="284.76,-245.9 274.16,-246.02 282.52,-252.53 284.76,-245.9"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M407.8,-437.67C390.49,-413.56 350.03,-358.72 311,-316.94 295.12,-299.94 275.53,-282.28 260.71,-269.51"/>
+<polygon fill="#000000" stroke="#000000" points="262.91,-266.78 253.03,-262.95 258.37,-272.11 262.91,-266.78"/>
+</g>
+<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node3" class="node">
+<title>sourcefile~mo_rrtmgp_clr_all_sky.f90</title>
+<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node3"><a xlink:href=".././sourcefile/mo_rrtmgp_clr_all_sky.f90.html" xlink:title="mo_rrtmgp_clr_all_sky.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="677.5,-243.94 525.5,-243.94 525.5,-219.94 677.5,-219.94 677.5,-243.94"/>
+<text text-anchor="middle" x="601.5" y="-229.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rrtmgp_clr_all_sky.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge3" class="edge">
+<title>sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M595.68,-244.18C583.15,-274.2 546.36,-351.5 488,-384.94 439.63,-412.65 288.59,-435.41 238.5,-410.94"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M236.5,-410.94C206.39,-396.69 190.76,-411.78 164,-391.94 115.27,-355.82 85.29,-287.9 72.39,-252.95"/>
+<polygon fill="#000000" stroke="#000000" points="75.59,-251.49 68.94,-243.24 68.99,-253.83 75.59,-251.49"/>
+</g>
+<!-- sourcefile~mo_rte_lw.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node5" class="node">
+<title>sourcefile~mo_rte_lw.f90</title>
+<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node5"><a xlink:href=".././sourcefile/mo_rte_lw.f90.html" xlink:title="mo_rte_lw.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="461.5,-182.94 373.5,-182.94 373.5,-158.94 461.5,-158.94 461.5,-182.94"/>
+<text text-anchor="middle" x="417.5" y="-168.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_lw.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_rte_lw.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge13" class="edge">
+<title>sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_rte_lw.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M564.54,-219.89C535.75,-210.24 495.19,-196.64 464.11,-186.23"/>
+<polygon fill="#000000" stroke="#000000" points="464.98,-182.83 454.38,-182.97 462.75,-189.46 464.98,-182.83"/>
+</g>
+<!-- sourcefile~mo_rte_sw.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node8" class="node">
+<title>sourcefile~mo_rte_sw.f90</title>
+<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node8"><a xlink:href=".././sourcefile/mo_rte_sw.f90.html" xlink:title="mo_rte_sw.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="463,-262.94 372,-262.94 372,-238.94 463,-238.94 463,-262.94"/>
+<text text-anchor="middle" x="417.5" y="-248.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_sw.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_rte_sw.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge15" class="edge">
+<title>sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_rte_sw.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M525.42,-239.78C507.91,-241.61 489.58,-243.52 473.15,-245.24"/>
+<polygon fill="#000000" stroke="#000000" points="472.76,-241.76 463.18,-246.28 473.49,-248.72 472.76,-241.76"/>
+</g>
+<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_fluxes.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge18" class="edge">
+<title>sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_fluxes.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M574.37,-244.12C552,-253.83 518.64,-266.66 488,-271.94 421.07,-283.49 342.91,-273.12 292.15,-263.28"/>
+<polygon fill="#000000" stroke="#000000" points="292.55,-259.79 282.06,-261.27 291.18,-266.66 292.55,-259.79"/>
+</g>
+<!-- sourcefile~mo_gas_optics.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node10" class="node">
+<title>sourcefile~mo_gas_optics.f90</title>
+<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node10"><a xlink:href=".././sourcefile/mo_gas_optics.f90.html" xlink:title="mo_gas_optics.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="474,-102.94 361,-102.94 361,-78.94 474,-78.94 474,-102.94"/>
+<text text-anchor="middle" x="417.5" y="-88.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_optics.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_gas_optics.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge23" class="edge">
+<title>sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_gas_optics.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M566.57,-219.84C552.05,-213.34 535.77,-204.12 524,-191.94 498.31,-165.35 515.29,-141.89 488,-116.94 484.12,-113.39 479.71,-110.31 475.03,-107.65"/>
+<polygon fill="#000000" stroke="#000000" points="476.3,-104.37 465.79,-103.01 473.16,-110.62 476.3,-104.37"/>
+</g>
+<!-- sourcefile~mo_source_functions.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node11" class="node">
+<title>sourcefile~mo_source_functions.f90</title>
+<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node11"><a xlink:href=".././sourcefile/mo_source_functions.f90.html" xlink:title="mo_source_functions.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="311,-124.94 164,-124.94 164,-100.94 311,-100.94 311,-124.94"/>
+<text text-anchor="middle" x="237.5" y="-110.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_source_functions.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_source_functions.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge26" class="edge">
+<title>sourcefile~mo_rrtmgp_clr_all_sky.f90&#45;&gt;sourcefile~mo_source_functions.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M571.32,-219.89C556.35,-212.94 538.31,-203.32 524,-191.94 504.76,-176.64 509.52,-161.83 488,-149.94 437.15,-121.85 372.01,-112.94 321.03,-110.87"/>
+<polygon fill="#000000" stroke="#000000" points="321.15,-107.37 311.04,-110.54 320.92,-114.37 321.15,-107.37"/>
 </g>
 <!-- sourcefile~mo_cloud_sampling.f90 -->
-<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node13" class="node">
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node4" class="node">
 <title>sourcefile~mo_cloud_sampling.f90</title>
-<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node13"><a xlink:href=".././sourcefile/mo_cloud_sampling.f90.html" xlink:title="mo_cloud_sampling.F90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="308,-24 167,-24 167,0 308,0 308,-24"/>
-<text text-anchor="middle" x="237.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_cloud_sampling.F90</text>
+<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node4"><a xlink:href=".././sourcefile/mo_cloud_sampling.f90.html" xlink:title="mo_cloud_sampling.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="308,-382.94 167,-382.94 167,-358.94 308,-358.94 308,-382.94"/>
+<text text-anchor="middle" x="237.5" y="-368.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_cloud_sampling.F90</text>
 </a>
 </g>
 </g>
 <!-- sourcefile~mo_cloud_sampling.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
 <g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge12" class="edge">
 <title>sourcefile~mo_cloud_sampling.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M193.31,-24.09C183.3,-27.8 172.97,-32.41 164,-38 130.45,-58.9 99,-92.77 80.9,-114.18"/>
-<polygon fill="#000000" stroke="#000000" points="78.11,-112.07 74.42,-122 83.5,-116.53 78.11,-112.07"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M191.43,-358.82C181.93,-355.18 172.28,-350.6 164,-344.94 126.81,-319.5 94.93,-276.83 78,-251.53"/>
+<polygon fill="#000000" stroke="#000000" points="80.86,-249.51 72.45,-243.07 75,-253.35 80.86,-249.51"/>
+</g>
+<!-- sourcefile~mo_rte_lw.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge4" class="edge">
+<title>sourcefile~mo_rte_lw.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M373.15,-174.43C336.98,-177.67 284.18,-183.17 238.5,-190.94"/>
+</g>
+<!-- sourcefile~mo_rte_lw.f90&#45;&gt;sourcefile~mo_fluxes.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge19" class="edge">
+<title>sourcefile~mo_rte_lw.f90&#45;&gt;sourcefile~mo_fluxes.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M381.93,-183.07C370.69,-187.23 358.22,-192.06 347,-196.94 320.61,-208.41 291.45,-223.04 270.01,-234.17"/>
+<polygon fill="#000000" stroke="#000000" points="268.28,-231.13 261.04,-238.87 271.52,-237.33 268.28,-231.13"/>
+</g>
+<!-- sourcefile~mo_rte_lw.f90&#45;&gt;sourcefile~mo_source_functions.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge28" class="edge">
+<title>sourcefile~mo_rte_lw.f90&#45;&gt;sourcefile~mo_source_functions.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M379.62,-158.92C352.17,-149.98 314.51,-137.71 285,-128.09"/>
+<polygon fill="#000000" stroke="#000000" points="285.93,-124.71 275.33,-124.94 283.76,-131.37 285.93,-124.71"/>
+</g>
+<!-- sourcefile~mo_gas_optics_rrtmgp.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node6" class="node">
+<title>sourcefile~mo_gas_optics_rrtmgp.f90</title>
+<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node6"><a xlink:href=".././sourcefile/mo_gas_optics_rrtmgp.f90.html" xlink:title="mo_gas_optics_rrtmgp.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="679,-182.94 524,-182.94 524,-158.94 679,-158.94 679,-182.94"/>
+<text text-anchor="middle" x="601.5" y="-168.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_optics_rrtmgp.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mo_gas_optics_rrtmgp.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge5" class="edge">
+<title>sourcefile~mo_gas_optics_rrtmgp.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M563.04,-183.04C548.95,-189.32 533.95,-198.37 524,-210.94 483.86,-261.66 539.08,-312.27 488,-351.94 438.51,-390.38 409.38,-357.92 347,-351.94 298.11,-347.25 285.17,-346.24 238.5,-330.94"/>
+</g>
+<!-- sourcefile~mo_gas_optics_rrtmgp.f90&#45;&gt;sourcefile~mo_gas_optics.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge25" class="edge">
+<title>sourcefile~mo_gas_optics_rrtmgp.f90&#45;&gt;sourcefile~mo_gas_optics.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M544.53,-158.93C537.41,-156.44 530.39,-153.47 524,-149.94 505,-139.44 506.5,-128.29 488,-116.94 481.81,-113.15 474.97,-109.76 468.08,-106.79"/>
+<polygon fill="#000000" stroke="#000000" points="469.28,-103.5 458.69,-103 466.65,-109.99 469.28,-103.5"/>
+</g>
+<!-- sourcefile~mo_gas_optics_rrtmgp.f90&#45;&gt;sourcefile~mo_source_functions.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge27" class="edge">
+<title>sourcefile~mo_gas_optics_rrtmgp.f90&#45;&gt;sourcefile~mo_source_functions.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M537.58,-158.78C532.69,-156.35 528.08,-153.43 524,-149.94 494.38,-124.59 520.74,-91.11 488,-69.94 435.38,-35.92 407.32,-52.97 347,-69.94 328.95,-75.02 328.16,-84.38 311,-91.94 306.32,-94 301.39,-95.92 296.38,-97.7"/>
+<polygon fill="#000000" stroke="#000000" points="295.09,-94.44 286.72,-100.93 297.32,-101.08 295.09,-94.44"/>
+</g>
+<!-- sourcefile~mo_fluxes_bygpoint.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node7" class="node">
+<title>sourcefile~mo_fluxes_bygpoint.f90</title>
+<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node7"><a xlink:href=".././sourcefile/mo_fluxes_bygpoint.f90.html" xlink:title="mo_fluxes_bygpoint.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="488,-342.94 347,-342.94 347,-318.94 488,-318.94 488,-342.94"/>
+<text text-anchor="middle" x="417.5" y="-328.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_fluxes_bygpoint.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mo_fluxes_bygpoint.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge6" class="edge">
+<title>sourcefile~mo_fluxes_bygpoint.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M346.87,-340.87C313.33,-343.18 273,-342.25 238.5,-330.94"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M236.5,-330.94C179.32,-312.2 120.37,-272.51 88.65,-249.16"/>
+<polygon fill="#000000" stroke="#000000" points="90.56,-246.22 80.46,-243.04 86.38,-251.83 90.56,-246.22"/>
+</g>
+<!-- sourcefile~mo_fluxes_bygpoint.f90&#45;&gt;sourcefile~mo_fluxes.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge20" class="edge">
+<title>sourcefile~mo_fluxes_bygpoint.f90&#45;&gt;sourcefile~mo_fluxes.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M381.93,-318.81C370.69,-314.66 358.22,-309.82 347,-304.94 320.61,-293.47 291.45,-278.85 270.01,-267.71"/>
+<polygon fill="#000000" stroke="#000000" points="271.52,-264.55 261.04,-263.02 268.28,-270.75 271.52,-264.55"/>
+</g>
+<!-- sourcefile~mo_rte_sw.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge7" class="edge">
+<title>sourcefile~mo_rte_sw.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M398.79,-238.64C367.33,-218.23 299.26,-180.6 238.5,-190.94"/>
+</g>
+<!-- sourcefile~mo_rte_sw.f90&#45;&gt;sourcefile~mo_fluxes.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge21" class="edge">
+<title>sourcefile~mo_rte_sw.f90&#45;&gt;sourcefile~mo_fluxes.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M371.58,-250.94C347.51,-250.94 317.67,-250.94 292.35,-250.94"/>
+<polygon fill="#000000" stroke="#000000" points="292.17,-247.44 282.17,-250.94 292.17,-254.44 292.17,-247.44"/>
+</g>
+<!-- sourcefile~mo_fluxes.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge8" class="edge">
+<title>sourcefile~mo_fluxes.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M192.78,-245.84C176.12,-243.9 156.66,-241.63 138.01,-239.46"/>
+<polygon fill="#000000" stroke="#000000" points="138.4,-235.98 128.06,-238.3 137.59,-242.93 138.4,-235.98"/>
+</g>
+<!-- sourcefile~mo_gas_optics.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge9" class="edge">
+<title>sourcefile~mo_gas_optics.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M402.6,-103.29C374.25,-127.39 306.64,-179.34 238.5,-190.94"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M236.5,-190.94C197.17,-197.64 153.37,-207.9 119.88,-216.36"/>
+<polygon fill="#000000" stroke="#000000" points="118.66,-213.05 109.83,-218.91 120.39,-219.84 118.66,-213.05"/>
+</g>
+<!-- sourcefile~mo_gas_optics.f90&#45;&gt;sourcefile~mo_source_functions.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge29" class="edge">
+<title>sourcefile~mo_gas_optics.f90&#45;&gt;sourcefile~mo_source_functions.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M360.67,-97.84C348.16,-99.39 334.62,-101.06 321.28,-102.71"/>
+<polygon fill="#000000" stroke="#000000" points="320.63,-99.26 311.13,-103.96 321.48,-106.21 320.63,-99.26"/>
+</g>
+<!-- sourcefile~mo_source_functions.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge10" class="edge">
+<title>sourcefile~mo_source_functions.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M218.79,-125.13C188.42,-146.02 126.25,-188.8 90.97,-213.08"/>
+<polygon fill="#000000" stroke="#000000" points="88.87,-210.27 82.61,-218.82 92.83,-216.04 88.87,-210.27"/>
+</g>
+<!-- sourcefile~mo_cloud_optics.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node12" class="node">
+<title>sourcefile~mo_cloud_optics.f90</title>
+<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node12"><a xlink:href=".././sourcefile/mo_cloud_optics.f90.html" xlink:title="mo_cloud_optics.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="299.5,-82.94 175.5,-82.94 175.5,-58.94 299.5,-58.94 299.5,-82.94"/>
+<text text-anchor="middle" x="237.5" y="-68.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_cloud_optics.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mo_cloud_optics.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge1" class="edge">
+<title>sourcefile~mo_cloud_optics.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M180.48,-82.95C174.65,-85.42 169.02,-88.38 164,-91.94 120.58,-122.74 89.34,-178.78 74.57,-209.46"/>
+<polygon fill="#000000" stroke="#000000" points="71.26,-208.28 70.2,-218.82 77.6,-211.24 71.26,-208.28"/>
+</g>
+<!-- sourcefile~mo_compute_bc.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_node13" class="node">
+<title>sourcefile~mo_compute_bc.f90</title>
+<g id="a_sourcefile~~mo_optical_props.f90~~AfferentGraph_node13"><a xlink:href=".././sourcefile/mo_compute_bc.f90.html" xlink:title="mo_compute_bc.F90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="663,-140.94 540,-140.94 540,-116.94 663,-116.94 663,-140.94"/>
+<text text-anchor="middle" x="601.5" y="-126.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_compute_bc.F90</text>
+</a>
+</g>
+</g>
+<!-- sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_optical_props.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge11" class="edge">
+<title>sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_optical_props.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M589.23,-116.69C562.72,-89.15 493.01,-23.88 418.5,-12.94"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M416.5,-12.94C304.28,3.53 257.1,14.84 164,-49.94 108.1,-88.83 80.63,-169.79 70.19,-208.88"/>
+<polygon fill="#000000" stroke="#000000" points="66.76,-208.17 67.69,-218.73 73.54,-209.9 66.76,-208.17"/>
+</g>
+<!-- sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_rte_lw.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge14" class="edge">
+<title>sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_rte_lw.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M548.35,-140.98C524.36,-146.51 495.94,-153.07 471.81,-158.64"/>
+<polygon fill="#000000" stroke="#000000" points="470.71,-155.3 461.75,-160.96 472.29,-162.12 470.71,-155.3"/>
+</g>
+<!-- sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_rte_sw.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge16" class="edge">
+<title>sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_rte_sw.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M539.96,-140.13C534.21,-142.75 528.76,-145.97 524,-149.94 495.62,-173.64 515.29,-199.99 488,-224.94 483.38,-229.16 478.02,-232.72 472.35,-235.71"/>
+<polygon fill="#000000" stroke="#000000" points="470.84,-232.55 463.27,-239.96 473.81,-238.89 470.84,-232.55"/>
+</g>
+<!-- sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_fluxes.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge22" class="edge">
+<title>sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_fluxes.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M542.12,-140.99C535.76,-143.45 529.58,-146.4 524,-149.94 503.24,-163.11 509,-179.15 488,-191.94 471.35,-202.09 360.56,-225.99 292.34,-240.06"/>
+<polygon fill="#000000" stroke="#000000" points="291.28,-236.71 282.18,-242.15 292.68,-243.57 291.28,-236.71"/>
+</g>
+<!-- sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_gas_optics.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge24" class="edge">
+<title>sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_gas_optics.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M542.91,-116.92C524.2,-113.01 503.3,-108.65 484.05,-104.63"/>
+<polygon fill="#000000" stroke="#000000" points="484.66,-101.18 474.16,-102.56 483.23,-108.03 484.66,-101.18"/>
+</g>
+<!-- sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_source_functions.f90 -->
+<g id="sourcefile~~mo_optical_props.f90~~AfferentGraph_edge30" class="edge">
+<title>sourcefile~mo_compute_bc.f90&#45;&gt;sourcefile~mo_source_functions.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M416.5,-12.94C384.17,-8.19 372.78,-16.86 347,-36.94 323.95,-54.9 334.49,-74.57 311,-91.94 308.93,-93.48 306.74,-94.9 304.48,-96.22"/>
+<polygon fill="#000000" stroke="#000000" points="302.75,-93.17 295.4,-100.8 305.91,-99.41 302.75,-93.17"/>
 </g>
 </g>
 </svg>
@@ -760,46 +793,46 @@
 
     <section>
       <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="c">!&gt; This code is part of Radiative Transfer for Energetics (RTE)</span>
-<a name="ln-2"></a><span class="c">!</span>
-<a name="ln-3"></a><span class="c">! Contacts: Robert Pincus and Eli Mlawer</span>
-<a name="ln-4"></a><span class="c">! email:  rrtmgp@aer.com</span>
-<a name="ln-5"></a><span class="c">!</span>
-<a name="ln-6"></a><span class="c">! Copyright 2015-2018,  Atmospheric and Environmental Research and</span>
-<a name="ln-7"></a><span class="c">! Regents of the University of Colorado.  All right reserved.</span>
-<a name="ln-8"></a><span class="c">!</span>
-<a name="ln-9"></a><span class="c">! Use and duplication is permitted under the terms of the</span>
-<a name="ln-10"></a><span class="c">!    BSD 3-clause license, see http://opensource.org/licenses/BSD-3-Clause</span>
-<a name="ln-11"></a><span class="c">! -------------------------------------------------------------------------------------------------</span>
-<a name="ln-12"></a><span class="c">!</span>
-<a name="ln-13"></a><span class="c">! Encapsulate optical properties defined on a spectral grid of N bands.</span>
-<a name="ln-14"></a><span class="c">!   The bands are described by their limiting wavenumbers. They need not be contiguous or complete.</span>
-<a name="ln-15"></a><span class="c">!   A band may contain more than one spectral sub-point (g-point) in which case a mapping must be supplied.</span>
-<a name="ln-16"></a><span class="c">!   A name may be provided and will be prepended to error messages.</span>
-<a name="ln-17"></a><span class="c">!   The base class (ty_optical_props) encapsulates only this spectral discretization and must be initialized</span>
-<a name="ln-18"></a><span class="c">!      with the spectral information before use.</span>
-<a name="ln-19"></a><span class="c">!</span>
-<a name="ln-20"></a><span class="c">!   Optical properties may be represented as arrays with dimensions ncol, nlay, ngpt</span>
-<a name="ln-21"></a><span class="c">!   (abstract class ty_optical_props_arry).</span>
-<a name="ln-22"></a><span class="c">!   The type holds arrays depending on how much information is needed</span>
-<a name="ln-23"></a><span class="c">!   There are three possibilites</span>
-<a name="ln-24"></a><span class="c">!      ty_optical_props_1scl holds absorption optical depth tau, used in calculations accounting for extinction and emission</span>
-<a name="ln-25"></a><span class="c">!      ty_optical_props_2str holds extincion optical depth tau, single-scattering albedo ssa, and</span>
-<a name="ln-26"></a><span class="c">!        asymmetry parameter g. These fields are what&#39;s needed for two-stream calculations.</span>
-<a name="ln-27"></a><span class="c">!      ty_optical_props_nstr holds extincion optical depth tau, single-scattering albedo ssa, and</span>
-<a name="ln-28"></a><span class="c">!        phase function moments p with leading dimension nmom. These fields are what&#39;s needed for multi-stream calculations.</span>
-<a name="ln-29"></a><span class="c">!   These classes must be allocated before use. Initialization and allocation can be combined.</span>
-<a name="ln-30"></a><span class="c">!   The classes have a validate() function that checks all arrays for valid values (e.g. tau &gt; 0.)</span>
-<a name="ln-31"></a><span class="c">!</span>
-<a name="ln-32"></a><span class="c">! Optical properties can be delta-scaled (though this is currently implemented only for two-stream arrays)</span>
-<a name="ln-33"></a><span class="c">!</span>
-<a name="ln-34"></a><span class="c">! Optical properties can increment or &quot;add themselves to&quot; a set of properties represented with arrays</span>
-<a name="ln-35"></a><span class="c">!   as long as both sets have the same underlying band structure. Properties defined by band</span>
-<a name="ln-36"></a><span class="c">!   may be added to properties defined by g-point; the same value is assumed for all g-points with each band.</span>
-<a name="ln-37"></a><span class="c">!</span>
-<a name="ln-38"></a><span class="c">! Subsets of optical properties held as arrays may be extracted along the column dimension.</span>
-<a name="ln-39"></a><span class="c">!</span>
-<a name="ln-40"></a><span class="c">! -------------------------------------------------------------------------------------------------</span>
+    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="c">!! &gt; This code is part of Radiative Transfer for Energetics (RTE)</span>
+<a name="ln-2"></a><span class="c">!!</span>
+<a name="ln-3"></a><span class="c">!! Contacts: Robert Pincus and Eli Mlawer</span>
+<a name="ln-4"></a><span class="c">!! email:  rrtmgp@aer.com</span>
+<a name="ln-5"></a><span class="c">!!</span>
+<a name="ln-6"></a><span class="c">!! Copyright 2015-2018,  Atmospheric and Environmental Research and</span>
+<a name="ln-7"></a><span class="c">!! Regents of the University of Colorado.  All right reserved.</span>
+<a name="ln-8"></a><span class="c">!!</span>
+<a name="ln-9"></a><span class="c">!! Use and duplication is permitted under the terms of the</span>
+<a name="ln-10"></a><span class="c">!!    BSD 3-clause license, see http://opensource.org/licenses/BSD-3-Clause</span>
+<a name="ln-11"></a><span class="c">!! -------------------------------------------------------------------------------------------------</span>
+<a name="ln-12"></a><span class="c">!!</span>
+<a name="ln-13"></a><span class="c">!! Encapsulate optical properties defined on a spectral grid of N bands.</span>
+<a name="ln-14"></a><span class="c">!!   The bands are described by their limiting wavenumbers. They need not be contiguous or complete.</span>
+<a name="ln-15"></a><span class="c">!!   A band may contain more than one spectral sub-point (g-point) in which case a mapping must be supplied.</span>
+<a name="ln-16"></a><span class="c">!!   A name may be provided and will be prepended to error messages.</span>
+<a name="ln-17"></a><span class="c">!!   The base class (ty_optical_props) encapsulates only this spectral discretization and must be initialized</span>
+<a name="ln-18"></a><span class="c">!!      with the spectral information before use.</span>
+<a name="ln-19"></a><span class="c">!!</span>
+<a name="ln-20"></a><span class="c">!!   Optical properties may be represented as arrays with dimensions ncol, nlay, ngpt</span>
+<a name="ln-21"></a><span class="c">!!   (abstract class ty_optical_props_arry).</span>
+<a name="ln-22"></a><span class="c">!!   The type holds arrays depending on how much information is needed</span>
+<a name="ln-23"></a><span class="c">!!   There are three possibilites</span>
+<a name="ln-24"></a><span class="c">!!      ty_optical_props_1scl holds absorption optical depth tau, used in calculations accounting for extinction and emission</span>
+<a name="ln-25"></a><span class="c">!!      ty_optical_props_2str holds extincion optical depth tau, single-scattering albedo ssa, and</span>
+<a name="ln-26"></a><span class="c">!!        asymmetry parameter g. These fields are what&#39;s needed for two-stream calculations.</span>
+<a name="ln-27"></a><span class="c">!!      ty_optical_props_nstr holds extincion optical depth tau, single-scattering albedo ssa, and</span>
+<a name="ln-28"></a><span class="c">!!        phase function moments p with leading dimension nmom. These fields are what&#39;s needed for multi-stream calculations.</span>
+<a name="ln-29"></a><span class="c">!!   These classes must be allocated before use. Initialization and allocation can be combined.</span>
+<a name="ln-30"></a><span class="c">!!   The classes have a validate() function that checks all arrays for valid values (e.g. tau &gt; 0.)</span>
+<a name="ln-31"></a><span class="c">!!</span>
+<a name="ln-32"></a><span class="c">!! Optical properties can be delta-scaled (though this is currently implemented only for two-stream arrays)</span>
+<a name="ln-33"></a><span class="c">!!</span>
+<a name="ln-34"></a><span class="c">!! Optical properties can increment or &quot;add themselves to&quot; a set of properties represented with arrays</span>
+<a name="ln-35"></a><span class="c">!!   as long as both sets have the same underlying band structure. Properties defined by band</span>
+<a name="ln-36"></a><span class="c">!!   may be added to properties defined by g-point; the same value is assumed for all g-points with each band.</span>
+<a name="ln-37"></a><span class="c">!!</span>
+<a name="ln-38"></a><span class="c">!! Subsets of optical properties held as arrays may be extracted along the column dimension.</span>
+<a name="ln-39"></a><span class="c">!!</span>
+<a name="ln-40"></a><span class="c">!! -------------------------------------------------------------------------------------------------</span>
 <a name="ln-41"></a><span class="k">module </span><span class="n">mo_optical_props</span>
 <a name="ln-42"></a>  <span class="k">use </span><span class="n">mo_rte_kind</span><span class="p">,</span>              <span class="n">only</span><span class="p">:</span> <span class="n">wp</span>
 <a name="ln-43"></a>  <span class="k">use </span><span class="n">mo_rte_config</span><span class="p">,</span>            <span class="n">only</span><span class="p">:</span> <span class="n">check_extents</span><span class="p">,</span> <span class="n">check_values</span>
