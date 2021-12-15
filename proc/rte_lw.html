@@ -418,20 +418,20 @@ public function rte_lw(optical_props, top_at_1, sources, sfc_emis, fluxes, inc_f
 <polygon fill="none" stroke="black" points="54,-129 0,-129 0,-105 54,-105 54,-129"/>
 <text text-anchor="middle" x="27" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50">rte_lw</text>
 </g>
-<!-- interface~extents_are -->
+<!-- proc~lw_solver_2stream -->
 <g id="proc~~rte_lw~~CallsGraph_node2" class="node">
-<title>interface~extents_are</title>
-<g id="a_proc~~rte_lw~~CallsGraph_node2"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
-<polygon fill="#a7506f" stroke="#a7506f" points="209,-234 136,-234 136,-210 209,-210 209,-234"/>
-<text text-anchor="middle" x="172.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
+<title>proc~lw_solver_2stream</title>
+<g id="a_proc~~rte_lw~~CallsGraph_node2"><a xlink:href=".././proc/lw_solver_2stream.html" xlink:title="lw_solver_2stream">
+<polygon fill="#d9534f" stroke="#d9534f" points="227.5,-234 117.5,-234 117.5,-210 227.5,-210 227.5,-234"/>
+<text text-anchor="middle" x="172.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lw_solver_2stream</text>
 </a>
 </g>
 </g>
-<!-- proc~rte_lw&#45;&gt;interface~extents_are -->
+<!-- proc~rte_lw&#45;&gt;proc~lw_solver_2stream -->
 <g id="proc~~rte_lw~~CallsGraph_edge1" class="edge">
-<title>proc~rte_lw&#45;&gt;interface~extents_are</title>
-<path fill="none" stroke="#000000" d="M33.54,-129.07C42.64,-147.5 62.5,-182.45 90,-201 100.5,-208.09 113.24,-212.78 125.5,-215.89"/>
-<polygon fill="#000000" stroke="#000000" points="125.1,-219.39 135.62,-218.15 126.62,-212.56 125.1,-219.39"/>
+<title>proc~rte_lw&#45;&gt;proc~lw_solver_2stream</title>
+<path fill="none" stroke="#000000" d="M33.54,-129.07C42.64,-147.5 62.5,-182.45 90,-201 95.33,-204.59 101.23,-207.57 107.35,-210.04"/>
+<polygon fill="#000000" stroke="#000000" points="106.5,-213.45 117.1,-213.52 108.85,-206.86 106.5,-213.45"/>
 </g>
 <!-- interface~any_vals_less_than -->
 <g id="proc~~rte_lw~~CallsGraph_node3" class="node">
@@ -463,47 +463,47 @@ public function rte_lw(optical_props, top_at_1, sources, sfc_emis, fluxes, inc_f
 <path fill="none" stroke="#000000" d="M54.32,-120.85C74.85,-123.86 103.81,-128.09 127.81,-131.61"/>
 <polygon fill="#000000" stroke="#000000" points="127.35,-135.08 137.75,-133.06 128.36,-128.15 127.35,-135.08"/>
 </g>
-<!-- interface~any_vals_outside -->
+<!-- lw_solver_noscat_gaussquad -->
 <g id="proc~~rte_lw~~CallsGraph_node5" class="node">
+<title>lw_solver_noscat_gaussquad</title>
+<polygon fill="#777777" stroke="#777777" points="255,-108 90,-108 90,-84 255,-84 255,-108"/>
+<text text-anchor="middle" x="172.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lw_solver_noscat_gaussquad</text>
+</g>
+<!-- proc~rte_lw&#45;&gt;lw_solver_noscat_gaussquad -->
+<g id="proc~~rte_lw~~CallsGraph_edge4" class="edge">
+<title>proc~rte_lw&#45;&gt;lw_solver_noscat_gaussquad</title>
+<path fill="none" stroke="#000000" d="M54.32,-113.15C61.87,-112.04 70.55,-110.77 79.71,-109.43"/>
+<polygon fill="#000000" stroke="#000000" points="80.42,-112.87 89.8,-107.96 79.4,-105.94 80.42,-112.87"/>
+</g>
+<!-- interface~any_vals_outside -->
+<g id="proc~~rte_lw~~CallsGraph_node6" class="node">
 <title>interface~any_vals_outside</title>
-<g id="a_proc~~rte_lw~~CallsGraph_node5"><a xlink:href=".././interface/any_vals_outside.html" xlink:title="any_vals_outside">
-<polygon fill="#a7506f" stroke="#a7506f" points="224,-108 121,-108 121,-84 224,-84 224,-108"/>
-<text text-anchor="middle" x="172.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">any_vals_outside</text>
+<g id="a_proc~~rte_lw~~CallsGraph_node6"><a xlink:href=".././interface/any_vals_outside.html" xlink:title="any_vals_outside">
+<polygon fill="#a7506f" stroke="#a7506f" points="224,-66 121,-66 121,-42 224,-42 224,-66"/>
+<text text-anchor="middle" x="172.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">any_vals_outside</text>
 </a>
 </g>
 </g>
 <!-- proc~rte_lw&#45;&gt;interface~any_vals_outside -->
-<g id="proc~~rte_lw~~CallsGraph_edge4" class="edge">
+<g id="proc~~rte_lw~~CallsGraph_edge5" class="edge">
 <title>proc~rte_lw&#45;&gt;interface~any_vals_outside</title>
-<path fill="none" stroke="#000000" d="M54.32,-113.15C70.24,-110.82 91.23,-107.75 111.04,-104.85"/>
-<polygon fill="#000000" stroke="#000000" points="111.56,-108.31 120.95,-103.4 110.55,-101.38 111.56,-108.31"/>
+<path fill="none" stroke="#000000" d="M42.92,-104.72C54.96,-95.37 72.7,-82.81 90,-75 96.59,-72.03 103.68,-69.42 110.83,-67.14"/>
+<polygon fill="#000000" stroke="#000000" points="111.99,-70.45 120.58,-64.25 109.99,-63.74 111.99,-70.45"/>
 </g>
-<!-- proc~lw_solver_2stream -->
-<g id="proc~~rte_lw~~CallsGraph_node6" class="node">
-<title>proc~lw_solver_2stream</title>
-<g id="a_proc~~rte_lw~~CallsGraph_node6"><a xlink:href=".././proc/lw_solver_2stream.html" xlink:title="lw_solver_2stream">
-<polygon fill="#d9534f" stroke="#d9534f" points="227.5,-66 117.5,-66 117.5,-42 227.5,-42 227.5,-66"/>
-<text text-anchor="middle" x="172.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lw_solver_2stream</text>
+<!-- interface~extents_are -->
+<g id="proc~~rte_lw~~CallsGraph_node7" class="node">
+<title>interface~extents_are</title>
+<g id="a_proc~~rte_lw~~CallsGraph_node7"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
+<polygon fill="#a7506f" stroke="#a7506f" points="209,-24 136,-24 136,0 209,0 209,-24"/>
+<text text-anchor="middle" x="172.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
 </a>
 </g>
 </g>
-<!-- proc~rte_lw&#45;&gt;proc~lw_solver_2stream -->
-<g id="proc~~rte_lw~~CallsGraph_edge5" class="edge">
-<title>proc~rte_lw&#45;&gt;proc~lw_solver_2stream</title>
-<path fill="none" stroke="#000000" d="M42.92,-104.72C54.96,-95.37 72.7,-82.81 90,-75 95.46,-72.54 101.26,-70.32 107.16,-68.34"/>
-<polygon fill="#000000" stroke="#000000" points="108.62,-71.55 117.12,-65.23 106.53,-64.87 108.62,-71.55"/>
-</g>
-<!-- lw_solver_noscat_gaussquad -->
-<g id="proc~~rte_lw~~CallsGraph_node7" class="node">
-<title>lw_solver_noscat_gaussquad</title>
-<polygon fill="#777777" stroke="#777777" points="255,-24 90,-24 90,0 255,0 255,-24"/>
-<text text-anchor="middle" x="172.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lw_solver_noscat_gaussquad</text>
-</g>
-<!-- proc~rte_lw&#45;&gt;lw_solver_noscat_gaussquad -->
+<!-- proc~rte_lw&#45;&gt;interface~extents_are -->
 <g id="proc~~rte_lw~~CallsGraph_edge6" class="edge">
-<title>proc~rte_lw&#45;&gt;lw_solver_noscat_gaussquad</title>
-<path fill="none" stroke="#000000" d="M33.54,-104.93C42.64,-86.5 62.5,-51.55 90,-33 92.44,-31.35 95,-29.83 97.65,-28.44"/>
-<polygon fill="#000000" stroke="#000000" points="99.35,-31.51 106.94,-24.12 96.4,-25.16 99.35,-31.51"/>
+<title>proc~rte_lw&#45;&gt;interface~extents_are</title>
+<path fill="none" stroke="#000000" d="M33.54,-104.93C42.64,-86.5 62.5,-51.55 90,-33 100.5,-25.91 113.24,-21.22 125.5,-18.11"/>
+<polygon fill="#000000" stroke="#000000" points="126.62,-21.44 135.62,-15.85 125.1,-14.61 126.62,-21.44"/>
 </g>
 </g>
 </svg>
