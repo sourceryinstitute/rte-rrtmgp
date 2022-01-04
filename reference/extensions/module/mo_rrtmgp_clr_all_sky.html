@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+   <meta name="description" content="A set of codes for computing radiative fluxes in planetary atmospheres.">
+    
+    <meta name="author" content="" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>mo_rrtmgp_clr_all_sky &ndash; rte-rrtmgp</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">rte-rrtmgp </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+        
+            <li><a href='../page/index.html'>Additional Documentation</a></li>
+      
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
+              
+            <li><a href="../lists/files.html">Source Files</a></li>
+        
+        
+        
+            <li><a href="../lists/modules.html">Modules</a></li>
+        
+            
+                                
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+        
+        
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+               
+            <li><a href="../lists/types.html">Derived Types</a></li>
+        
+               
+        
+        
+            </ul>
+        
+            </li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+
+
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>mo_rrtmgp_clr_all_sky 
+    <small>Module</small>
+    
+    </h1>
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+    data-placement="bottom" data-html="true"
+    title=" 2.1% of total for modules and submodules.">148 statements</a>
+     </li> 
+     
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/mo_rrtmgp_clr_all_sky.F90"> Source File</a></li>
+     
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+    
+     <li><a href='../sourcefile/mo_rrtmgp_clr_all_sky.f90.html'>mo_rrtmgp_clr_all_sky.F90</a></li>
+    
+  
+     <li class="active">mo_rrtmgp_clr_all_sky</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+<h3>Contents</h3>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-0">Functions</a></h3></div>
+  <div id="funcs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/mo_rrtmgp_clr_all_sky.html#proc-rte_lw~2">rte_lw</a>
+      
+      <a class="list-group-item" href="../module/mo_rrtmgp_clr_all_sky.html#proc-rte_sw~2">rte_sw</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    
+      <br>
+    
+  
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
+      
+      <li class="list-group-item">
+  <ul class="list-inline">
+    
+    <li><a href='../module/mo_rte_kind.html'>mo_rte_kind</a></li>
+    
+    <li><a href='../module/mo_rte_lw.html'>mo_rte_lw</a></li>
+    
+    <li><a href='../module/mo_gas_concentrations.html'>mo_gas_concentrations</a></li>
+    
+    <li><a href='../module/mo_source_functions.html'>mo_source_functions</a></li>
+    
+    <li><a href='../module/mo_optical_props.html'>mo_optical_props</a></li>
+    
+    <li><a href='../module/mo_gas_optics.html'>mo_gas_optics</a></li>
+    
+    <li><a href='../module/mo_fluxes.html'>mo_fluxes</a></li>
+    
+    <li><a href='../module/mo_rte_sw.html'>mo_rte_sw</a></li>
+    
+  </ul>
+      </li>
+      
+      
+      
+      <li class="list-group-item">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: module~~mo_rrtmgp_clr_all_sky~~UsesGraph Pages: 1 -->
+<svg id="modulemo_rrtmgp_clr_all_skyUsesGraph" width="641pt" height="261pt"
+ viewBox="0.00 0.00 641.00 261.33" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph" class="graph" transform="scale(1.63 1.63) rotate(0) translate(4 422.04)">
+<title>module~~mo_rrtmgp_clr_all_sky~~UsesGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-422.04 1041,-422.04 1041,4 -4,4"/>
+<!-- module~mo_rrtmgp_clr_all_sky -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node1" class="node">
+<title>module~mo_rrtmgp_clr_all_sky</title>
+<polygon fill="none" stroke="black" points="1037,-169.86 906,-169.86 906,-145.86 1037,-145.86 1037,-169.86"/>
+<text text-anchor="middle" x="971.5" y="-155.46" font-family="Helvetica,sans-Serif" font-size="10.50">mo_rrtmgp_clr_all_sky</text>
+</g>
+<!-- module~mo_rte_lw -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node2" class="node">
+<title>module~mo_rte_lw</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node2"><a xlink:href=".././module/mo_rte_lw.html" xlink:title="mo_rte_lw">
+<polygon fill="#337ab7" stroke="#337ab7" points="858,-189.86 791,-189.86 791,-165.86 858,-165.86 858,-189.86"/>
+<text text-anchor="middle" x="824.5" y="-175.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_lw</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_rte_lw -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge1" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_rte_lw</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M905.63,-166.81C892.92,-168.56 879.89,-170.36 868.13,-171.98"/>
+<polygon fill="#000000" stroke="#000000" points="867.59,-168.52 858.16,-173.36 868.55,-175.46 867.59,-168.52"/>
+</g>
+<!-- module~mo_source_functions -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node3" class="node">
+<title>module~mo_source_functions</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node3"><a xlink:href=".././module/mo_source_functions.html" xlink:title="mo_source_functions">
+<polygon fill="#337ab7" stroke="#337ab7" points="743,-148.86 619,-148.86 619,-124.86 743,-124.86 743,-148.86"/>
+<text text-anchor="middle" x="681" y="-134.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_source_functions</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_source_functions -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge2" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_source_functions</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M905.75,-153.15C860.41,-149.85 799.81,-145.44 753.12,-142.04"/>
+<polygon fill="#000000" stroke="#000000" points="753.3,-138.54 743.07,-141.31 752.79,-145.52 753.3,-138.54"/>
+</g>
+<!-- module~mo_rte_sw -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node4" class="node">
+<title>module~mo_rte_sw</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node4"><a xlink:href=".././module/mo_rte_sw.html" xlink:title="mo_rte_sw">
+<polygon fill="#337ab7" stroke="#337ab7" points="859,-286.86 790,-286.86 790,-262.86 859,-262.86 859,-286.86"/>
+<text text-anchor="middle" x="824.5" y="-272.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_sw</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_rte_sw -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge4" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_rte_sw</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M955.53,-169.94C930.13,-190.43 878.45,-232.14 848.45,-256.34"/>
+<polygon fill="#000000" stroke="#000000" points="846.19,-253.67 840.61,-262.67 850.59,-259.12 846.19,-253.67"/>
+</g>
+<!-- module~mo_gas_optics -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node5" class="node">
+<title>module~mo_gas_optics</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node5"><a xlink:href=".././module/mo_gas_optics.html" xlink:title="mo_gas_optics">
+<polygon fill="#337ab7" stroke="#337ab7" points="870,-109.86 779,-109.86 779,-85.86 870,-85.86 870,-109.86"/>
+<text text-anchor="middle" x="824.5" y="-95.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_optics</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_gas_optics -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge5" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_gas_optics</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M941.16,-145.72C918.95,-136.53 888.24,-123.82 864.05,-113.81"/>
+<polygon fill="#000000" stroke="#000000" points="865.38,-110.57 854.8,-109.99 862.7,-117.04 865.38,-110.57"/>
+</g>
+<!-- module~mo_optical_props -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node6" class="node">
+<title>module~mo_optical_props</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node6"><a xlink:href=".././module/mo_optical_props.html" xlink:title="mo_optical_props">
+<polygon fill="#337ab7" stroke="#337ab7" points="566.5,-226.86 460.5,-226.86 460.5,-202.86 566.5,-202.86 566.5,-226.86"/>
+<text text-anchor="middle" x="513.5" y="-212.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_optical_props</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge8" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M944.75,-169.91C916.11,-182.98 868.22,-203.86 825.5,-217.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M823.5,-217.86C741.35,-244.78 640.2,-236.62 576.51,-226.88"/>
+<polygon fill="#000000" stroke="#000000" points="577.05,-223.42 566.62,-225.31 575.95,-230.34 577.05,-223.42"/>
+</g>
+<!-- module~mo_gas_concentrations -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node7" class="node">
+<title>module~mo_gas_concentrations</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node7"><a xlink:href=".././module/mo_gas_concentrations.html" xlink:title="mo_gas_concentrations">
+<polygon fill="#337ab7" stroke="#337ab7" points="583,-70.86 444,-70.86 444,-46.86 583,-46.86 583,-70.86"/>
+<text text-anchor="middle" x="513.5" y="-56.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_gas_concentrations</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_gas_concentrations -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge6" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_gas_concentrations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-57.86C651.89,-56.27 621.06,-56.05 593.7,-56.37"/>
+<polygon fill="#000000" stroke="#000000" points="593.34,-52.88 583.39,-56.52 593.44,-59.88 593.34,-52.88"/>
+</g>
+<!-- module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node8" class="node">
+<title>module~mo_rte_kind</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node8"><a xlink:href=".././module/mo_rte_kind.html" xlink:title="mo_rte_kind">
+<polygon fill="#337ab7" stroke="#337ab7" points="198,-230.86 120,-230.86 120,-206.86 198,-206.86 198,-230.86"/>
+<text text-anchor="middle" x="159" y="-216.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_kind</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge7" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M959.9,-145.66C942.99,-127.13 907.94,-92.44 870,-76.86 792.31,-44.97 765.85,-62.6 682,-57.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-57.86C636.15,-54 626.6,-43.92 583,-37.86 467.8,-21.86 429.43,25.7 322,-18.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M320,-18.86C283.79,-33.72 263.94,-12.64 234,-37.86 185.08,-79.07 168.09,-157.66 162.52,-196.29"/>
+<polygon fill="#000000" stroke="#000000" points="159.01,-196.11 161.19,-206.48 165.96,-197.02 159.01,-196.11"/>
+</g>
+<!-- module~mo_fluxes -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node9" class="node">
+<title>module~mo_fluxes</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node9"><a xlink:href=".././module/mo_fluxes.html" xlink:title="mo_fluxes">
+<polygon fill="#337ab7" stroke="#337ab7" points="714.5,-304.86 647.5,-304.86 647.5,-280.86 714.5,-280.86 714.5,-304.86"/>
+<text text-anchor="middle" x="681" y="-290.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_fluxes</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_fluxes -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge3" class="edge">
+<title>module~mo_rrtmgp_clr_all_sky&#45;&gt;module~mo_fluxes</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M823.5,-217.86C783.7,-230.9 780.25,-247.71 743,-266.86 736.38,-270.26 729.22,-273.6 722.21,-276.7"/>
+<polygon fill="#000000" stroke="#000000" points="720.6,-273.58 712.8,-280.75 723.37,-280.01 720.6,-273.58"/>
+</g>
+<!-- module~mo_rte_lw&#45;&gt;module~mo_source_functions -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge9" class="edge">
+<title>module~mo_rte_lw&#45;&gt;module~mo_source_functions</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M790.68,-168.35C773.65,-163.42 752.45,-157.27 733.31,-151.73"/>
+<polygon fill="#000000" stroke="#000000" points="734.1,-148.31 723.52,-148.89 732.15,-155.04 734.1,-148.31"/>
+</g>
+<!-- module~mo_rte_lw&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge11" class="edge">
+<title>module~mo_rte_lw&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-176.86C639.36,-179.77 594.37,-190.62 561.56,-199.98"/>
+<polygon fill="#000000" stroke="#000000" points="560.41,-196.67 551.79,-202.83 562.37,-203.39 560.41,-196.67"/>
+</g>
+<!-- module~mo_rte_lw&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge13" class="edge">
+<title>module~mo_rte_lw&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M790.86,-176.3C762.16,-175.25 719.26,-174.45 682,-176.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-176.86C635.68,-179.73 626.18,-163.25 583,-152.86 552.6,-145.55 545.35,-141.96 514.5,-136.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M512.5,-136.86C427.32,-122.78 405.22,-75.87 322,-98.86"/>
+</g>
+<!-- module~mo_rte_lw&#45;&gt;module~mo_fluxes -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge14" class="edge">
+<title>module~mo_rte_lw&#45;&gt;module~mo_fluxes</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M797.39,-190.07C790.9,-193.89 784.29,-198.52 779,-203.86 756.31,-226.77 767.09,-245.42 743,-266.86 737.44,-271.81 730.8,-275.91 723.98,-279.29"/>
+<polygon fill="#000000" stroke="#000000" points="722.36,-276.18 714.66,-283.45 725.21,-282.57 722.36,-276.18"/>
+</g>
+<!-- module~mo_rte_solver_kernels~2 -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node11" class="node">
+<title>module~mo_rte_solver_kernels~2</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node11"><a xlink:href=".././module/mo_rte_solver_kernels~2.html" xlink:title="mo_rte_solver_kernels">
+<polygon fill="#337ab7" stroke="#337ab7" points="579.5,-382.86 447.5,-382.86 447.5,-358.86 579.5,-358.86 579.5,-382.86"/>
+<text text-anchor="middle" x="513.5" y="-368.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_solver_kernels</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rte_lw&#45;&gt;module~mo_rte_solver_kernels~2 -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge10" class="edge">
+<title>module~mo_rte_lw&#45;&gt;module~mo_rte_solver_kernels~2</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M795.7,-189.93C789.53,-193.66 783.5,-198.29 779,-203.86 746.69,-243.89 780.66,-278.82 743,-313.86 720.8,-334.52 647.6,-350.38 589.96,-360.06"/>
+<polygon fill="#000000" stroke="#000000" points="589.06,-356.66 579.77,-361.74 590.2,-363.57 589.06,-356.66"/>
+</g>
+<!-- module~mo_rte_config -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node14" class="node">
+<title>module~mo_rte_config</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node14"><a xlink:href=".././module/mo_rte_config.html" xlink:title="mo_rte_config">
+<polygon fill="#337ab7" stroke="#337ab7" points="365,-150.86 277,-150.86 277,-126.86 365,-126.86 365,-150.86"/>
+<text text-anchor="middle" x="321" y="-136.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_config</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rte_lw&#45;&gt;module~mo_rte_config -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge12" class="edge">
+<title>module~mo_rte_lw&#45;&gt;module~mo_rte_config</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M512.5,-136.86C466.71,-129.29 413.89,-130.62 375.5,-133.37"/>
+<polygon fill="#000000" stroke="#000000" points="374.77,-129.91 365.07,-134.17 375.31,-136.89 374.77,-129.91"/>
+</g>
+<!-- module~mo_rte_util_array -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node15" class="node">
+<title>module~mo_rte_util_array</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node15"><a xlink:href=".././module/mo_rte_util_array.html" xlink:title="mo_rte_util_array">
+<polygon fill="#337ab7" stroke="#337ab7" points="374,-272.86 268,-272.86 268,-248.86 374,-248.86 374,-272.86"/>
+<text text-anchor="middle" x="321" y="-258.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_util_array</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rte_lw&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge15" class="edge">
+<title>module~mo_rte_lw&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-176.86C629.67,-180.47 630.88,-219.94 583,-235.86 517.67,-257.58 438.43,-262.36 384.52,-262.64"/>
+<polygon fill="#000000" stroke="#000000" points="384.42,-259.14 374.42,-262.64 384.42,-266.14 384.42,-259.14"/>
+</g>
+<!-- module~mo_source_functions&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge16" class="edge">
+<title>module~mo_source_functions&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M650.68,-148.95C640.58,-153.22 629.24,-158.13 619,-162.86 594.59,-174.13 567.41,-187.68 546.89,-198.13"/>
+<polygon fill="#000000" stroke="#000000" points="545.28,-195.02 537.97,-202.69 548.46,-201.26 545.28,-195.02"/>
+</g>
+<!-- module~mo_source_functions&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge17" class="edge">
+<title>module~mo_source_functions&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M644.03,-124.83C610.85,-114.63 559.98,-101.3 514.5,-98.86"/>
+</g>
+<!-- module~mo_rte_sw&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge19" class="edge">
+<title>module~mo_rte_sw&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-252.86C645.92,-244.42 607.72,-235.61 576.62,-228.6"/>
+<polygon fill="#000000" stroke="#000000" points="577.31,-225.17 566.79,-226.39 575.77,-232 577.31,-225.17"/>
+</g>
+<!-- module~mo_rte_sw&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge21" class="edge">
+<title>module~mo_rte_sw&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-370.86C579.12,-401.06 533.58,-447.22 444,-391.86 413.57,-373.05 436.21,-341.86 408,-319.86 377.13,-295.79 358.37,-315.35 322,-300.86"/>
+</g>
+<!-- module~mo_rte_sw&#45;&gt;module~mo_fluxes -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge22" class="edge">
+<title>module~mo_rte_sw&#45;&gt;module~mo_fluxes</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M789.97,-279.13C770.53,-281.6 745.86,-284.74 725,-287.39"/>
+<polygon fill="#000000" stroke="#000000" points="724.28,-283.95 714.8,-288.69 725.17,-290.9 724.28,-283.95"/>
+</g>
+<!-- module~mo_rte_sw&#45;&gt;module~mo_rte_solver_kernels~2 -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge18" class="edge">
+<title>module~mo_rte_sw&#45;&gt;module~mo_rte_solver_kernels~2</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-370.86C651.35,-379.56 618.6,-381.18 589.83,-380.04"/>
+<polygon fill="#000000" stroke="#000000" points="590.01,-376.54 579.84,-379.53 589.65,-383.53 590.01,-376.54"/>
+</g>
+<!-- module~mo_rte_sw&#45;&gt;module~mo_rte_config -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge20" class="edge">
+<title>module~mo_rte_sw&#45;&gt;module~mo_rte_config</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M789.72,-271.31C760.84,-267.88 718.32,-261.85 682,-252.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-252.86C631.02,-240.73 629.91,-212.44 583,-193.86 514.04,-166.55 429.19,-151.88 375.34,-144.73"/>
+<polygon fill="#000000" stroke="#000000" points="375.69,-141.25 365.33,-143.44 374.8,-148.19 375.69,-141.25"/>
+</g>
+<!-- module~mo_rte_sw&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge23" class="edge">
+<title>module~mo_rte_sw&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M812.88,-286.99C798.45,-302.85 771.17,-330.64 743,-347.86 718.28,-362.97 709.72,-362.44 682,-370.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-370.86C667,-374.81 456.59,-311.98 444,-306.86 427.04,-299.97 424.86,-293.99 408,-286.86 398.53,-282.85 388.23,-279.19 378.16,-275.95"/>
+<polygon fill="#000000" stroke="#000000" points="379.2,-272.61 368.61,-272.98 377.12,-279.29 379.2,-272.61"/>
+</g>
+<!-- module~mo_gas_optics&#45;&gt;module~mo_source_functions -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge25" class="edge">
+<title>module~mo_gas_optics&#45;&gt;module~mo_source_functions</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M779.89,-109.88C765.9,-113.74 750.25,-118.05 735.63,-122.08"/>
+<polygon fill="#000000" stroke="#000000" points="734.42,-118.78 725.71,-124.81 736.28,-125.53 734.42,-118.78"/>
+</g>
+<!-- module~mo_gas_optics&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge24" class="edge">
+<title>module~mo_gas_optics&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-96.86C651.69,-99.06 643.4,-101.34 619,-115.86 599.82,-127.27 599.15,-135.47 583,-150.86 567.05,-166.07 548.8,-183.1 535.16,-195.76"/>
+<polygon fill="#000000" stroke="#000000" points="532.66,-193.3 527.7,-202.67 537.42,-198.44 532.66,-193.3"/>
+</g>
+<!-- module~mo_gas_optics&#45;&gt;module~mo_gas_concentrations -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge26" class="edge">
+<title>module~mo_gas_optics&#45;&gt;module~mo_gas_concentrations</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M778.82,-95.62C750.94,-94.7 714.33,-94.35 682,-96.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-96.86C635.65,-100.3 586.08,-86.48 552.86,-74.56"/>
+<polygon fill="#000000" stroke="#000000" points="553.69,-71.13 543.1,-70.94 551.26,-77.7 553.69,-71.13"/>
+</g>
+<!-- module~mo_gas_optics&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge27" class="edge">
+<title>module~mo_gas_optics&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M680,-96.86C606.66,-102.55 587.96,-102.8 514.5,-98.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M512.5,-98.86C427.95,-94.33 403.61,-76.31 322,-98.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M320,-98.86C282.27,-109.29 266.79,-96.48 234,-117.86 203.73,-137.6 181.57,-174.3 169.75,-197.6"/>
+<polygon fill="#000000" stroke="#000000" points="166.56,-196.16 165.32,-206.68 172.85,-199.23 166.56,-196.16"/>
+</g>
+<!-- module~mo_optical_props&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge31" class="edge">
+<title>module~mo_optical_props&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M460.34,-204.68C443.69,-201.89 425.13,-199.25 408,-197.86 330.92,-191.63 310.6,-187.2 234,-197.86 224.38,-199.2 214.25,-201.47 204.68,-204.04"/>
+<polygon fill="#000000" stroke="#000000" points="203.62,-200.7 194.96,-206.8 205.53,-207.44 203.62,-200.7"/>
+</g>
+<!-- module~mo_optical_props&#45;&gt;module~mo_rte_config -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge29" class="edge">
+<title>module~mo_optical_props&#45;&gt;module~mo_rte_config</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M476.29,-202.85C465.67,-198.87 454.18,-194.1 444,-188.86 426.9,-180.06 425.39,-173.07 408,-164.86 397.63,-159.97 386.13,-155.75 375.01,-152.21"/>
+<polygon fill="#000000" stroke="#000000" points="375.94,-148.84 365.36,-149.28 373.91,-155.53 375.94,-148.84"/>
+</g>
+<!-- module~mo_optical_props&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge30" class="edge">
+<title>module~mo_optical_props&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M462.45,-226.95C437.62,-232.94 407.46,-240.23 381.46,-246.5"/>
+<polygon fill="#000000" stroke="#000000" points="380.62,-243.11 371.72,-248.86 382.26,-249.91 380.62,-243.11"/>
+</g>
+<!-- module~mo_optical_props_kernels -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node16" class="node">
+<title>module~mo_optical_props_kernels</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node16"><a xlink:href=".././module/mo_optical_props_kernels.html" xlink:title="mo_optical_props_kernels">
+<polygon fill="#337ab7" stroke="#337ab7" points="396,-230.86 246,-230.86 246,-206.86 396,-206.86 396,-230.86"/>
+<text text-anchor="middle" x="321" y="-216.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_optical_props_kernels</text>
+</a>
+</g>
+</g>
+<!-- module~mo_optical_props&#45;&gt;module~mo_optical_props_kernels -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge28" class="edge">
+<title>module~mo_optical_props&#45;&gt;module~mo_optical_props_kernels</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M460.45,-215.95C443.71,-216.31 424.73,-216.7 406.29,-217.09"/>
+<polygon fill="#000000" stroke="#000000" points="406.05,-213.6 396.13,-217.3 406.2,-220.59 406.05,-213.6"/>
+</g>
+<!-- module~mo_gas_concentrations&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge35" class="edge">
+<title>module~mo_gas_concentrations&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M477.96,-46.77C431.03,-31.18 349.78,-7.34 322,-18.86"/>
+</g>
+<!-- module~mo_rrtmgp_util_string -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node10" class="node">
+<title>module~mo_rrtmgp_util_string</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node10"><a xlink:href=".././module/mo_rrtmgp_util_string.html" xlink:title="mo_rrtmgp_util_string">
+<polygon fill="#337ab7" stroke="#337ab7" points="385.5,-70.86 256.5,-70.86 256.5,-46.86 385.5,-46.86 385.5,-70.86"/>
+<text text-anchor="middle" x="321" y="-56.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rrtmgp_util_string</text>
+</a>
+</g>
+</g>
+<!-- module~mo_gas_concentrations&#45;&gt;module~mo_rrtmgp_util_string -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge33" class="edge">
+<title>module~mo_gas_concentrations&#45;&gt;module~mo_rrtmgp_util_string</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M443.99,-58.86C428.42,-58.86 411.81,-58.86 396.01,-58.86"/>
+<polygon fill="#000000" stroke="#000000" points="395.77,-55.36 385.77,-58.86 395.77,-62.36 395.77,-55.36"/>
+</g>
+<!-- module~mo_gas_concentrations&#45;&gt;module~mo_rte_config -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge32" class="edge">
+<title>module~mo_gas_concentrations&#45;&gt;module~mo_rte_config</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M491.82,-70.99C471.11,-82.78 438.09,-100.66 408,-112.86 397.6,-117.08 386.25,-120.98 375.3,-124.41"/>
+<polygon fill="#000000" stroke="#000000" points="373.95,-121.16 365.41,-127.42 375.99,-127.86 373.95,-121.16"/>
+</g>
+<!-- module~mo_gas_concentrations&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge34" class="edge">
+<title>module~mo_gas_concentrations&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M495.17,-70.9C479.67,-82.52 457.38,-101.47 444,-122.86 415.15,-168.99 447.59,-202.54 408,-239.86 401.18,-246.29 392.74,-250.84 383.82,-254.06"/>
+<polygon fill="#000000" stroke="#000000" points="382.57,-250.78 374.02,-257.04 384.61,-257.48 382.57,-250.78"/>
+</g>
+<!-- iso_c_binding -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node13" class="node">
+<title>iso_c_binding</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node13"><a xlink:href="http://fortranwiki.org/fortran/show/iso_c_binding" xlink:title="iso_c_binding">
+<polygon fill="#337ab7" stroke="#337ab7" points="84,-311.86 0,-311.86 0,-287.86 84,-287.86 84,-311.86"/>
+<text text-anchor="middle" x="42" y="-297.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_c_binding</text>
+</a>
+</g>
+</g>
+<!-- module~mo_rte_kind&#45;&gt;iso_c_binding -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge36" class="edge">
+<title>module~mo_rte_kind&#45;&gt;iso_c_binding</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M140.53,-231.16C121.34,-244.68 90.33,-266.52 68.44,-281.94"/>
+<polygon fill="#000000" stroke="#000000" points="66.41,-279.09 60.25,-287.71 70.44,-284.81 66.41,-279.09"/>
+</g>
+<!-- module~mo_fluxes&#45;&gt;module~mo_optical_props -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge40" class="edge">
+<title>module~mo_fluxes&#45;&gt;module~mo_optical_props</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M650.68,-280.78C640.58,-276.51 629.24,-271.59 619,-266.86 594.59,-255.6 567.41,-242.04 546.89,-231.59"/>
+<polygon fill="#000000" stroke="#000000" points="548.46,-228.47 537.97,-227.03 545.28,-234.7 548.46,-228.47"/>
+</g>
+<!-- module~mo_fluxes&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge37" class="edge">
+<title>module~mo_fluxes&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M512.5,-292.86C428.05,-285.78 400.73,-332.22 322,-300.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M320,-300.86C283.63,-286.38 269.05,-299.29 234,-281.86 212.33,-271.09 191.71,-252.61 177.77,-238.44"/>
+<polygon fill="#000000" stroke="#000000" points="180.19,-235.9 170.75,-231.09 175.12,-240.74 180.19,-235.9"/>
+</g>
+<!-- module~mo_fluxes_broadband_kernels -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node12" class="node">
+<title>module~mo_fluxes_broadband_kernels</title>
+<g id="a_module~~mo_rrtmgp_clr_all_sky~~UsesGraph_node12"><a xlink:href=".././module/mo_fluxes_broadband_kernels.html" xlink:title="mo_fluxes_broadband_kernels">
+<polygon fill="#337ab7" stroke="#337ab7" points="408,-352.86 234,-352.86 234,-328.86 408,-328.86 408,-352.86"/>
+<text text-anchor="middle" x="321" y="-338.46" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_fluxes_broadband_kernels</text>
+</a>
+</g>
+</g>
+<!-- module~mo_fluxes&#45;&gt;module~mo_fluxes_broadband_kernels -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge38" class="edge">
+<title>module~mo_fluxes&#45;&gt;module~mo_fluxes_broadband_kernels</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M512.5,-292.86C498.61,-291.7 424.79,-311.59 373.23,-326.12"/>
+<polygon fill="#000000" stroke="#000000" points="372.23,-322.77 363.56,-328.86 374.14,-329.51 372.23,-322.77"/>
+</g>
+<!-- module~mo_fluxes&#45;&gt;module~mo_rte_config -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge39" class="edge">
+<title>module~mo_fluxes&#45;&gt;module~mo_rte_config</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M647.27,-294.47C613.84,-295.74 560.45,-296.71 514.5,-292.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M512.5,-292.86C449.95,-287.62 455.73,-238.63 408,-197.86 389.94,-182.44 367.82,-167.34 350.53,-156.27"/>
+<polygon fill="#000000" stroke="#000000" points="352.3,-153.25 341.98,-150.87 348.57,-159.17 352.3,-153.25"/>
+</g>
+<!-- module~mo_fluxes&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge41" class="edge">
+<title>module~mo_fluxes&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M512.5,-292.86C469.43,-289.25 421.44,-281.17 384.41,-274.03"/>
+<polygon fill="#000000" stroke="#000000" points="384.75,-270.53 374.26,-272.04 383.4,-277.4 384.75,-270.53"/>
+</g>
+<!-- module~mo_rte_solver_kernels~2&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge44" class="edge">
+<title>module~mo_rte_solver_kernels~2&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M475.87,-358.84C465.35,-354.89 454.02,-350.14 444,-344.86 426.77,-335.78 425.85,-327.67 408,-319.86 372.13,-304.18 358.37,-315.35 322,-300.86"/>
+</g>
+<!-- module~mo_rte_solver_kernels~2&#45;&gt;iso_c_binding -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge42" class="edge">
+<title>module~mo_rte_solver_kernels~2&#45;&gt;iso_c_binding</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M447.33,-377.92C376.43,-384.38 259.84,-391.47 160,-380.86"/>
+</g>
+<!-- module~mo_rte_solver_kernels~2&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge43" class="edge">
+<title>module~mo_rte_solver_kernels~2&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M467.81,-358.75C459.34,-355.16 450.97,-350.6 444,-344.86 420.58,-325.57 432.07,-305.33 408,-286.86 400.73,-281.28 392.27,-276.9 383.54,-273.45"/>
+<polygon fill="#000000" stroke="#000000" points="384.61,-270.11 374.02,-270.06 382.27,-276.71 384.61,-270.11"/>
+</g>
+<!-- module~mo_fluxes_broadband_kernels&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge46" class="edge">
+<title>module~mo_fluxes_broadband_kernels&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M262.2,-328.81C252.3,-325.27 242.47,-320.71 234,-314.86 205.78,-295.4 183.51,-261.83 171.05,-240"/>
+<polygon fill="#000000" stroke="#000000" points="174.07,-238.22 166.17,-231.15 167.94,-241.6 174.07,-238.22"/>
+</g>
+<!-- module~mo_fluxes_broadband_kernels&#45;&gt;iso_c_binding -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge45" class="edge">
+<title>module~mo_fluxes_broadband_kernels&#45;&gt;iso_c_binding</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M278.17,-352.9C234.82,-365.13 171.74,-382.11 160,-380.86"/>
+</g>
+<!-- module~mo_rte_config&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge47" class="edge">
+<title>module~mo_rte_config&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M276.92,-148.81C262.85,-152.86 247.4,-158.19 234,-164.86 215.02,-174.31 195.74,-188.57 181.62,-200.06"/>
+<polygon fill="#000000" stroke="#000000" points="178.98,-197.7 173.54,-206.79 183.46,-203.07 178.98,-197.7"/>
+</g>
+<!-- module~mo_rte_util_array&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge48" class="edge">
+<title>module~mo_rte_util_array&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M269.44,-248.85C257.78,-245.98 245.44,-242.88 234,-239.86 225.65,-237.66 216.79,-235.23 208.22,-232.82"/>
+<polygon fill="#000000" stroke="#000000" points="208.91,-229.38 198.33,-230.03 207.01,-236.12 208.91,-229.38"/>
+</g>
+<!-- module~mo_optical_props_kernels&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge50" class="edge">
+<title>module~mo_optical_props_kernels&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M245.62,-218.86C232.87,-218.86 219.93,-218.86 208.1,-218.86"/>
+<polygon fill="#000000" stroke="#000000" points="208.03,-215.36 198.03,-218.86 208.03,-222.36 208.03,-215.36"/>
+</g>
+<!-- module~mo_optical_props_kernels&#45;&gt;iso_c_binding -->
+<g id="module~~mo_rrtmgp_clr_all_sky~~UsesGraph_edge49" class="edge">
+<title>module~mo_optical_props_kernels&#45;&gt;iso_c_binding</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M248.71,-230.98C243.46,-233.43 238.48,-236.36 234,-239.86 178.24,-283.45 230.38,-388.34 160,-380.86"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M158,-380.86C116.69,-376.47 79.5,-342.15 59.2,-319.62"/>
+<polygon fill="#000000" stroke="#000000" points="61.71,-317.17 52.51,-311.92 56.43,-321.76 61.71,-317.17"/>
+</g>
+</g>
+</svg>
+</div><script>var panmodulemo_rrtmgp_clr_all_skyUsesGraph = svgPanZoom('#modulemo_rrtmgp_clr_all_skyUsesGraph', {zoomEnabled: true,controlIconsEnabled: true, fit: true, center: true,}); </script><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="518pt" height="32pt"
+ viewBox="0.00 0.00 517.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 513.5,-28 513.5,4 -4,4"/>
+<!-- Module -->
+<g id="node1" class="node">
+<title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-24 0,-24 0,0 54,0 54,-24"/>
+<text text-anchor="middle" x="27" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node">
+<title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="145.5,-24 72.5,-24 72.5,0 145.5,0 145.5,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Subroutine -->
+<g id="node3" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="234,-24 164,-24 164,0 234,0 234,-24"/>
+<text text-anchor="middle" x="199" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node4" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="310,-24 252,-24 252,0 310,0 310,-24"/>
+<text text-anchor="middle" x="281" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="386,-24 328,-24 328,0 386,0 386,-24"/>
+<text text-anchor="middle" x="357" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node6" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="509.5,-24 404.5,-24 404.5,0 509.5,0 509.5,-24"/>
+<text text-anchor="middle" x="457" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+    
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses.
+    </p>
+    </div></div></div></div>
+      </li>
+      
+      </ul>
+    </div>
+    
+
+    
+    
+
+    <br>
+
+    <section class="visible-xs visible-sm hidden-md">
+      
+<h3>Contents</h3>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-1">Functions</a></h3></div>
+  <div id="funcs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/mo_rrtmgp_clr_all_sky.html#proc-rte_lw~2">rte_lw</a>
+      
+      <a class="list-group-item" href="../module/mo_rrtmgp_clr_all_sky.html#proc-rte_sw~2">rte_sw</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+    <br class="visible-xs visible-sm hidden-md">
+
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+     
+    <section>
+    <h2>Functions</h2>
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-rte_lw~2"></span><h3>
+public function <a href='../proc/rte_lw~2.html'>rte_lw</a>(k_dist, gas_concs, p_lay, t_lay, p_lev, t_sfc, sfc_emis, cloud_props, allsky_fluxes, clrsky_fluxes, aer_props, col_dry, t_lev, inc_flux, n_gauss_angles) result(error_msg)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_gas_optics.html'>ty_gas_optics</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>k_dist</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/ty_gas_concs.html'>ty_gas_concs</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>gas_concs</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>p_lay</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>t_lay</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>p_lev</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>t_sfc</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>sfc_emis</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_optical_props_arry.html'>ty_optical_props_arry</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>cloud_props</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_fluxes.html'>ty_fluxes</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>allsky_fluxes</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_fluxes.html'>ty_fluxes</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>clrsky_fluxes</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_optical_props_arry.html'>ty_optical_props_arry</a>),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>aer_props</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>col_dry</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:,:), target</td><td>::</td>
+  <td><strong>t_lev</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:,:), target</td><td>::</td>
+  <td><strong>inc_flux</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>n_gauss_angles</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>character(len=128)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-rte_sw~2"></span><h3>
+public function <a href='../proc/rte_sw~2.html'>rte_sw</a>(k_dist, gas_concs, p_lay, t_lay, p_lev, mu0, sfc_alb_dir, sfc_alb_dif, cloud_props, allsky_fluxes, clrsky_fluxes, aer_props, col_dry, inc_flux) result(error_msg)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_gas_optics.html'>ty_gas_optics</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>k_dist</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/ty_gas_concs.html'>ty_gas_concs</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>gas_concs</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>p_lay</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>t_lay</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>p_lev</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:  )</td><td>::</td>
+  <td><strong>mu0</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>sfc_alb_dir</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>sfc_alb_dif</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_optical_props_arry.html'>ty_optical_props_arry</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>cloud_props</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_fluxes.html'>ty_fluxes</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>allsky_fluxes</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_fluxes.html'>ty_fluxes</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>clrsky_fluxes</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/ty_optical_props_arry.html'>ty_optical_props_arry</a>),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>target</td><td>::</td>
+  <td><strong>aer_props</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>col_dry</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>inc_flux</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>character(len=128)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    </section>
+    <br>
+    
+
+    
+    
+    
+    </div>
+  </div>
+
+  
+    <hr>    
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+      <div class="row">
+        <div class="col-xs-6 col-md-6"><p>rte-rrtmgp was developed by <br>&copy; 2022 
+                                          </p>
+        </div>
+        <div class="col-xs-6 col-md-6">
+          <p class="text-right">
+            Documentation generated by 
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            
+            
+          </p>
+        </div>
+      </div>
+      <br>
+      </div> <!-- /container -->    
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+      });
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
+  </body>
+</html>
