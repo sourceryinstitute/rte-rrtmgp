@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
    <meta name="description" content="A set of codes for computing radiative fluxes in planetary atmospheres.">
-    
     <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
@@ -16,10 +14,7 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
-    
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,60 +43,28 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        
             <li><a href='../page/index.html'>Additional Documentation</a></li>
-      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          
-              
             <li><a href="../lists/files.html">Source Files</a></li>
-        
-        
-        
             <li><a href="../lists/modules.html">Modules</a></li>
-        
-            
-                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
-        
-        
             <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
-               
-            <li><a href="../lists/types.html">Derived Types</a></li>
-        
-               
-        
-        
+                   <li><a href="../lists/types.html">Derived Types</a></li>
+       
             </ul>
         
             </li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
-                             
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
-
-
-
-
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
           </ul>
-        
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -110,51 +73,29 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
-  
   <div class="row">
     <h1>rte_lw
       <small>Function</small>
-    
     </h1>
-    
-<div class="row">
+    <div class="row">
   <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
-     
-     
-     
-     
-     
-    
-    
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
     title=" 3.5% of total for procedures.">71 statements</a>
      </li> 
-     
-     
-     
     <li><i class="fa fa-code"></i><a href="../src/mo_rrtmgp_clr_all_sky.F90"> Source File</a></li>
-     
-     
   </ul>
   <ol class="breadcrumb in-well text-right">
-  
-    
      <li><a href='../sourcefile/mo_rrtmgp_clr_all_sky.f90.html'>mo_rrtmgp_clr_all_sky.F90</a></li>
-    
      <li><a href='../module/mo_rrtmgp_clr_all_sky.html'>mo_rrtmgp_clr_all_sky</a></li>
-    
-  
      <li class="active">rte_lw</li>
   </ol>
 </div>
@@ -170,307 +111,120 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
-<div id="sidebar">
-  
-<h3>Contents</h3>
+    <div id="sidebar">
+  <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <em>None</em>
-
 
 </div>
 
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-public function rte_lw(k_dist, gas_concs, p_lay, t_lay, p_lev, t_sfc, sfc_emis, cloud_props, allsky_fluxes, clrsky_fluxes, aer_props, col_dry, t_lev, inc_flux, n_gauss_angles) result(error_msg)
+    <h2>public function rte_lw(k_dist, gas_concs, p_lay, t_lay, p_lev, t_sfc, sfc_emis, cloud_props, allsky_fluxes, clrsky_fluxes, aer_props, col_dry, t_lev, inc_flux, n_gauss_angles) result(error_msg)</h2>
     
-    
-   
-</h2>
-    
-  
 
-
-    
 
     <h3>Arguments</h3>
-    
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
+      <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
-  <td><span class="anchor" id="variable-k_dist~2"></span>class(<a href='../type/ty_gas_optics.html'>ty_gas_optics</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+  <td><span class="anchor" id="variable-k_dist"></span>class(<a href='../type/ty_gas_optics.html'>ty_gas_optics</a>),</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>k_dist</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
-  <td><span class="anchor" id="variable-gas_concs~2"></span>type(<a href='../type/ty_gas_concs.html'>ty_gas_concs</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+  <td><span class="anchor" id="variable-gas_concs"></span>type(<a href='../type/ty_gas_concs.html'>ty_gas_concs</a>),</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>gas_concs</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-p_lay"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>p_lay</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-t_lay"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>t_lay</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-p_lev"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>p_lev</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-t_sfc"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:)</td><td>::</td>
   <td><strong>t_sfc</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-sfc_emis~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>sfc_emis</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-cloud_props"></span>class(<a href='../type/ty_optical_props_arry.html'>ty_optical_props_arry</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>cloud_props</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-allsky_fluxes"></span>class(<a href='../type/ty_fluxes.html'>ty_fluxes</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(inout)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>allsky_fluxes</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-clrsky_fluxes"></span>class(<a href='../type/ty_fluxes.html'>ty_fluxes</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(inout)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>clrsky_fluxes</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-aer_props"></span>class(<a href='../type/ty_optical_props_arry.html'>ty_optical_props_arry</a>),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
+<td>intent(in),</td>
+  <td>optional</td>  <td></td><td>::</td>
   <td><strong>aer_props</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-col_dry~4"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td>dimension(:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td>optional</td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>col_dry</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-t_lev"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td>dimension(:,:), target</td><td>::</td>
+<td>intent(in),</td>
+  <td>optional</td>  <td>dimension(:,:), target</td><td>::</td>
   <td><strong>t_lev</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-inc_flux~3"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td>dimension(:,:), target</td><td>::</td>
+<td>intent(in),</td>
+  <td>optional</td>  <td>dimension(:,:), target</td><td>::</td>
   <td><strong>inc_flux</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-n_gauss_angles~2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
+<td>intent(in),</td>
+  <td>optional</td>  <td></td><td>::</td>
   <td><strong>n_gauss_angles</strong></td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
-    
-    
-    
-    
-    
-    
-    
-   <h3>Return Value <small><span class="anchor" id="variable-error_msg~16"></span>character(len=128)
-  </small></h3>
-    
-    
+   <h3>Return Value <small><span class="anchor" id="variable-error_msg~12"></span>character(len=128)</small></h3>
     
     <br>
-    
-    
     <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Calls</h3>
@@ -523,20 +277,17 @@ public function rte_lw(k_dist, gas_concs, p_lay, t_lay, p_lev, t_sfc, sfc_emis, 
 <path fill="none" stroke="#000000" d="M123.54,-129.07C132.64,-147.5 152.5,-182.45 180,-201 184.97,-204.35 190.43,-207.17 196.11,-209.53"/>
 <polygon fill="#000000" stroke="#000000" points="195.22,-212.94 205.82,-213.11 197.64,-206.37 195.22,-212.94"/>
 </g>
-<!-- interface~extents_are -->
+<!-- lw_solver_2stream -->
 <g id="proc~~rte_lw~2~~CallsGraph_node4" class="node">
-<title>interface~extents_are</title>
-<g id="a_proc~~rte_lw~2~~CallsGraph_node4"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
-<polygon fill="#a7506f" stroke="#a7506f" points="299,-192 226,-192 226,-168 299,-168 299,-192"/>
-<text text-anchor="middle" x="262.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
-</a>
+<title>lw_solver_2stream</title>
+<polygon fill="#777777" stroke="#777777" points="317.5,-192 207.5,-192 207.5,-168 317.5,-168 317.5,-192"/>
+<text text-anchor="middle" x="262.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lw_solver_2stream</text>
 </g>
-</g>
-<!-- proc~rte_lw&#45;&gt;interface~extents_are -->
-<g id="proc~~rte_lw~2~~CallsGraph_edge4" class="edge">
-<title>proc~rte_lw&#45;&gt;interface~extents_are</title>
-<path fill="none" stroke="#000000" d="M132.92,-129.28C144.96,-138.63 162.7,-151.19 180,-159 191.24,-164.07 203.92,-168.08 215.88,-171.18"/>
-<polygon fill="#000000" stroke="#000000" points="215.16,-174.6 225.7,-173.57 216.81,-167.8 215.16,-174.6"/>
+<!-- proc~rte_lw&#45;&gt;lw_solver_2stream -->
+<g id="proc~~rte_lw~2~~CallsGraph_edge3" class="edge">
+<title>proc~rte_lw&#45;&gt;lw_solver_2stream</title>
+<path fill="none" stroke="#000000" d="M132.92,-129.28C144.96,-138.63 162.7,-151.19 180,-159 185.46,-161.46 191.26,-163.68 197.16,-165.66"/>
+<polygon fill="#000000" stroke="#000000" points="196.53,-169.13 207.12,-168.77 198.62,-162.45 196.53,-169.13"/>
 </g>
 <!-- lw_solver_noscat_gaussquad -->
 <g id="proc~~rte_lw~2~~CallsGraph_node5" class="node">
@@ -545,52 +296,55 @@ public function rte_lw(k_dist, gas_concs, p_lay, t_lay, p_lev, t_sfc, sfc_emis, 
 <text text-anchor="middle" x="262.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lw_solver_noscat_gaussquad</text>
 </g>
 <!-- proc~rte_lw&#45;&gt;lw_solver_noscat_gaussquad -->
-<g id="proc~~rte_lw~2~~CallsGraph_edge3" class="edge">
+<g id="proc~~rte_lw~2~~CallsGraph_edge4" class="edge">
 <title>proc~rte_lw&#45;&gt;lw_solver_noscat_gaussquad</title>
 <path fill="none" stroke="#000000" d="M144.32,-120.85C151.87,-121.96 160.55,-123.23 169.71,-124.57"/>
 <polygon fill="#000000" stroke="#000000" points="169.4,-128.06 179.8,-126.04 170.42,-121.13 169.4,-128.06"/>
 </g>
-<!-- interface~any_vals_outside -->
+<!-- interface~extents_are -->
 <g id="proc~~rte_lw~2~~CallsGraph_node6" class="node">
+<title>interface~extents_are</title>
+<g id="a_proc~~rte_lw~2~~CallsGraph_node6"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
+<polygon fill="#a7506f" stroke="#a7506f" points="299,-108 226,-108 226,-84 299,-84 299,-108"/>
+<text text-anchor="middle" x="262.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
+</a>
+</g>
+</g>
+<!-- proc~rte_lw&#45;&gt;interface~extents_are -->
+<g id="proc~~rte_lw~2~~CallsGraph_edge5" class="edge">
+<title>proc~rte_lw&#45;&gt;interface~extents_are</title>
+<path fill="none" stroke="#000000" d="M144.32,-113.15C164.27,-110.23 192.17,-106.15 215.75,-102.7"/>
+<polygon fill="#000000" stroke="#000000" points="216.5,-106.12 225.89,-101.21 215.49,-99.2 216.5,-106.12"/>
+</g>
+<!-- interface~any_vals_outside -->
+<g id="proc~~rte_lw~2~~CallsGraph_node7" class="node">
 <title>interface~any_vals_outside</title>
-<g id="a_proc~~rte_lw~2~~CallsGraph_node6"><a xlink:href=".././interface/any_vals_outside.html" xlink:title="any_vals_outside">
-<polygon fill="#a7506f" stroke="#a7506f" points="314,-108 211,-108 211,-84 314,-84 314,-108"/>
-<text text-anchor="middle" x="262.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">any_vals_outside</text>
+<g id="a_proc~~rte_lw~2~~CallsGraph_node7"><a xlink:href=".././interface/any_vals_outside.html" xlink:title="any_vals_outside">
+<polygon fill="#a7506f" stroke="#a7506f" points="314,-66 211,-66 211,-42 314,-42 314,-66"/>
+<text text-anchor="middle" x="262.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">any_vals_outside</text>
 </a>
 </g>
 </g>
 <!-- proc~rte_lw&#45;&gt;interface~any_vals_outside -->
-<g id="proc~~rte_lw~2~~CallsGraph_edge5" class="edge">
+<g id="proc~~rte_lw~2~~CallsGraph_edge6" class="edge">
 <title>proc~rte_lw&#45;&gt;interface~any_vals_outside</title>
-<path fill="none" stroke="#000000" d="M144.32,-113.15C160.24,-110.82 181.23,-107.75 201.04,-104.85"/>
-<polygon fill="#000000" stroke="#000000" points="201.56,-108.31 210.95,-103.4 200.55,-101.38 201.56,-108.31"/>
+<path fill="none" stroke="#000000" d="M132.92,-104.72C144.96,-95.37 162.7,-82.81 180,-75 186.59,-72.03 193.68,-69.42 200.83,-67.14"/>
+<polygon fill="#000000" stroke="#000000" points="201.99,-70.45 210.58,-64.25 199.99,-63.74 201.99,-70.45"/>
 </g>
 <!-- interface~zero_array -->
-<g id="proc~~rte_lw~2~~CallsGraph_node7" class="node">
+<g id="proc~~rte_lw~2~~CallsGraph_node8" class="node">
 <title>interface~zero_array</title>
-<g id="a_proc~~rte_lw~2~~CallsGraph_node7"><a xlink:href=".././interface/zero_array.html" xlink:title="zero_array">
-<polygon fill="#a7506f" stroke="#a7506f" points="297,-66 228,-66 228,-42 297,-42 297,-66"/>
-<text text-anchor="middle" x="262.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">zero_array</text>
+<g id="a_proc~~rte_lw~2~~CallsGraph_node8"><a xlink:href=".././interface/zero_array.html" xlink:title="zero_array">
+<polygon fill="#a7506f" stroke="#a7506f" points="297,-24 228,-24 228,0 297,0 297,-24"/>
+<text text-anchor="middle" x="262.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">zero_array</text>
 </a>
 </g>
 </g>
 <!-- proc~rte_lw&#45;&gt;interface~zero_array -->
-<g id="proc~~rte_lw~2~~CallsGraph_edge6" class="edge">
-<title>proc~rte_lw&#45;&gt;interface~zero_array</title>
-<path fill="none" stroke="#000000" d="M132.92,-104.72C144.96,-95.37 162.7,-82.81 180,-75 191.88,-69.64 205.37,-65.47 217.9,-62.31"/>
-<polygon fill="#000000" stroke="#000000" points="218.79,-65.69 227.71,-59.98 217.17,-58.88 218.79,-65.69"/>
-</g>
-<!-- lw_solver_2stream -->
-<g id="proc~~rte_lw~2~~CallsGraph_node8" class="node">
-<title>lw_solver_2stream</title>
-<polygon fill="#777777" stroke="#777777" points="317.5,-24 207.5,-24 207.5,0 317.5,0 317.5,-24"/>
-<text text-anchor="middle" x="262.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lw_solver_2stream</text>
-</g>
-<!-- proc~rte_lw&#45;&gt;lw_solver_2stream -->
 <g id="proc~~rte_lw~2~~CallsGraph_edge7" class="edge">
-<title>proc~rte_lw&#45;&gt;lw_solver_2stream</title>
-<path fill="none" stroke="#000000" d="M123.54,-104.93C132.64,-86.5 152.5,-51.55 180,-33 185.33,-29.41 191.23,-26.43 197.35,-23.96"/>
-<polygon fill="#000000" stroke="#000000" points="198.85,-27.14 207.1,-20.48 196.5,-20.55 198.85,-27.14"/>
+<title>proc~rte_lw&#45;&gt;interface~zero_array</title>
+<path fill="none" stroke="#000000" d="M123.54,-104.93C132.64,-86.5 152.5,-51.55 180,-33 191.09,-25.52 204.66,-20.7 217.53,-17.6"/>
+<polygon fill="#000000" stroke="#000000" points="218.58,-20.96 227.64,-15.47 217.13,-14.11 218.58,-20.96"/>
 </g>
 </g>
 </svg>
@@ -655,63 +409,28 @@ public function rte_lw(k_dist, gas_concs, p_lay, t_lay, p_lev, t_sfc, sfc_emis, 
     </div></div></div></div>
       </div>
     </div>
-     
-     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
-      
-<h3>Contents</h3>
+      <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <em>None</em>
-
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
-    
 
-    
-    
-    
     
     
 
     
     
-    
-    
-    
 
 
-    
-    
     
     
     </div>
   </div>
-
 
     <hr>    
     </div> <!-- /container -->
@@ -719,14 +438,12 @@ public function rte_lw(k_dist, gas_concs, p_lay, t_lay, p_lev, t_sfc, sfc_emis, 
       <div class="container">
       <div class="row">
         <div class="col-xs-6 col-md-6"><p>rte-rrtmgp was developed by <br>&copy; 2022 
-                                          </p>
+</p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-            
-            
           </p>
         </div>
       </div>
@@ -754,14 +471,11 @@ public function rte_lw(k_dist, gas_concs, p_lay, t_lay, p_lev, t_sfc, sfc_emis, 
         extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
-    
     
   </body>
 </html>

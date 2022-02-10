@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
    <meta name="description" content="A set of codes for computing radiative fluxes in planetary atmospheres.">
-    
     <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
@@ -16,10 +14,7 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
-    
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,52 +43,24 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        
             <li><a href='../page/index.html'>Additional Documentation</a></li>
-      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          
-              
             <li><a href="../lists/files.html">Source Files</a></li>
-        
-        
-        
             <li><a href="../lists/modules.html">Modules</a></li>
-        
-            
-                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
-        
-               
-               
-        
-        
+              
             </ul>
         
             </li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-
-                             
-
-
-
-          </ul>
-        
+                                       </ul>
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -102,51 +69,29 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
-  
   <div class="row">
     <h1>interpolation
       <small>Subroutine</small>
-    
     </h1>
-    
-<div class="row">
+    <div class="row">
   <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
-     
-     
-     
-     
-     
-    
-    
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
     title=" 2.7% of total for procedures.">58 statements</a>
      </li> 
-     
-     
-     
     <li><i class="fa fa-code"></i><a href="../src/mo_gas_optics_kernels.F90"> Source File</a></li>
-     
-     
   </ul>
   <ol class="breadcrumb in-well text-right">
-  
-    
      <li><a href='../sourcefile/mo_gas_optics_kernels.f90~2.html'>mo_gas_optics_kernels.F90</a></li>
-    
      <li><a href='../module/mo_gas_optics_kernels~2.html'>mo_gas_optics_kernels</a></li>
-    
-  
      <li class="active">interpolation</li>
   </ol>
 </div>
@@ -162,448 +107,198 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
-<div id="sidebar">
-  
-<h3>Contents</h3>
+    <div id="sidebar">
+  <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<em>None</em>
-
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-eta~2">eta</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-feta~2">feta</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-fpress~2">fpress</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-ftemp~2">ftemp</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-ftemp_term~2">ftemp_term</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-icol~31">icol</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-iflav~10">iflav</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-igases~2">igases</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-ilay~30">ilay</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-itemp~2">itemp</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-itropo~8">itropo</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-loceta~2">loceta</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-locpress~2">locpress</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-ratio_eta_half~2">ratio_eta_half</a>
+    </div>
+  </div>
+</div>
 
 </div>
 
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-public subroutine interpolation(ncol, nlay, ngas, nflav, neta, npres, ntemp, flavor, press_ref_log, temp_ref, press_ref_log_delta, temp_ref_min, temp_ref_delta, press_ref_trop_log, vmr_ref, play, tlay, col_gas, jtemp, fmajor, fminor, col_mix, tropo, jeta, jpress) bind(C, name="0")
+    <h2>public subroutine interpolation(ncol, nlay, ngas, nflav, neta, npres, ntemp, flavor, press_ref_log, temp_ref, press_ref_log_delta, temp_ref_min, temp_ref_delta, press_ref_trop_log, vmr_ref, play, tlay, col_gas, jtemp, fmajor, fminor, col_mix, tropo, jeta, jpress) bind(C, name="0")</h2>
     
-    
-   
-</h2>
-    
-  
 
-
-    
 
     <h3>Arguments</h3>
-    
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
+      <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-ncol~41"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>ncol</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-nlay~40"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nlay</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-ngas~8"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>ngas</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-nflav~12"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nflav</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-neta~12"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>neta</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-npres~10"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>npres</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-ntemp~12"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>ntemp</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-flavor~2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,nflav)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,nflav)</td><td>::</td>
   <td><strong>flavor</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-press_ref_log~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(npres)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(npres)</td><td>::</td>
   <td><strong>press_ref_log</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-temp_ref~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(ntemp)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(ntemp)</td><td>::</td>
   <td><strong>temp_ref</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-press_ref_log_delta~2"></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>press_ref_log_delta</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-temp_ref_min~4"></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>temp_ref_min</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-temp_ref_delta~2"></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>temp_ref_delta</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-press_ref_trop_log~2"></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>press_ref_trop_log</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-vmr_ref~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,0:ngas,ntemp)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,0:ngas,ntemp)</td><td>::</td>
   <td><strong>vmr_ref</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-play~6"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(ncol,nlay)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(ncol,nlay)</td><td>::</td>
   <td><strong>play</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-tlay~8"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(ncol,nlay)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(ncol,nlay)</td><td>::</td>
   <td><strong>tlay</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-col_gas~8"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(ncol,nlay,0:ngas)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(ncol,nlay,0:ngas)</td><td>::</td>
   <td><strong>col_gas</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-jtemp~18"></span>integer,</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(ncol,nlay)</td><td>::</td>
+<td>intent(out),</td>
+  <td></td>  <td>dimension(ncol,nlay)</td><td>::</td>
   <td><strong>jtemp</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-fmajor~11"></span>real(kind=wp),</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(2,2,2,ncol,nlay,nflav)</td><td>::</td>
+<td>intent(out),</td>
+  <td></td>  <td>dimension(2,2,2,ncol,nlay,nflav)</td><td>::</td>
   <td><strong>fmajor</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-fminor~11"></span>real(kind=wp),</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(2,2,  ncol,nlay,nflav)</td><td>::</td>
+<td>intent(out),</td>
+  <td></td>  <td>dimension(2,2,  ncol,nlay,nflav)</td><td>::</td>
   <td><strong>fminor</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-col_mix~6"></span>real(kind=wp),</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(2,    ncol,nlay,nflav)</td><td>::</td>
+<td>intent(out),</td>
+  <td></td>  <td>dimension(2,    ncol,nlay,nflav)</td><td>::</td>
   <td><strong>col_mix</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-tropo~10"></span>logical(kind=wl),</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(ncol,nlay)</td><td>::</td>
+<td>intent(out),</td>
+  <td></td>  <td>dimension(ncol,nlay)</td><td>::</td>
   <td><strong>tropo</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-jeta~18"></span>integer,</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(2,    ncol,nlay,nflav)</td><td>::</td>
+<td>intent(out),</td>
+  <td></td>  <td>dimension(2,    ncol,nlay,nflav)</td><td>::</td>
   <td><strong>jeta</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-jpress~11"></span>integer,</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(ncol,nlay)</td><td>::</td>
+<td>intent(out),</td>
+  <td></td>  <td>dimension(ncol,nlay)</td><td>::</td>
   <td><strong>jpress</strong></td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
-    
-    
-    
     <br>
-    
-    
     <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Calls</h3>
@@ -701,63 +396,128 @@ public subroutine interpolation(ncol, nlay, ngas, nflav, neta, npres, ntemp, fla
     </div></div></div></div>
       </div>
     </div>
-     
-     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
-      
-<h3>Contents</h3>
+      <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<em>None</em>
-
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-eta~2">eta</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-feta~2">feta</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-fpress~2">fpress</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-ftemp~2">ftemp</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-ftemp_term~2">ftemp_term</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-icol~31">icol</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-iflav~10">iflav</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-igases~2">igases</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-ilay~30">ilay</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-itemp~2">itemp</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-itropo~8">itropo</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-loceta~2">loceta</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-locpress~2">locpress</a>
+      <a class="list-group-item" href="../proc/interpolation~2.html#variable-ratio_eta_half~2">ratio_eta_half</a>
+    </div>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
+
+    <section>    
+      <h2>Variables</h2>
+    <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th><th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+<tbody>
+<tr>
+  <td><span class="anchor" id="variable-eta~2"></span>real(kind=wp),</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>eta</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-feta~2"></span>real(kind=wp),</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>feta</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-fpress~2"></span>real(kind=wp),</td>
+<td>public,</td>  <td>dimension(ncol,nlay)</td><td>::</td>
+  <td><strong>fpress</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-ftemp~2"></span>real(kind=wp),</td>
+<td>public,</td>  <td>dimension(ncol,nlay)</td><td>::</td>
+  <td><strong>ftemp</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-ftemp_term~2"></span>real(kind=wp),</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>ftemp_term</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-icol~31"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>icol</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-iflav~10"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>iflav</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-igases~2"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>igases</strong>(2)</td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-ilay~30"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>ilay</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-itemp~2"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>itemp</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-itropo~8"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>itropo</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-loceta~2"></span>real(kind=wp),</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>loceta</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-locpress~2"></span>real(kind=wp),</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>locpress</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-ratio_eta_half~2"></span>real(kind=wp),</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>ratio_eta_half</strong></td><td></td><td></td><td></td>
+</tr>
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
     
 
     
     
-    
-    
-    
-
-    
-    
-    
-    
-    
 
 
-    
-    
     
     
     </div>
   </div>
-
 
     <hr>    
     </div> <!-- /container -->
@@ -765,14 +525,12 @@ public subroutine interpolation(ncol, nlay, ngas, nflav, neta, npres, ntemp, fla
       <div class="container">
       <div class="row">
         <div class="col-xs-6 col-md-6"><p>rte-rrtmgp was developed by <br>&copy; 2022 
-                                          </p>
+</p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-            
-            
           </p>
         </div>
       </div>
@@ -800,14 +558,11 @@ public subroutine interpolation(ncol, nlay, ngas, nflav, neta, npres, ntemp, fla
         extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
-    
     
   </body>
 </html>

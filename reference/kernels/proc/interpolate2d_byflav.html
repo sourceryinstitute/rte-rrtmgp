@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
    <meta name="description" content="A set of codes for computing radiative fluxes in planetary atmospheres.">
-    
     <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
@@ -16,10 +14,7 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
-    
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,52 +43,24 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        
             <li><a href='../page/index.html'>Additional Documentation</a></li>
-      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          
-              
             <li><a href="../lists/files.html">Source Files</a></li>
-        
-        
-        
             <li><a href="../lists/modules.html">Modules</a></li>
-        
-            
-                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
-        
-               
-               
-        
-        
+              
             </ul>
         
             </li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-
-                             
-
-
-
-          </ul>
-        
+                                       </ul>
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -102,51 +69,29 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
-  
   <div class="row">
     <h1>interpolate2D_byflav
       <small>Function</small>
-    
     </h1>
-    
-<div class="row">
+    <div class="row">
   <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
-     
-     
-     
-     
-     
-    
-    
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
     title=" 0.5% of total for procedures.">11 statements</a>
      </li> 
-     
-     
-     
     <li><i class="fa fa-code"></i><a href="../src/mo_gas_optics_kernels.F90"> Source File</a></li>
-     
-     
   </ul>
   <ol class="breadcrumb in-well text-right">
-  
-    
      <li><a href='../sourcefile/mo_gas_optics_kernels.f90.html'>mo_gas_optics_kernels.F90</a></li>
-    
      <li><a href='../module/mo_gas_optics_kernels.html'>mo_gas_optics_kernels</a></li>
-    
-  
      <li class="active">interpolate2D_byflav</li>
   </ol>
 </div>
@@ -162,173 +107,73 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
-<div id="sidebar">
-  
-<h3>Contents</h3>
+    <div id="sidebar">
+  <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<em>None</em>
-
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/interpolate2d_byflav.html#variable-igpt~2">igpt</a>
+    </div>
+  </div>
+</div>
 
 </div>
 
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-public pure function interpolate2D_byflav(fminor, k, gptS, gptE, jeta, jtemp) result(res)
+    <h2>public pure function interpolate2D_byflav(fminor, k, gptS, gptE, jeta, jtemp) result(res)</h2>
     
-    
-   
-</h2>
-    
-  
 
-
-    
 
     <h3>Arguments</h3>
-    
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
+      <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-fminor~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,2)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,2)</td><td>::</td>
   <td><strong>fminor</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-k~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:,:,:)</td><td>::</td>
   <td><strong>k</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-gpts"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>gptS</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-gpte"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>gptE</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-jeta~2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2)</td><td>::</td>
   <td><strong>jeta</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-jtemp~2"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>jtemp</strong></td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
-    
-    
-    
-    
-    
-    
-    
-   <h3>Return Value <small><span class="anchor" id="variable-res~3"></span>real(kind=wp),
-  dimension(gptE-gptS+1)</small></h3>
-    
-    
+   <h3>Return Value <small><span class="anchor" id="variable-res~3"></span>real(kind=wp),dimension(gptE-gptS+1)</small></h3>
     
     <br>
-    
-    
-     
     <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Called by</h3>
@@ -351,50 +196,50 @@ public pure function interpolate2D_byflav(fminor, k, gptS, gptE, jeta, jtemp) re
 <polygon fill="none" stroke="black" points="492,-45 368,-45 368,-21 492,-21 492,-45"/>
 <text text-anchor="middle" x="430" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">interpolate2D_byflav</text>
 </g>
-<!-- proc~gas_optical_depths_minor -->
-<g id="proc~~interpolate2d_byflav~~CalledByGraph_node2" class="node">
-<title>proc~gas_optical_depths_minor</title>
-<g id="a_proc~~interpolate2d_byflav~~CalledByGraph_node2"><a xlink:href=".././proc/gas_optical_depths_minor.html" xlink:title="gas_optical_depths_minor">
-<polygon fill="#d9534f" stroke="#d9534f" points="332,-66 181,-66 181,-42 332,-42 332,-66"/>
-<text text-anchor="middle" x="256.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gas_optical_depths_minor</text>
-</a>
-</g>
-</g>
-<!-- proc~gas_optical_depths_minor&#45;&gt;proc~interpolate2d_byflav -->
-<g id="proc~~interpolate2d_byflav~~CalledByGraph_edge1" class="edge">
-<title>proc~gas_optical_depths_minor&#45;&gt;proc~interpolate2d_byflav</title>
-<path fill="none" stroke="#000000" d="M332.22,-44.85C340.69,-43.81 349.31,-42.76 357.74,-41.73"/>
-<polygon fill="#000000" stroke="#000000" points="358.39,-45.17 367.89,-40.48 357.54,-38.22 358.39,-45.17"/>
-</g>
 <!-- proc~compute_tau_rayleigh -->
-<g id="proc~~interpolate2d_byflav~~CalledByGraph_node3" class="node">
+<g id="proc~~interpolate2d_byflav~~CalledByGraph_node2" class="node">
 <title>proc~compute_tau_rayleigh</title>
-<g id="a_proc~~interpolate2d_byflav~~CalledByGraph_node3"><a xlink:href=".././proc/compute_tau_rayleigh.html" xlink:title="compute_tau_rayleigh">
-<polygon fill="#d9534f" stroke="#d9534f" points="322,-24 191,-24 191,0 322,0 322,-24"/>
-<text text-anchor="middle" x="256.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">compute_tau_rayleigh</text>
+<g id="a_proc~~interpolate2d_byflav~~CalledByGraph_node2"><a xlink:href=".././proc/compute_tau_rayleigh.html" xlink:title="compute_tau_rayleigh">
+<polygon fill="#d9534f" stroke="#d9534f" points="322,-66 191,-66 191,-42 322,-42 322,-66"/>
+<text text-anchor="middle" x="256.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">compute_tau_rayleigh</text>
 </a>
 </g>
 </g>
 <!-- proc~compute_tau_rayleigh&#45;&gt;proc~interpolate2d_byflav -->
-<g id="proc~~interpolate2d_byflav~~CalledByGraph_edge2" class="edge">
+<g id="proc~~interpolate2d_byflav~~CalledByGraph_edge1" class="edge">
 <title>proc~compute_tau_rayleigh&#45;&gt;proc~interpolate2d_byflav</title>
-<path fill="none" stroke="#000000" d="M322.34,-19.94C333.86,-21.35 345.91,-22.83 357.6,-24.26"/>
-<polygon fill="#000000" stroke="#000000" points="357.4,-27.76 367.75,-25.5 358.25,-20.81 357.4,-27.76"/>
+<path fill="none" stroke="#000000" d="M322.34,-46.06C333.86,-44.65 345.91,-43.17 357.6,-41.74"/>
+<polygon fill="#000000" stroke="#000000" points="358.25,-45.19 367.75,-40.5 357.4,-38.24 358.25,-45.19"/>
+</g>
+<!-- proc~gas_optical_depths_minor -->
+<g id="proc~~interpolate2d_byflav~~CalledByGraph_node3" class="node">
+<title>proc~gas_optical_depths_minor</title>
+<g id="a_proc~~interpolate2d_byflav~~CalledByGraph_node3"><a xlink:href=".././proc/gas_optical_depths_minor.html" xlink:title="gas_optical_depths_minor">
+<polygon fill="#d9534f" stroke="#d9534f" points="332,-24 181,-24 181,0 332,0 332,-24"/>
+<text text-anchor="middle" x="256.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gas_optical_depths_minor</text>
+</a>
+</g>
+</g>
+<!-- proc~gas_optical_depths_minor&#45;&gt;proc~interpolate2d_byflav -->
+<g id="proc~~interpolate2d_byflav~~CalledByGraph_edge2" class="edge">
+<title>proc~gas_optical_depths_minor&#45;&gt;proc~interpolate2d_byflav</title>
+<path fill="none" stroke="#000000" d="M332.22,-21.15C340.69,-22.19 349.31,-23.24 357.74,-24.27"/>
+<polygon fill="#000000" stroke="#000000" points="357.54,-27.78 367.89,-25.52 358.39,-20.83 357.54,-27.78"/>
 </g>
 <!-- proc~compute_tau_absorption -->
 <g id="proc~~interpolate2d_byflav~~CalledByGraph_node4" class="node">
 <title>proc~compute_tau_absorption</title>
 <g id="a_proc~~interpolate2d_byflav~~CalledByGraph_node4"><a xlink:href=".././proc/compute_tau_absorption.html" xlink:title="compute_tau_absorption">
-<polygon fill="#d9534f" stroke="#d9534f" points="145,-66 0,-66 0,-42 145,-42 145,-66"/>
-<text text-anchor="middle" x="72.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">compute_tau_absorption</text>
+<polygon fill="#d9534f" stroke="#d9534f" points="145,-24 0,-24 0,0 145,0 145,-24"/>
+<text text-anchor="middle" x="72.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">compute_tau_absorption</text>
 </a>
 </g>
 </g>
 <!-- proc~compute_tau_absorption&#45;&gt;proc~gas_optical_depths_minor -->
 <g id="proc~~interpolate2d_byflav~~CalledByGraph_edge3" class="edge">
 <title>proc~compute_tau_absorption&#45;&gt;proc~gas_optical_depths_minor</title>
-<path fill="none" stroke="#000000" d="M145.17,-54C153.61,-54 162.28,-54 170.87,-54"/>
-<polygon fill="#000000" stroke="#000000" points="170.9,-57.5 180.9,-54 170.9,-50.5 170.9,-57.5"/>
+<path fill="none" stroke="#000000" d="M145.17,-12C153.61,-12 162.28,-12 170.87,-12"/>
+<polygon fill="#000000" stroke="#000000" points="170.9,-15.5 180.9,-12 170.9,-8.5 170.9,-15.5"/>
 </g>
 </g>
 </svg>
@@ -459,62 +304,50 @@ public pure function interpolate2D_byflav(fminor, k, gptS, gptE, jeta, jtemp) re
     </div></div></div></div>
       </div>
     </div>
-     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
-      
-<h3>Contents</h3>
+      <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<em>None</em>
-
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/interpolate2d_byflav.html#variable-igpt~2">igpt</a>
+    </div>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
+
+    <section>    
+      <h2>Variables</h2>
+    <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th><th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+<tbody>
+<tr>
+  <td><span class="anchor" id="variable-igpt~2"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>igpt</strong></td><td></td><td></td><td></td>
+</tr>
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
     
 
     
     
-    
-    
-    
-
-    
-    
-    
-    
-    
 
 
-    
-    
     
     
     </div>
   </div>
-
 
     <hr>    
     </div> <!-- /container -->
@@ -522,14 +355,12 @@ public pure function interpolate2D_byflav(fminor, k, gptS, gptE, jeta, jtemp) re
       <div class="container">
       <div class="row">
         <div class="col-xs-6 col-md-6"><p>rte-rrtmgp was developed by <br>&copy; 2022 
-                                          </p>
+</p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-            
-            
           </p>
         </div>
       </div>
@@ -557,14 +388,11 @@ public pure function interpolate2D_byflav(fminor, k, gptS, gptE, jeta, jtemp) re
         extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
-    
     
   </body>
 </html>

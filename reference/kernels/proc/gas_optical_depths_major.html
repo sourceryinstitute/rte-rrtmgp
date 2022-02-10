@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
    <meta name="description" content="A set of codes for computing radiative fluxes in planetary atmospheres.">
-    
     <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
@@ -16,10 +14,7 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
-    
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,52 +43,24 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        
             <li><a href='../page/index.html'>Additional Documentation</a></li>
-      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          
-              
             <li><a href="../lists/files.html">Source Files</a></li>
-        
-        
-        
             <li><a href="../lists/modules.html">Modules</a></li>
-        
-            
-                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
-        
-               
-               
-        
-        
+              
             </ul>
         
             </li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-
-                             
-
-
-
-          </ul>
-        
+                                       </ul>
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -102,51 +69,29 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
-  
   <div class="row">
     <h1>gas_optical_depths_major
       <small>Subroutine</small>
-    
     </h1>
-    
-<div class="row">
+    <div class="row">
   <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
-     
-     
-     
-     
-     
-    
-    
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
     title=" 1.3% of total for procedures.">27 statements</a>
      </li> 
-     
-     
-     
     <li><i class="fa fa-code"></i><a href="../src/mo_gas_optics_kernels.F90"> Source File</a></li>
-     
-     
   </ul>
   <ol class="breadcrumb in-well text-right">
-  
-    
      <li><a href='../sourcefile/mo_gas_optics_kernels.f90.html'>mo_gas_optics_kernels.F90</a></li>
-    
      <li><a href='../module/mo_gas_optics_kernels.html'>mo_gas_optics_kernels</a></li>
-    
-  
      <li class="active">gas_optical_depths_major</li>
   </ol>
 </div>
@@ -162,343 +107,150 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
-<div id="sidebar">
-  
-<h3>Contents</h3>
+    <div id="sidebar">
+  <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<em>None</em>
-
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-gpte~5">gptE</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-gpts~5">gptS</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-ibnd~3">ibnd</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-icol~3">icol</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-iflav~3">iflav</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-ilay~3">ilay</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-itropo~3">itropo</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-tau_major">tau_major</a>
+    </div>
+  </div>
+</div>
 
 </div>
 
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-public subroutine gas_optical_depths_major(ncol, nlay, nbnd, ngpt, nflav, neta, npres, ntemp, gpoint_flavor, band_lims_gpt, kmajor, col_mix, fmajor, jeta, tropo, jtemp, jpress, tau) bind(C, name="0")
+    <h2>public subroutine gas_optical_depths_major(ncol, nlay, nbnd, ngpt, nflav, neta, npres, ntemp, gpoint_flavor, band_lims_gpt, kmajor, col_mix, fmajor, jeta, tropo, jtemp, jpress, tau) bind(C, name="0")</h2>
     
-    
-   
-</h2>
-    
-  
 
-
-    
 
     <h3>Arguments</h3>
-    
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
+      <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-ncol~4"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>ncol</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-nlay~4"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nlay</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-nbnd~4"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nbnd</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-ngpt~4"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>ngpt</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-nflav~4"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nflav</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-neta~4"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>neta</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-npres~4"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>npres</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-ntemp~4"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>ntemp</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-gpoint_flavor~4"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,ngpt)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,ngpt)</td><td>::</td>
   <td><strong>gpoint_flavor</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-band_lims_gpt~4"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,nbnd)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,nbnd)</td><td>::</td>
   <td><strong>band_lims_gpt</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-kmajor~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(ntemp,neta,npres+1,ngpt)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(ntemp,neta,npres+1,ngpt)</td><td>::</td>
   <td><strong>kmajor</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-col_mix~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,    ncol,nlay,nflav)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,    ncol,nlay,nflav)</td><td>::</td>
   <td><strong>col_mix</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-fmajor~5"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,2,2,ncol,nlay,nflav)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,2,2,ncol,nlay,nflav)</td><td>::</td>
   <td><strong>fmajor</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-jeta~8"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,    ncol,nlay,nflav)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,    ncol,nlay,nflav)</td><td>::</td>
   <td><strong>jeta</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-tropo~4"></span>logical(kind=wl),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(ncol,nlay)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(ncol,nlay)</td><td>::</td>
   <td><strong>tropo</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-jtemp~8"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(ncol,nlay)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(ncol,nlay)</td><td>::</td>
   <td><strong>jtemp</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-jpress~5"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(ncol,nlay)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(ncol,nlay)</td><td>::</td>
   <td><strong>jpress</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-tau~2"></span>real(kind=wp),</td>
-  <td>intent(inout),</td>
-  <td></td>
-  
-  <td>dimension(ncol,nlay,ngpt)</td><td>::</td>
+<td>intent(inout),</td>
+  <td></td>  <td>dimension(ncol,nlay,ngpt)</td><td>::</td>
   <td><strong>tau</strong></td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
-    
-    
-    
     <br>
-    
-    
     <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Calls</h3>
@@ -599,8 +351,6 @@ public subroutine gas_optical_depths_major(ncol, nlay, nbnd, ngpt, nflav, neta, 
     </div></div></div></div>
       </div>
     </div>
-     
-     
     <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Called by</h3>
@@ -701,62 +451,92 @@ public subroutine gas_optical_depths_major(ncol, nlay, nbnd, ngpt, nflav, neta, 
     </div></div></div></div>
       </div>
     </div>
-     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
-      
-<h3>Contents</h3>
+      <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<em>None</em>
-
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-gpte~5">gptE</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-gpts~5">gptS</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-ibnd~3">ibnd</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-icol~3">icol</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-iflav~3">iflav</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-ilay~3">ilay</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-itropo~3">itropo</a>
+      <a class="list-group-item" href="../proc/gas_optical_depths_major.html#variable-tau_major">tau_major</a>
+    </div>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
+
+    <section>    
+      <h2>Variables</h2>
+    <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th><th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+<tbody>
+<tr>
+  <td><span class="anchor" id="variable-gpte~5"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>gptE</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-gpts~5"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>gptS</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-ibnd~3"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>ibnd</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-icol~3"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>icol</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-iflav~3"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>iflav</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-ilay~3"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>ilay</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-itropo~3"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>itropo</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-tau_major"></span>real(kind=wp),</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>tau_major</strong>(ngpt)</td><td></td><td></td><td></td>
+</tr>
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
     
 
     
     
-    
-    
-    
-
-    
-    
-    
-    
-    
 
 
-    
-    
     
     
     </div>
   </div>
-
 
     <hr>    
     </div> <!-- /container -->
@@ -764,14 +544,12 @@ public subroutine gas_optical_depths_major(ncol, nlay, nbnd, ngpt, nflav, neta, 
       <div class="container">
       <div class="row">
         <div class="col-xs-6 col-md-6"><p>rte-rrtmgp was developed by <br>&copy; 2022 
-                                          </p>
+</p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-            
-            
           </p>
         </div>
       </div>
@@ -799,14 +577,11 @@ public subroutine gas_optical_depths_major(ncol, nlay, nbnd, ngpt, nflav, neta, 
         extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
-    
     
   </body>
 </html>

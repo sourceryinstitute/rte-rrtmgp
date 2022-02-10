@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
    <meta name="description" content="A set of codes for computing radiative fluxes in planetary atmospheres.">
-    
     <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
@@ -16,10 +14,7 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
-    
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,60 +43,28 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        
             <li><a href='../page/index.html'>Additional Documentation</a></li>
-      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          
-              
             <li><a href="../lists/files.html">Source Files</a></li>
-        
-        
-        
             <li><a href="../lists/modules.html">Modules</a></li>
-        
-            
-                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
-        
-        
             <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
-               
-            <li><a href="../lists/types.html">Derived Types</a></li>
-        
-               
-        
-        
+                   <li><a href="../lists/types.html">Derived Types</a></li>
+       
             </ul>
         
             </li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
-                             
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
-
-
-
-
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
           </ul>
-        
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -110,51 +73,29 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
-  
   <div class="row">
     <h1>validate_2stream
       <small>Function</small>
-    
     </h1>
-    
-<div class="row">
+    <div class="row">
   <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
-     
-     
-     
-     
-     
-    
-    
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
     title=" 1.1% of total for procedures.">22 statements</a>
      </li> 
-     
-     
-     
     <li><i class="fa fa-code"></i><a href="../src/mo_optical_props.F90"> Source File</a></li>
-     
-     
   </ul>
   <ol class="breadcrumb in-well text-right">
-  
-    
      <li><a href='../sourcefile/mo_optical_props.f90.html'>mo_optical_props.F90</a></li>
-    
      <li><a href='../module/mo_optical_props.html'>mo_optical_props</a></li>
-    
-  
      <li class="active">validate_2stream</li>
   </ol>
 </div>
@@ -170,97 +111,45 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
-<div id="sidebar">
-  
-<h3>Contents</h3>
+    <div id="sidebar">
+  <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<em>None</em>
-
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/validate_2stream.html#variable-d1">d1</a>
+      <a class="list-group-item" href="../proc/validate_2stream.html#variable-d2">d2</a>
+      <a class="list-group-item" href="../proc/validate_2stream.html#variable-d3">d3</a>
+    </div>
+  </div>
+</div>
 
 </div>
 
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-public function validate_2stream(this) result(err_message)
+    <h2>public function validate_2stream(this) result(err_message)</h2>
     
-    
-   
-</h2>
-    
-  
 
-
-    
 
     <h3>Arguments</h3>
-    
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
+      <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
-  <td><span class="anchor" id="variable-this~65"></span>class(<a href='../type/ty_optical_props_2str.html'>ty_optical_props_2str</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+  <td><span class="anchor" id="variable-this~54"></span>class(<a href='../type/ty_optical_props_2str.html'>ty_optical_props_2str</a>),</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>this</strong></td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
-    
-    
-    
-    
-    
-    
-    
-   <h3>Return Value <small><span class="anchor" id="variable-err_message~32"></span>character(len=128)
-  </small></h3>
-    
-    
+   <h3>Return Value <small><span class="anchor" id="variable-err_message~26"></span>character(len=128)</small></h3>
     
     <br>
-    
-    
     <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Calls</h3>
@@ -283,35 +172,35 @@ public function validate_2stream(this) result(err_message)
 <polygon fill="none" stroke="black" points="104,-66 0,-66 0,-42 104,-42 104,-66"/>
 <text text-anchor="middle" x="52" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50">validate_2stream</text>
 </g>
-<!-- interface~extents_are -->
-<g id="proc~~validate_2stream~~CallsGraph_node2" class="node">
-<title>interface~extents_are</title>
-<g id="a_proc~~validate_2stream~~CallsGraph_node2"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
-<polygon fill="#a7506f" stroke="#a7506f" points="233,-108 160,-108 160,-84 233,-84 233,-108"/>
-<text text-anchor="middle" x="196.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
-</a>
-</g>
-</g>
-<!-- proc~validate_2stream&#45;&gt;interface~extents_are -->
-<g id="proc~~validate_2stream~~CallsGraph_edge3" class="edge">
-<title>proc~validate_2stream&#45;&gt;interface~extents_are</title>
-<path fill="none" stroke="#000000" d="M93.83,-66.04C111.46,-71.23 132.14,-77.33 150.24,-82.66"/>
-<polygon fill="#000000" stroke="#000000" points="149.4,-86.06 159.98,-85.53 151.38,-79.35 149.4,-86.06"/>
-</g>
 <!-- interface~any_vals_less_than -->
-<g id="proc~~validate_2stream~~CallsGraph_node3" class="node">
+<g id="proc~~validate_2stream~~CallsGraph_node2" class="node">
 <title>interface~any_vals_less_than</title>
-<g id="a_proc~~validate_2stream~~CallsGraph_node3"><a xlink:href=".././interface/any_vals_less_than.html" xlink:title="any_vals_less_than">
-<polygon fill="#a7506f" stroke="#a7506f" points="253,-66 140,-66 140,-42 253,-42 253,-66"/>
-<text text-anchor="middle" x="196.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">any_vals_less_than</text>
+<g id="a_proc~~validate_2stream~~CallsGraph_node2"><a xlink:href=".././interface/any_vals_less_than.html" xlink:title="any_vals_less_than">
+<polygon fill="#a7506f" stroke="#a7506f" points="253,-108 140,-108 140,-84 253,-84 253,-108"/>
+<text text-anchor="middle" x="196.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">any_vals_less_than</text>
 </a>
 </g>
 </g>
 <!-- proc~validate_2stream&#45;&gt;interface~any_vals_less_than -->
-<g id="proc~~validate_2stream~~CallsGraph_edge2" class="edge">
+<g id="proc~~validate_2stream~~CallsGraph_edge1" class="edge">
 <title>proc~validate_2stream&#45;&gt;interface~any_vals_less_than</title>
-<path fill="none" stroke="#000000" d="M104.04,-54C112.42,-54 121.21,-54 129.89,-54"/>
-<polygon fill="#000000" stroke="#000000" points="129.99,-57.5 139.99,-54 129.99,-50.5 129.99,-57.5"/>
+<path fill="none" stroke="#000000" d="M93.83,-66.04C109.78,-70.74 128.24,-76.18 145.01,-81.12"/>
+<polygon fill="#000000" stroke="#000000" points="144.08,-84.49 154.66,-83.96 146.06,-77.78 144.08,-84.49"/>
+</g>
+<!-- interface~extents_are -->
+<g id="proc~~validate_2stream~~CallsGraph_node3" class="node">
+<title>interface~extents_are</title>
+<g id="a_proc~~validate_2stream~~CallsGraph_node3"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
+<polygon fill="#a7506f" stroke="#a7506f" points="233,-66 160,-66 160,-42 233,-42 233,-66"/>
+<text text-anchor="middle" x="196.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
+</a>
+</g>
+</g>
+<!-- proc~validate_2stream&#45;&gt;interface~extents_are -->
+<g id="proc~~validate_2stream~~CallsGraph_edge2" class="edge">
+<title>proc~validate_2stream&#45;&gt;interface~extents_are</title>
+<path fill="none" stroke="#000000" d="M104.04,-54C118.95,-54 135.15,-54 149.71,-54"/>
+<polygon fill="#000000" stroke="#000000" points="149.98,-57.5 159.98,-54 149.98,-50.5 149.98,-57.5"/>
 </g>
 <!-- interface~any_vals_outside -->
 <g id="proc~~validate_2stream~~CallsGraph_node4" class="node">
@@ -323,7 +212,7 @@ public function validate_2stream(this) result(err_message)
 </g>
 </g>
 <!-- proc~validate_2stream&#45;&gt;interface~any_vals_outside -->
-<g id="proc~~validate_2stream~~CallsGraph_edge1" class="edge">
+<g id="proc~~validate_2stream~~CallsGraph_edge3" class="edge">
 <title>proc~validate_2stream&#45;&gt;interface~any_vals_outside</title>
 <path fill="none" stroke="#000000" d="M93.83,-41.96C109.78,-37.26 128.24,-31.82 145.01,-26.88"/>
 <polygon fill="#000000" stroke="#000000" points="146.06,-30.22 154.66,-24.04 144.08,-23.51 146.06,-30.22"/>
@@ -391,63 +280,62 @@ public function validate_2stream(this) result(err_message)
     </div></div></div></div>
       </div>
     </div>
-     
-     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
-      
-<h3>Contents</h3>
+      <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<em>None</em>
-
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/validate_2stream.html#variable-d1">d1</a>
+      <a class="list-group-item" href="../proc/validate_2stream.html#variable-d2">d2</a>
+      <a class="list-group-item" href="../proc/validate_2stream.html#variable-d3">d3</a>
+    </div>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
+
+    <section>    
+      <h2>Variables</h2>
+    <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th><th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+<tbody>
+<tr>
+  <td><span class="anchor" id="variable-d1"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>d1</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-d2"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>d2</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-d3"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>d3</strong></td><td></td><td></td><td></td>
+</tr>
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
     
 
     
     
-    
-    
-    
-
-    
-    
-    
-    
-    
 
 
-    
-    
     
     
     </div>
   </div>
-
 
     <hr>    
     </div> <!-- /container -->
@@ -455,14 +343,12 @@ public function validate_2stream(this) result(err_message)
       <div class="container">
       <div class="row">
         <div class="col-xs-6 col-md-6"><p>rte-rrtmgp was developed by <br>&copy; 2022 
-                                          </p>
+</p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-            
-            
           </p>
         </div>
       </div>
@@ -490,14 +376,11 @@ public function validate_2stream(this) result(err_message)
         extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
-    
     
   </body>
 </html>

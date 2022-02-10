@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
    <meta name="description" content="A set of codes for computing radiative fluxes in planetary atmospheres.">
-    
     <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
@@ -16,10 +14,7 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
-    
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,60 +43,28 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        
             <li><a href='../page/index.html'>Additional Documentation</a></li>
-      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          
-              
             <li><a href="../lists/files.html">Source Files</a></li>
-        
-        
-        
             <li><a href="../lists/modules.html">Modules</a></li>
-        
-            
-                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
-        
-        
             <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
-               
-            <li><a href="../lists/types.html">Derived Types</a></li>
-        
-               
-        
-        
+                   <li><a href="../lists/types.html">Derived Types</a></li>
+       
             </ul>
         
             </li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
-                             
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
-
-
-
-
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
           </ul>
-        
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -110,51 +73,29 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
-  
   <div class="row">
     <h1>rte_sw
       <small>Function</small>
-    
     </h1>
-    
-<div class="row">
+    <div class="row">
   <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
-     
-     
-     
-     
-     
-    
-    
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
     title=" 3.1% of total for procedures.">63 statements</a>
      </li> 
-     
-     
-     
     <li><i class="fa fa-code"></i><a href="../src/mo_rrtmgp_clr_all_sky.F90"> Source File</a></li>
-     
-     
   </ul>
   <ol class="breadcrumb in-well text-right">
-  
-    
      <li><a href='../sourcefile/mo_rrtmgp_clr_all_sky.f90.html'>mo_rrtmgp_clr_all_sky.F90</a></li>
-    
      <li><a href='../module/mo_rrtmgp_clr_all_sky.html'>mo_rrtmgp_clr_all_sky</a></li>
-    
-  
      <li class="active">rte_sw</li>
   </ol>
 </div>
@@ -170,292 +111,114 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
-<div id="sidebar">
-  
-<h3>Contents</h3>
+    <div id="sidebar">
+  <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <em>None</em>
-
 
 </div>
 
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-public function rte_sw(k_dist, gas_concs, p_lay, t_lay, p_lev, mu0, sfc_alb_dir, sfc_alb_dif, cloud_props, allsky_fluxes, clrsky_fluxes, aer_props, col_dry, inc_flux) result(error_msg)
+    <h2>public function rte_sw(k_dist, gas_concs, p_lay, t_lay, p_lev, mu0, sfc_alb_dir, sfc_alb_dif, cloud_props, allsky_fluxes, clrsky_fluxes, aer_props, col_dry, inc_flux) result(error_msg)</h2>
     
-    
-   
-</h2>
-    
-  
 
-
-    
 
     <h3>Arguments</h3>
-    
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
+      <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
-  <td><span class="anchor" id="variable-k_dist~3"></span>class(<a href='../type/ty_gas_optics.html'>ty_gas_optics</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+  <td><span class="anchor" id="variable-k_dist~2"></span>class(<a href='../type/ty_gas_optics.html'>ty_gas_optics</a>),</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>k_dist</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
-  <td><span class="anchor" id="variable-gas_concs~3"></span>type(<a href='../type/ty_gas_concs.html'>ty_gas_concs</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+  <td><span class="anchor" id="variable-gas_concs~2"></span>type(<a href='../type/ty_gas_concs.html'>ty_gas_concs</a>),</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>gas_concs</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-p_lay~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>p_lay</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-t_lay~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>t_lay</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-p_lev~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>p_lev</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
-  <td><span class="anchor" id="variable-mu0~3"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:  )</td><td>::</td>
+  <td><span class="anchor" id="variable-mu0~2"></span>real(kind=wp),</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:  )</td><td>::</td>
   <td><strong>mu0</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-sfc_alb_dir~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>sfc_alb_dir</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-sfc_alb_dif~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>sfc_alb_dif</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-cloud_props~2"></span>class(<a href='../type/ty_optical_props_arry.html'>ty_optical_props_arry</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>cloud_props</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-allsky_fluxes~2"></span>class(<a href='../type/ty_fluxes.html'>ty_fluxes</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(inout)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>allsky_fluxes</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-clrsky_fluxes~2"></span>class(<a href='../type/ty_fluxes.html'>ty_fluxes</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(inout)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>clrsky_fluxes</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-aer_props~2"></span>class(<a href='../type/ty_optical_props_arry.html'>ty_optical_props_arry</a>),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td>target</td><td>::</td>
+<td>intent(in),</td>
+  <td>optional</td>  <td>target</td><td>::</td>
   <td><strong>aer_props</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-col_dry~5"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td>dimension(:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td>optional</td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>col_dry</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-inc_flux~4"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td>dimension(:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td>optional</td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>inc_flux</strong></td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
-    
-    
-    
-    
-    
-    
-    
-   <h3>Return Value <small><span class="anchor" id="variable-error_msg~17"></span>character(len=128)
-  </small></h3>
-    
-    
+   <h3>Return Value <small><span class="anchor" id="variable-error_msg~13"></span>character(len=128)</small></h3>
     
     <br>
-    
-    
     <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Calls</h3>
@@ -508,74 +271,74 @@ public function rte_sw(k_dist, gas_concs, p_lay, t_lay, p_lev, mu0, sfc_alb_dir,
 <path fill="none" stroke="#000000" d="M123.96,-129.01C133.46,-147.03 153.71,-181.08 180,-201 182.01,-202.52 184.15,-203.95 186.36,-205.28"/>
 <polygon fill="#000000" stroke="#000000" points="184.75,-208.38 195.23,-209.95 188.01,-202.19 184.75,-208.38"/>
 </g>
-<!-- interface~extents_are -->
+<!-- sw_solver_noscat -->
 <g id="proc~~rte_sw~2~~CallsGraph_node4" class="node">
+<title>sw_solver_noscat</title>
+<polygon fill="#777777" stroke="#777777" points="288.5,-192 184.5,-192 184.5,-168 288.5,-168 288.5,-192"/>
+<text text-anchor="middle" x="236.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sw_solver_noscat</text>
+</g>
+<!-- proc~rte_sw&#45;&gt;sw_solver_noscat -->
+<g id="proc~~rte_sw~2~~CallsGraph_edge3" class="edge">
+<title>proc~rte_sw&#45;&gt;sw_solver_noscat</title>
+<path fill="none" stroke="#000000" d="M133.68,-129.13C145.84,-138.17 163.38,-150.38 180,-159 183.45,-160.79 187.09,-162.51 190.79,-164.14"/>
+<polygon fill="#000000" stroke="#000000" points="189.45,-167.37 200.02,-167.99 192.14,-160.91 189.45,-167.37"/>
+</g>
+<!-- interface~extents_are -->
+<g id="proc~~rte_sw~2~~CallsGraph_node5" class="node">
 <title>interface~extents_are</title>
-<g id="a_proc~~rte_sw~2~~CallsGraph_node4"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
-<polygon fill="#a7506f" stroke="#a7506f" points="273,-192 200,-192 200,-168 273,-168 273,-192"/>
-<text text-anchor="middle" x="236.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
+<g id="a_proc~~rte_sw~2~~CallsGraph_node5"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
+<polygon fill="#a7506f" stroke="#a7506f" points="273,-150 200,-150 200,-126 273,-126 273,-150"/>
+<text text-anchor="middle" x="236.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
 </a>
 </g>
 </g>
 <!-- proc~rte_sw&#45;&gt;interface~extents_are -->
-<g id="proc~~rte_sw~2~~CallsGraph_edge3" class="edge">
+<g id="proc~~rte_sw~2~~CallsGraph_edge4" class="edge">
 <title>proc~rte_sw&#45;&gt;interface~extents_are</title>
-<path fill="none" stroke="#000000" d="M133.68,-129.13C145.84,-138.17 163.38,-150.38 180,-159 183.45,-160.79 187.09,-162.51 190.79,-164.14"/>
-<polygon fill="#000000" stroke="#000000" points="189.45,-167.37 200.02,-167.99 192.14,-160.91 189.45,-167.37"/>
+<path fill="none" stroke="#000000" d="M144.08,-121.66C157.5,-124.06 174.26,-127.05 189.75,-129.82"/>
+<polygon fill="#000000" stroke="#000000" points="189.23,-133.29 199.69,-131.6 190.46,-126.4 189.23,-133.29"/>
+</g>
+<!-- sw_solver_2stream -->
+<g id="proc~~rte_sw~2~~CallsGraph_node6" class="node">
+<title>sw_solver_2stream</title>
+<polygon fill="#777777" stroke="#777777" points="292.5,-108 180.5,-108 180.5,-84 292.5,-84 292.5,-108"/>
+<text text-anchor="middle" x="236.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sw_solver_2stream</text>
+</g>
+<!-- proc~rte_sw&#45;&gt;sw_solver_2stream -->
+<g id="proc~~rte_sw~2~~CallsGraph_edge5" class="edge">
+<title>proc~rte_sw&#45;&gt;sw_solver_2stream</title>
+<path fill="none" stroke="#000000" d="M144.08,-112.34C151.92,-110.94 160.91,-109.33 170.11,-107.69"/>
+<polygon fill="#000000" stroke="#000000" points="170.91,-111.1 180.14,-105.89 169.68,-104.21 170.91,-111.1"/>
 </g>
 <!-- interface~any_vals_outside -->
-<g id="proc~~rte_sw~2~~CallsGraph_node5" class="node">
+<g id="proc~~rte_sw~2~~CallsGraph_node7" class="node">
 <title>interface~any_vals_outside</title>
-<g id="a_proc~~rte_sw~2~~CallsGraph_node5"><a xlink:href=".././interface/any_vals_outside.html" xlink:title="any_vals_outside">
-<polygon fill="#a7506f" stroke="#a7506f" points="288,-150 185,-150 185,-126 288,-126 288,-150"/>
-<text text-anchor="middle" x="236.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">any_vals_outside</text>
+<g id="a_proc~~rte_sw~2~~CallsGraph_node7"><a xlink:href=".././interface/any_vals_outside.html" xlink:title="any_vals_outside">
+<polygon fill="#a7506f" stroke="#a7506f" points="288,-66 185,-66 185,-42 288,-42 288,-66"/>
+<text text-anchor="middle" x="236.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">any_vals_outside</text>
 </a>
 </g>
 </g>
 <!-- proc~rte_sw&#45;&gt;interface~any_vals_outside -->
-<g id="proc~~rte_sw~2~~CallsGraph_edge4" class="edge">
+<g id="proc~~rte_sw~2~~CallsGraph_edge6" class="edge">
 <title>proc~rte_sw&#45;&gt;interface~any_vals_outside</title>
-<path fill="none" stroke="#000000" d="M144.08,-121.66C153.29,-123.31 164.08,-125.24 174.95,-127.18"/>
-<polygon fill="#000000" stroke="#000000" points="174.45,-130.64 184.91,-128.96 175.68,-123.75 174.45,-130.64"/>
+<path fill="none" stroke="#000000" d="M133.68,-104.87C145.84,-95.83 163.38,-83.62 180,-75 183.45,-73.21 187.09,-71.49 190.79,-69.86"/>
+<polygon fill="#000000" stroke="#000000" points="192.14,-73.09 200.02,-66.01 189.45,-66.63 192.14,-73.09"/>
 </g>
 <!-- interface~zero_array -->
-<g id="proc~~rte_sw~2~~CallsGraph_node6" class="node">
+<g id="proc~~rte_sw~2~~CallsGraph_node8" class="node">
 <title>interface~zero_array</title>
-<g id="a_proc~~rte_sw~2~~CallsGraph_node6"><a xlink:href=".././interface/zero_array.html" xlink:title="zero_array">
-<polygon fill="#a7506f" stroke="#a7506f" points="271,-108 202,-108 202,-84 271,-84 271,-108"/>
-<text text-anchor="middle" x="236.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">zero_array</text>
+<g id="a_proc~~rte_sw~2~~CallsGraph_node8"><a xlink:href=".././interface/zero_array.html" xlink:title="zero_array">
+<polygon fill="#a7506f" stroke="#a7506f" points="271,-24 202,-24 202,0 271,0 271,-24"/>
+<text text-anchor="middle" x="236.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">zero_array</text>
 </a>
 </g>
 </g>
 <!-- proc~rte_sw&#45;&gt;interface~zero_array -->
-<g id="proc~~rte_sw~2~~CallsGraph_edge5" class="edge">
-<title>proc~rte_sw&#45;&gt;interface~zero_array</title>
-<path fill="none" stroke="#000000" d="M144.08,-112.34C158.05,-109.84 175.65,-106.7 191.66,-103.84"/>
-<polygon fill="#000000" stroke="#000000" points="192.67,-107.21 201.9,-102.01 191.44,-100.32 192.67,-107.21"/>
-</g>
-<!-- sw_solver_2stream -->
-<g id="proc~~rte_sw~2~~CallsGraph_node7" class="node">
-<title>sw_solver_2stream</title>
-<polygon fill="#777777" stroke="#777777" points="292.5,-66 180.5,-66 180.5,-42 292.5,-42 292.5,-66"/>
-<text text-anchor="middle" x="236.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sw_solver_2stream</text>
-</g>
-<!-- proc~rte_sw&#45;&gt;sw_solver_2stream -->
-<g id="proc~~rte_sw~2~~CallsGraph_edge6" class="edge">
-<title>proc~rte_sw&#45;&gt;sw_solver_2stream</title>
-<path fill="none" stroke="#000000" d="M133.68,-104.87C145.84,-95.83 163.38,-83.62 180,-75 183.45,-73.21 187.09,-71.49 190.79,-69.86"/>
-<polygon fill="#000000" stroke="#000000" points="192.14,-73.09 200.02,-66.01 189.45,-66.63 192.14,-73.09"/>
-</g>
-<!-- sw_solver_noscat -->
-<g id="proc~~rte_sw~2~~CallsGraph_node8" class="node">
-<title>sw_solver_noscat</title>
-<polygon fill="#777777" stroke="#777777" points="288.5,-24 184.5,-24 184.5,0 288.5,0 288.5,-24"/>
-<text text-anchor="middle" x="236.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sw_solver_noscat</text>
-</g>
-<!-- proc~rte_sw&#45;&gt;sw_solver_noscat -->
 <g id="proc~~rte_sw~2~~CallsGraph_edge7" class="edge">
-<title>proc~rte_sw&#45;&gt;sw_solver_noscat</title>
-<path fill="none" stroke="#000000" d="M123.96,-104.99C133.46,-86.97 153.71,-52.92 180,-33 182.01,-31.48 184.15,-30.05 186.36,-28.72"/>
-<polygon fill="#000000" stroke="#000000" points="188.01,-31.81 195.23,-24.05 184.75,-25.62 188.01,-31.81"/>
+<title>proc~rte_sw&#45;&gt;interface~zero_array</title>
+<path fill="none" stroke="#000000" d="M123.96,-104.99C133.46,-86.97 153.71,-52.92 180,-33 183.85,-30.08 188.16,-27.53 192.62,-25.3"/>
+<polygon fill="#000000" stroke="#000000" points="194.18,-28.44 201.9,-21.19 191.34,-22.04 194.18,-28.44"/>
 </g>
 </g>
 </svg>
@@ -640,63 +403,28 @@ public function rte_sw(k_dist, gas_concs, p_lay, t_lay, p_lev, mu0, sfc_alb_dir,
     </div></div></div></div>
       </div>
     </div>
-     
-     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
-      
-<h3>Contents</h3>
+      <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <em>None</em>
-
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
-    
 
-    
-    
-    
     
     
 
     
     
-    
-    
-    
 
 
-    
-    
     
     
     </div>
   </div>
-
 
     <hr>    
     </div> <!-- /container -->
@@ -704,14 +432,12 @@ public function rte_sw(k_dist, gas_concs, p_lay, t_lay, p_lev, mu0, sfc_alb_dir,
       <div class="container">
       <div class="row">
         <div class="col-xs-6 col-md-6"><p>rte-rrtmgp was developed by <br>&copy; 2022 
-                                          </p>
+</p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-            
-            
           </p>
         </div>
       </div>
@@ -739,14 +465,11 @@ public function rte_sw(k_dist, gas_concs, p_lay, t_lay, p_lev, mu0, sfc_alb_dir,
         extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
-    
     
   </body>
 </html>

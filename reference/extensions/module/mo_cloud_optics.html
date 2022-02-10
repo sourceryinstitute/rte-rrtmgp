@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
    <meta name="description" content="A set of codes for computing radiative fluxes in planetary atmospheres.">
-    
     <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
@@ -16,10 +14,7 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
-    
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,60 +43,28 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        
             <li><a href='../page/index.html'>Additional Documentation</a></li>
-      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          
-              
             <li><a href="../lists/files.html">Source Files</a></li>
-        
-        
-        
             <li><a href="../lists/modules.html">Modules</a></li>
-        
-            
-                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
-        
-        
             <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
-               
-            <li><a href="../lists/types.html">Derived Types</a></li>
-        
-               
-        
-        
+                   <li><a href="../lists/types.html">Derived Types</a></li>
+       
             </ul>
         
             </li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
-                             
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
-
-
-
-
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
           </ul>
-        
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -110,49 +73,28 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
-  
   <div class="row">
     <h1>mo_cloud_optics 
     <small>Module</small>
-    
     </h1>
-    
-<div class="row">
+    <div class="row">
   <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
-     
-     
-     
-     
-     
-    
-    
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
     title=" 9.1% of total for modules and submodules.">370 statements</a>
      </li> 
-     
-     
-     
     <li><i class="fa fa-code"></i><a href="../src/mo_cloud_optics.F90"> Source File</a></li>
-     
-     
   </ul>
   <ol class="breadcrumb in-well text-right">
-  
-    
      <li><a href='../sourcefile/mo_cloud_optics.f90.html'>mo_cloud_optics.F90</a></li>
-    
-  
      <li class="active">mo_cloud_optics</li>
   </ol>
 </div>
@@ -168,56 +110,25 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
-<div id="sidebar">
-  
-<h3>Contents</h3>
+    <div id="sidebar">
+  <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-0">Interfaces</a></h3></div>
   <div id="inters-0" class="panel-collapse collapse">
     <div class="list-group">
-      
       <a class="list-group-item" href="../module/mo_cloud_optics.html#interface-pade_eval">pade_eval</a>
-      
     </div>
   </div>
 </div>
-
-
-
-
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#types-0">Derived Types</a></h3></div>
   <div id="types-0" class="panel-collapse collapse">
     <div class="list-group">
-      
       <a class="list-group-item" href="../module/mo_cloud_optics.html#type-ty_cloud_optics">ty_cloud_optics</a>
-      
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 </div>
 
@@ -225,31 +136,19 @@
     
     <div class="col-md-9" id='text'>
     
-      <br>
-    
-  
-    <div class="panel panel-default">
+<br>        <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Uses</h3>
       </div>
       <ul class="list-group">
-      
       <li class="list-group-item">
   <ul class="list-inline">
-    
     <li><a href='../module/mo_rte_util_array.html'>mo_rte_util_array</a></li>
-    
-    <li><a href='../module/mo_rte_config.html'>mo_rte_config</a></li>
-    
     <li><a href='../module/mo_optical_props.html'>mo_optical_props</a></li>
-    
+    <li><a href='../module/mo_rte_config.html'>mo_rte_config</a></li>
     <li><a href='../module/mo_rte_kind.html'>mo_rte_kind</a></li>
-    
   </ul>
       </li>
-      
-      
-      
       <li class="list-group-item">
   <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -257,134 +156,134 @@
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: module~~mo_cloud_optics~~UsesGraph Pages: 1 -->
-<svg id="modulemo_cloud_opticsUsesGraph" width="641pt" height="190pt"
- viewBox="0.00 0.00 641.00 189.74" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~mo_cloud_optics~~UsesGraph" class="graph" transform="scale(1.05 1.05) rotate(0) translate(4 194.62)">
+<svg id="modulemo_cloud_opticsUsesGraph" width="641pt" height="186pt"
+ viewBox="0.00 0.00 641.00 186.36" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~mo_cloud_optics~~UsesGraph" class="graph" transform="scale(1.05 1.05) rotate(0) translate(4 191.09)">
 <title>module~~mo_cloud_optics~~UsesGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-194.62 667,-194.62 667,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-191.09 667,-191.09 667,4 -4,4"/>
 <!-- module~mo_cloud_optics -->
 <g id="module~~mo_cloud_optics~~UsesGraph_node1" class="node">
 <title>module~mo_cloud_optics</title>
-<polygon fill="none" stroke="black" points="663,-84 562,-84 562,-60 663,-60 663,-84"/>
-<text text-anchor="middle" x="612.5" y="-69.6" font-family="Helvetica,sans-Serif" font-size="10.50">mo_cloud_optics</text>
-</g>
-<!-- module~mo_rte_util_array -->
-<g id="module~~mo_cloud_optics~~UsesGraph_node2" class="node">
-<title>module~mo_rte_util_array</title>
-<g id="a_module~~mo_cloud_optics~~UsesGraph_node2"><a xlink:href=".././module/mo_rte_util_array.html" xlink:title="mo_rte_util_array">
-<polygon fill="#337ab7" stroke="#337ab7" points="362,-146 256,-146 256,-122 362,-122 362,-146"/>
-<text text-anchor="middle" x="309" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_util_array</text>
-</a>
-</g>
-</g>
-<!-- module~mo_cloud_optics&#45;&gt;module~mo_rte_util_array -->
-<g id="module~~mo_cloud_optics~~UsesGraph_edge1" class="edge">
-<title>module~mo_cloud_optics&#45;&gt;module~mo_rte_util_array</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M601.35,-84.12C580.51,-107.85 530.08,-159.38 474,-174"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M472,-174C449.66,-179.82 392.36,-162.9 352.28,-149.29"/>
-<polygon fill="#000000" stroke="#000000" points="353.34,-145.95 342.74,-146 351.06,-152.57 353.34,-145.95"/>
+<polygon fill="none" stroke="black" points="663,-96 562,-96 562,-72 663,-72 663,-96"/>
+<text text-anchor="middle" x="612.5" y="-81.6" font-family="Helvetica,sans-Serif" font-size="10.50">mo_cloud_optics</text>
 </g>
 <!-- module~mo_rte_kind -->
-<g id="module~~mo_cloud_optics~~UsesGraph_node3" class="node">
+<g id="module~~mo_cloud_optics~~UsesGraph_node2" class="node">
 <title>module~mo_rte_kind</title>
-<g id="a_module~~mo_cloud_optics~~UsesGraph_node3"><a xlink:href=".././module/mo_rte_kind.html" xlink:title="mo_rte_kind">
-<polygon fill="#337ab7" stroke="#337ab7" points="198,-105 120,-105 120,-81 198,-81 198,-105"/>
-<text text-anchor="middle" x="159" y="-90.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_kind</text>
+<g id="a_module~~mo_cloud_optics~~UsesGraph_node2"><a xlink:href=".././module/mo_rte_kind.html" xlink:title="mo_rte_kind">
+<polygon fill="#337ab7" stroke="#337ab7" points="198,-126 120,-126 120,-102 198,-102 198,-126"/>
+<text text-anchor="middle" x="159" y="-111.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_kind</text>
 </a>
 </g>
 </g>
 <!-- module~mo_cloud_optics&#45;&gt;module~mo_rte_kind -->
-<g id="module~~mo_cloud_optics~~UsesGraph_edge2" class="edge">
+<g id="module~~mo_cloud_optics~~UsesGraph_edge1" class="edge">
 <title>module~mo_cloud_optics&#45;&gt;module~mo_rte_kind</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M472,-174C369.32,-200.77 332.21,-195.2 234,-155 211.49,-145.79 190.72,-127.09 176.95,-112.63"/>
-<polygon fill="#000000" stroke="#000000" points="179.4,-110.12 170.06,-105.12 174.24,-114.85 179.4,-110.12"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M472,-174C368.58,-197.76 335.6,-185.63 234,-155 216.81,-149.82 199.17,-140.24 185.42,-131.64"/>
+<polygon fill="#000000" stroke="#000000" points="187.29,-128.68 177,-126.19 183.49,-134.56 187.29,-128.68"/>
+</g>
+<!-- module~mo_rte_config -->
+<g id="module~~mo_cloud_optics~~UsesGraph_node3" class="node">
+<title>module~mo_rte_config</title>
+<g id="a_module~~mo_cloud_optics~~UsesGraph_node3"><a xlink:href=".././module/mo_rte_config.html" xlink:title="mo_rte_config">
+<polygon fill="#337ab7" stroke="#337ab7" points="353,-146 265,-146 265,-122 353,-122 353,-146"/>
+<text text-anchor="middle" x="309" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_config</text>
+</a>
+</g>
+</g>
+<!-- module~mo_cloud_optics&#45;&gt;module~mo_rte_config -->
+<g id="module~~mo_cloud_optics~~UsesGraph_edge2" class="edge">
+<title>module~mo_cloud_optics&#45;&gt;module~mo_rte_config</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M599.68,-96.1C577.51,-117.71 527.11,-161.8 474,-174"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M472,-174C449.63,-179.14 392.9,-162.6 352.91,-149.24"/>
+<polygon fill="#000000" stroke="#000000" points="353.98,-145.91 343.39,-146.02 351.73,-152.54 353.98,-145.91"/>
 </g>
 <!-- module~mo_optical_props -->
 <g id="module~~mo_cloud_optics~~UsesGraph_node4" class="node">
 <title>module~mo_optical_props</title>
 <g id="a_module~~mo_cloud_optics~~UsesGraph_node4"><a xlink:href=".././module/mo_optical_props.html" xlink:title="mo_optical_props">
-<polygon fill="#337ab7" stroke="#337ab7" points="526,-84 420,-84 420,-60 526,-60 526,-84"/>
-<text text-anchor="middle" x="473" y="-69.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_optical_props</text>
+<polygon fill="#337ab7" stroke="#337ab7" points="526,-96 420,-96 420,-72 526,-72 526,-96"/>
+<text text-anchor="middle" x="473" y="-81.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_optical_props</text>
 </a>
 </g>
 </g>
 <!-- module~mo_cloud_optics&#45;&gt;module~mo_optical_props -->
 <g id="module~~mo_cloud_optics~~UsesGraph_edge3" class="edge">
 <title>module~mo_cloud_optics&#45;&gt;module~mo_optical_props</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M561.86,-72C553.66,-72 545.06,-72 536.59,-72"/>
-<polygon fill="#000000" stroke="#000000" points="536.35,-68.5 526.35,-72 536.35,-75.5 536.35,-68.5"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M561.86,-84C553.66,-84 545.06,-84 536.59,-84"/>
+<polygon fill="#000000" stroke="#000000" points="536.35,-80.5 526.35,-84 536.35,-87.5 536.35,-80.5"/>
 </g>
-<!-- module~mo_rte_config -->
+<!-- module~mo_rte_util_array -->
 <g id="module~~mo_cloud_optics~~UsesGraph_node5" class="node">
-<title>module~mo_rte_config</title>
-<g id="a_module~~mo_cloud_optics~~UsesGraph_node5"><a xlink:href=".././module/mo_rte_config.html" xlink:title="mo_rte_config">
-<polygon fill="#337ab7" stroke="#337ab7" points="353,-24 265,-24 265,0 353,0 353,-24"/>
-<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_config</text>
+<title>module~mo_rte_util_array</title>
+<g id="a_module~~mo_cloud_optics~~UsesGraph_node5"><a xlink:href=".././module/mo_rte_util_array.html" xlink:title="mo_rte_util_array">
+<polygon fill="#337ab7" stroke="#337ab7" points="362,-24 256,-24 256,0 362,0 362,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_rte_util_array</text>
 </a>
 </g>
 </g>
-<!-- module~mo_cloud_optics&#45;&gt;module~mo_rte_config -->
+<!-- module~mo_cloud_optics&#45;&gt;module~mo_rte_util_array -->
 <g id="module~~mo_cloud_optics~~UsesGraph_edge4" class="edge">
-<title>module~mo_cloud_optics&#45;&gt;module~mo_rte_config</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M564.58,-59.92C552.08,-56.85 538.56,-53.67 526,-51 470.68,-39.22 406.89,-27.99 363.05,-20.63"/>
-<polygon fill="#000000" stroke="#000000" points="363.63,-17.18 353.19,-18.98 362.47,-24.08 363.63,-17.18"/>
-</g>
-<!-- module~mo_rte_util_array&#45;&gt;module~mo_rte_kind -->
-<g id="module~~mo_cloud_optics~~UsesGraph_edge5" class="edge">
-<title>module~mo_rte_util_array&#45;&gt;module~mo_rte_kind</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M264.4,-121.92C246.7,-117.02 226.19,-111.34 208.06,-106.31"/>
-<polygon fill="#000000" stroke="#000000" points="208.84,-102.9 198.27,-103.6 206.97,-109.64 208.84,-102.9"/>
+<title>module~mo_cloud_optics&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M562.69,-71.93C550.7,-68.99 537.89,-65.86 526,-63 473.87,-50.44 414.59,-36.47 371.33,-26.33"/>
+<polygon fill="#000000" stroke="#000000" points="372.06,-22.9 361.53,-24.03 370.47,-29.72 372.06,-22.9"/>
 </g>
 <!-- iso_c_binding -->
-<g id="module~~mo_cloud_optics~~UsesGraph_node7" class="node">
+<g id="module~~mo_cloud_optics~~UsesGraph_node6" class="node">
 <title>iso_c_binding</title>
-<g id="a_module~~mo_cloud_optics~~UsesGraph_node7"><a xlink:href="http://fortranwiki.org/fortran/show/iso_c_binding" xlink:title="iso_c_binding">
-<polygon fill="#337ab7" stroke="#337ab7" points="84,-105 0,-105 0,-81 84,-81 84,-105"/>
-<text text-anchor="middle" x="42" y="-90.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_c_binding</text>
+<g id="a_module~~mo_cloud_optics~~UsesGraph_node6"><a xlink:href="http://fortranwiki.org/fortran/show/iso_c_binding" xlink:title="iso_c_binding">
+<polygon fill="#337ab7" stroke="#337ab7" points="84,-126 0,-126 0,-102 84,-102 84,-126"/>
+<text text-anchor="middle" x="42" y="-111.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_c_binding</text>
 </a>
 </g>
 </g>
 <!-- module~mo_rte_kind&#45;&gt;iso_c_binding -->
-<g id="module~~mo_cloud_optics~~UsesGraph_edge6" class="edge">
+<g id="module~~mo_cloud_optics~~UsesGraph_edge5" class="edge">
 <title>module~mo_rte_kind&#45;&gt;iso_c_binding</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M119.71,-93C111.62,-93 102.97,-93 94.49,-93"/>
-<polygon fill="#000000" stroke="#000000" points="94.29,-89.5 84.29,-93 94.29,-96.5 94.29,-89.5"/>
-</g>
-<!-- module~mo_optical_props&#45;&gt;module~mo_rte_util_array -->
-<g id="module~~mo_cloud_optics~~UsesGraph_edge8" class="edge">
-<title>module~mo_optical_props&#45;&gt;module~mo_rte_util_array</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M448.53,-84.18C431.05,-92.95 406.43,-104.65 384,-113 378.47,-115.06 372.64,-117.03 366.78,-118.89"/>
-<polygon fill="#000000" stroke="#000000" points="365.48,-115.63 356.95,-121.9 367.53,-122.32 365.48,-115.63"/>
-</g>
-<!-- module~mo_optical_props&#45;&gt;module~mo_rte_kind -->
-<g id="module~~mo_cloud_optics~~UsesGraph_edge9" class="edge">
-<title>module~mo_optical_props&#45;&gt;module~mo_rte_kind</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M419.69,-67.35C371.26,-64.09 297.38,-61.78 234,-71 223.75,-72.49 212.95,-75.09 202.87,-77.98"/>
-<polygon fill="#000000" stroke="#000000" points="201.62,-74.7 193.06,-80.95 203.65,-81.4 201.62,-74.7"/>
-</g>
-<!-- module~mo_optical_props&#45;&gt;module~mo_rte_config -->
-<g id="module~~mo_cloud_optics~~UsesGraph_edge10" class="edge">
-<title>module~mo_optical_props&#45;&gt;module~mo_rte_config</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M441.54,-59.97C424.64,-53.36 403.21,-45.08 384,-38 374.51,-34.5 364.31,-30.85 354.59,-27.42"/>
-<polygon fill="#000000" stroke="#000000" points="355.68,-24.09 345.09,-24.08 353.36,-30.7 355.68,-24.09"/>
-</g>
-<!-- mo_optical_props_kernels -->
-<g id="module~~mo_cloud_optics~~UsesGraph_node6" class="node">
-<title>mo_optical_props_kernels</title>
-<polygon fill="#337ab7" stroke="#337ab7" points="384,-104 234,-104 234,-80 384,-80 384,-104"/>
-<text text-anchor="middle" x="309" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_optical_props_kernels</text>
-</g>
-<!-- module~mo_optical_props&#45;&gt;mo_optical_props_kernels -->
-<g id="module~~mo_cloud_optics~~UsesGraph_edge7" class="edge">
-<title>module~mo_optical_props&#45;&gt;mo_optical_props_kernels</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M419.85,-78.44C411.67,-79.45 403.04,-80.51 394.36,-81.58"/>
-<polygon fill="#000000" stroke="#000000" points="393.67,-78.14 384.18,-82.84 394.53,-85.09 393.67,-78.14"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M119.71,-114C111.62,-114 102.97,-114 94.49,-114"/>
+<polygon fill="#000000" stroke="#000000" points="94.29,-110.5 84.29,-114 94.29,-117.5 94.29,-110.5"/>
 </g>
 <!-- module~mo_rte_config&#45;&gt;module~mo_rte_kind -->
-<g id="module~~mo_cloud_optics~~UsesGraph_edge11" class="edge">
+<g id="module~~mo_cloud_optics~~UsesGraph_edge6" class="edge">
 <title>module~mo_rte_config&#45;&gt;module~mo_rte_kind</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M266.74,-24.03C255.81,-27.88 244.22,-32.57 234,-38 214.98,-48.11 195.5,-62.79 181.31,-74.44"/>
-<polygon fill="#000000" stroke="#000000" points="179.03,-71.79 173.61,-80.9 183.52,-77.16 179.03,-71.79"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M264.79,-128.16C247.17,-125.78 226.7,-123.01 208.56,-120.56"/>
+<polygon fill="#000000" stroke="#000000" points="208.85,-117.07 198.47,-119.2 207.91,-124.01 208.85,-117.07"/>
+</g>
+<!-- module~mo_optical_props&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_cloud_optics~~UsesGraph_edge7" class="edge">
+<title>module~mo_optical_props&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M419.78,-89.02C360.82,-94.69 265.68,-103.84 208.36,-109.35"/>
+<polygon fill="#000000" stroke="#000000" points="207.74,-105.89 198.12,-110.33 208.41,-112.86 207.74,-105.89"/>
+</g>
+<!-- module~mo_optical_props&#45;&gt;module~mo_rte_config -->
+<g id="module~~mo_cloud_optics~~UsesGraph_edge8" class="edge">
+<title>module~mo_optical_props&#45;&gt;module~mo_rte_config</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M432.78,-96.1C410.58,-102.96 382.61,-111.59 358.97,-118.89"/>
+<polygon fill="#000000" stroke="#000000" points="357.66,-115.63 349.13,-121.92 359.72,-122.32 357.66,-115.63"/>
+</g>
+<!-- module~mo_optical_props&#45;&gt;module~mo_rte_util_array -->
+<g id="module~~mo_cloud_optics~~UsesGraph_edge10" class="edge">
+<title>module~mo_optical_props&#45;&gt;module~mo_rte_util_array</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M454.15,-71.87C436.84,-60.55 409.53,-43.82 384,-33 379.2,-30.97 374.15,-29.07 369.03,-27.31"/>
+<polygon fill="#000000" stroke="#000000" points="369.75,-23.86 359.16,-24.09 367.58,-30.51 369.75,-23.86"/>
+</g>
+<!-- mo_optical_props_kernels -->
+<g id="module~~mo_cloud_optics~~UsesGraph_node7" class="node">
+<title>mo_optical_props_kernels</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="384,-66 234,-66 234,-42 384,-42 384,-66"/>
+<text text-anchor="middle" x="309" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mo_optical_props_kernels</text>
+</g>
+<!-- module~mo_optical_props&#45;&gt;mo_optical_props_kernels -->
+<g id="module~~mo_cloud_optics~~UsesGraph_edge9" class="edge">
+<title>module~mo_optical_props&#45;&gt;mo_optical_props_kernels</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M419.85,-74.34C408.65,-72.27 396.6,-70.04 384.74,-67.84"/>
+<polygon fill="#000000" stroke="#000000" points="385.3,-64.39 374.83,-66.01 384.03,-71.27 385.3,-64.39"/>
+</g>
+<!-- module~mo_rte_util_array&#45;&gt;module~mo_rte_kind -->
+<g id="module~~mo_cloud_optics~~UsesGraph_edge11" class="edge">
+<title>module~mo_rte_util_array&#45;&gt;module~mo_rte_kind</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M255.89,-22.81C248.25,-25.51 240.7,-28.86 234,-33 208.8,-48.57 186.9,-75.13 173.6,-93.57"/>
+<polygon fill="#000000" stroke="#000000" points="170.64,-91.68 167.78,-101.88 176.38,-95.69 170.64,-91.68"/>
 </g>
 </g>
 </svg>
@@ -447,605 +346,271 @@
     </p>
     </div></div></div></div>
       </li>
-      
       </ul>
     </div>
-    
 
     
-    
-
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
-      
-<h3>Contents</h3>
+      <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-1">Interfaces</a></h3></div>
   <div id="inters-1" class="panel-collapse collapse">
     <div class="list-group">
-      
       <a class="list-group-item" href="../module/mo_cloud_optics.html#interface-pade_eval">pade_eval</a>
-      
     </div>
   </div>
 </div>
-
-
-
-
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#types-1">Derived Types</a></h3></div>
   <div id="types-1" class="panel-collapse collapse">
     <div class="list-group">
-      
       <a class="list-group-item" href="../module/mo_cloud_optics.html#type-ty_cloud_optics">ty_cloud_optics</a>
-      
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
-    
 
-    
-    
-    
     
     
     <section>
    <h2>Interfaces</h2>
-   
-     
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="interface-pade_eval"></span><h3>public interface <a href='../interface/pade_eval.html'>pade_eval</a>
-    
-  </h3></div>
-  
+     <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-pade_eval"></span><h3>public interface <a href='../interface/pade_eval.html'>pade_eval</a>  </h3></div>
   <ul class="list-group">
-  
-  
-  
     <li class="list-group-item">
-    
-    
-    <h3>
-private function pade_eval_nbnd(nbnd, nrads, m, n, irad, re, pade_coeffs)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
+    <h3>private function pade_eval_nbnd(nbnd, nrads, m, n, irad, re, pade_coeffs)</h3>    
+<h4>Arguments</h4>      <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nbnd</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nrads</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>m</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>n</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>irad</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>re</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(nbnd, nrads, 0:m+n)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(nbnd, nrads, 0:m+n)</td><td>::</td>
   <td><strong>pade_coeffs</strong></td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
-      
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>real(kind=wp),
-  dimension(nbnd)</small></h4>
-  
-    
+<h4>Return Value <small>real(kind=wp),dimension(nbnd)</small></h4>  
 
     </li>
-  
     <li class="list-group-item">
-    
-    
-    <h3>
-private function pade_eval_1(iband, nbnd, nrads, m, n, irad, re, pade_coeffs)
-    
-    
-   
-</h3>
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
+    <h3>private function pade_eval_1(iband, nbnd, nrads, m, n, irad, re, pade_coeffs)</h3>    
+<h4>Arguments</h4>      <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>iband</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nbnd</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nrads</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>m</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>n</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>irad</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>re</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(nbnd, nrads, 0:m+n)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(nbnd, nrads, 0:m+n)</td><td>::</td>
   <td><strong>pade_coeffs</strong></td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
-      
-    
-    
-
-  
-  
-  
-  
-     <h4>Return Value <small>real(kind=wp)
-  </small></h4>
-  
-    
+<h4>Return Value <small>real(kind=wp)</small></h4>  
 
     </li>
-  
-  
   </ul>
 </div>
 
-    
     </section>
   <br>
-    
 
-    
-    
     
     <section>
      <h2>Derived Types</h2>
-   
-     
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="type-ty_cloud_optics"></span><h3>type, public, extends(<a href='../type/ty_optical_props.html'>ty_optical_props</a>) :: <a href='../type/ty_cloud_optics.html'>ty_cloud_optics</a>
-    
-  </h3></div>
+     <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="type-ty_cloud_optics"></span><h3>type, public, extends(<a href='../type/ty_optical_props.html'>ty_optical_props</a>) :: <a href='../type/ty_cloud_optics.html'>ty_cloud_optics</a>  </h3></div>
   <div class="panel-body">
-    
-     
      <h4>Components</h4>
-    
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th><th>Visibility</th>
-
-<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
-
-
-
+    <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th><th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-band2gpt"></span>integer,</td>
-  
-  <td>public,</td>
-  <td>dimension(:,:), allocatable</td><td>::</td>
+<td>public,</td>  <td>dimension(:,:), allocatable</td><td>::</td>
   <td><strong>band2gpt</strong></td><td></td><td></td><td><p>(begin g-point, end g-point) = band2gpt(2,band)</p></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-band_lims_wvn"></span>real(kind=wp),</td>
-  
-  <td>public,</td>
-  <td>dimension(:,:), allocatable</td><td>::</td>
+<td>public,</td>  <td>dimension(:,:), allocatable</td><td>::</td>
   <td><strong>band_lims_wvn</strong></td><td></td><td></td><td><p>(upper and lower wavenumber by band) = band_lims_wvn(2,band)</p></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-gpt2band"></span>integer,</td>
-  
-  <td>public,</td>
-  <td>dimension(:), allocatable</td><td>::</td>
+<td>public,</td>  <td>dimension(:), allocatable</td><td>::</td>
   <td><strong>gpt2band</strong></td><td></td><td></td><td><p>band = gpt2band(g-point)</p></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-name"></span>character(len=name_len),</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
+<td>public</td>  <td></td><td>::</td>
   <td><strong>name</strong></td><td> =</td><td>""</td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
-     
-     
-          
      
      <h4>Type-Bound Procedures</h4>
       <table class="table table-striped varlist">
       <tbody>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-bands_are_equal'>bands_are_equal</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_cloud_optics.html#boundprocedure-cloud_optics'>cloud_optics</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-convert_band2gpt'>convert_band2gpt</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-convert_gpt2band'>convert_gpt2band</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-expand'>expand</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_cloud_optics.html#boundprocedure-finalize~5'>finalize</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_band_lims_gpoint'>get_band_lims_gpoint</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_band_lims_wavelength'>get_band_lims_wavelength</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_band_lims_wavenumber'>get_band_lims_wavenumber</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_gpoint_bands'>get_gpoint_bands</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_cloud_optics.html#boundprocedure-get_max_radius_ice'>get_max_radius_ice</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_cloud_optics.html#boundprocedure-get_max_radius_liq'>get_max_radius_liq</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_cloud_optics.html#boundprocedure-get_min_radius_ice'>get_min_radius_ice</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_cloud_optics.html#boundprocedure-get_min_radius_liq'>get_min_radius_liq</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_name'>get_name</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_nband'>get_nband</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-get_ngpt'>get_ngpt</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_cloud_optics.html#boundprocedure-get_num_ice_roughness_types'>get_num_ice_roughness_types</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-gpoints_are_equal'>gpoints_are_equal</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>generic, public :: <strong><a href='../type/ty_cloud_optics.html#boundprocedure-init~11'>init</a></strong>  => init_base, init_base_from_copy </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-is_initialized'>is_initialized</a></strong>  => is_initialized_base </td>
        <td></td></tr>
-      
        <tr><td>generic, public :: <strong><a href='../type/ty_cloud_optics.html#boundprocedure-load~3'>load</a></strong>  => load_lut, load_pade </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_cloud_optics.html#boundprocedure-set_ice_roughness'>set_ice_roughness</a></strong>  </td>
        <td></td></tr>
-      
        <tr><td>procedure, public :: <strong><a href='../type/ty_optical_props.html#boundprocedure-set_name'>set_name</a></strong>  </td>
        <td></td></tr>
-      
        </tbody>
        </table>
-     
   </div>
 </div>
 
-     
     </section>
   <br>
     
-    
-    
 
-    
-    
     
     </div>
   </div>
 
-  
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
         <div class="col-xs-6 col-md-6"><p>rte-rrtmgp was developed by <br>&copy; 2022 
-                                          </p>
+</p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-            
-            
           </p>
         </div>
       </div>
@@ -1073,14 +638,11 @@ private function pade_eval_1(iband, nbnd, nrads, m, n, irad, re, pade_coeffs)
         extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
-    
     
   </body>
 </html>

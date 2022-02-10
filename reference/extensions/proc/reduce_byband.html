@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
    <meta name="description" content="A set of codes for computing radiative fluxes in planetary atmospheres.">
-    
     <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
@@ -16,10 +14,7 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
-    
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,60 +43,28 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        
             <li><a href='../page/index.html'>Additional Documentation</a></li>
-      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          
-              
             <li><a href="../lists/files.html">Source Files</a></li>
-        
-        
-        
             <li><a href="../lists/modules.html">Modules</a></li>
-        
-            
-                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
-        
-        
             <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
-               
-            <li><a href="../lists/types.html">Derived Types</a></li>
-        
-               
-        
-        
+                   <li><a href="../lists/types.html">Derived Types</a></li>
+       
             </ul>
         
             </li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
-                             
-<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
-
-
-
-
+                             <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
           </ul>
-        
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -110,51 +73,29 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
-  
   <div class="row">
     <h1>reduce_byband
       <small>Function</small>
-    
     </h1>
-    
-<div class="row">
+    <div class="row">
   <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
-     
-     
-     
-     
-     
-    
-    
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
     title=" 2.8% of total for procedures.">57 statements</a>
      </li> 
-     
-     
-     
     <li><i class="fa fa-code"></i><a href="../src/mo_fluxes_byband.F90"> Source File</a></li>
-     
-     
   </ul>
   <ol class="breadcrumb in-well text-right">
-  
-    
      <li><a href='../sourcefile/mo_fluxes_byband.f90.html'>mo_fluxes_byband.F90</a></li>
-    
      <li><a href='../module/mo_fluxes_byband.html'>mo_fluxes_byband</a></li>
-    
-  
      <li class="active">reduce_byband</li>
   </ol>
 </div>
@@ -170,172 +111,77 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
-<div id="sidebar">
-  
-<h3>Contents</h3>
+    <div id="sidebar">
+  <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<em>None</em>
-
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/reduce_byband.html#variable-band_lims">band_lims</a>
+      <a class="list-group-item" href="../proc/reduce_byband.html#variable-nbnd~2">nbnd</a>
+      <a class="list-group-item" href="../proc/reduce_byband.html#variable-ncol~21">ncol</a>
+      <a class="list-group-item" href="../proc/reduce_byband.html#variable-ngpt~8">ngpt</a>
+      <a class="list-group-item" href="../proc/reduce_byband.html#variable-nlev~2">nlev</a>
+    </div>
+  </div>
+</div>
 
 </div>
 
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-public function reduce_byband(this, gpt_flux_up, gpt_flux_dn, spectral_disc, top_at_1, gpt_flux_dn_dir) result(error_msg)
+    <h2>public function reduce_byband(this, gpt_flux_up, gpt_flux_dn, spectral_disc, top_at_1, gpt_flux_dn_dir) result(error_msg)</h2>
     
-    
-   
-</h2>
-    
-  
 
-
-    
 
     <h3>Arguments</h3>
-    
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
+      <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-this~72"></span>class(<a href='../type/ty_fluxes_byband.html'>ty_fluxes_byband</a>),</td>
-  <td>intent(inout)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(inout)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>this</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-gpt_flux_up~3"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:,:,:)</td><td>::</td>
   <td><strong>gpt_flux_up</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-gpt_flux_dn~3"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:,:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(:,:,:)</td><td>::</td>
   <td><strong>gpt_flux_dn</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-spectral_disc~2"></span>class(<a href='../type/ty_optical_props.html'>ty_optical_props</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>spectral_disc</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-top_at_1~4"></span>logical,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>top_at_1</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-gpt_flux_dn_dir~3"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td>dimension(:,:,:)</td><td>::</td>
+<td>intent(in),</td>
+  <td>optional</td>  <td>dimension(:,:,:)</td><td>::</td>
   <td><strong>gpt_flux_dn_dir</strong></td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
-    
-    
-    
-    
-    
-    
-    
-   <h3>Return Value <small><span class="anchor" id="variable-error_msg~15"></span>character(len=128)
-  </small></h3>
-    
-    
+   <h3>Return Value <small><span class="anchor" id="variable-error_msg~17"></span>character(len=128)</small></h3>
     
     <br>
-    
-    
     <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Calls</h3>
@@ -373,33 +219,33 @@ public function reduce_byband(this, gpt_flux_up, gpt_flux_dn, spectral_disc, top
 <path fill="none" stroke="#000000" d="M82.67,-66.04C95.71,-70.56 110.72,-75.77 124.52,-80.56"/>
 <polygon fill="#000000" stroke="#000000" points="123.73,-83.99 134.32,-83.96 126.02,-77.38 123.73,-83.99"/>
 </g>
-<!-- proc~sum_byband -->
-<g id="proc~~reduce_byband~~CallsGraph_node3" class="node">
-<title>proc~sum_byband</title>
-<g id="a_proc~~reduce_byband~~CallsGraph_node3"><a xlink:href=".././proc/sum_byband.html" xlink:title="sum_byband">
-<polygon fill="#d9534f" stroke="#d9534f" points="210,-66 130,-66 130,-42 210,-42 210,-66"/>
-<text text-anchor="middle" x="170" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sum_byband</text>
-</a>
-</g>
-</g>
-<!-- proc~reduce_byband&#45;&gt;proc~sum_byband -->
-<g id="proc~~reduce_byband~~CallsGraph_edge2" class="edge">
-<title>proc~reduce_byband&#45;&gt;proc~sum_byband</title>
-<path fill="none" stroke="#000000" d="M94.09,-54C102.45,-54 111.19,-54 119.64,-54"/>
-<polygon fill="#000000" stroke="#000000" points="119.75,-57.5 129.75,-54 119.75,-50.5 119.75,-57.5"/>
-</g>
 <!-- interface~extents_are -->
-<g id="proc~~reduce_byband~~CallsGraph_node4" class="node">
+<g id="proc~~reduce_byband~~CallsGraph_node3" class="node">
 <title>interface~extents_are</title>
-<g id="a_proc~~reduce_byband~~CallsGraph_node4"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
-<polygon fill="#a7506f" stroke="#a7506f" points="206.5,-24 133.5,-24 133.5,0 206.5,0 206.5,-24"/>
-<text text-anchor="middle" x="170" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
+<g id="a_proc~~reduce_byband~~CallsGraph_node3"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
+<polygon fill="#a7506f" stroke="#a7506f" points="206.5,-66 133.5,-66 133.5,-42 206.5,-42 206.5,-66"/>
+<text text-anchor="middle" x="170" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
 </a>
 </g>
 </g>
 <!-- proc~reduce_byband&#45;&gt;interface~extents_are -->
-<g id="proc~~reduce_byband~~CallsGraph_edge3" class="edge">
+<g id="proc~~reduce_byband~~CallsGraph_edge2" class="edge">
 <title>proc~reduce_byband&#45;&gt;interface~extents_are</title>
+<path fill="none" stroke="#000000" d="M94.09,-54C103.61,-54 113.62,-54 123.13,-54"/>
+<polygon fill="#000000" stroke="#000000" points="123.2,-57.5 133.2,-54 123.2,-50.5 123.2,-57.5"/>
+</g>
+<!-- proc~sum_byband -->
+<g id="proc~~reduce_byband~~CallsGraph_node4" class="node">
+<title>proc~sum_byband</title>
+<g id="a_proc~~reduce_byband~~CallsGraph_node4"><a xlink:href=".././proc/sum_byband.html" xlink:title="sum_byband">
+<polygon fill="#d9534f" stroke="#d9534f" points="210,-24 130,-24 130,0 210,0 210,-24"/>
+<text text-anchor="middle" x="170" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sum_byband</text>
+</a>
+</g>
+</g>
+<!-- proc~reduce_byband&#45;&gt;proc~sum_byband -->
+<g id="proc~~reduce_byband~~CallsGraph_edge3" class="edge">
+<title>proc~reduce_byband&#45;&gt;proc~sum_byband</title>
 <path fill="none" stroke="#000000" d="M82.67,-41.96C95.71,-37.44 110.72,-32.23 124.52,-27.44"/>
 <polygon fill="#000000" stroke="#000000" points="126.02,-30.62 134.32,-24.04 123.73,-24.01 126.02,-30.62"/>
 </g>
@@ -496,63 +342,74 @@ public function reduce_byband(this, gpt_flux_up, gpt_flux_dn, spectral_disc, top
     </div></div></div></div>
       </div>
     </div>
-     
-     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
-      
-<h3>Contents</h3>
+      <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<em>None</em>
-
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/reduce_byband.html#variable-band_lims">band_lims</a>
+      <a class="list-group-item" href="../proc/reduce_byband.html#variable-nbnd~2">nbnd</a>
+      <a class="list-group-item" href="../proc/reduce_byband.html#variable-ncol~21">ncol</a>
+      <a class="list-group-item" href="../proc/reduce_byband.html#variable-ngpt~8">ngpt</a>
+      <a class="list-group-item" href="../proc/reduce_byband.html#variable-nlev~2">nlev</a>
+    </div>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
+
+    <section>    
+      <h2>Variables</h2>
+    <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th><th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+<tbody>
+<tr>
+  <td><span class="anchor" id="variable-band_lims"></span>integer,</td>
+<td>public,</td>  <td>dimension(2, spectral_disc%get_nband())</td><td>::</td>
+  <td><strong>band_lims</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-nbnd~2"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>nbnd</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-ncol~21"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>ncol</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-ngpt~8"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>ngpt</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-nlev~2"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>nlev</strong></td><td></td><td></td><td></td>
+</tr>
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
     
 
     
     
-    
-    
-    
-
-    
-    
-    
-    
-    
 
 
-    
-    
     
     
     </div>
   </div>
-
 
     <hr>    
     </div> <!-- /container -->
@@ -560,14 +417,12 @@ public function reduce_byband(this, gpt_flux_up, gpt_flux_dn, spectral_disc, top
       <div class="container">
       <div class="row">
         <div class="col-xs-6 col-md-6"><p>rte-rrtmgp was developed by <br>&copy; 2022 
-                                          </p>
+</p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-            
-            
           </p>
         </div>
       </div>
@@ -595,14 +450,11 @@ public function reduce_byband(this, gpt_flux_up, gpt_flux_dn, spectral_disc, top
         extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
-    
     
   </body>
 </html>

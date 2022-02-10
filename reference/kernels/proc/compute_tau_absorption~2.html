@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
    <meta name="description" content="A set of codes for computing radiative fluxes in planetary atmospheres.">
-    
     <meta name="author" content="" >
     <link rel="icon" href="../favicon.png">
 
@@ -16,10 +14,7 @@
     <link href="../css/pygments.css" rel="stylesheet">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
-    
     <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,52 +43,24 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-        
             <li><a href='../page/index.html'>Additional Documentation</a></li>
-      
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
      aria-expanded="false">Contents <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          
-              
             <li><a href="../lists/files.html">Source Files</a></li>
-        
-        
-        
             <li><a href="../lists/modules.html">Modules</a></li>
-        
-            
-                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
-        
-               
-               
-        
-        
+              
             </ul>
         
             </li>
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
-
-
-
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
-
-                             
-
-
-
-          </ul>
-        
+                                       </ul>
         <form action="../search.html" class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
@@ -102,51 +69,29 @@
         <button type="submit" class="btn btn-default">Submit</button>
 -->
         </form>
-        
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-    
-  
   <div class="row">
     <h1>compute_tau_absorption
       <small>Subroutine</small>
-    
     </h1>
-    
-<div class="row">
+    <div class="row">
   <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
-     
-     
-     
-     
-     
-    
-    
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
     title=" 2.7% of total for procedures.">57 statements</a>
      </li> 
-     
-     
-     
     <li><i class="fa fa-code"></i><a href="../src/mo_gas_optics_kernels.F90"> Source File</a></li>
-     
-     
   </ul>
   <ol class="breadcrumb in-well text-right">
-  
-    
      <li><a href='../sourcefile/mo_gas_optics_kernels.f90~2.html'>mo_gas_optics_kernels.F90</a></li>
-    
      <li><a href='../module/mo_gas_optics_kernels~2.html'>mo_gas_optics_kernels</a></li>
-    
-  
      <li class="active">compute_tau_absorption</li>
   </ol>
 </div>
@@ -162,703 +107,291 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
-<div id="sidebar">
-  
-<h3>Contents</h3>
+    <div id="sidebar">
+  <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<em>None</em>
-
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/compute_tau_absorption~2.html#variable-icol~27">icol</a>
+      <a class="list-group-item" href="../proc/compute_tau_absorption~2.html#variable-idx_tropo">idx_tropo</a>
+      <a class="list-group-item" href="../proc/compute_tau_absorption~2.html#variable-itropo_lower~2">itropo_lower</a>
+      <a class="list-group-item" href="../proc/compute_tau_absorption~2.html#variable-itropo_upper~2">itropo_upper</a>
+      <a class="list-group-item" href="../proc/compute_tau_absorption~2.html#variable-top_at_1~7">top_at_1</a>
+    </div>
+  </div>
+</div>
 
 </div>
 
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-public subroutine compute_tau_absorption(ncol, nlay, nbnd, ngpt, ngas, nflav, neta, npres, ntemp, nminorlower, nminorklower, nminorupper, nminorkupper, idx_h2o, gpoint_flavor, band_lims_gpt, kmajor, kminor_lower, kminor_upper, minor_limits_gpt_lower, minor_limits_gpt_upper, minor_scales_with_density_lower, minor_scales_with_density_upper, scale_by_complement_lower, scale_by_complement_upper, idx_minor_lower, idx_minor_upper, idx_minor_scaling_lower, idx_minor_scaling_upper, kminor_start_lower, kminor_start_upper, tropo, col_mix, fmajor, fminor, play, tlay, col_gas, jeta, jtemp, jpress, tau) bind(C, name="0")
+    <h2>public subroutine compute_tau_absorption(ncol, nlay, nbnd, ngpt, ngas, nflav, neta, npres, ntemp, nminorlower, nminorklower, nminorupper, nminorkupper, idx_h2o, gpoint_flavor, band_lims_gpt, kmajor, kminor_lower, kminor_upper, minor_limits_gpt_lower, minor_limits_gpt_upper, minor_scales_with_density_lower, minor_scales_with_density_upper, scale_by_complement_lower, scale_by_complement_upper, idx_minor_lower, idx_minor_upper, idx_minor_scaling_lower, idx_minor_scaling_upper, kminor_start_lower, kminor_start_upper, tropo, col_mix, fmajor, fminor, play, tlay, col_gas, jeta, jtemp, jpress, tau) bind(C, name="0")</h2>
     
-    
-   
-</h2>
-    
-  
 
-
-    
 
     <h3>Arguments</h3>
-    
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
+      <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-ncol~37"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>ncol</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-nlay~36"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nlay</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-nbnd~15"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nbnd</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-ngpt~36"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>ngpt</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-ngas~5"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>ngas</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-nflav~8"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nflav</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-neta~8"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>neta</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-npres~7"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>npres</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-ntemp~8"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>ntemp</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-nminorlower~2"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nminorlower</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-nminorklower~2"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nminorklower</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-nminorupper~2"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nminorupper</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-nminorkupper~2"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>nminorkupper</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-idx_h2o~4"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
+<td>intent(in)</td>
+  <td></td>  <td></td><td>::</td>
   <td><strong>idx_h2o</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-gpoint_flavor~6"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,ngpt)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,ngpt)</td><td>::</td>
   <td><strong>gpoint_flavor</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-band_lims_gpt~6"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,nbnd)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,nbnd)</td><td>::</td>
   <td><strong>band_lims_gpt</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-kmajor~3"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(ntemp,neta,npres+1,ngpt)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(ntemp,neta,npres+1,ngpt)</td><td>::</td>
   <td><strong>kmajor</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-kminor_lower~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(ntemp,neta,nminorklower)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(ntemp,neta,nminorklower)</td><td>::</td>
   <td><strong>kminor_lower</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-kminor_upper~2"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(ntemp,neta,nminorkupper)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(ntemp,neta,nminorkupper)</td><td>::</td>
   <td><strong>kminor_upper</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-minor_limits_gpt_lower~2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,nminorlower)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,nminorlower)</td><td>::</td>
   <td><strong>minor_limits_gpt_lower</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-minor_limits_gpt_upper~2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,nminorupper)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,nminorupper)</td><td>::</td>
   <td><strong>minor_limits_gpt_upper</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-minor_scales_with_density_lower~2"></span>logical(kind=wl),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(  nminorlower)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(  nminorlower)</td><td>::</td>
   <td><strong>minor_scales_with_density_lower</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-minor_scales_with_density_upper~2"></span>logical(kind=wl),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(  nminorupper)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(  nminorupper)</td><td>::</td>
   <td><strong>minor_scales_with_density_upper</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-scale_by_complement_lower~2"></span>logical(kind=wl),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(  nminorlower)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(  nminorlower)</td><td>::</td>
   <td><strong>scale_by_complement_lower</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-scale_by_complement_upper~2"></span>logical(kind=wl),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(  nminorupper)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(  nminorupper)</td><td>::</td>
   <td><strong>scale_by_complement_upper</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-idx_minor_lower~2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(  nminorlower)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(  nminorlower)</td><td>::</td>
   <td><strong>idx_minor_lower</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-idx_minor_upper~2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(  nminorupper)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(  nminorupper)</td><td>::</td>
   <td><strong>idx_minor_upper</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-idx_minor_scaling_lower~2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(  nminorlower)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(  nminorlower)</td><td>::</td>
   <td><strong>idx_minor_scaling_lower</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-idx_minor_scaling_upper~2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(  nminorupper)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(  nminorupper)</td><td>::</td>
   <td><strong>idx_minor_scaling_upper</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-kminor_start_lower~2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(  nminorlower)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(  nminorlower)</td><td>::</td>
   <td><strong>kminor_start_lower</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-kminor_start_upper~2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(  nminorupper)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(  nminorupper)</td><td>::</td>
   <td><strong>kminor_start_upper</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-tropo~7"></span>logical(kind=wl),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(ncol,nlay)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(ncol,nlay)</td><td>::</td>
   <td><strong>tropo</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-col_mix~4"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,    ncol,nlay,nflav       )</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,    ncol,nlay,nflav       )</td><td>::</td>
   <td><strong>col_mix</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-fmajor~9"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,2,2,ncol,nlay,nflav       )</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,2,2,ncol,nlay,nflav       )</td><td>::</td>
   <td><strong>fmajor</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-fminor~8"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,2,  ncol,nlay,nflav       )</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,2,  ncol,nlay,nflav       )</td><td>::</td>
   <td><strong>fminor</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-play~4"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(            ncol,nlay       )</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(            ncol,nlay       )</td><td>::</td>
   <td><strong>play</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-tlay~6"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(            ncol,nlay       )</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(            ncol,nlay       )</td><td>::</td>
   <td><strong>tlay</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-col_gas~5"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(            ncol,nlay,0:ngas)</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(            ncol,nlay,0:ngas)</td><td>::</td>
   <td><strong>col_gas</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-jeta~14"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(2,    ncol,nlay,nflav       )</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(2,    ncol,nlay,nflav       )</td><td>::</td>
   <td><strong>jeta</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-jtemp~14"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(            ncol,nlay       )</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(            ncol,nlay       )</td><td>::</td>
   <td><strong>jtemp</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-jpress~9"></span>integer,</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(            ncol,nlay       )</td><td>::</td>
+<td>intent(in),</td>
+  <td></td>  <td>dimension(            ncol,nlay       )</td><td>::</td>
   <td><strong>jpress</strong></td><td></td>
-  
 </tr>
-
-  
-  
-  
-  
 <tr>
-  
   <td><span class="anchor" id="variable-tau~11"></span>real(kind=wp),</td>
-  <td>intent(inout),</td>
-  <td></td>
-  
-  <td>dimension(ncol,nlay,ngpt)</td><td>::</td>
+<td>intent(inout),</td>
+  <td></td>  <td>dimension(ncol,nlay,ngpt)</td><td>::</td>
   <td><strong>tau</strong></td><td></td>
-  
 </tr>
-
 </tbody>
 </table>
 
-    
-    
-    
     <br>
-    
-    
     <div class="panel panel-default">
       <div class="panel-heading">
   <h3 class="panel-title">Calls</h3>
@@ -881,63 +414,63 @@ public subroutine compute_tau_absorption(ncol, nlay, nbnd, ngpt, ngas, nflav, ne
 <polygon fill="none" stroke="black" points="145,-45 0,-45 0,-21 145,-21 145,-45"/>
 <text text-anchor="middle" x="72.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50">compute_tau_absorption</text>
 </g>
-<!-- proc~gas_optical_depths_major~2 -->
-<g id="proc~~compute_tau_absorption~2~~CallsGraph_node2" class="node">
-<title>proc~gas_optical_depths_major~2</title>
-<g id="a_proc~~compute_tau_absorption~2~~CallsGraph_node2"><a xlink:href=".././proc/gas_optical_depths_major~2.html" xlink:title="gas_optical_depths_major">
-<polygon fill="#d9534f" stroke="#d9534f" points="332,-66 181,-66 181,-42 332,-42 332,-66"/>
-<text text-anchor="middle" x="256.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gas_optical_depths_major</text>
-</a>
-</g>
-</g>
-<!-- proc~compute_tau_absorption~2&#45;&gt;proc~gas_optical_depths_major~2 -->
-<g id="proc~~compute_tau_absorption~2~~CallsGraph_edge1" class="edge">
-<title>proc~compute_tau_absorption~2&#45;&gt;proc~gas_optical_depths_major~2</title>
-<path fill="none" stroke="#000000" d="M145.17,-41.27C153.61,-42.24 162.28,-43.24 170.87,-44.23"/>
-<polygon fill="#000000" stroke="#000000" points="170.57,-47.72 180.9,-45.39 171.37,-40.77 170.57,-47.72"/>
-</g>
 <!-- proc~gas_optical_depths_minor~2 -->
-<g id="proc~~compute_tau_absorption~2~~CallsGraph_node3" class="node">
+<g id="proc~~compute_tau_absorption~2~~CallsGraph_node2" class="node">
 <title>proc~gas_optical_depths_minor~2</title>
-<g id="a_proc~~compute_tau_absorption~2~~CallsGraph_node3"><a xlink:href=".././proc/gas_optical_depths_minor~2.html" xlink:title="gas_optical_depths_minor">
-<polygon fill="#d9534f" stroke="#d9534f" points="332,-24 181,-24 181,0 332,0 332,-24"/>
-<text text-anchor="middle" x="256.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gas_optical_depths_minor</text>
+<g id="a_proc~~compute_tau_absorption~2~~CallsGraph_node2"><a xlink:href=".././proc/gas_optical_depths_minor~2.html" xlink:title="gas_optical_depths_minor">
+<polygon fill="#d9534f" stroke="#d9534f" points="332,-66 181,-66 181,-42 332,-42 332,-66"/>
+<text text-anchor="middle" x="256.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gas_optical_depths_minor</text>
 </a>
 </g>
 </g>
 <!-- proc~compute_tau_absorption~2&#45;&gt;proc~gas_optical_depths_minor~2 -->
-<g id="proc~~compute_tau_absorption~2~~CallsGraph_edge2" class="edge">
+<g id="proc~~compute_tau_absorption~2~~CallsGraph_edge1" class="edge">
 <title>proc~compute_tau_absorption~2&#45;&gt;proc~gas_optical_depths_minor~2</title>
-<path fill="none" stroke="#000000" d="M145.17,-24.73C153.61,-23.76 162.28,-22.76 170.87,-21.77"/>
-<polygon fill="#000000" stroke="#000000" points="171.37,-25.23 180.9,-20.61 170.57,-18.28 171.37,-25.23"/>
+<path fill="none" stroke="#000000" d="M145.17,-41.27C153.61,-42.24 162.28,-43.24 170.87,-44.23"/>
+<polygon fill="#000000" stroke="#000000" points="170.57,-47.72 180.9,-45.39 171.37,-40.77 170.57,-47.72"/>
 </g>
-<!-- proc~interpolate3d~2 -->
-<g id="proc~~compute_tau_absorption~2~~CallsGraph_node4" class="node">
-<title>proc~interpolate3d~2</title>
-<g id="a_proc~~compute_tau_absorption~2~~CallsGraph_node4"><a xlink:href=".././proc/interpolate3d~2.html" xlink:title="interpolate3D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="454,-66 368,-66 368,-42 454,-42 454,-66"/>
-<text text-anchor="middle" x="411" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">interpolate3D</text>
+<!-- proc~gas_optical_depths_major~2 -->
+<g id="proc~~compute_tau_absorption~2~~CallsGraph_node3" class="node">
+<title>proc~gas_optical_depths_major~2</title>
+<g id="a_proc~~compute_tau_absorption~2~~CallsGraph_node3"><a xlink:href=".././proc/gas_optical_depths_major~2.html" xlink:title="gas_optical_depths_major">
+<polygon fill="#d9534f" stroke="#d9534f" points="332,-24 181,-24 181,0 332,0 332,-24"/>
+<text text-anchor="middle" x="256.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">gas_optical_depths_major</text>
 </a>
 </g>
 </g>
-<!-- proc~gas_optical_depths_major~2&#45;&gt;proc~interpolate3d~2 -->
-<g id="proc~~compute_tau_absorption~2~~CallsGraph_edge3" class="edge">
-<title>proc~gas_optical_depths_major~2&#45;&gt;proc~interpolate3d~2</title>
-<path fill="none" stroke="#000000" d="M332.41,-54C340.99,-54 349.59,-54 357.78,-54"/>
-<polygon fill="#000000" stroke="#000000" points="357.9,-57.5 367.9,-54 357.9,-50.5 357.9,-57.5"/>
+<!-- proc~compute_tau_absorption~2&#45;&gt;proc~gas_optical_depths_major~2 -->
+<g id="proc~~compute_tau_absorption~2~~CallsGraph_edge2" class="edge">
+<title>proc~compute_tau_absorption~2&#45;&gt;proc~gas_optical_depths_major~2</title>
+<path fill="none" stroke="#000000" d="M145.17,-24.73C153.61,-23.76 162.28,-22.76 170.87,-21.77"/>
+<polygon fill="#000000" stroke="#000000" points="171.37,-25.23 180.9,-20.61 170.57,-18.28 171.37,-25.23"/>
 </g>
 <!-- proc~interpolate2d~2 -->
-<g id="proc~~compute_tau_absorption~2~~CallsGraph_node5" class="node">
+<g id="proc~~compute_tau_absorption~2~~CallsGraph_node4" class="node">
 <title>proc~interpolate2d~2</title>
-<g id="a_proc~~compute_tau_absorption~2~~CallsGraph_node5"><a xlink:href=".././proc/interpolate2d~2.html" xlink:title="interpolate2D">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="454,-24 368,-24 368,0 454,0 454,-24"/>
-<text text-anchor="middle" x="411" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">interpolate2D</text>
+<g id="a_proc~~compute_tau_absorption~2~~CallsGraph_node4"><a xlink:href=".././proc/interpolate2d~2.html" xlink:title="interpolate2D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="454,-66 368,-66 368,-42 454,-42 454,-66"/>
+<text text-anchor="middle" x="411" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">interpolate2D</text>
 </a>
 </g>
 </g>
 <!-- proc~gas_optical_depths_minor~2&#45;&gt;proc~interpolate2d~2 -->
-<g id="proc~~compute_tau_absorption~2~~CallsGraph_edge4" class="edge">
+<g id="proc~~compute_tau_absorption~2~~CallsGraph_edge3" class="edge">
 <title>proc~gas_optical_depths_minor~2&#45;&gt;proc~interpolate2d~2</title>
+<path fill="none" stroke="#000000" d="M332.41,-54C340.99,-54 349.59,-54 357.78,-54"/>
+<polygon fill="#000000" stroke="#000000" points="357.9,-57.5 367.9,-54 357.9,-50.5 357.9,-57.5"/>
+</g>
+<!-- proc~interpolate3d~2 -->
+<g id="proc~~compute_tau_absorption~2~~CallsGraph_node5" class="node">
+<title>proc~interpolate3d~2</title>
+<g id="a_proc~~compute_tau_absorption~2~~CallsGraph_node5"><a xlink:href=".././proc/interpolate3d~2.html" xlink:title="interpolate3D">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="454,-24 368,-24 368,0 454,0 454,-24"/>
+<text text-anchor="middle" x="411" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">interpolate3D</text>
+</a>
+</g>
+</g>
+<!-- proc~gas_optical_depths_major~2&#45;&gt;proc~interpolate3d~2 -->
+<g id="proc~~compute_tau_absorption~2~~CallsGraph_edge4" class="edge">
+<title>proc~gas_optical_depths_major~2&#45;&gt;proc~interpolate3d~2</title>
 <path fill="none" stroke="#000000" d="M332.41,-12C340.99,-12 349.59,-12 357.78,-12"/>
 <polygon fill="#000000" stroke="#000000" points="357.9,-15.5 367.9,-12 357.9,-8.5 357.9,-15.5"/>
 </g>
@@ -1004,63 +537,74 @@ public subroutine compute_tau_absorption(ncol, nlay, nbnd, ngpt, ngas, nflav, ne
     </div></div></div></div>
       </div>
     </div>
-     
-     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
-      
-<h3>Contents</h3>
+      <h3>Contents</h3>
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<em>None</em>
-
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/compute_tau_absorption~2.html#variable-icol~27">icol</a>
+      <a class="list-group-item" href="../proc/compute_tau_absorption~2.html#variable-idx_tropo">idx_tropo</a>
+      <a class="list-group-item" href="../proc/compute_tau_absorption~2.html#variable-itropo_lower~2">itropo_lower</a>
+      <a class="list-group-item" href="../proc/compute_tau_absorption~2.html#variable-itropo_upper~2">itropo_upper</a>
+      <a class="list-group-item" href="../proc/compute_tau_absorption~2.html#variable-top_at_1~7">top_at_1</a>
+    </div>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
+
+    <section>    
+      <h2>Variables</h2>
+    <table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th><th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+<tbody>
+<tr>
+  <td><span class="anchor" id="variable-icol~27"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>icol</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-idx_tropo"></span>integer,</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>idx_tropo</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-itropo_lower~2"></span>integer,</td>
+<td>public,</td>  <td>dimension(ncol,2)</td><td>::</td>
+  <td><strong>itropo_lower</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-itropo_upper~2"></span>integer,</td>
+<td>public,</td>  <td>dimension(ncol,2)</td><td>::</td>
+  <td><strong>itropo_upper</strong></td><td></td><td></td><td></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-top_at_1~7"></span>logical(kind=wl),</td>
+<td>public</td>  <td></td><td>::</td>
+  <td><strong>top_at_1</strong></td><td></td><td></td><td></td>
+</tr>
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
     
 
     
     
-    
-    
-    
-
-    
-    
-    
-    
-    
 
 
-    
-    
     
     
     </div>
   </div>
-
 
     <hr>    
     </div> <!-- /container -->
@@ -1068,14 +612,12 @@ public subroutine compute_tau_absorption(ncol, nlay, nbnd, ngpt, ngas, nflav, ne
       <div class="container">
       <div class="row">
         <div class="col-xs-6 col-md-6"><p>rte-rrtmgp was developed by <br>&copy; 2022 
-                                          </p>
+</p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-            
-            
           </p>
         </div>
       </div>
@@ -1103,14 +645,11 @@ public subroutine compute_tau_absorption(ncol, nlay, nbnd, ngpt, ngas, nflav, ne
         extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     
     <script src="../tipuesearch/tipuesearch_content.js"></script>
     <script src="../tipuesearch/tipuesearch_set.js"></script>
     <script src="../tipuesearch/tipuesearch.js"></script>
-    
     
   </body>
 </html>
