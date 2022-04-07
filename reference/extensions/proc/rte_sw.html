@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/rte_sw.html#src">rte_sw</a>
+  </div>
+</div>
 
 </div>
 
@@ -136,7 +141,7 @@
   <td><strong>atmos</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-top_at_1~2"></span>logical,</td>
+  <td><span class="anchor" id="variable-top_at_1"></span>logical,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>top_at_1</strong></td><td></td>
@@ -148,7 +153,7 @@
   <td><strong>mu0</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-inc_flux~2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-inc_flux"></span>real(kind=wp),</td>
 <td>intent(in),</td>
   <td></td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>inc_flux</strong></td><td></td>
@@ -166,7 +171,7 @@
   <td><strong>sfc_alb_dif</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-fluxes~2"></span>class(<a href='../type/ty_fluxes.html'>ty_fluxes</a>),</td>
+  <td><span class="anchor" id="variable-fluxes"></span>class(<a href='../type/ty_fluxes.html'>ty_fluxes</a>),</td>
 <td>intent(inout)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>fluxes</strong></td><td></td>
@@ -180,7 +185,7 @@
 </tbody>
 </table>
 
-   <h3>Return Value <small><span class="anchor" id="variable-error_msg~11"></span>character(len=128)</small></h3>
+   <h3>Return Value <small><span class="anchor" id="variable-error_msg~10"></span>character(len=128)</small></h3>
     
     <br>
     <div class="panel panel-default">
@@ -205,72 +210,72 @@
 <polygon fill="none" stroke="black" points="54,-129 0,-129 0,-105 54,-105 54,-129"/>
 <text text-anchor="middle" x="27" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50">rte_sw</text>
 </g>
-<!-- interface~zero_array -->
-<g id="proc~~rte_sw~~CallsGraph_node2" class="node">
-<title>interface~zero_array</title>
-<g id="a_proc~~rte_sw~~CallsGraph_node2"><a xlink:href=".././interface/zero_array.html" xlink:title="zero_array">
-<polygon fill="#a7506f" stroke="#a7506f" points="181,-234 112,-234 112,-210 181,-210 181,-234"/>
-<text text-anchor="middle" x="146.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">zero_array</text>
-</a>
-</g>
-</g>
-<!-- proc~rte_sw&#45;&gt;interface~zero_array -->
-<g id="proc~~rte_sw~~CallsGraph_edge1" class="edge">
-<title>proc~rte_sw&#45;&gt;interface~zero_array</title>
-<path fill="none" stroke="#000000" d="M33.96,-129.01C43.46,-147.03 63.71,-181.08 90,-201 93.85,-203.92 98.16,-206.47 102.62,-208.7"/>
-<polygon fill="#000000" stroke="#000000" points="101.34,-211.96 111.9,-212.81 104.18,-205.56 101.34,-211.96"/>
-</g>
-<!-- interface~extents_are -->
-<g id="proc~~rte_sw~~CallsGraph_node3" class="node">
-<title>interface~extents_are</title>
-<g id="a_proc~~rte_sw~~CallsGraph_node3"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
-<polygon fill="#a7506f" stroke="#a7506f" points="183,-192 110,-192 110,-168 183,-168 183,-192"/>
-<text text-anchor="middle" x="146.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
-</a>
-</g>
-</g>
-<!-- proc~rte_sw&#45;&gt;interface~extents_are -->
-<g id="proc~~rte_sw~~CallsGraph_edge2" class="edge">
-<title>proc~rte_sw&#45;&gt;interface~extents_are</title>
-<path fill="none" stroke="#000000" d="M43.68,-129.13C55.84,-138.17 73.38,-150.38 90,-159 93.45,-160.79 97.09,-162.51 100.79,-164.14"/>
-<polygon fill="#000000" stroke="#000000" points="99.45,-167.37 110.02,-167.99 102.14,-160.91 99.45,-167.37"/>
-</g>
-<!-- sw_solver_noscat -->
-<g id="proc~~rte_sw~~CallsGraph_node4" class="node">
-<title>sw_solver_noscat</title>
-<polygon fill="#777777" stroke="#777777" points="198.5,-150 94.5,-150 94.5,-126 198.5,-126 198.5,-150"/>
-<text text-anchor="middle" x="146.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sw_solver_noscat</text>
-</g>
-<!-- proc~rte_sw&#45;&gt;sw_solver_noscat -->
-<g id="proc~~rte_sw~~CallsGraph_edge3" class="edge">
-<title>proc~rte_sw&#45;&gt;sw_solver_noscat</title>
-<path fill="none" stroke="#000000" d="M54.08,-121.66C63.19,-123.29 73.84,-125.19 84.58,-127.11"/>
-<polygon fill="#000000" stroke="#000000" points="83.97,-130.56 94.43,-128.87 85.2,-123.67 83.97,-130.56"/>
-</g>
 <!-- sw_solver_2stream -->
-<g id="proc~~rte_sw~~CallsGraph_node5" class="node">
+<g id="proc~~rte_sw~~CallsGraph_node2" class="node">
 <title>sw_solver_2stream</title>
-<polygon fill="#777777" stroke="#777777" points="202.5,-108 90.5,-108 90.5,-84 202.5,-84 202.5,-108"/>
-<text text-anchor="middle" x="146.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sw_solver_2stream</text>
+<polygon fill="#777777" stroke="#777777" points="202.5,-234 90.5,-234 90.5,-210 202.5,-210 202.5,-234"/>
+<text text-anchor="middle" x="146.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sw_solver_2stream</text>
 </g>
 <!-- proc~rte_sw&#45;&gt;sw_solver_2stream -->
-<g id="proc~~rte_sw~~CallsGraph_edge4" class="edge">
+<g id="proc~~rte_sw~~CallsGraph_edge1" class="edge">
 <title>proc~rte_sw&#45;&gt;sw_solver_2stream</title>
-<path fill="none" stroke="#000000" d="M54.08,-112.34C61.92,-110.94 70.91,-109.33 80.11,-107.69"/>
-<polygon fill="#000000" stroke="#000000" points="80.91,-111.1 90.14,-105.89 79.68,-104.21 80.91,-111.1"/>
+<path fill="none" stroke="#000000" d="M33.96,-129.01C43.46,-147.03 63.71,-181.08 90,-201 92.01,-202.52 94.15,-203.95 96.36,-205.28"/>
+<polygon fill="#000000" stroke="#000000" points="94.75,-208.38 105.23,-209.95 98.01,-202.19 94.75,-208.38"/>
 </g>
 <!-- interface~any_vals_less_than -->
-<g id="proc~~rte_sw~~CallsGraph_node6" class="node">
+<g id="proc~~rte_sw~~CallsGraph_node3" class="node">
 <title>interface~any_vals_less_than</title>
-<g id="a_proc~~rte_sw~~CallsGraph_node6"><a xlink:href=".././interface/any_vals_less_than.html" xlink:title="any_vals_less_than">
-<polygon fill="#a7506f" stroke="#a7506f" points="203,-66 90,-66 90,-42 203,-42 203,-66"/>
-<text text-anchor="middle" x="146.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">any_vals_less_than</text>
+<g id="a_proc~~rte_sw~~CallsGraph_node3"><a xlink:href=".././interface/any_vals_less_than.html" xlink:title="any_vals_less_than">
+<polygon fill="#a7506f" stroke="#a7506f" points="203,-192 90,-192 90,-168 203,-168 203,-192"/>
+<text text-anchor="middle" x="146.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">any_vals_less_than</text>
 </a>
 </g>
 </g>
 <!-- proc~rte_sw&#45;&gt;interface~any_vals_less_than -->
-<g id="proc~~rte_sw~~CallsGraph_edge5" class="edge">
+<g id="proc~~rte_sw~~CallsGraph_edge2" class="edge">
 <title>proc~rte_sw&#45;&gt;interface~any_vals_less_than</title>
+<path fill="none" stroke="#000000" d="M43.68,-129.13C55.84,-138.17 73.38,-150.38 90,-159 93.45,-160.79 97.09,-162.51 100.79,-164.14"/>
+<polygon fill="#000000" stroke="#000000" points="99.45,-167.37 110.02,-167.99 102.14,-160.91 99.45,-167.37"/>
+</g>
+<!-- interface~zero_array -->
+<g id="proc~~rte_sw~~CallsGraph_node4" class="node">
+<title>interface~zero_array</title>
+<g id="a_proc~~rte_sw~~CallsGraph_node4"><a xlink:href=".././interface/zero_array.html" xlink:title="zero_array">
+<polygon fill="#a7506f" stroke="#a7506f" points="181,-150 112,-150 112,-126 181,-126 181,-150"/>
+<text text-anchor="middle" x="146.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">zero_array</text>
+</a>
+</g>
+</g>
+<!-- proc~rte_sw&#45;&gt;interface~zero_array -->
+<g id="proc~~rte_sw~~CallsGraph_edge3" class="edge">
+<title>proc~rte_sw&#45;&gt;interface~zero_array</title>
+<path fill="none" stroke="#000000" d="M54.08,-121.66C68.05,-124.16 85.65,-127.3 101.66,-130.16"/>
+<polygon fill="#000000" stroke="#000000" points="101.44,-133.68 111.9,-131.99 102.67,-126.79 101.44,-133.68"/>
+</g>
+<!-- interface~extents_are -->
+<g id="proc~~rte_sw~~CallsGraph_node5" class="node">
+<title>interface~extents_are</title>
+<g id="a_proc~~rte_sw~~CallsGraph_node5"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
+<polygon fill="#a7506f" stroke="#a7506f" points="183,-108 110,-108 110,-84 183,-84 183,-108"/>
+<text text-anchor="middle" x="146.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
+</a>
+</g>
+</g>
+<!-- proc~rte_sw&#45;&gt;interface~extents_are -->
+<g id="proc~~rte_sw~~CallsGraph_edge4" class="edge">
+<title>proc~rte_sw&#45;&gt;interface~extents_are</title>
+<path fill="none" stroke="#000000" d="M54.08,-112.34C67.5,-109.94 84.26,-106.95 99.75,-104.18"/>
+<polygon fill="#000000" stroke="#000000" points="100.46,-107.6 109.69,-102.4 99.23,-100.71 100.46,-107.6"/>
+</g>
+<!-- sw_solver_noscat -->
+<g id="proc~~rte_sw~~CallsGraph_node6" class="node">
+<title>sw_solver_noscat</title>
+<polygon fill="#777777" stroke="#777777" points="198.5,-66 94.5,-66 94.5,-42 198.5,-42 198.5,-66"/>
+<text text-anchor="middle" x="146.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">sw_solver_noscat</text>
+</g>
+<!-- proc~rte_sw&#45;&gt;sw_solver_noscat -->
+<g id="proc~~rte_sw~~CallsGraph_edge5" class="edge">
+<title>proc~rte_sw&#45;&gt;sw_solver_noscat</title>
 <path fill="none" stroke="#000000" d="M43.68,-104.87C55.84,-95.83 73.38,-83.62 90,-75 93.45,-73.21 97.09,-71.49 100.79,-69.86"/>
 <polygon fill="#000000" stroke="#000000" points="102.14,-73.09 110.02,-66.01 99.45,-66.63 102.14,-73.09"/>
 </g>
@@ -472,7 +477,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/rte_sw.html#src">rte_sw</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -486,6 +496,285 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">rte_sw</span><span class="p">(</span><span class="n">atmos</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span>                 <span class="p">&amp;</span>
+                  <span class="n">mu0</span><span class="p">,</span> <span class="n">inc_flux</span><span class="p">,</span>                   <span class="p">&amp;</span>
+                  <span class="n">sfc_alb_dir</span><span class="p">,</span> <span class="n">sfc_alb_dif</span><span class="p">,</span>        <span class="p">&amp;</span>
+                  <span class="n">fluxes</span><span class="p">,</span> <span class="n">inc_flux_dif</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_optical_props_arry</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">atmos</span>           <span class="c">! Optical properties provided as arrays</span>
+    <span class="kt">logical</span><span class="p">,</span>                      <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">top_at_1</span>        <span class="c">! Is the top of the domain at index 1?</span>
+                                                                   <span class="c">! (if not, ordering is bottom-to-top)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">mu0</span>             <span class="c">! cosine of solar zenith angle (ncol)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span>     <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">inc_flux</span><span class="p">,</span>    <span class="p">&amp;</span>  <span class="c">! incident flux at top of domain [W/m2] (ncol, ngpt)</span>
+                                                   <span class="n">sfc_alb_dir</span><span class="p">,</span> <span class="p">&amp;</span>  <span class="c">! surface albedo for direct and</span>
+                                                   <span class="n">sfc_alb_dif</span>     <span class="c">! diffuse radiation (nband, ncol)</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_fluxes</span><span class="p">),</span>             <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fluxes</span>          <span class="c">! Class describing output calculations</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">optional</span><span class="p">,</span> <span class="k">target</span><span class="p">,</span> <span class="p">&amp;</span>
+                                  <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">inc_flux_dif</span>    <span class="c">! incident diffuse flux at top of domain [W/m2] (ncol, ngpt)</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">error_msg</span>       <span class="c">! If empty, calculation was successful</span>
+    <span class="c">! --------------------------------</span>
+    <span class="c">!</span>
+    <span class="c">! Local variables</span>
+    <span class="c">!</span>
+    <span class="kt">integer</span>     <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">nband</span>
+    <span class="kt">integer</span>     <span class="kd">::</span> <span class="n">icol</span><span class="p">,</span> <span class="n">ilev</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">)</span> <span class="kd">::</span> <span class="n">has_dif_bc</span><span class="p">,</span> <span class="n">do_broadband</span>
+
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:),</span> <span class="k">pointer</span>             <span class="kd">::</span> <span class="n">gpt_flux_up</span><span class="p">,</span> <span class="n">gpt_flux_dn</span><span class="p">,</span> <span class="n">gpt_flux_dir</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span>   <span class="k">allocatable</span>         <span class="kd">::</span> <span class="n">sfc_alb_dir_gpt</span><span class="p">,</span> <span class="n">sfc_alb_dif_gpt</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span>   <span class="k">pointer</span>             <span class="kd">::</span> <span class="n">flux_dn_loc</span><span class="p">,</span> <span class="n">flux_up_loc</span><span class="p">,</span> <span class="n">flux_dir_loc</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span>   <span class="k">pointer</span>             <span class="kd">::</span> <span class="n">inc_flux_diffuse</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">decoy3D</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span>   <span class="k">allocatable</span><span class="p">,</span> <span class="k">target</span> <span class="kd">::</span> <span class="n">decoy2D</span>
+
+    <span class="c">! ------------------------------------------------------------------------------------</span>
+    <span class="n">ncol</span>  <span class="o">=</span> <span class="n">atmos</span><span class="p">%</span><span class="n">get_ncol</span><span class="p">()</span>
+    <span class="n">nlay</span>  <span class="o">=</span> <span class="n">atmos</span><span class="p">%</span><span class="n">get_nlay</span><span class="p">()</span>
+    <span class="n">ngpt</span>  <span class="o">=</span> <span class="n">atmos</span><span class="p">%</span><span class="n">get_ngpt</span><span class="p">()</span>
+    <span class="n">nband</span> <span class="o">=</span> <span class="n">atmos</span><span class="p">%</span><span class="n">get_nband</span><span class="p">()</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="c">! ------------------------------------------------------------------------------------</span>
+    <span class="c">!</span>
+    <span class="c">! Error checking -- consistency of sizes and validity of values</span>
+    <span class="c">!</span>
+    <span class="c">! --------------------------------</span>
+    <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">fluxes</span><span class="p">%</span><span class="n">are_desired</span><span class="p">())</span> <span class="p">&amp;</span>
+      <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rte_sw: no space allocated for fluxes&quot;</span>
+
+    <span class="n">has_dif_bc</span> <span class="o">=</span> <span class="kt">logical</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">inc_flux_dif</span><span class="p">),</span> <span class="n">wl</span><span class="p">)</span>
+
+    <span class="c">!</span>
+    <span class="c">! Sizes of input arrays</span>
+    <span class="c">!</span>
+    <span class="c">! Copy variables whose sizes and values are checked to the GPU so the checks can happen there.</span>
+    <span class="c">!   No harm done if checks are not performed  (?)</span>
+    <span class="c">!$acc        data copyin(mu0, inc_flux, sfc_alb_dir, sfc_alb_dif)</span>
+    <span class="c">!$omp target data map(to:mu0, inc_flux, sfc_alb_dir, sfc_alb_dif)</span>
+    <span class="c">!$acc        data copyin(inc_flux_dif) if (has_dif_bc)</span>
+    <span class="c">!$omp target data map(to:inc_flux_dif) if (has_dif_bc)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">check_extents</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">extents_are</span><span class="p">(</span><span class="n">mu0</span><span class="p">,</span> <span class="n">ncol</span><span class="p">))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rte_sw: mu0 inconsistently sized&quot;</span>
+      <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">extents_are</span><span class="p">(</span><span class="n">inc_flux</span><span class="p">,</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rte_sw: inc_flux inconsistently sized&quot;</span>
+      <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">extents_are</span><span class="p">(</span><span class="n">sfc_alb_dir</span><span class="p">,</span> <span class="n">nband</span><span class="p">,</span> <span class="n">ncol</span><span class="p">))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rte_sw: sfc_alb_dir inconsistently sized&quot;</span>
+      <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">extents_are</span><span class="p">(</span><span class="n">sfc_alb_dif</span><span class="p">,</span> <span class="n">nband</span><span class="p">,</span> <span class="n">ncol</span><span class="p">))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rte_sw: sfc_alb_dif inconsistently sized&quot;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">has_dif_bc</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">extents_are</span><span class="p">(</span><span class="n">inc_flux_dif</span><span class="p">,</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">))</span> <span class="p">&amp;</span>
+          <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rte_sw: inc_flux_dif inconsistently sized&quot;</span>
+      <span class="k">end if</span>
+<span class="k">    end if</span>
+    <span class="c">!</span>
+    <span class="c">! Values of input arrays</span>
+    <span class="c">!</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">check_values</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      if</span><span class="p">(</span><span class="n">any_vals_outside</span><span class="p">(</span><span class="n">mu0</span><span class="p">,</span> <span class="mf">0._wp</span><span class="p">,</span> <span class="mf">1._wp</span><span class="p">))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rte_sw: one or more mu0 &lt;= 0 or &gt; 1&quot;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">any_vals_less_than</span><span class="p">(</span><span class="n">inc_flux</span><span class="p">,</span> <span class="mf">0._wp</span><span class="p">))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rte_sw: one or more inc_flux &lt; 0&quot;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">any_vals_outside</span><span class="p">(</span><span class="n">sfc_alb_dir</span><span class="p">,</span>  <span class="mf">0._wp</span><span class="p">,</span> <span class="mf">1._wp</span><span class="p">))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rte_sw: sfc_alb_dir out of bounds [0,1]&quot;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">any_vals_outside</span><span class="p">(</span><span class="n">sfc_alb_dif</span><span class="p">,</span>  <span class="mf">0._wp</span><span class="p">,</span> <span class="mf">1._wp</span><span class="p">))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rte_sw: sfc_alb_dif out of bounds [0,1]&quot;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">has_dif_bc</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        if</span><span class="p">(</span><span class="n">any_vals_less_than</span><span class="p">(</span><span class="n">inc_flux_dif</span><span class="p">,</span> <span class="mf">0._wp</span><span class="p">))</span> <span class="p">&amp;</span>
+          <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rte_sw: one or more inc_flux_dif &lt; 0&quot;</span>
+      <span class="k">end if</span>
+<span class="k">    end if</span>
+
+    <span class="c">! ------------------------------------------------------------------------------------</span>
+    <span class="k">select type</span><span class="p">(</span><span class="n">fluxes</span><span class="p">)</span>
+      <span class="k">type is</span> <span class="p">(</span><span class="n">ty_fluxes_broadband</span><span class="p">)</span>
+        <span class="n">do_broadband</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="err">_</span><span class="n">wl</span>
+        <span class="c">!</span>
+        <span class="c">! Solvers will integrate in place (one g-point at a time on CPUs)</span>
+        <span class="c">!   so won&#39;t need big working arrays</span>
+        <span class="c">!</span>
+        <span class="k">allocate</span><span class="p">(</span><span class="n">decoy3D</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">))</span>
+        <span class="n">gpt_flux_up</span>  <span class="o">=&gt;</span> <span class="n">decoy3D</span>
+        <span class="n">gpt_flux_dn</span>  <span class="o">=&gt;</span> <span class="n">decoy3D</span>
+        <span class="n">gpt_flux_dir</span> <span class="o">=&gt;</span> <span class="n">decoy3D</span>
+        <span class="c">!</span>
+        <span class="c">! Broadband fluxes class has three possible outputs; allocate memory for local use</span>
+        <span class="c">!   if one or more haven&#39;t been requested</span>
+        <span class="c">!</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">fluxes</span><span class="p">%</span><span class="n">flux_up</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">          </span><span class="n">flux_up_loc</span> <span class="o">=&gt;</span> <span class="n">fluxes</span><span class="p">%</span><span class="n">flux_up</span>
+        <span class="k">else</span>
+<span class="k">          allocate</span><span class="p">(</span><span class="n">flux_up_loc</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">end if</span>
+<span class="k">        if</span><span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">fluxes</span><span class="p">%</span><span class="n">flux_dn</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">          </span><span class="n">flux_dn_loc</span> <span class="o">=&gt;</span> <span class="n">fluxes</span><span class="p">%</span><span class="n">flux_dn</span>
+        <span class="k">else</span>
+<span class="k">          allocate</span><span class="p">(</span><span class="n">flux_dn_loc</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">end if</span>
+<span class="k">        if</span><span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">fluxes</span><span class="p">%</span><span class="n">flux_dn_dir</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">          </span><span class="n">flux_dir_loc</span> <span class="o">=&gt;</span> <span class="n">fluxes</span><span class="p">%</span><span class="n">flux_dn_dir</span>
+        <span class="k">else</span>
+<span class="k">          allocate</span><span class="p">(</span><span class="n">flux_dir_loc</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">end if</span>
+        <span class="c">!$acc        enter data create(   flux_up_loc, flux_dn_loc, flux_dir_loc)</span>
+        <span class="c">!$omp target enter data map(alloc:flux_up_loc, flux_dn_loc, flux_dir_loc)</span>
+      <span class="k">class </span><span class="n">default</span>
+        <span class="c">!</span>
+        <span class="c">! If broadband integrals aren&#39;t being computed, allocate working space</span>
+        <span class="c">!   and decoy addresses for spectrally-integrated fields</span>
+        <span class="c">!</span>
+        <span class="n">do_broadband</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="err">_</span><span class="n">wl</span>
+        <span class="k">allocate</span><span class="p">(</span><span class="n">decoy2D</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">flux_up_loc</span>  <span class="o">=&gt;</span> <span class="n">decoy2D</span>
+        <span class="n">flux_dn_loc</span>  <span class="o">=&gt;</span> <span class="n">decoy2D</span>
+        <span class="n">flux_dir_loc</span> <span class="o">=&gt;</span> <span class="n">decoy2D</span>
+        <span class="k">allocate</span><span class="p">(</span><span class="n">gpt_flux_up</span> <span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="p">&amp;</span>
+                 <span class="n">gpt_flux_dn</span> <span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="p">&amp;</span>
+                 <span class="n">gpt_flux_dir</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">ngpt</span><span class="p">))</span>
+    <span class="k">end select</span>
+
+<span class="k">    allocate</span><span class="p">(</span><span class="n">sfc_alb_dir_gpt</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">),</span> <span class="n">sfc_alb_dif_gpt</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">))</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      if</span><span class="p">(</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">atmos</span><span class="p">%</span><span class="n">get_name</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="n">atmos</span><span class="p">%</span><span class="n">get_name</span><span class="p">())</span> <span class="o">//</span> <span class="s1">&#39;: &#39;</span> <span class="o">//</span> <span class="nb">trim</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+    <span class="k">end if</span>
+
+    <span class="c">! Fluxes need to be copied out only if do_broadband is .true.</span>
+    <span class="c">!$acc        data copyin(   flux_up_loc,flux_dn_loc,flux_dir_loc) if (      do_broadband)</span>
+    <span class="c">!$omp target data map(to:   flux_up_loc,flux_dn_loc,flux_dir_loc) if (      do_broadband)</span>
+    <span class="c">!$acc        data create(   flux_up_loc,flux_dn_loc,flux_dir_loc) if (.not. do_broadband)</span>
+    <span class="c">!$omp target data map(alloc:flux_up_loc,flux_dn_loc,flux_dir_loc) if (.not. do_broadband)</span>
+
+    <span class="c">!$acc        data create(   gpt_flux_up,gpt_flux_dn,gpt_flux_dir) &amp;</span>
+    <span class="c">!$acc             create(   sfc_alb_dir_gpt, sfc_alb_dif_gpt)</span>
+    <span class="c">!$omp target data map(alloc:gpt_flux_up,gpt_flux_dn,gpt_flux_dir) &amp;</span>
+    <span class="c">!$omp             map(alloc:sfc_alb_dir_gpt, sfc_alb_dif_gpt)</span>
+
+
+    <span class="c">! ------------------------------------------------------------------------------------</span>
+    <span class="c">! Boundary conditions</span>
+    <span class="c">!   Lower boundary condition -- expand surface albedos by band to gpoints</span>
+    <span class="c">!     and switch dimension ordering</span>
+    <span class="k">call </span><span class="n">expand_and_transpose</span><span class="p">(</span><span class="n">atmos</span><span class="p">,</span> <span class="n">sfc_alb_dir</span><span class="p">,</span> <span class="n">sfc_alb_dir_gpt</span><span class="p">)</span>
+    <span class="k">call </span><span class="n">expand_and_transpose</span><span class="p">(</span><span class="n">atmos</span><span class="p">,</span> <span class="n">sfc_alb_dif</span><span class="p">,</span> <span class="n">sfc_alb_dif_gpt</span><span class="p">)</span>
+    <span class="c">!</span>
+    <span class="c">!   Diffuse flux boundary condition - will use values in optional arg or be set to 0</span>
+    <span class="c">!</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">has_dif_bc</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">inc_flux_diffuse</span> <span class="o">=&gt;</span> <span class="n">inc_flux_dif</span>
+      <span class="c">!$acc        enter data copyin(   inc_flux_diffuse)</span>
+      <span class="c">!$omp target enter data map(to:   inc_flux_diffuse)</span>
+    <span class="k">else</span>
+<span class="k">      allocate</span><span class="p">(</span><span class="n">inc_flux_diffuse</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">))</span>
+      <span class="c">!$acc        enter data create(   inc_flux_diffuse)</span>
+      <span class="c">!$omp target enter data map(alloc:inc_flux_diffuse)</span>
+      <span class="k">call </span><span class="n">zero_array</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">inc_flux_diffuse</span><span class="p">)</span>
+    <span class="k">end if</span>
+    <span class="c">! ------------------------------------------------------------------------------------</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">check_values</span><span class="p">)</span> <span class="n">error_msg</span> <span class="o">=</span>  <span class="n">atmos</span><span class="p">%</span><span class="n">validate</span><span class="p">()</span>
+    <span class="c">!</span>
+    <span class="c">! Compute the radiative transfer...</span>
+    <span class="c">!</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      select type</span> <span class="p">(</span><span class="n">atmos</span><span class="p">)</span>
+        <span class="k">class is</span> <span class="p">(</span><span class="n">ty_optical_props_1scl</span><span class="p">)</span>
+          <span class="c">!</span>
+          <span class="c">! Direct beam only - for completeness, unlikely to be used in practice</span>
+          <span class="c">!</span>
+          <span class="k">call </span><span class="n">sw_solver_noscat</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="kt">logical</span><span class="p">(</span><span class="n">top_at_1</span><span class="p">,</span> <span class="n">wl</span><span class="p">),</span> <span class="p">&amp;</span>
+                                <span class="n">atmos</span><span class="p">%</span><span class="n">tau</span><span class="p">,</span> <span class="n">mu0</span><span class="p">,</span> <span class="n">inc_flux</span><span class="p">,</span>                <span class="p">&amp;</span>
+                                <span class="n">gpt_flux_dir</span><span class="p">)</span>
+          <span class="k">call </span><span class="n">zero_array</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">gpt_flux_up</span><span class="p">)</span>
+          <span class="c">!</span>
+          <span class="c">!$acc kernels</span>
+          <span class="c">!$omp target</span>
+          <span class="n">gpt_flux_dn</span><span class="p">(:,:,:)</span> <span class="o">=</span> <span class="n">gpt_flux_dir</span><span class="p">(:,:,:)</span>
+          <span class="c">!$acc end kernels</span>
+          <span class="c">!$omp end target</span>
+
+        <span class="k">class is</span> <span class="p">(</span><span class="n">ty_optical_props_2str</span><span class="p">)</span>
+          <span class="c">!</span>
+          <span class="c">! two-stream calculation with scattering</span>
+          <span class="c">!</span>
+          <span class="k">call </span><span class="n">sw_solver_2stream</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="kt">logical</span><span class="p">(</span><span class="n">top_at_1</span><span class="p">,</span> <span class="n">wl</span><span class="p">),</span> <span class="p">&amp;</span>
+                                 <span class="n">atmos</span><span class="p">%</span><span class="n">tau</span><span class="p">,</span> <span class="n">atmos</span><span class="p">%</span><span class="n">ssa</span><span class="p">,</span> <span class="n">atmos</span><span class="p">%</span><span class="n">g</span><span class="p">,</span> <span class="n">mu0</span><span class="p">,</span>      <span class="p">&amp;</span>
+                                 <span class="n">sfc_alb_dir_gpt</span><span class="p">,</span> <span class="n">sfc_alb_dif_gpt</span><span class="p">,</span>        <span class="p">&amp;</span>
+                                             <span class="n">inc_flux</span><span class="p">,</span>                    <span class="p">&amp;</span>
+                                 <span class="n">gpt_flux_up</span><span class="p">,</span> <span class="n">gpt_flux_dn</span><span class="p">,</span> <span class="n">gpt_flux_dir</span><span class="p">,</span>  <span class="p">&amp;</span>
+                                 <span class="n">has_dif_bc</span><span class="p">,</span> <span class="n">inc_flux_diffuse</span><span class="p">,</span>            <span class="p">&amp;</span>
+                                 <span class="n">do_broadband</span><span class="p">,</span> <span class="n">flux_up_loc</span><span class="p">,</span> <span class="n">flux_dn_loc</span><span class="p">,</span> <span class="n">flux_dir_loc</span><span class="p">)</span>
+        <span class="k">class is</span> <span class="p">(</span><span class="n">ty_optical_props_nstr</span><span class="p">)</span>
+          <span class="c">!</span>
+          <span class="c">! n-stream calculation</span>
+          <span class="c">!</span>
+          <span class="c">! not yet implemented so fail</span>
+          <span class="c">!</span>
+          <span class="n">error_msg</span> <span class="o">=</span> <span class="s1">&#39;sw_solver(...ty_optical_props_nstr...) not yet implemented&#39;</span>
+      <span class="k">end select</span>
+<span class="k">      if</span><span class="p">(</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        if</span><span class="p">(</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">atmos</span><span class="p">%</span><span class="n">get_name</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">&amp;</span>
+          <span class="n">error_msg</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="n">atmos</span><span class="p">%</span><span class="n">get_name</span><span class="p">())</span> <span class="o">//</span> <span class="s1">&#39;: &#39;</span> <span class="o">//</span> <span class="nb">trim</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+      <span class="k">end if</span>
+      <span class="c">!</span>
+      <span class="c">! Flux reduction (summarizing for output)</span>
+      <span class="c">!</span>
+      <span class="k">select type</span><span class="p">(</span><span class="n">fluxes</span><span class="p">)</span>
+        <span class="c">!</span>
+        <span class="c">! Tidy up memory for broadband fluxes</span>
+        <span class="c">!</span>
+        <span class="k">type is</span> <span class="p">(</span><span class="n">ty_fluxes_broadband</span><span class="p">)</span>
+          <span class="k">if</span><span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">fluxes</span><span class="p">%</span><span class="n">flux_net</span><span class="p">))</span> <span class="k">then</span>
+            <span class="c">!$acc                         parallel loop    collapse(2) copyout(fluxes%flux_net)</span>
+            <span class="c">!$omp target teams distribute parallel do simd collapse(2)</span>
+            <span class="k">do </span><span class="n">ilev</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span>
+              <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+                <span class="n">fluxes</span><span class="p">%</span><span class="n">flux_net</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="p">)</span> <span class="o">=</span> <span class="n">flux_dn_loc</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="p">)</span> <span class="o">-</span> <span class="n">flux_up_loc</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="p">)</span>
+              <span class="k">end do</span>
+<span class="k">            end do</span>
+<span class="k">          end if</span>
+<span class="k">        class </span><span class="n">default</span>
+          <span class="c">!</span>
+          <span class="c">! ...or reduce spectral fluxes to desired output quantities</span>
+          <span class="c">!</span>
+          <span class="n">error_msg</span> <span class="o">=</span> <span class="n">fluxes</span><span class="p">%</span><span class="n">reduce</span><span class="p">(</span><span class="n">gpt_flux_up</span><span class="p">,</span> <span class="n">gpt_flux_dn</span><span class="p">,</span> <span class="n">atmos</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span> <span class="n">gpt_flux_dir</span><span class="p">)</span>
+      <span class="k">end select</span>
+<span class="k">    end if</span> <span class="c">! In case of an error we exit here</span>
+
+    <span class="c">!$acc        end data</span>
+    <span class="c">!$omp end target data</span>
+    <span class="c">!$acc        end data</span>
+    <span class="c">!$omp end target data</span>
+    <span class="c">!$acc        end data</span>
+    <span class="c">!$omp end target data</span>
+    <span class="c">!$acc        end data</span>
+    <span class="c">!$omp end target data</span>
+    <span class="c">!$acc        end data</span>
+    <span class="c">!$omp end target data</span>
+
+    <span class="c">!</span>
+    <span class="c">! Deallocate any memory allocated locally to pointer variables</span>
+    <span class="c">!</span>
+    <span class="k">select type</span><span class="p">(</span><span class="n">fluxes</span><span class="p">)</span>
+      <span class="k">type is</span> <span class="p">(</span><span class="n">ty_fluxes_broadband</span><span class="p">)</span>
+        <span class="c">!$acc        exit data copyout( flux_up_loc, flux_dn_loc, flux_dir_loc)</span>
+        <span class="c">!$omp target exit data map(from:flux_up_loc, flux_dn_loc, flux_dir_loc)</span>
+        <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">associated</span><span class="p">(</span><span class="n">fluxes</span><span class="p">%</span><span class="n">flux_up</span>    <span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">flux_up_loc</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">associated</span><span class="p">(</span><span class="n">fluxes</span><span class="p">%</span><span class="n">flux_dn</span>    <span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">flux_dn_loc</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">associated</span><span class="p">(</span><span class="n">fluxes</span><span class="p">%</span><span class="n">flux_dn_dir</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">flux_dir_loc</span><span class="p">)</span>
+      <span class="k">class </span><span class="n">default</span>
+        <span class="k">deallocate</span><span class="p">(</span><span class="n">gpt_flux_up</span><span class="p">,</span> <span class="n">gpt_flux_dn</span><span class="p">,</span> <span class="n">gpt_flux_dir</span><span class="p">)</span>
+    <span class="k">end select</span>
+<span class="k">    if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">has_dif_bc</span><span class="p">)</span> <span class="k">then</span>
+      <span class="c">!$acc        exit data delete(     inc_flux_diffuse)</span>
+      <span class="c">!$omp target exit data map(release:inc_flux_diffuse)</span>
+      <span class="k">deallocate</span><span class="p">(</span><span class="n">inc_flux_diffuse</span><span class="p">)</span>
+    <span class="k">end if</span>
+
+<span class="k">  end function </span><span class="n">rte_sw</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

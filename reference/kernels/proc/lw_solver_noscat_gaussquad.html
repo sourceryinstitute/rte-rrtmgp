@@ -110,7 +110,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/lw_solver_noscat_gaussquad.html#src">lw_solver_noscat_GaussQuad</a>
+  </div>
+</div>
 
 </div>
 
@@ -126,19 +131,19 @@
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-ncol~9"></span>integer,</td>
+  <td><span class="anchor" id="variable-ncol~33"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>ncol</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-nlay~9"></span>integer,</td>
+  <td><span class="anchor" id="variable-nlay~32"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>nlay</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-ngpt~8"></span>integer,</td>
+  <td><span class="anchor" id="variable-ngpt~32"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>ngpt</strong></td><td></td>
@@ -168,7 +173,7 @@
   <td><strong>weights</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-tau~6"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-tau~8"></span>real(kind=wp),</td>
 <td>intent(in),</td>
   <td></td>  <td>dimension(ncol,nlay,  ngpt)</td><td>::</td>
   <td><strong>tau</strong></td><td></td>
@@ -264,13 +269,13 @@
   <td><strong>do_rescaling</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-ssa~3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-ssa~5"></span>real(kind=wp),</td>
 <td>intent(in),</td>
   <td></td>  <td>dimension(ncol,nlay  ,ngpt)</td><td>::</td>
   <td><strong>ssa</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-g~3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-g~5"></span>real(kind=wp),</td>
 <td>intent(in),</td>
   <td></td>  <td>dimension(ncol,nlay  ,ngpt)</td><td>::</td>
   <td><strong>g</strong></td><td></td>
@@ -396,7 +401,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/lw_solver_noscat_gaussquad.html#src">lw_solver_noscat_GaussQuad</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -410,6 +420,121 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">lw_solver_noscat_GaussQuad</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span> <span class="p">&amp;</span>
+                                        <span class="n">nmus</span><span class="p">,</span> <span class="n">Ds</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span>          <span class="p">&amp;</span>
+                                        <span class="n">tau</span><span class="p">,</span>                        <span class="p">&amp;</span>
+                                        <span class="n">lay_source</span><span class="p">,</span> <span class="n">lev_source_inc</span><span class="p">,</span> <span class="n">lev_source_dec</span><span class="p">,</span>         <span class="p">&amp;</span>
+                                        <span class="n">sfc_emis</span><span class="p">,</span> <span class="n">sfc_src</span><span class="p">,</span>          <span class="p">&amp;</span>
+                                        <span class="n">inc_flux</span><span class="p">,</span>                   <span class="p">&amp;</span>
+                                        <span class="n">flux_up</span><span class="p">,</span> <span class="n">flux_dn</span><span class="p">,</span>           <span class="p">&amp;</span>
+                                        <span class="n">do_broadband</span><span class="p">,</span> <span class="n">broadband_up</span><span class="p">,</span> <span class="n">broadband_dn</span><span class="p">,</span> <span class="p">&amp;</span>
+                                        <span class="n">do_Jacobians</span><span class="p">,</span> <span class="n">sfc_srcJac</span><span class="p">,</span> <span class="n">flux_upJac</span><span class="p">,</span>               <span class="p">&amp;</span>
+                                        <span class="n">do_rescaling</span><span class="p">,</span> <span class="n">ssa</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="k">bind</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lw_solver_noscat_GaussQuad&quot;</span><span class="p">)</span>
+    <span class="kt">integer</span><span class="p">,</span>                               <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span> <span class="c">! Number of columns, layers, g-points</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">),</span>                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">top_at_1</span>
+    <span class="kt">integer</span><span class="p">,</span>                               <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">nmus</span>         <span class="c">! number of quadrature angles</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span> <span class="p">(</span><span class="n">ncol</span><span class="p">,</span>      <span class="n">ngpt</span><span class="p">,</span> <span class="p">&amp;</span>
+                                    <span class="n">nmus</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">Ds</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">nmus</span><span class="p">),</span>             <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">weights</span>  <span class="c">! quadrature secants, weights</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span>  <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">tau</span>          <span class="c">! Absorption optical thickness []</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span>  <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">lay_source</span>   <span class="c">! Planck source at layer average temperature [W/m2]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span>  <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">lev_source_inc</span>
+                                        <span class="c">! Planck source at layer edge for radiation in increasing ilay direction [W/m2]</span>
+                                        <span class="c">! Includes spectral weighting that accounts for state-dependent frequency to g-space mapping</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span>  <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">lev_source_dec</span>
+                                        <span class="c">! Planck source at layer edge for radiation in decreasing ilay direction [W/m2]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span>       <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">sfc_emis</span>     <span class="c">! Surface emissivity      []</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span>       <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">sfc_src</span>      <span class="c">! Surface source function [W/m2]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span>       <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">inc_flux</span>     <span class="c">! Incident diffuse flux, probably 0 [W/m2]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="k">target</span><span class="p">,</span> <span class="p">&amp;</span>
+                                           <span class="k">intent</span><span class="p">(</span>  <span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">flux_up</span><span class="p">,</span> <span class="n">flux_dn</span> <span class="c">! Fluxes [W/m2]</span>
+    <span class="c">!</span>
+    <span class="c">! Optional variables - arrays aren&#39;t referenced if corresponding logical  == False</span>
+    <span class="c">!</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">),</span>                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">do_broadband</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span>     <span class="p">),</span> <span class="k">target</span><span class="p">,</span> <span class="p">&amp;</span>
+                                           <span class="k">intent</span><span class="p">(</span>  <span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">broadband_up</span><span class="p">,</span> <span class="n">broadband_dn</span>
+                                                            <span class="c">! Spectrally-integrated fluxes [W/m2]</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">),</span>                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">do_Jacobians</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span>       <span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">sfc_srcJac</span>
+                                                            <span class="c">! surface temperature Jacobian of surface source function [W/m2/K]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span>     <span class="p">),</span> <span class="k">target</span><span class="p">,</span> <span class="p">&amp;</span>
+                                           <span class="k">intent</span><span class="p">(</span>  <span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">flux_upJac</span>
+                                                            <span class="c">! surface temperature Jacobian of Radiances [W/m2-str / K]</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">),</span>                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">do_rescaling</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span>  <span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">ssa</span><span class="p">,</span> <span class="n">g</span>    <span class="c">! single-scattering albedo, asymmetry parameter</span>
+    <span class="c">! ------------------------------------</span>
+    <span class="c">!</span>
+    <span class="c">! Local variables - used for a single quadrature angle</span>
+    <span class="c">!</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">this_flux_up</span><span class="p">,</span>      <span class="n">this_flux_dn</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span>   <span class="k">pointer</span> <span class="kd">::</span> <span class="n">this_broadband_up</span><span class="p">,</span> <span class="n">this_broadband_dn</span><span class="p">,</span> <span class="n">this_flux_upJac</span>
+
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">imu</span>
+    <span class="c">! ------------------------------------</span>
+    <span class="c">!</span>
+    <span class="c">! For the first angle output arrays store total flux</span>
+    <span class="c">!</span>
+    <span class="k">call </span><span class="n">lw_solver_noscat</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="p">&amp;</span>
+                          <span class="n">top_at_1</span><span class="p">,</span> <span class="n">Ds</span><span class="p">(:,:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">weights</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">tau</span><span class="p">,</span> <span class="p">&amp;</span>
+                          <span class="n">lay_source</span><span class="p">,</span> <span class="n">lev_source_inc</span><span class="p">,</span> <span class="n">lev_source_dec</span><span class="p">,</span> <span class="n">sfc_emis</span><span class="p">,</span> <span class="n">sfc_src</span><span class="p">,</span> <span class="p">&amp;</span>
+                          <span class="n">inc_flux</span><span class="p">,</span>         <span class="p">&amp;</span>
+                          <span class="n">flux_up</span><span class="p">,</span> <span class="n">flux_dn</span><span class="p">,</span> <span class="p">&amp;</span>
+                          <span class="n">do_broadband</span><span class="p">,</span> <span class="n">broadband_up</span><span class="p">,</span> <span class="n">broadband_dn</span><span class="p">,</span> <span class="p">&amp;</span>
+                          <span class="n">do_Jacobians</span><span class="p">,</span> <span class="n">sfc_srcJac</span><span class="p">,</span> <span class="n">flux_upJac</span><span class="p">,</span>     <span class="p">&amp;</span>
+                          <span class="n">do_rescaling</span><span class="p">,</span> <span class="n">ssa</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+    <span class="c">!</span>
+    <span class="c">! For more than one angle use local arrays</span>
+    <span class="c">!</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">nmus</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      if</span><span class="p">(</span><span class="n">do_broadband</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        allocate</span><span class="p">(</span><span class="n">this_broadband_up</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">this_broadband_dn</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="c">! Spectrally-resolved fluxes won&#39;t be filled in so can point to caller-supplied memory</span>
+        <span class="n">this_flux_up</span> <span class="o">=&gt;</span> <span class="n">flux_up</span>
+        <span class="n">this_flux_dn</span> <span class="o">=&gt;</span> <span class="n">flux_dn</span>
+      <span class="k">else</span>
+<span class="k">        allocate</span><span class="p">(</span><span class="n">this_flux_up</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="n">this_flux_dn</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">ngpt</span><span class="p">))</span>
+        <span class="c">! Spectrally-integrated fluxes won&#39;t be filled in so can point to caller-supplied memory</span>
+        <span class="n">this_broadband_up</span> <span class="o">=&gt;</span> <span class="n">broadband_up</span>
+        <span class="n">this_broadband_dn</span> <span class="o">=&gt;</span> <span class="n">broadband_dn</span>
+      <span class="k">end if</span>
+<span class="k">      if</span><span class="p">(</span><span class="n">do_Jacobians</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        allocate</span><span class="p">(</span><span class="n">this_flux_upJac</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+      <span class="k">else</span>
+<span class="k">        </span><span class="n">this_flux_upJac</span> <span class="o">=&gt;</span> <span class="n">flux_upJac</span>
+      <span class="k">end if</span>
+<span class="k">    end if</span>
+<span class="k">    do </span><span class="n">imu</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nmus</span>
+      <span class="k">call </span><span class="n">lw_solver_noscat</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="p">&amp;</span>
+                            <span class="n">top_at_1</span><span class="p">,</span> <span class="n">Ds</span><span class="p">(:,:,</span><span class="n">imu</span><span class="p">),</span> <span class="n">weights</span><span class="p">(</span><span class="n">imu</span><span class="p">),</span> <span class="n">tau</span><span class="p">,</span> <span class="p">&amp;</span>
+                            <span class="n">lay_source</span><span class="p">,</span> <span class="n">lev_source_inc</span><span class="p">,</span> <span class="n">lev_source_dec</span><span class="p">,</span> <span class="n">sfc_emis</span><span class="p">,</span> <span class="n">sfc_src</span><span class="p">,</span> <span class="p">&amp;</span>
+                            <span class="n">inc_flux</span><span class="p">,</span>         <span class="p">&amp;</span>
+                            <span class="n">this_flux_up</span><span class="p">,</span>  <span class="n">this_flux_dn</span><span class="p">,</span> <span class="p">&amp;</span>
+                            <span class="n">do_broadband</span><span class="p">,</span> <span class="n">this_broadband_up</span><span class="p">,</span> <span class="n">this_broadband_dn</span><span class="p">,</span> <span class="p">&amp;</span>
+                            <span class="n">do_Jacobians</span><span class="p">,</span> <span class="n">sfc_srcJac</span><span class="p">,</span> <span class="n">this_flux_upJac</span><span class="p">,</span>         <span class="p">&amp;</span>
+                            <span class="n">do_rescaling</span><span class="p">,</span> <span class="n">ssa</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">do_broadband</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">broadband_up</span><span class="p">(:,:)</span> <span class="o">=</span> <span class="n">broadband_up</span><span class="p">(:,:)</span> <span class="o">+</span> <span class="n">this_broadband_up</span><span class="p">(:,:)</span>
+        <span class="n">broadband_dn</span><span class="p">(:,:)</span> <span class="o">=</span> <span class="n">broadband_dn</span><span class="p">(:,:)</span> <span class="o">+</span> <span class="n">this_broadband_dn</span><span class="p">(:,:)</span>
+      <span class="k">else</span>
+<span class="k">        </span><span class="n">flux_up</span>   <span class="p">(:,:,:)</span> <span class="o">=</span> <span class="n">flux_up</span>   <span class="p">(:,:,:)</span> <span class="o">+</span> <span class="n">this_flux_up</span>   <span class="p">(:,:,:)</span>
+        <span class="n">flux_dn</span>   <span class="p">(:,:,:)</span> <span class="o">=</span> <span class="n">flux_dn</span>   <span class="p">(:,:,:)</span> <span class="o">+</span> <span class="n">this_flux_dn</span>   <span class="p">(:,:,:)</span>
+      <span class="k">end if</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">do_Jacobians</span><span class="p">)</span> <span class="p">&amp;</span>
+        <span class="n">flux_upJac</span><span class="p">(:,:)</span>  <span class="o">=</span> <span class="n">flux_upJac</span><span class="p">(:,:</span>  <span class="p">)</span> <span class="o">+</span> <span class="n">this_flux_upJac</span><span class="p">(:,:</span>  <span class="p">)</span>
+    <span class="k">end do</span>
+<span class="k">    if</span><span class="p">(</span><span class="n">nmus</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      if</span><span class="p">(</span>      <span class="n">do_broadband</span><span class="p">)</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">this_broadband_up</span><span class="p">,</span> <span class="n">this_broadband_dn</span><span class="p">)</span>
+      <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">do_broadband</span><span class="p">)</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">this_flux_up</span><span class="p">,</span>        <span class="n">this_flux_dn</span><span class="p">)</span>
+      <span class="k">if</span><span class="p">(</span>      <span class="n">do_Jacobians</span><span class="p">)</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">this_flux_upJac</span><span class="p">)</span>
+    <span class="k">end if</span>
+<span class="k">  end subroutine </span><span class="n">lw_solver_noscat_GaussQuad</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

@@ -110,7 +110,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/lw_solver_2stream.html#src">lw_solver_2stream</a>
+  </div>
+</div>
 
 </div>
 
@@ -126,19 +131,19 @@
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-ncol~7"></span>integer,</td>
+  <td><span class="anchor" id="variable-ncol~31"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>ncol</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-nlay~7"></span>integer,</td>
+  <td><span class="anchor" id="variable-nlay~30"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>nlay</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-ngpt~6"></span>integer,</td>
+  <td><span class="anchor" id="variable-ngpt~30"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>ngpt</strong></td><td></td>
@@ -150,19 +155,19 @@
   <td><strong>top_at_1</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-tau~4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-tau~6"></span>real(kind=wp),</td>
 <td>intent(in),</td>
   <td></td>  <td>dimension(ncol,nlay,  ngpt)</td><td>::</td>
   <td><strong>tau</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-ssa"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-ssa~3"></span>real(kind=wp),</td>
 <td>intent(in),</td>
   <td></td>  <td>dimension(ncol,nlay,  ngpt)</td><td>::</td>
   <td><strong>ssa</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-g"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-g~3"></span>real(kind=wp),</td>
 <td>intent(in),</td>
   <td></td>  <td>dimension(ncol,nlay,  ngpt)</td><td>::</td>
   <td><strong>g</strong></td><td></td>
@@ -223,7 +228,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/lw_solver_2stream.html#src">lw_solver_2stream</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -237,6 +247,80 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>   <span class="k">subroutine </span><span class="n">lw_solver_2stream</span> <span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span> <span class="p">&amp;</span>
+                                 <span class="n">tau</span><span class="p">,</span> <span class="n">ssa</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span>                <span class="p">&amp;</span>
+                                 <span class="n">lay_source</span><span class="p">,</span> <span class="n">lev_source_inc</span><span class="p">,</span> <span class="n">lev_source_dec</span><span class="p">,</span> <span class="n">sfc_emis</span><span class="p">,</span> <span class="n">sfc_src</span><span class="p">,</span> <span class="p">&amp;</span>
+                                 <span class="n">inc_flux</span><span class="p">,</span>                   <span class="p">&amp;</span>
+                                 <span class="n">flux_up</span><span class="p">,</span> <span class="n">flux_dn</span><span class="p">)</span> <span class="k">bind</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lw_solver_2stream&quot;</span><span class="p">)</span>
+    <span class="kt">integer</span><span class="p">,</span>                               <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span> <span class="c">! Number of columns, layers, g-points</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">),</span>                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">top_at_1</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span>  <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">tau</span><span class="p">,</span> <span class="p">&amp;</span>     <span class="c">! Optical thickness,</span>
+                                                            <span class="n">ssa</span><span class="p">,</span> <span class="p">&amp;</span>     <span class="c">! single-scattering albedo,</span>
+                                                            <span class="n">g</span>          <span class="c">! asymmetry parameter []</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">ngpt</span><span class="p">),</span>   <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">lay_source</span> <span class="c">! Planck source at layer average temperature [W/m2]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="k">target</span><span class="p">,</span> <span class="p">&amp;</span>
+                                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">lev_source_inc</span><span class="p">,</span> <span class="n">lev_source_dec</span>
+                                        <span class="c">! Planck source at layer edge for radiation in increasing/decreasing ilay direction [W/m2]</span>
+                                        <span class="c">! Includes spectral weighting that accounts for state-dependent frequency to g-space mapping</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span>       <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">sfc_emis</span>   <span class="c">! Surface emissivity      []</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span>       <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">sfc_src</span>    <span class="c">! Surface source function [W/m2]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span>       <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">inc_flux</span>   <span class="c">! Incident diffuse flux, probably 0 [W/m2]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span>  <span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">flux_up</span><span class="p">,</span> <span class="n">flux_dn</span> <span class="c">! Fluxes [W/m2]</span>
+    <span class="c">! ----------------------------------------------------------------------</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">igpt</span><span class="p">,</span> <span class="n">top_level</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span>  <span class="p">)</span> <span class="kd">::</span> <span class="n">Rdif</span><span class="p">,</span> <span class="n">Tdif</span><span class="p">,</span> <span class="n">gamma1</span><span class="p">,</span> <span class="n">gamma2</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span>       <span class="p">)</span> <span class="kd">::</span> <span class="n">sfc_albedo</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="kd">::</span> <span class="n">lev_source</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span>  <span class="p">)</span> <span class="kd">::</span> <span class="n">source_dn</span><span class="p">,</span> <span class="n">source_up</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span>       <span class="p">)</span> <span class="kd">::</span> <span class="n">source_sfc</span>
+    <span class="c">! ------------------------------------</span>
+    <span class="n">top_level</span> <span class="o">=</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">top_at_1</span><span class="p">)</span> <span class="n">top_level</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">do </span><span class="n">igpt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span>
+      <span class="c">!</span>
+      <span class="c">! RRTMGP provides source functions at each level using the spectral mapping</span>
+      <span class="c">!   of each adjacent layer. Combine these for two-stream calculations</span>
+      <span class="c">!</span>
+      <span class="k">call </span><span class="n">lw_combine_sources</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span> <span class="p">&amp;</span>
+                              <span class="n">lev_source_inc</span><span class="p">(:,:,</span><span class="n">igpt</span><span class="p">),</span> <span class="n">lev_source_dec</span><span class="p">(:,:,</span><span class="n">igpt</span><span class="p">),</span> <span class="p">&amp;</span>
+                              <span class="n">lev_source</span><span class="p">)</span>
+      <span class="c">!</span>
+      <span class="c">! Cell properties: reflection, transmission for diffuse radiation</span>
+      <span class="c">!   Coupling coefficients needed for source function</span>
+      <span class="c">!</span>
+      <span class="k">call </span><span class="n">lw_two_stream</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span>                                 <span class="p">&amp;</span>
+                         <span class="n">tau</span> <span class="p">(:,:,</span><span class="n">igpt</span><span class="p">),</span> <span class="n">ssa</span><span class="p">(:,:,</span><span class="n">igpt</span><span class="p">),</span> <span class="n">g</span><span class="p">(:,:,</span><span class="n">igpt</span><span class="p">),</span> <span class="p">&amp;</span>
+                         <span class="n">gamma1</span><span class="p">,</span> <span class="n">gamma2</span><span class="p">,</span> <span class="n">Rdif</span><span class="p">,</span> <span class="n">Tdif</span><span class="p">)</span>
+      <span class="c">!</span>
+      <span class="c">! Source function for diffuse radiation</span>
+      <span class="c">!</span>
+      <span class="k">call </span><span class="n">lw_source_2str</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span> <span class="p">&amp;</span>
+                          <span class="n">sfc_emis</span><span class="p">(:,</span><span class="n">igpt</span><span class="p">),</span> <span class="n">sfc_src</span><span class="p">(:,</span><span class="n">igpt</span><span class="p">),</span> <span class="p">&amp;</span>
+                          <span class="n">lay_source</span><span class="p">(:,:,</span><span class="n">igpt</span><span class="p">),</span> <span class="n">lev_source</span><span class="p">,</span> <span class="p">&amp;</span>
+                          <span class="n">gamma1</span><span class="p">,</span> <span class="n">gamma2</span><span class="p">,</span> <span class="n">Rdif</span><span class="p">,</span> <span class="n">Tdif</span><span class="p">,</span> <span class="n">tau</span><span class="p">(:,:,</span><span class="n">igpt</span><span class="p">),</span> <span class="p">&amp;</span>
+                          <span class="n">source_dn</span><span class="p">,</span> <span class="n">source_up</span><span class="p">,</span> <span class="n">source_sfc</span><span class="p">)</span>
+      <span class="c">!</span>
+      <span class="c">! Transport</span>
+      <span class="c">!</span>
+      <span class="n">sfc_albedo</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ncol</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1._wp</span> <span class="o">-</span> <span class="n">sfc_emis</span><span class="p">(:,</span><span class="n">igpt</span><span class="p">)</span>
+      <span class="c">!</span>
+      <span class="c">! Boundary condition</span>
+      <span class="c">!</span>
+      <span class="n">flux_dn</span><span class="p">(:,</span><span class="n">top_level</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">inc_flux</span><span class="p">(:,</span><span class="n">igpt</span><span class="p">)</span>
+      <span class="k">call </span><span class="n">adding</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span>              <span class="p">&amp;</span>
+                  <span class="n">sfc_albedo</span><span class="p">,</span>                        <span class="p">&amp;</span>
+                  <span class="n">Rdif</span><span class="p">,</span> <span class="n">Tdif</span><span class="p">,</span>                        <span class="p">&amp;</span>
+                  <span class="n">source_dn</span><span class="p">,</span> <span class="n">source_up</span><span class="p">,</span> <span class="n">source_sfc</span><span class="p">,</span>  <span class="p">&amp;</span>
+                  <span class="n">flux_up</span><span class="p">(:,:,</span><span class="n">igpt</span><span class="p">),</span> <span class="n">flux_dn</span><span class="p">(:,:,</span><span class="n">igpt</span><span class="p">))</span>
+    <span class="k">end do</span>
+
+<span class="k">  end subroutine </span><span class="n">lw_solver_2stream</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

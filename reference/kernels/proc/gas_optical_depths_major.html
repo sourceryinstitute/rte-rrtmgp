@@ -91,7 +91,7 @@
   </ul>
   <ol class="breadcrumb in-well text-right">
      <li><a href='../sourcefile/mo_gas_optics_kernels.f90.html'>mo_gas_optics_kernels.F90</a></li>
-     <li><a href='../module/mo_gas_optics_kernels.html'>mo_gas_optics_kernels</a></li>
+     <li><a href='../module/mo_gas_optics_kernels~2.html'>mo_gas_optics_kernels</a></li>
      <li class="active">gas_optical_depths_major</li>
   </ol>
 </div>
@@ -110,7 +110,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/gas_optical_depths_major.html#src">gas_optical_depths_major</a>
+  </div>
+</div>
 
 </div>
 
@@ -442,7 +447,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/gas_optical_depths_major.html#src">gas_optical_depths_major</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -456,6 +466,64 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">gas_optical_depths_major</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">nbnd</span><span class="p">,</span><span class="n">ngpt</span><span class="p">,&amp;</span>
+                                      <span class="n">nflav</span><span class="p">,</span><span class="n">neta</span><span class="p">,</span><span class="n">npres</span><span class="p">,</span><span class="n">ntemp</span><span class="p">,</span>      <span class="p">&amp;</span> <span class="c">! dimensions</span>
+                                      <span class="n">gpoint_flavor</span><span class="p">,</span> <span class="n">band_lims_gpt</span><span class="p">,</span>   <span class="p">&amp;</span> <span class="c">! inputs from object</span>
+                                      <span class="n">kmajor</span><span class="p">,</span>                         <span class="p">&amp;</span>
+                                      <span class="n">col_mix</span><span class="p">,</span><span class="n">fmajor</span><span class="p">,</span>                 <span class="p">&amp;</span>
+                                      <span class="n">jeta</span><span class="p">,</span><span class="n">tropo</span><span class="p">,</span><span class="n">jtemp</span><span class="p">,</span><span class="n">jpress</span><span class="p">,</span>        <span class="p">&amp;</span> <span class="c">! local input</span>
+                                      <span class="n">tau</span><span class="p">)</span> <span class="k">bind</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;gas_optical_depths_major&quot;</span><span class="p">)</span>
+    <span class="c">! input dimensions</span>
+    <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">nbnd</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">nflav</span><span class="p">,</span><span class="n">neta</span><span class="p">,</span><span class="n">npres</span><span class="p">,</span><span class="n">ntemp</span>  <span class="c">! dimensions</span>
+
+    <span class="c">! inputs from object</span>
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">ngpt</span><span class="p">),</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">gpoint_flavor</span>
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">nbnd</span><span class="p">),</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">band_lims_gpt</span> <span class="c">! start and end g-point for each band</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ntemp</span><span class="p">,</span><span class="n">neta</span><span class="p">,</span><span class="n">npres</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">kmajor</span>
+
+    <span class="c">! inputs from profile or parent function</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>    <span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">nflav</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">col_mix</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">nflav</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fmajor</span>
+    <span class="kt">integer</span><span class="p">,</span>     <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>    <span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">nflav</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">jeta</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tropo</span>
+    <span class="kt">integer</span><span class="p">,</span>     <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">jtemp</span><span class="p">,</span> <span class="n">jpress</span>
+
+    <span class="c">! outputs</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tau</span>
+    <span class="c">! -----------------</span>
+    <span class="c">! local variables</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tau_major</span><span class="p">(</span><span class="n">ngpt</span><span class="p">)</span> <span class="c">! major species optical depth</span>
+    <span class="c">! local index</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">icol</span><span class="p">,</span> <span class="n">ilay</span><span class="p">,</span> <span class="n">iflav</span><span class="p">,</span> <span class="n">ibnd</span><span class="p">,</span> <span class="n">itropo</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">gptS</span><span class="p">,</span> <span class="n">gptE</span>
+
+    <span class="c">! optical depth calculation for major species</span>
+    <span class="k">do </span><span class="n">ibnd</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nbnd</span>
+      <span class="n">gptS</span> <span class="o">=</span> <span class="n">band_lims_gpt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ibnd</span><span class="p">)</span>
+      <span class="n">gptE</span> <span class="o">=</span> <span class="n">band_lims_gpt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">ibnd</span><span class="p">)</span>
+      <span class="k">do </span><span class="n">ilay</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nlay</span>
+        <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+          <span class="c">! itropo = 1 lower atmosphere; itropo = 2 upper atmosphere</span>
+          <span class="n">itropo</span> <span class="o">=</span> <span class="nb">merge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">tropo</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">))</span>
+          <span class="n">iflav</span> <span class="o">=</span> <span class="n">gpoint_flavor</span><span class="p">(</span><span class="n">itropo</span><span class="p">,</span> <span class="n">gptS</span><span class="p">)</span> <span class="c">!eta interpolation depends on band&#39;s flavor</span>
+          <span class="n">tau_major</span><span class="p">(</span><span class="n">gptS</span><span class="p">:</span><span class="n">gptE</span><span class="p">)</span> <span class="o">=</span> <span class="p">&amp;</span>
+            <span class="c">! interpolation in temperature, pressure, and eta</span>
+            <span class="n">interpolate3D_byflav</span><span class="p">(</span><span class="n">col_mix</span><span class="p">(:,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">),</span>                                     <span class="p">&amp;</span>
+                                 <span class="n">fmajor</span><span class="p">(:,:,:,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">),</span> <span class="n">kmajor</span><span class="p">,</span>                          <span class="p">&amp;</span>
+                                 <span class="n">band_lims_gpt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ibnd</span><span class="p">),</span> <span class="n">band_lims_gpt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">ibnd</span><span class="p">),</span>                 <span class="p">&amp;</span>
+                                 <span class="n">jeta</span><span class="p">(:,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">),</span> <span class="n">jtemp</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">),</span><span class="n">jpress</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span><span class="o">+</span><span class="n">itropo</span><span class="p">)</span>
+            <span class="n">tau</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">gptS</span><span class="p">:</span><span class="n">gptE</span><span class="p">)</span> <span class="o">=</span> <span class="n">tau</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">gptS</span><span class="p">:</span><span class="n">gptE</span><span class="p">)</span> <span class="o">+</span> <span class="n">tau_major</span><span class="p">(</span><span class="n">gptS</span><span class="p">:</span><span class="n">gptE</span><span class="p">)</span>
+        <span class="k">end do</span>
+<span class="k">      end do</span>
+<span class="k">    end do</span>
+
+<span class="k">  end subroutine </span><span class="n">gas_optical_depths_major</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

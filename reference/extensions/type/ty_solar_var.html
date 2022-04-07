@@ -132,6 +132,12 @@
     </div>
   </div>
 </div>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/ty_solar_var.html#src">ty_solar_var</a>
+  </div>
+</div>
 
 </div>
 
@@ -161,6 +167,12 @@
       <a class="list-group-item" href="../type/ty_solar_var.html#boundprocedure-load~2">load</a>
       <a class="list-group-item" href="../type/ty_solar_var.html#boundprocedure-solar_var_ind_interp">solar_var_ind_interp</a>
     </div>
+  </div>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/ty_solar_var.html#src">ty_solar_var</a>
   </div>
 </div>
 
@@ -282,6 +294,29 @@
 
     </section>
     
+    <section>
+    <h3><span class="anchor" id="src"></span>Source Code</h3>
+    <div class="highlight"><pre><span></span>  <span class="k">type</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">ty_solar_var</span>
+      <span class="c">!</span>
+      <span class="c">! Data</span>
+      <span class="c">!</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">avgcyc_ind</span>  <span class="c">! solar variabilty index lookup table</span>
+                                                           <span class="c">! time-averaged over solar cycles 13-24.</span>
+                                                           <span class="c">! (NRLSSI2 facular &quot;Bremen&quot; index and</span>
+                                                           <span class="c">! sunspot &quot;SPOT67&quot; index)</span>
+                                                           <span class="c">! (nsolarterms, nsolarfrac) -&gt; (2,134)</span>
+    <span class="k">contains</span>
+      <span class="c">!</span>
+      <span class="c">! Public procedures</span>
+      <span class="c">!</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">solar_var_ind_interp</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">load</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">finalize</span>
+      <span class="c">!</span>
+  <span class="k">end type </span><span class="n">ty_solar_var</span>
+</pre></div>
+
+    </section>
     
     </div>
   </div>

@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/net_byband_full.html#src">net_byband_full</a>
+  </div>
+</div>
 
 </div>
 
@@ -301,7 +306,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/net_byband_full.html#src">net_byband_full</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -315,6 +325,37 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">net_byband_full</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlev</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">nbnd</span><span class="p">,</span> <span class="n">band_lims</span><span class="p">,</span> <span class="n">spectral_flux_dn</span><span class="p">,</span> <span class="n">spectral_flux_up</span><span class="p">,</span> <span class="n">byband_flux_net</span><span class="p">)</span> <span class="k">bind</span> <span class="p">(</span><span class="n">C</span><span class="p">)</span>
+    <span class="kt">integer</span><span class="p">,</span>                               <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlev</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">nbnd</span>
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>          <span class="n">nbnd</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">band_lims</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlev</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">spectral_flux_dn</span><span class="p">,</span> <span class="n">spectral_flux_up</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlev</span><span class="p">,</span> <span class="n">nbnd</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">byband_flux_net</span>
+
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">icol</span><span class="p">,</span> <span class="n">ilev</span><span class="p">,</span> <span class="n">igpt</span><span class="p">,</span> <span class="n">ibnd</span>
+
+    <span class="c">!$acc parallel loop collapse(3) copyin(spectral_flux_dn, spectral_flux_up, band_lims) copyout(byband_flux_net)</span>
+    <span class="c">!$omp target teams distribute parallel do collapse(3) map(to:spectral_flux_dn, spectral_flux_up, band_lims) map(from:byband_flux_net)</span>
+    <span class="k">do </span><span class="n">ibnd</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nbnd</span>
+      <span class="k">do </span><span class="n">ilev</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nlev</span>
+        <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+          <span class="n">igpt</span> <span class="o">=</span> <span class="n">band_lims</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ibnd</span><span class="p">)</span>
+          <span class="n">byband_flux_net</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span> <span class="n">ilev</span><span class="p">,</span> <span class="n">ibnd</span><span class="p">)</span> <span class="o">=</span> <span class="n">spectral_flux_dn</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span> <span class="n">ilev</span><span class="p">,</span> <span class="n">igpt</span><span class="p">)</span> <span class="o">-</span> <span class="p">&amp;</span>
+                                              <span class="n">spectral_flux_up</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span> <span class="n">ilev</span><span class="p">,</span> <span class="n">igpt</span><span class="p">)</span>
+          <span class="k">do </span><span class="n">igpt</span> <span class="o">=</span> <span class="n">band_lims</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ibnd</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">band_lims</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">ibnd</span><span class="p">)</span>
+            <span class="n">byband_flux_net</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span> <span class="n">ilev</span><span class="p">,</span> <span class="n">ibnd</span><span class="p">)</span> <span class="o">=</span> <span class="n">byband_flux_net</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span> <span class="n">ilev</span><span class="p">,</span> <span class="n">ibnd</span><span class="p">)</span> <span class="o">+</span> <span class="p">&amp;</span>
+                                                <span class="n">spectral_flux_dn</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span> <span class="n">ilev</span><span class="p">,</span> <span class="n">igpt</span><span class="p">)</span> <span class="o">-</span> <span class="p">&amp;</span>
+                                                <span class="n">spectral_flux_up</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span> <span class="n">ilev</span><span class="p">,</span> <span class="n">igpt</span><span class="p">)</span>
+          <span class="k">end do</span>
+<span class="k">        end do</span>
+<span class="k">      end do</span>
+<span class="k">    end do</span>
+<span class="k">  end subroutine </span><span class="n">net_byband_full</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

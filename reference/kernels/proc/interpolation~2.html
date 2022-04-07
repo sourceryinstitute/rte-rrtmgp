@@ -91,7 +91,7 @@
   </ul>
   <ol class="breadcrumb in-well text-right">
      <li><a href='../sourcefile/mo_gas_optics_kernels.f90~2.html'>mo_gas_optics_kernels.F90</a></li>
-     <li><a href='../module/mo_gas_optics_kernels~2.html'>mo_gas_optics_kernels</a></li>
+     <li><a href='../module/mo_gas_optics_kernels.html'>mo_gas_optics_kernels</a></li>
      <li class="active">interpolation</li>
   </ol>
 </div>
@@ -110,7 +110,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/interpolation~2.html#src">interpolation</a>
+  </div>
+</div>
 
 </div>
 
@@ -381,7 +386,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/interpolation~2.html#src">interpolation</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -395,6 +405,124 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">interpolation</span><span class="p">(</span> <span class="p">&amp;</span>
+                <span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">ngas</span><span class="p">,</span><span class="n">nflav</span><span class="p">,</span><span class="n">neta</span><span class="p">,</span> <span class="n">npres</span><span class="p">,</span> <span class="n">ntemp</span><span class="p">,</span> <span class="p">&amp;</span>
+                <span class="n">flavor</span><span class="p">,</span>                                  <span class="p">&amp;</span>
+                <span class="n">press_ref_log</span><span class="p">,</span> <span class="n">temp_ref</span><span class="p">,</span><span class="n">press_ref_log_delta</span><span class="p">,</span>    <span class="p">&amp;</span>
+                <span class="n">temp_ref_min</span><span class="p">,</span><span class="n">temp_ref_delta</span><span class="p">,</span><span class="n">press_ref_trop_log</span><span class="p">,</span> <span class="p">&amp;</span>
+                <span class="n">vmr_ref</span><span class="p">,</span>                                        <span class="p">&amp;</span>
+                <span class="n">play</span><span class="p">,</span><span class="n">tlay</span><span class="p">,</span><span class="n">col_gas</span><span class="p">,</span>                              <span class="p">&amp;</span>
+                <span class="n">jtemp</span><span class="p">,</span><span class="n">fmajor</span><span class="p">,</span><span class="n">fminor</span><span class="p">,</span><span class="n">col_mix</span><span class="p">,</span><span class="n">tropo</span><span class="p">,</span><span class="n">jeta</span><span class="p">,</span><span class="n">jpress</span><span class="p">)</span> <span class="k">bind</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;interpolation&quot;</span><span class="p">)</span>
+    <span class="c">! input dimensions</span>
+    <span class="kt">integer</span><span class="p">,</span>                            <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span>
+    <span class="kt">integer</span><span class="p">,</span>                            <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ngas</span><span class="p">,</span><span class="n">nflav</span><span class="p">,</span><span class="n">neta</span><span class="p">,</span><span class="n">npres</span><span class="p">,</span><span class="n">ntemp</span>
+    <span class="kt">integer</span><span class="p">,</span>     <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">nflav</span><span class="p">),</span>    <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">flavor</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="n">npres</span><span class="p">),</span>      <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">press_ref_log</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="n">ntemp</span><span class="p">),</span>      <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp_ref</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">press_ref_log_delta</span><span class="p">,</span> <span class="p">&amp;</span>
+                                                      <span class="n">temp_ref_min</span><span class="p">,</span> <span class="n">temp_ref_delta</span><span class="p">,</span> <span class="p">&amp;</span>
+                                                      <span class="n">press_ref_trop_log</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="n">ngas</span><span class="p">,</span><span class="n">ntemp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">vmr_ref</span>
+
+    <span class="c">! inputs from profile or parent function</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">),</span>        <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">play</span><span class="p">,</span> <span class="n">tlay</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="n">ngas</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">col_gas</span>
+
+    <span class="c">! outputs</span>
+    <span class="kt">integer</span><span class="p">,</span>     <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">jtemp</span><span class="p">,</span> <span class="n">jpress</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tropo</span>
+    <span class="kt">integer</span><span class="p">,</span>     <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>    <span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">nflav</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">jeta</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>    <span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">nflav</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">col_mix</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">nflav</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fmajor</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>    <span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span>  <span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">nflav</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fminor</span>
+    <span class="c">! -----------------</span>
+    <span class="c">! local</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ftemp</span><span class="p">,</span> <span class="n">fpress</span> <span class="c">! interpolation fraction for temperature, pressure</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">locpress</span> <span class="c">! needed to find location in pressure grid</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ratio_eta_half</span> <span class="c">! ratio of vmrs of major species that defines eta=0.5</span>
+                               <span class="c">! for given flavor and reference temperature level</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">eta</span><span class="p">,</span> <span class="n">feta</span>      <span class="c">! binary_species_parameter, interpolation variable for eta</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">loceta</span>         <span class="c">! needed to find location in eta grid</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ftemp_term</span>
+    <span class="c">! -----------------</span>
+    <span class="c">! local indexes</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">icol</span><span class="p">,</span> <span class="n">ilay</span><span class="p">,</span> <span class="n">iflav</span><span class="p">,</span> <span class="n">igases</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">itropo</span><span class="p">,</span> <span class="n">itemp</span>
+
+    <span class="c">!$acc data copyin(flavor,press_ref_log,temp_ref,vmr_ref,play,tlay,col_gas) &amp;</span>
+    <span class="c">!$acc      copyout(jtemp,jpress,tropo,jeta,col_mix,fmajor,fminor) &amp;</span>
+    <span class="c">!$acc      create(ftemp,fpress)</span>
+    <span class="c">!$omp target data map(to:flavor, press_ref_log, temp_ref, vmr_ref, play, tlay, col_gas) &amp;</span>
+    <span class="c">!$omp             map(alloc:jtemp, jpress, tropo, jeta, col_mix, fmajor, fminor) &amp;</span>
+    <span class="c">!$omp             map(alloc:ftemp, fpress)</span>
+
+    <span class="c">!$acc parallel loop gang vector collapse(2) default(none)</span>
+    <span class="c">!$omp target teams distribute parallel do simd collapse(2)</span>
+    <span class="k">do </span><span class="n">ilay</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nlay</span>
+      <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+        <span class="c">! index and factor for temperature interpolation</span>
+        <span class="n">jtemp</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">tlay</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">temp_ref_min</span> <span class="o">-</span> <span class="n">temp_ref_delta</span><span class="p">))</span> <span class="o">/</span> <span class="n">temp_ref_delta</span><span class="p">)</span>
+        <span class="n">jtemp</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">ntemp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">jtemp</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)))</span> <span class="c">! limit the index range</span>
+        <span class="n">ftemp</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">tlay</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">-</span> <span class="n">temp_ref</span><span class="p">(</span><span class="n">jtemp</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)))</span> <span class="o">/</span> <span class="n">temp_ref_delta</span>
+
+        <span class="c">! index and factor for pressure interpolation</span>
+        <span class="n">locpress</span> <span class="o">=</span> <span class="mf">1._wp</span> <span class="o">+</span> <span class="p">(</span><span class="nb">log</span><span class="p">(</span><span class="n">play</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">))</span> <span class="o">-</span> <span class="n">press_ref_log</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">press_ref_log_delta</span>
+        <span class="n">jpress</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">npres</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">locpress</span><span class="p">)))</span>
+        <span class="n">fpress</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="n">locpress</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">jpress</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">))</span>
+
+        <span class="c">! determine if in lower or upper part of atmosphere</span>
+        <span class="n">tropo</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="nb">log</span><span class="p">(</span><span class="n">play</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">press_ref_trop_log</span>
+      <span class="k">end do</span>
+<span class="k">    end do</span>
+
+    <span class="c">! loop over implemented combinations of major species</span>
+    <span class="c">! PGI BUG WORKAROUND: if present(vmr_ref) isn&#39;t there, OpenACC runtime</span>
+    <span class="c">! thinks it isn&#39;t present.</span>
+    <span class="c">!$acc parallel loop gang vector collapse(4) default(none) private(igases) present(vmr_ref)</span>
+    <span class="c">!$omp target teams distribute parallel do simd collapse(4) private(igases)</span>
+    <span class="k">do </span><span class="n">iflav</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nflav</span>
+      <span class="k">do </span><span class="n">ilay</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nlay</span>
+        <span class="c">! loop over implemented combinations of major species</span>
+        <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+          <span class="k">do </span><span class="n">itemp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+            <span class="n">igases</span><span class="p">(:)</span> <span class="o">=</span> <span class="n">flavor</span><span class="p">(:,</span><span class="n">iflav</span><span class="p">)</span>
+            <span class="c">! itropo = 1 lower atmosphere; itropo = 2 upper atmosphere</span>
+            <span class="n">itropo</span> <span class="o">=</span> <span class="nb">merge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">tropo</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">))</span>
+            <span class="c">! compute interpolation fractions needed for lower, then upper reference temperature level</span>
+            <span class="c">! compute binary species parameter (eta) for flavor and temperature and</span>
+            <span class="c">!  associated interpolation index and factors</span>
+            <span class="n">ratio_eta_half</span> <span class="o">=</span> <span class="n">vmr_ref</span><span class="p">(</span><span class="n">itropo</span><span class="p">,</span><span class="n">igases</span><span class="p">(</span><span class="mi">1</span><span class="p">),(</span><span class="n">jtemp</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span><span class="o">+</span><span class="n">itemp</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="p">&amp;</span>
+                             <span class="n">vmr_ref</span><span class="p">(</span><span class="n">itropo</span><span class="p">,</span><span class="n">igases</span><span class="p">(</span><span class="mi">2</span><span class="p">),(</span><span class="n">jtemp</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span><span class="o">+</span><span class="n">itemp</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">col_mix</span><span class="p">(</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span> <span class="o">=</span> <span class="n">col_gas</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igases</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">ratio_eta_half</span> <span class="o">*</span> <span class="n">col_gas</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igases</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+            <span class="n">eta</span> <span class="o">=</span> <span class="nb">merge</span><span class="p">(</span><span class="n">col_gas</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igases</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">col_mix</span><span class="p">(</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">),</span> <span class="mf">0.5_wp</span><span class="p">,</span> <span class="p">&amp;</span>
+                        <span class="n">col_mix</span><span class="p">(</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">2._wp</span> <span class="o">*</span> <span class="nb">tiny</span><span class="p">(</span><span class="n">col_mix</span><span class="p">))</span>
+            <span class="n">loceta</span> <span class="o">=</span> <span class="n">eta</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">neta</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">jeta</span><span class="p">(</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">loceta</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">neta</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">feta</span> <span class="o">=</span> <span class="nb">mod</span><span class="p">(</span><span class="n">loceta</span><span class="p">,</span> <span class="mf">1.0_wp</span><span class="p">)</span>
+            <span class="c">! compute interpolation fractions needed for minor species</span>
+            <span class="c">! ftemp_term = (1._wp-ftemp(icol,ilay)) for itemp = 1, ftemp(icol,ilay) for itemp=2</span>
+            <span class="n">ftemp_term</span> <span class="o">=</span> <span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="n">itemp</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span> <span class="o">+</span> <span class="kt">real</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">itemp</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span> <span class="o">*</span> <span class="n">ftemp</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">))</span>
+            <span class="n">fminor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1._wp</span><span class="o">-</span><span class="n">feta</span><span class="p">)</span> <span class="o">*</span> <span class="n">ftemp_term</span>
+            <span class="n">fminor</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span> <span class="o">=</span>        <span class="n">feta</span>  <span class="o">*</span> <span class="n">ftemp_term</span>
+            <span class="c">! compute interpolation fractions needed for major species</span>
+            <span class="n">fmajor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1._wp</span><span class="o">-</span><span class="n">fpress</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">))</span> <span class="o">*</span> <span class="n">fminor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span>
+            <span class="n">fmajor</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1._wp</span><span class="o">-</span><span class="n">fpress</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">))</span> <span class="o">*</span> <span class="n">fminor</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span>
+            <span class="n">fmajor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span> <span class="o">=</span>        <span class="n">fpress</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span>  <span class="o">*</span> <span class="n">fminor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span>
+            <span class="n">fmajor</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span> <span class="o">=</span>        <span class="n">fpress</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span>  <span class="o">*</span> <span class="n">fminor</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">itemp</span><span class="p">,</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">iflav</span><span class="p">)</span>
+          <span class="k">end do</span> <span class="c">! reference temperatures</span>
+        <span class="k">end do</span> <span class="c">! icol</span>
+      <span class="k">end do</span> <span class="c">! ilay</span>
+    <span class="k">end do</span> <span class="c">! iflav</span>
+
+    <span class="c">!$acc end data</span>
+    <span class="c">!$omp end target data</span>
+
+  <span class="k">end subroutine </span><span class="n">interpolation</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

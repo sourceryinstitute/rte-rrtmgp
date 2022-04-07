@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/set_vmr_scalar.html#src">set_vmr_scalar</a>
+  </div>
+</div>
 
 </div>
 
@@ -157,7 +162,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/set_vmr_scalar.html#src">set_vmr_scalar</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -171,6 +181,62 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">set_vmr_scalar</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">gas</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+    <span class="c">! In OpenACC context scalar w always assumed to be on the CPU</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_gas_concs</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">this</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span>    <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">gas</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>            <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">w</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">error_msg</span>
+    <span class="c">! ---------</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">p</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">igas</span>
+    <span class="c">! ---------</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">&lt;</span> <span class="mf">0._wp</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">w</span> <span class="o">&gt;</span> <span class="mf">1._wp</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s1">&#39;ty_gas_concs%set_vmr(): concentrations should be &gt;= 0, &lt;= 1&#39;</span>
+      <span class="k">return</span>
+<span class="k">    </span><span class="n">endif</span>
+
+    <span class="n">igas</span> <span class="o">=</span> <span class="n">this</span><span class="p">%</span><span class="n">find_gas</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">igas</span> <span class="o">==</span> <span class="n">GAS_NOT_IN_LIST</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s1">&#39;ty_gas_concs%set_vmr(): trying to set &#39;</span> <span class="o">//</span> <span class="nb">trim</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span> <span class="o">//</span> <span class="s1">&#39; but name not provided at initialization&#39;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+    <span class="c">!</span>
+    <span class="c">! Deallocate anything existing -- could be more efficient to test if it&#39;s already the correct size</span>
+    <span class="c">!</span>
+    <span class="c">! This cannot be made a function, because we need all the hierarchy for the correct OpenACC attach</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      if</span> <span class="p">(</span> <span class="nb">any</span><span class="p">(</span><span class="nb">shape</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">)</span> <span class="o">/=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="p">)</span> <span class="k">then</span>
+        <span class="c">!$acc exit data delete(this%concs(igas)%conc)</span>
+        <span class="c">!$omp target exit data map(release:this%concs(igas)%conc)</span>
+        <span class="k">deallocate</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">)</span>
+        <span class="k">nullify</span>   <span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">)</span>
+      <span class="k">end if</span>
+<span class="k">    end if</span>
+<span class="k">    if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">associated</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      allocate</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+      <span class="c">!$acc enter data create(this%concs(igas)%conc)</span>
+      <span class="c">!$omp target enter data map(alloc:this%concs(igas)%conc)</span>
+    <span class="k">end if</span>
+
+<span class="k">    </span><span class="n">p</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">(:,:)</span>
+    <span class="c">!$acc kernels</span>
+    <span class="c">!$omp target map(to:w)</span>
+<span class="cp">#ifdef _CRAYFTN</span>
+    <span class="n">p</span><span class="p">(:,:)</span> <span class="o">=</span> <span class="n">w</span>
+<span class="cp">#else</span>
+    <span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">(:,:)</span> <span class="o">=</span> <span class="n">w</span>
+<span class="cp">#endif</span>
+    <span class="c">!$acc end kernels</span>
+    <span class="c">!$omp end target</span>
+  <span class="k">end function </span><span class="n">set_vmr_scalar</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

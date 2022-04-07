@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/sampled_mask_exp_ran.html#src">sampled_mask_exp_ran</a>
+  </div>
+</div>
 
 </div>
 
@@ -163,7 +168,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/sampled_mask_exp_ran.html#src">sampled_mask_exp_ran</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -177,6 +187,100 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">sampled_mask_exp_ran</span><span class="p">(</span><span class="n">randoms</span><span class="p">,</span><span class="n">cloud_frac</span><span class="p">,</span><span class="n">overlap_param</span><span class="p">,</span><span class="n">cloud_mask</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">randoms</span>       <span class="c">! ngpt,nlay,ncol</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span>   <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">cloud_frac</span>    <span class="c">! ncol,nlay</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span>   <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">overlap_param</span> <span class="c">! ncol,nlay-1</span>
+    <span class="kt">logical</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(:,:,:),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cloud_mask</span>    <span class="c">! ncol,nlay,ngpt</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">error_msg</span>
+    <span class="c">! ------------------------</span>
+    <span class="kt">integer</span>                              <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">icol</span><span class="p">,</span> <span class="n">ilay</span><span class="p">,</span> <span class="n">igpt</span>
+    <span class="kt">integer</span>                              <span class="kd">::</span> <span class="n">cloud_lay_fst</span><span class="p">,</span> <span class="n">cloud_lay_lst</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>                             <span class="kd">::</span> <span class="n">rho</span> <span class="c">! correlation coefficient</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">randoms</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="kd">::</span> <span class="n">local_rands</span>
+    <span class="kt">logical</span><span class="p">,</span>  <span class="k">dimension</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">randoms</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="kd">::</span> <span class="n">cloud_mask_layer</span>
+    <span class="c">! ------------------------</span>
+    <span class="c">!</span>
+    <span class="c">! Error checking</span>
+    <span class="c">!</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">ncol</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">randoms</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">nlay</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">randoms</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">ngpt</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">randoms</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">any</span><span class="p">([</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">]</span> <span class="o">/=</span> <span class="p">[</span><span class="n">size</span><span class="p">(</span><span class="n">cloud_frac</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">cloud_frac</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]))</span>  <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;sampled_mask_exp_ran: sizes of randoms(ngpt,nlay,ncol) and cloud_frac(ncol,nlay) are inconsistent&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+<span class="k">    if</span><span class="p">(</span><span class="nb">any</span><span class="p">([</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/=</span> <span class="p">[</span><span class="n">size</span><span class="p">(</span><span class="n">overlap_param</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">overlap_param</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]))</span>  <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;sampled_mask_exp_ran: sizes of randoms(ngpt,nlay,ncol) and overlap_param(ncol,nlay-1) are inconsistent&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+<span class="k">    if</span><span class="p">(</span><span class="nb">any</span><span class="p">([</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">ngpt</span><span class="p">]</span> <span class="o">/=</span> <span class="p">[</span><span class="n">size</span><span class="p">(</span><span class="n">cloud_mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">cloud_mask</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">size</span><span class="p">(</span><span class="n">cloud_mask</span><span class="p">,</span><span class="mi">3</span><span class="p">)]))</span>  <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;sampled_mask_exp_ran: sizes of randoms(ngpt,nlay,ncol) and cloud_mask(ncol,nlay,ngpt) are inconsistent&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+
+<span class="k">    if</span><span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="n">cloud_frac</span> <span class="o">&gt;</span> <span class="mf">1._wp</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="nb">any</span><span class="p">(</span><span class="n">cloud_frac</span> <span class="o">&lt;</span> <span class="mf">0._wp</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;sampled_mask_exp_ran: cloud fraction values out of range [0,1]&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+<span class="k">    if</span><span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="n">overlap_param</span> <span class="o">&gt;</span> <span class="mf">1._wp</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="nb">any</span><span class="p">(</span><span class="n">overlap_param</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mf">1._wp</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;sampled_mask_exp_ran: overlap_param values out of range [-1,1]&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+    <span class="c">!</span>
+    <span class="c">! We chould check the random numbers but that would be computationally heavy</span>
+    <span class="c">!</span>
+    <span class="c">! ------------------------</span>
+    <span class="c">! Construct the cloud mask for each column</span>
+    <span class="c">!</span>
+    <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+      <span class="n">cloud_mask_layer</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nlay</span><span class="p">)</span> <span class="o">=</span> <span class="n">cloud_frac</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">nlay</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0._wp</span>
+      <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">any</span><span class="p">(</span><span class="n">cloud_mask_layer</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">cloud_mask</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">nlay</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">)</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+        <span class="k">cycle</span>
+<span class="k">      end if</span>
+<span class="k">      </span><span class="n">cloud_lay_fst</span> <span class="o">=</span> <span class="nb">findloc</span><span class="p">(</span><span class="n">cloud_mask_layer</span><span class="p">,</span> <span class="p">.</span><span class="n">true</span><span class="p">.,</span> <span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">cloud_lay_lst</span> <span class="o">=</span> <span class="nb">findloc</span><span class="p">(</span><span class="n">cloud_mask_layer</span><span class="p">,</span> <span class="p">.</span><span class="n">true</span><span class="p">.,</span> <span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">back</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+      <span class="n">cloud_mask</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">cloud_lay_fst</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">)</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+
+      <span class="n">ilay</span> <span class="o">=</span> <span class="n">cloud_lay_fst</span>
+      <span class="n">local_rands</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">randoms</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">icol</span><span class="p">)</span>
+      <span class="n">cloud_mask</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">local_rands</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">)</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mf">1._wp</span> <span class="o">-</span> <span class="n">cloud_frac</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">))</span>
+      <span class="k">do </span><span class="n">ilay</span> <span class="o">=</span> <span class="n">cloud_lay_fst</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">cloud_lay_lst</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">cloud_mask_layer</span><span class="p">(</span><span class="n">ilay</span><span class="p">))</span> <span class="k">then</span>
+          <span class="c">!</span>
+          <span class="c">! Exponential-random overlap:</span>
+          <span class="c">!   new  random deviates if the adjacent layer isn&#39;t cloudy</span>
+          <span class="c">!   correlated  deviates if the adjacent layer is    cloudy</span>
+          <span class="c">!</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">cloud_mask_layer</span><span class="p">(</span><span class="n">ilay</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="k">then</span>
+            <span class="c">!</span>
+            <span class="c">! Create random deviates correlated between this layer and the previous layer</span>
+            <span class="c">!    (have to remove mean value before enforcing correlation)</span>
+            <span class="c">!</span>
+            <span class="n">rho</span> <span class="o">=</span> <span class="n">overlap_param</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">local_rands</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">)</span> <span class="o">=</span>  <span class="n">rho</span><span class="o">*</span><span class="p">(</span><span class="n">local_rands</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">)</span>      <span class="o">-</span><span class="mf">0.5_wp</span><span class="p">)</span> <span class="o">+</span> <span class="p">&amp;</span>
+                   <span class="nb">sqrt</span><span class="p">(</span><span class="mf">1._wp</span><span class="o">-</span><span class="n">rho</span><span class="o">*</span><span class="n">rho</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">randoms</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">icol</span><span class="p">)</span><span class="o">-</span><span class="mf">0.5_wp</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5_wp</span>
+          <span class="k">else</span>
+<span class="k">            </span><span class="n">local_rands</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">randoms</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">icol</span><span class="p">)</span>
+          <span class="k">end if</span>
+<span class="k">          </span><span class="n">cloud_mask</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">local_rands</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">)</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mf">1._wp</span> <span class="o">-</span> <span class="n">cloud_frac</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">))</span>
+        <span class="k">else</span>
+<span class="k">          </span><span class="n">cloud_mask</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">)</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+        <span class="k">end if</span>
+<span class="k">      end do</span>
+
+<span class="k">      </span><span class="n">cloud_mask</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">cloud_lay_lst</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">nlay</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="n">ngpt</span><span class="p">)</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+    <span class="k">end do</span>
+
+<span class="k">  end function </span><span class="n">sampled_mask_exp_ran</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

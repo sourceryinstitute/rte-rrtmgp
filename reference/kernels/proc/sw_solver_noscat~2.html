@@ -110,7 +110,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/sw_solver_noscat~2.html#src">sw_solver_noscat</a>
+  </div>
+</div>
 
 </div>
 
@@ -126,19 +131,19 @@
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-ncol~46"></span>integer,</td>
+  <td><span class="anchor" id="variable-ncol~69"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>ncol</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-nlay~45"></span>integer,</td>
+  <td><span class="anchor" id="variable-nlay~68"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>nlay</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-ngpt~44"></span>integer,</td>
+  <td><span class="anchor" id="variable-ngpt~67"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>ngpt</strong></td><td></td>
@@ -150,7 +155,7 @@
   <td><strong>top_at_1</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-tau~18"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-tau~20"></span>real(kind=wp),</td>
 <td>intent(in),</td>
   <td></td>  <td>dimension(ncol,nlay,  ngpt)</td><td>::</td>
   <td><strong>tau</strong></td><td></td>
@@ -181,7 +186,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/sw_solver_noscat~2.html#src">sw_solver_noscat</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -195,6 +205,69 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">sw_solver_noscat</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span> <span class="p">&amp;</span>
+                              <span class="n">tau</span><span class="p">,</span> <span class="n">mu0</span><span class="p">,</span> <span class="n">inc_flux_dir</span><span class="p">,</span> <span class="n">flux_dir</span><span class="p">)</span> <span class="k">bind</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sw_solver_noscat&quot;</span><span class="p">)</span>
+    <span class="kt">integer</span><span class="p">,</span>                               <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span> <span class="c">! Number of columns, layers, g-points</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">),</span>                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">top_at_1</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span>  <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">tau</span>          <span class="c">! Absorption optical thickness []</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span>            <span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">mu0</span>          <span class="c">! cosine of solar zenith angle</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span>       <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">inc_flux_dir</span> <span class="c">! Direct beam incident flux</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">flux_dir</span>     <span class="c">! Direct-beam flux, spectral [W/m2]</span>
+
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">icol</span><span class="p">,</span> <span class="n">ilev</span><span class="p">,</span> <span class="n">igpt</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mu0_inv</span><span class="p">(</span><span class="n">ncol</span><span class="p">)</span>
+    <span class="c">! ------------------------------------</span>
+    <span class="c">! ------------------------------------</span>
+    <span class="c">!$acc enter data copyin(tau, mu0) create(mu0_inv, flux_dir)</span>
+    <span class="c">!$omp target enter data map(to:tau, mu0) map(alloc:mu0_inv, flux_dir)</span>
+    <span class="c">!$acc parallel loop</span>
+    <span class="c">!$omp target teams distribute parallel do simd</span>
+    <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+      <span class="n">mu0_inv</span><span class="p">(</span><span class="n">icol</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1._wp</span><span class="o">/</span><span class="n">mu0</span><span class="p">(</span><span class="n">icol</span><span class="p">)</span>
+    <span class="n">enddo</span>
+    <span class="c">! Indexing into arrays for upward and downward propagation depends on the vertical</span>
+    <span class="c">!   orientation of the arrays (whether the domain top is at the first or last index)</span>
+    <span class="c">! We write the loops out explicitly so compilers will have no trouble optimizing them.</span>
+
+    <span class="c">! Downward propagation</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">top_at_1</span><span class="p">)</span> <span class="k">then</span>
+      <span class="c">! For the flux at this level, what was the previous level, and which layer has the</span>
+      <span class="c">!   radiation just passed through?</span>
+      <span class="c">! layer index = level index - 1</span>
+      <span class="c">! previous level is up (-1)</span>
+      <span class="c">!$acc parallel loop collapse(2)</span>
+      <span class="c">!$omp target teams distribute parallel do simd collapse(2)</span>
+      <span class="k">do </span><span class="n">igpt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span>
+        <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+          <span class="n">flux_dir</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span>    <span class="mi">1</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">inc_flux_dir</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span>   <span class="n">igpt</span><span class="p">)</span> <span class="o">*</span> <span class="n">mu0</span><span class="p">(</span><span class="n">icol</span><span class="p">)</span>
+          <span class="k">do </span><span class="n">ilev</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span>
+            <span class="n">flux_dir</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">flux_dir</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">*</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">tau</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span><span class="o">*</span><span class="n">mu0_inv</span><span class="p">(</span><span class="n">icol</span><span class="p">))</span>
+          <span class="k">end do</span>
+<span class="k">        end do</span>
+<span class="k">      end do</span>
+<span class="k">    else</span>
+      <span class="c">! layer index = level index</span>
+      <span class="c">! previous level is up (+1)</span>
+      <span class="c">!$acc parallel loop collapse(2)</span>
+      <span class="c">!$omp target teams distribute parallel do simd collapse(2)</span>
+      <span class="k">do </span><span class="n">igpt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span>
+        <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+          <span class="n">flux_dir</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">inc_flux_dir</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span> <span class="n">igpt</span><span class="p">)</span> <span class="o">*</span> <span class="n">mu0</span><span class="p">(</span><span class="n">icol</span><span class="p">)</span>
+          <span class="k">do </span><span class="n">ilev</span> <span class="o">=</span> <span class="n">nlay</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="n">flux_dir</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">flux_dir</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">*</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">tau</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span><span class="o">*</span><span class="n">mu0_inv</span><span class="p">(</span><span class="n">icol</span><span class="p">))</span>
+          <span class="k">end do</span>
+<span class="k">        end do</span>
+<span class="k">      end do</span>
+<span class="k">    end if</span>
+    <span class="c">!$acc exit data delete(tau, mu0, mu0_inv) copyout(flux_dir)</span>
+    <span class="c">!$omp target exit data map(release:tau, mu0, mu0_inv) map(from:flux_dir)</span>
+  <span class="k">end subroutine </span><span class="n">sw_solver_noscat</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

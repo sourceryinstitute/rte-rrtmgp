@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/copy_and_alloc_lw.html#src">copy_and_alloc_lw</a>
+  </div>
+</div>
 
 </div>
 
@@ -130,25 +135,25 @@
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-this~60"></span>class(<a href='../type/ty_source_func_lw.html'>ty_source_func_lw</a>),</td>
+  <td><span class="anchor" id="variable-this~21"></span>class(<a href='../type/ty_source_func_lw.html'>ty_source_func_lw</a>),</td>
 <td>intent(inout)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>this</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-ncol~13"></span>integer,</td>
+  <td><span class="anchor" id="variable-ncol~4"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>ncol</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-nlay~12"></span>integer,</td>
+  <td><span class="anchor" id="variable-nlay~3"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>nlay</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-spectral_desc~5"></span>class(<a href='../type/ty_optical_props.html'>ty_optical_props</a>),</td>
+  <td><span class="anchor" id="variable-spectral_desc"></span>class(<a href='../type/ty_optical_props.html'>ty_optical_props</a>),</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>spectral_desc</strong></td><td></td>
@@ -156,14 +161,19 @@
 </tbody>
 </table>
 
-   <h3>Return Value <small><span class="anchor" id="variable-err_message~30"></span>character(len=128)</small></h3>
+   <h3>Return Value <small><span class="anchor" id="variable-err_message~6"></span>character(len=128)</small></h3>
     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/copy_and_alloc_lw.html#src">copy_and_alloc_lw</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -177,6 +187,28 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">copy_and_alloc_lw</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">spectral_desc</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">err_message</span><span class="p">)</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_source_func_lw</span><span class="p">),</span>    <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">this</span>
+    <span class="kt">integer</span><span class="p">,</span>                     <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_optical_props</span> <span class="p">),</span>    <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">spectral_desc</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span> <span class="o">=</span> <span class="mi">128</span><span class="p">)</span>                       <span class="kd">::</span> <span class="n">err_message</span>
+
+    <span class="n">err_message</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">spectral_desc</span><span class="p">%</span><span class="n">is_initialized</span><span class="p">())</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">err_message</span> <span class="o">=</span> <span class="s2">&quot;source_func_lw%alloc: spectral_desc not initialized&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+<span class="k">    call </span><span class="n">this</span><span class="p">%</span><span class="n">finalize</span><span class="p">()</span>
+    <span class="n">err_message</span> <span class="o">=</span> <span class="n">this</span><span class="p">%</span><span class="n">init</span><span class="p">(</span><span class="n">spectral_desc</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">err_message</span> <span class="o">/=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">    </span><span class="n">err_message</span> <span class="o">=</span> <span class="n">this</span><span class="p">%</span><span class="n">alloc</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">)</span>
+  <span class="k">end function </span><span class="n">copy_and_alloc_lw</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

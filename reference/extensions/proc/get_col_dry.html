@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/get_col_dry.html#src">get_col_dry</a>
+  </div>
+</div>
 
 </div>
 
@@ -157,7 +162,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/get_col_dry.html#src">get_col_dry</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -171,6 +181,63 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">get_col_dry</span><span class="p">(</span><span class="n">vmr_h2o</span><span class="p">,</span> <span class="n">plev</span><span class="p">,</span> <span class="n">latitude</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">col_dry</span><span class="p">)</span>
+    <span class="c">! input</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">vmr_h2o</span>  <span class="c">! volume mixing ratio of water vapor to dry air; (ncol,nlay)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">plev</span>     <span class="c">! Layer boundary pressures [Pa] (ncol,nlay+1)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span>   <span class="k">optional</span><span class="p">,</span> <span class="p">&amp;</span>
+                              <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">latitude</span> <span class="c">! Latitude [degrees] (ncol)</span>
+    <span class="c">! output</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">plev</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">plev</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="kd">::</span> <span class="n">col_dry</span> <span class="c">! Column dry amount (ncol,nlay)</span>
+    <span class="c">! ------------------------------------------------</span>
+    <span class="c">! first and second term of Helmert formula</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">helmert1</span> <span class="o">=</span> <span class="mf">9.80665_wp</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">helmert2</span> <span class="o">=</span> <span class="mf">0.02586_wp</span>
+    <span class="c">! local variables</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">plev</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span> <span class="kd">::</span> <span class="n">g0</span> <span class="c">! (ncol)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="kd">::</span> <span class="n">delta_plev</span><span class="p">,</span> <span class="n">m_air</span><span class="p">,</span> <span class="n">fact</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlev</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">icol</span><span class="p">,</span> <span class="n">ilev</span> <span class="c">! nlay = nlev-1</span>
+    <span class="c">! ------------------------------------------------</span>
+    <span class="n">ncol</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">plev</span><span class="p">,</span> <span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">nlev</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">plev</span><span class="p">,</span> <span class="nb">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c">!$acc        data    create(g0)</span>
+    <span class="c">!$omp target data map(alloc:g0)</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span> <span class="k">then</span>
+      <span class="c">! A purely OpenACC implementation would probably compute g0 within the kernel below</span>
+      <span class="c">!$acc parallel loop</span>
+      <span class="c">!$omp target teams distribute parallel do simd</span>
+      <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+        <span class="n">g0</span><span class="p">(</span><span class="n">icol</span><span class="p">)</span> <span class="o">=</span> <span class="n">helmert1</span> <span class="o">-</span> <span class="n">helmert2</span> <span class="o">*</span> <span class="nb">cos</span><span class="p">(</span><span class="mf">2.0_wp</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">latitude</span><span class="p">(</span><span class="n">icol</span><span class="p">)</span> <span class="o">/</span> <span class="mi">18</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="c">! acceleration due to gravity [m/s^2]</span>
+      <span class="k">end do</span>
+<span class="k">    else</span>
+      <span class="c">!$acc parallel loop</span>
+      <span class="c">!$omp target teams distribute parallel do simd</span>
+      <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+        <span class="n">g0</span><span class="p">(</span><span class="n">icol</span><span class="p">)</span> <span class="o">=</span> <span class="n">grav</span>
+      <span class="k">end do</span>
+<span class="k">    end if</span>
+
+    <span class="c">!$acc                parallel loop gang vector collapse(2) copyin(plev,vmr_h2o)  copyout(col_dry)</span>
+    <span class="c">!$omp target teams distribute parallel do simd collapse(2) map(to:plev,vmr_h2o) map(from:col_dry)</span>
+    <span class="k">do </span><span class="n">ilev</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nlev</span><span class="o">-</span><span class="mi">1</span>
+      <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+        <span class="n">delta_plev</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">plev</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="p">)</span> <span class="o">-</span> <span class="n">plev</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="c">! Get average mass of moist air per mole of moist air</span>
+        <span class="n">fact</span> <span class="o">=</span> <span class="mf">1._wp</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.</span><span class="o">+</span><span class="n">vmr_h2o</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="p">))</span>
+        <span class="n">m_air</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_dry</span> <span class="o">+</span> <span class="n">m_h2o</span> <span class="o">*</span> <span class="n">vmr_h2o</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="p">))</span> <span class="o">*</span> <span class="n">fact</span>
+        <span class="n">col_dry</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilev</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="mf">0._wp</span> <span class="o">*</span> <span class="n">delta_plev</span> <span class="o">*</span> <span class="n">avogad</span> <span class="o">*</span> <span class="n">fact</span><span class="o">/</span><span class="p">(</span><span class="mi">100</span><span class="mf">0._wp</span><span class="o">*</span><span class="n">m_air</span><span class="o">*</span><span class="mi">10</span><span class="mf">0._wp</span><span class="o">*</span><span class="n">g0</span><span class="p">(</span><span class="n">icol</span><span class="p">))</span>
+      <span class="k">end do</span>
+<span class="k">    end do</span>
+    <span class="c">!$acc end        data</span>
+    <span class="c">!$omp end target data</span>
+  <span class="k">end function </span><span class="n">get_col_dry</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

@@ -129,9 +129,15 @@
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#boundprocs-0">Type-Bound Procedures</a></h3></div>
   <div id="boundprocs-0" class="panel-collapse collapse">
     <div class="list-group">
-      <a class="list-group-item" href="../type/ty_fluxes_bygpoint.html#boundprocedure-are_desired~3">are_desired</a>
-      <a class="list-group-item" href="../type/ty_fluxes_bygpoint.html#boundprocedure-reduce~3">reduce</a>
+      <a class="list-group-item" href="../type/ty_fluxes_bygpoint.html#boundprocedure-are_desired~5">are_desired</a>
+      <a class="list-group-item" href="../type/ty_fluxes_bygpoint.html#boundprocedure-reduce~5">reduce</a>
     </div>
+  </div>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/ty_fluxes_bygpoint.html#src">ty_fluxes_bygpoint</a>
   </div>
 </div>
 
@@ -238,9 +244,15 @@
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#boundprocs-1">Type-Bound Procedures</a></h3></div>
   <div id="boundprocs-1" class="panel-collapse collapse">
     <div class="list-group">
-      <a class="list-group-item" href="../type/ty_fluxes_bygpoint.html#boundprocedure-are_desired~3">are_desired</a>
-      <a class="list-group-item" href="../type/ty_fluxes_bygpoint.html#boundprocedure-reduce~3">reduce</a>
+      <a class="list-group-item" href="../type/ty_fluxes_bygpoint.html#boundprocedure-are_desired~5">are_desired</a>
+      <a class="list-group-item" href="../type/ty_fluxes_bygpoint.html#boundprocedure-reduce~5">reduce</a>
     </div>
+  </div>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/ty_fluxes_bygpoint.html#src">ty_fluxes_bygpoint</a>
   </div>
 </div>
 
@@ -284,7 +296,7 @@
     <section>
     <h2>Type-Bound Procedures</h2>
      <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-are_desired~3"></span><h3>procedure, public :: <strong>are_desired</strong>  => <a href='../proc/are_desired_bygpoint.html'>are_desired_bygpoint</a>   </h3></div>
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-are_desired~5"></span><h3>procedure, public :: <strong>are_desired</strong>  => <a href='../proc/are_desired_bygpoint.html'>are_desired_bygpoint</a>   </h3></div>
   <ul class="list-group">
       <li class="list-group-item">
           <h3>public function <a href='../proc/are_desired_bygpoint.html'>are_desired_bygpoint</a>(this)</h3>    
@@ -307,7 +319,7 @@
 </div>
 
      <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-reduce~3"></span><h3>procedure, public :: <strong>reduce</strong>  => <a href='../proc/reduce_bygpoint.html'>reduce_bygpoint</a>   </h3></div>
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-reduce~5"></span><h3>procedure, public :: <strong>reduce</strong>  => <a href='../proc/reduce_bygpoint.html'>reduce_bygpoint</a>   </h3></div>
   <ul class="list-group">
       <li class="list-group-item">
           <h3>public function <a href='../proc/reduce_bygpoint.html'>reduce_bygpoint</a>(this, gpt_flux_up, gpt_flux_dn, spectral_disc, top_at_1, gpt_flux_dn_dir) result(error_msg)</h3>    
@@ -361,6 +373,20 @@
 
     </section>
     
+    <section>
+    <h3><span class="anchor" id="src"></span>Source Code</h3>
+    <div class="highlight"><pre><span></span>  <span class="k">type</span><span class="p">,</span> <span class="k">extends</span><span class="p">(</span><span class="n">ty_fluxes</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ty_fluxes_bygpoint</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">gpt_flux_up</span> <span class="o">=&gt;</span> <span class="nb">NULL</span><span class="p">(),</span> <span class="p">&amp;</span> <span class="c">! Band-by-band fluxes</span>
+                                           <span class="n">gpt_flux_dn</span> <span class="o">=&gt;</span> <span class="nb">NULL</span><span class="p">()</span>    <span class="c">! (ncol, nlev, nband)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">gpt_flux_net</span> <span class="o">=&gt;</span> <span class="nb">NULL</span><span class="p">()</span>   <span class="c">! Net (down - up)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">gpt_flux_dn_dir</span> <span class="o">=&gt;</span> <span class="nb">NULL</span><span class="p">()</span> <span class="c">! Direct flux down</span>
+  <span class="k">contains</span>
+<span class="k">    procedure</span> <span class="kd">::</span> <span class="n">reduce</span> <span class="o">=&gt;</span> <span class="n">reduce_bygpoint</span>
+    <span class="k">procedure</span> <span class="kd">::</span> <span class="n">are_desired</span> <span class="o">=&gt;</span> <span class="n">are_desired_bygpoint</span>
+  <span class="k">end type </span><span class="n">ty_fluxes_bygpoint</span>
+</pre></div>
+
+    </section>
     
     </div>
   </div>

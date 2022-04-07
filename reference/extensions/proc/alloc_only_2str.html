@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/alloc_only_2str.html#src">alloc_only_2str</a>
+  </div>
+</div>
 
 </div>
 
@@ -130,19 +135,19 @@
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-this~20"></span>class(<a href='../type/ty_optical_props_2str.html'>ty_optical_props_2str</a>)</td>
+  <td><span class="anchor" id="variable-this~31"></span>class(<a href='../type/ty_optical_props_2str.html'>ty_optical_props_2str</a>)</td>
 <td></td>
   <td></td>  <td></td><td>::</td>
   <td><strong>this</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-ncol~3"></span>integer,</td>
+  <td><span class="anchor" id="variable-ncol~7"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>ncol</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-nlay~3"></span>integer,</td>
+  <td><span class="anchor" id="variable-nlay~5"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>nlay</strong></td><td></td>
@@ -150,14 +155,19 @@
 </tbody>
 </table>
 
-   <h3>Return Value <small><span class="anchor" id="variable-err_message~5"></span>character(len=128)</small></h3>
+   <h3>Return Value <small><span class="anchor" id="variable-err_message~11"></span>character(len=128)</small></h3>
     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/alloc_only_2str.html#src">alloc_only_2str</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -171,6 +181,30 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">alloc_only_2str</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">err_message</span><span class="p">)</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_optical_props_2str</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">this</span>
+    <span class="kt">integer</span><span class="p">,</span>             <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">err_message</span>
+
+    <span class="n">err_message</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">this</span><span class="p">%</span><span class="n">is_initialized</span><span class="p">())</span> <span class="p">&amp;</span>
+      <span class="n">err_message</span> <span class="o">=</span> <span class="s2">&quot;optical_props%alloc: spectral discretization hasn&#39;t been provided&quot;</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">any</span><span class="p">([</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">))</span> <span class="p">&amp;</span>
+      <span class="n">err_message</span> <span class="o">=</span> <span class="s2">&quot;optical_props%alloc: must provide positive extents for ncol, nlay&quot;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">err_message</span> <span class="o">/=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">return</span>
+
+<span class="k">    if</span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">tau</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">tau</span><span class="p">)</span>
+    <span class="k">allocate</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">tau</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">this</span><span class="p">%</span><span class="n">get_ngpt</span><span class="p">()))</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">ssa</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">ssa</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">g</span>  <span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">g</span>  <span class="p">)</span>
+    <span class="k">allocate</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">ssa</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">this</span><span class="p">%</span><span class="n">get_ngpt</span><span class="p">()),</span> <span class="n">this</span><span class="p">%</span><span class="n">g</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">this</span><span class="p">%</span><span class="n">get_ngpt</span><span class="p">()))</span>
+  <span class="k">end function </span><span class="n">alloc_only_2str</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

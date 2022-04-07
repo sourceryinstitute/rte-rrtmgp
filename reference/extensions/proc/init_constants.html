@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/init_constants.html#src">init_constants</a>
+  </div>
+</div>
 
 </div>
 
@@ -155,7 +160,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/init_constants.html#src">init_constants</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -169,6 +179,20 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">init_constants</span><span class="p">(</span><span class="n">gravity</span><span class="p">,</span> <span class="n">mol_weight_dry_air</span><span class="p">,</span> <span class="n">heat_capacity_dry_air</span><span class="p">)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">optional</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">gravity</span><span class="p">,</span> <span class="n">mol_weight_dry_air</span><span class="p">,</span> <span class="n">heat_capacity_dry_air</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">gravity</span><span class="p">))</span>               <span class="n">grav</span>   <span class="o">=</span> <span class="n">gravity</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">mol_weight_dry_air</span><span class="p">))</span>    <span class="n">m_dry</span>  <span class="o">=</span> <span class="n">mol_weight_dry_air</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">heat_capacity_dry_air</span><span class="p">))</span> <span class="n">cp_dry</span> <span class="o">=</span> <span class="n">heat_capacity_dry_air</span>
+
+  <span class="k">end subroutine </span><span class="n">init_constants</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

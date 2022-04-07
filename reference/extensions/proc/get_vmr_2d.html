@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/get_vmr_2d.html#src">get_vmr_2d</a>
+  </div>
+</div>
 
 </div>
 
@@ -142,7 +147,7 @@
   <td><strong>gas</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-array~5"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-array~3"></span>real(kind=wp),</td>
 <td>intent(out),</td>
   <td></td>  <td>dimension(:,:)</td><td>::</td>
   <td><strong>array</strong></td><td></td>
@@ -157,7 +162,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/get_vmr_2d.html#src">get_vmr_2d</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -171,6 +181,85 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">get_vmr_2d</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">gas</span><span class="p">,</span> <span class="k">array</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_gas_concs</span><span class="p">)</span> <span class="kd">::</span> <span class="n">this</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span>         <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">gas</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="k">array</span>
+<span class="k">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">error_msg</span>
+    <span class="c">! ---------------------</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">p</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">icol</span><span class="p">,</span> <span class="n">ilay</span><span class="p">,</span> <span class="n">igas</span>
+    <span class="c">! ---------------------</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="n">igas</span> <span class="o">=</span> <span class="n">this</span><span class="p">%</span><span class="n">find_gas</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">igas</span> <span class="o">==</span> <span class="n">GAS_NOT_IN_LIST</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s1">&#39;ty_gas_concs%get_vmr; gas &#39;</span> <span class="o">//</span> <span class="nb">trim</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span> <span class="o">//</span> <span class="s1">&#39; not found&#39;</span>
+    <span class="k">else if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">associated</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s1">&#39;ty_gas_concs%get_vmr; gas &#39;</span> <span class="o">//</span> <span class="nb">trim</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span> <span class="o">//</span> <span class="s2">&quot; concentration hasn&#39;t been set&quot;</span>
+    <span class="k">end if</span>
+    <span class="c">!</span>
+    <span class="c">! Is the requested array the correct size?</span>
+    <span class="c">!</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">ncol</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">this</span><span class="p">%</span><span class="n">ncol</span> <span class="o">/=</span> <span class="n">size</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s1">&#39;ty_gas_concs%get_vmr; gas &#39;</span> <span class="o">//</span> <span class="nb">trim</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span> <span class="o">//</span> <span class="s1">&#39; array is wrong size (ncol)&#39;</span>
+    <span class="k">end if</span>
+<span class="k">    if</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">nlay</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">this</span><span class="p">%</span><span class="n">nlay</span> <span class="o">/=</span> <span class="n">size</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s1">&#39;ty_gas_concs%get_vmr; gas &#39;</span> <span class="o">//</span> <span class="nb">trim</span><span class="p">(</span><span class="n">gas</span><span class="p">)</span> <span class="o">//</span> <span class="s1">&#39; array is wrong size (nlay)&#39;</span>
+    <span class="k">end if</span>
+<span class="k">    if</span><span class="p">(</span><span class="n">error_msg</span> <span class="o">/=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">return</span>
+
+<span class="k">    </span><span class="n">p</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">(:,:)</span>
+    <span class="c">!$acc data copyout (array) present(this, this%concs)</span>
+    <span class="c">!$omp target data map(from:array)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>      <span class="c">! Concentration stored as 2D</span>
+      <span class="c">!$acc parallel loop collapse(2) default(none)</span>
+      <span class="c">!$omp target teams distribute parallel do simd</span>
+      <span class="k">do </span><span class="n">ilay</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+          <span class="c">!print *, (size(this%concs))</span>
+<span class="cp">#ifdef _CRAYFTN</span>
+           <span class="k">array</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span>
+<span class="cp">#else</span>
+          <span class="k">array</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span>
+<span class="cp">#endif</span>
+        <span class="k">end do</span>
+<span class="k">      end do</span>
+<span class="k">    else if</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span> <span class="c">! Concentration stored as 1D</span>
+      <span class="c">!$acc parallel loop collapse(2) default(none)</span>
+      <span class="c">!$omp target teams distribute parallel do simd</span>
+      <span class="k">do </span><span class="n">ilay</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="cp">#ifdef _CRAYFTN</span>
+          <span class="k">array</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span>
+<span class="cp">#else</span>
+         <span class="k">array</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span> <span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span>
+<span class="cp">#endif</span>
+        <span class="k">end do</span>
+<span class="k">      end do</span>
+<span class="k">    else</span>                                             <span class="c">! Concentration stored as scalar</span>
+      <span class="c">!$acc parallel loop collapse(2) default(none)</span>
+      <span class="c">!$omp target teams distribute parallel do simd</span>
+      <span class="k">do </span><span class="n">ilay</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="cp">#ifdef _CRAYFTN</span>
+          <span class="k">array</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="cp">#else</span>
+          <span class="k">array</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="n">this</span><span class="p">%</span><span class="n">concs</span><span class="p">(</span><span class="n">igas</span><span class="p">)%</span><span class="n">conc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="cp">#endif</span>
+        <span class="k">end do</span>
+<span class="k">      end do</span>
+<span class="k">    end if</span>
+    <span class="c">!$acc end data</span>
+    <span class="c">!$omp end target data</span>
+
+  <span class="k">end function </span><span class="n">get_vmr_2d</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

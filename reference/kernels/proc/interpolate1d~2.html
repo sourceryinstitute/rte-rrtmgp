@@ -91,7 +91,7 @@
   </ul>
   <ol class="breadcrumb in-well text-right">
      <li><a href='../sourcefile/mo_gas_optics_kernels.f90~2.html'>mo_gas_optics_kernels.F90</a></li>
-     <li><a href='../module/mo_gas_optics_kernels~2.html'>mo_gas_optics_kernels</a></li>
+     <li><a href='../module/mo_gas_optics_kernels.html'>mo_gas_optics_kernels</a></li>
      <li class="active">interpolate1D</li>
   </ol>
 </div>
@@ -110,7 +110,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/interpolate1d~2.html#src">interpolate1D</a>
+  </div>
+</div>
 
 </div>
 
@@ -260,7 +265,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/interpolate1d~2.html#src">interpolate1D</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -274,6 +284,34 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">interpolate1D</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">table</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="c">!$acc routine seq</span>
+    <span class="c">!$omp declare target</span>
+    <span class="c">! input</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">val</span><span class="p">,</span>    <span class="p">&amp;</span> <span class="c">! axis value at which to evaluate table</span>
+                            <span class="n">offset</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">! minimum of table axis</span>
+                            <span class="n">delta</span>     <span class="c">! step size of table axis</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span> <span class="p">&amp;</span>
+              <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">table</span> <span class="c">! dimensions (axis, values)</span>
+    <span class="c">! output</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">res</span>
+
+    <span class="c">! local</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">val0</span> <span class="c">! fraction index adjusted by offset and delta</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="nb">index</span> <span class="c">! index term</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">frac</span> <span class="c">! fractional term</span>
+    <span class="c">! -------------------------------------</span>
+    <span class="n">val0</span> <span class="o">=</span> <span class="p">(</span><span class="n">val</span> <span class="o">-</span> <span class="n">offset</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span>
+    <span class="n">frac</span> <span class="o">=</span> <span class="n">val0</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">val0</span><span class="p">)</span> <span class="c">! get fractional part</span>
+    <span class="nb">index</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">val0</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="c">! limit the index range</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">table</span><span class="p">(</span><span class="nb">index</span><span class="p">)</span> <span class="o">+</span> <span class="n">frac</span> <span class="o">*</span> <span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="nb">index</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">table</span><span class="p">(</span><span class="nb">index</span><span class="p">))</span>
+  <span class="k">end function </span><span class="n">interpolate1D</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

@@ -183,6 +183,12 @@
     </div>
   </div>
 </div>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/ty_cloud_optics.html#src">ty_cloud_optics</a>
+  </div>
+</div>
 
 </div>
 
@@ -339,6 +345,12 @@
       <a class="list-group-item" href="../type/ty_cloud_optics.html#boundprocedure-set_ice_roughness">set_ice_roughness</a>
       <a class="list-group-item" href="../type/ty_cloud_optics.html#boundprocedure-set_name">set_name</a>
     </div>
+  </div>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/ty_cloud_optics.html#src">ty_cloud_optics</a>
   </div>
 </div>
 
@@ -1387,6 +1399,58 @@
 
     </section>
     
+    <section>
+    <h3><span class="anchor" id="src"></span>Source Code</h3>
+    <div class="highlight"><pre><span></span>  <span class="k">type</span><span class="p">,</span> <span class="k">extends</span><span class="p">(</span><span class="n">ty_optical_props</span><span class="p">),</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">ty_cloud_optics</span>
+    <span class="k">private</span>
+    <span class="c">!</span>
+    <span class="c">! Ice surface roughness category - needed for Yang (2013) ice optics parameterization</span>
+    <span class="c">!</span>
+    <span class="kt">integer</span>            <span class="kd">::</span> <span class="n">icergh</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c">! (1 = none, 2 = medium, 3 = high)</span>
+    <span class="c">!</span>
+    <span class="c">! Lookup table information</span>
+    <span class="c">!</span>
+    <span class="c">! Upper and lower limits of the tables</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">radliq_lwr</span> <span class="o">=</span> <span class="mf">0._wp</span><span class="p">,</span> <span class="n">radliq_upr</span> <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">radice_lwr</span> <span class="o">=</span> <span class="mf">0._wp</span><span class="p">,</span> <span class="n">radice_upr</span> <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="c">! How many steps in the table? (for convenience)</span>
+    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">liq_nsteps</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>        <span class="n">ice_nsteps</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c">! How big is each step in the table?</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">liq_step_size</span> <span class="o">=</span> <span class="mf">0._wp</span><span class="p">,</span> <span class="n">ice_step_size</span> <span class="o">=</span> <span class="mf">0._wp</span>
+    <span class="c">!</span>
+    <span class="c">! The tables themselves.</span>
+    <span class="c">!</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:</span>    <span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">lut_extliq</span><span class="p">,</span> <span class="n">lut_ssaliq</span><span class="p">,</span> <span class="n">lut_asyliq</span> <span class="c">! (nsize_liq, nbnd)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:</span>  <span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">lut_extice</span><span class="p">,</span> <span class="n">lut_ssaice</span><span class="p">,</span> <span class="n">lut_asyice</span> <span class="c">! (nsize_ice, nbnd, nrghice)</span>
+
+    <span class="c">!</span>
+    <span class="c">! Pade approximant coefficients</span>
+    <span class="c">!</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:</span>  <span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">pade_extliq</span>                 <span class="c">! (nbnd, nsizereg, ncoeff_ext)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:</span>  <span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">pade_ssaliq</span><span class="p">,</span>  <span class="n">pade_asyliq</span>   <span class="c">! (nbnd, nsizereg, ncoeff_ssa_g)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">pade_extice</span>                 <span class="c">! (nbnd, nsizereg, ncoeff_ext, nrghice)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:,:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">pade_ssaice</span><span class="p">,</span> <span class="n">pade_asyice</span>    <span class="c">! (nbnd, nsizereg, ncoeff_ssa_g, nrghice)</span>
+    <span class="c">! Particle size regimes for Pade formulations</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">pade_sizreg_extliq</span><span class="p">,</span> <span class="n">pade_sizreg_ssaliq</span><span class="p">,</span> <span class="n">pade_sizreg_asyliq</span>  <span class="c">! (nbound)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">pade_sizreg_extice</span><span class="p">,</span> <span class="n">pade_sizreg_ssaice</span><span class="p">,</span> <span class="n">pade_sizreg_asyice</span>  <span class="c">! (nbound)</span>
+    <span class="c">! -----</span>
+  <span class="k">contains</span>
+<span class="k">    generic</span><span class="p">,</span>   <span class="k">public</span> <span class="kd">::</span> <span class="n">load</span>  <span class="o">=&gt;</span> <span class="n">load_lut</span><span class="p">,</span> <span class="n">load_pade</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">finalize</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">cloud_optics</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">get_min_radius_liq</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">get_min_radius_ice</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">get_max_radius_liq</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">get_max_radius_ice</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">get_num_ice_roughness_types</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">set_ice_roughness</span>
+    <span class="c">! Internal procedures</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">load_lut</span>
+    <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">load_pade</span>
+  <span class="k">end type </span><span class="n">ty_cloud_optics</span>
+</pre></div>
+
+    </section>
     
     </div>
   </div>

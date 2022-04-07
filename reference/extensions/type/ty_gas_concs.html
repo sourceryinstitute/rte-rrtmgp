@@ -141,10 +141,16 @@
       <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-get_num_gases">get_num_gases</a>
       <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-get_subset">get_subset</a>
       <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-get_vmr">get_vmr</a>
-      <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-init~2">init</a>
+      <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-init~3">init</a>
       <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-reset">reset</a>
       <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-set_vmr">set_vmr</a>
     </div>
+  </div>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/ty_gas_concs.html#src">ty_gas_concs</a>
   </div>
 </div>
 
@@ -261,10 +267,16 @@
       <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-get_num_gases">get_num_gases</a>
       <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-get_subset">get_subset</a>
       <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-get_vmr">get_vmr</a>
-      <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-init~2">init</a>
+      <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-init~3">init</a>
       <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-reset">reset</a>
       <a class="list-group-item" href="../type/ty_gas_concs.html#boundprocedure-set_vmr">set_vmr</a>
     </div>
+  </div>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../type/ty_gas_concs.html#src">ty_gas_concs</a>
   </div>
 </div>
 
@@ -491,7 +503,7 @@
 </div>
 
      <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-init~2"></span><h3>procedure, public :: <strong>init</strong>    </h3></div>
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-init~3"></span><h3>procedure, public :: <strong>init</strong>    </h3></div>
   <ul class="list-group">
       <li class="list-group-item">
           <h3>public function <a href='../proc/init.html'>init</a>(this, gas_names) result(error_msg)</h3>    
@@ -636,6 +648,44 @@
 
     </section>
     
+    <section>
+    <h3><span class="anchor" id="src"></span>Source Code</h3>
+    <div class="highlight"><pre><span></span>  <span class="k">type</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">ty_gas_concs</span>
+    <span class="c">!</span>
+    <span class="c">! Data</span>
+    <span class="c">!</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">32</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">gas_name</span>
+    <span class="k">type</span><span class="p">(</span><span class="n">conc_field</span><span class="p">),</span>  <span class="k">dimension</span><span class="p">(:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">concs</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ncol</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">nlay</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">contains</span>
+      <span class="c">!</span>
+      <span class="c">! Procedures</span>
+      <span class="c">!</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">find_gas</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">set_vmr_scalar</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">set_vmr_1d</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">set_vmr_2d</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">get_vmr_1d</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">get_vmr_2d</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">private</span> <span class="kd">::</span> <span class="n">get_subset_range</span>
+      <span class="k">final</span> <span class="kd">::</span> <span class="n">del</span>
+      <span class="c">!</span>
+      <span class="c">! public interface</span>
+      <span class="c">!</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">init</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">reset</span>
+      <span class="k">generic</span><span class="p">,</span>   <span class="k">public</span> <span class="kd">::</span> <span class="n">set_vmr</span> <span class="o">=&gt;</span> <span class="n">set_vmr_scalar</span><span class="p">,</span> <span class="p">&amp;</span>
+                                      <span class="n">set_vmr_1d</span><span class="p">,</span> <span class="p">&amp;</span>
+                                      <span class="n">set_vmr_2d</span>
+      <span class="k">generic</span><span class="p">,</span>   <span class="k">public</span> <span class="kd">::</span> <span class="n">get_vmr</span> <span class="o">=&gt;</span> <span class="n">get_vmr_1d</span><span class="p">,</span> <span class="p">&amp;</span>
+                                      <span class="n">get_vmr_2d</span>
+      <span class="k">generic</span><span class="p">,</span>   <span class="k">public</span> <span class="kd">::</span> <span class="n">get_subset</span> <span class="o">=&gt;</span> <span class="n">get_subset_range</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">get_num_gases</span>
+      <span class="k">procedure</span><span class="p">,</span> <span class="k">public</span> <span class="kd">::</span> <span class="n">get_gas_names</span>
+  <span class="k">end type </span><span class="n">ty_gas_concs</span>
+</pre></div>
+
+    </section>
     
     </div>
   </div>

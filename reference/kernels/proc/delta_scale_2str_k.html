@@ -91,7 +91,7 @@
   </ul>
   <ol class="breadcrumb in-well text-right">
      <li><a href='../sourcefile/mo_optical_props_kernels.f90.html'>mo_optical_props_kernels.F90</a></li>
-     <li><a href='../module/mo_optical_props_kernels.html'>mo_optical_props_kernels</a></li>
+     <li><a href='../module/mo_optical_props_kernels~2.html'>mo_optical_props_kernels</a></li>
      <li class="active">delta_scale_2str_k</li>
   </ol>
 </div>
@@ -110,7 +110,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/delta_scale_2str_k.html#src">delta_scale_2str_k</a>
+  </div>
+</div>
 
 </div>
 
@@ -126,37 +131,37 @@
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-ncol~13"></span>integer,</td>
+  <td><span class="anchor" id="variable-ncol~9"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>ncol</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-nlay~13"></span>integer,</td>
+  <td><span class="anchor" id="variable-nlay~8"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>nlay</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-ngpt~12"></span>integer,</td>
+  <td><span class="anchor" id="variable-ngpt~8"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>ngpt</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-tau~10"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-tau~5"></span>real(kind=wp),</td>
 <td>intent(inout),</td>
   <td></td>  <td>dimension(ncol, nlay, ngpt)</td><td>::</td>
   <td><strong>tau</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-ssa~6"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-ssa~2"></span>real(kind=wp),</td>
 <td>intent(inout),</td>
   <td></td>  <td>dimension(ncol, nlay, ngpt)</td><td>::</td>
   <td><strong>ssa</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-g~6"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-g~2"></span>real(kind=wp),</td>
 <td>intent(inout),</td>
   <td></td>  <td>dimension(ncol, nlay, ngpt)</td><td>::</td>
   <td><strong>g</strong></td><td></td>
@@ -270,7 +275,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/delta_scale_2str_k.html#src">delta_scale_2str_k</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -284,6 +294,33 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">pure subroutine </span><span class="n">delta_scale_2str_k</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">ssa</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="p">&amp;</span>
+      <span class="k">bind</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;delta_scale_2str_k&quot;</span><span class="p">)</span>
+    <span class="kt">integer</span><span class="p">,</span>                               <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span>  <span class="n">tau</span><span class="p">,</span> <span class="n">ssa</span><span class="p">,</span> <span class="n">g</span>
+
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">f</span><span class="p">,</span> <span class="n">wf</span>
+    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">icol</span><span class="p">,</span> <span class="n">ilay</span><span class="p">,</span> <span class="n">igpt</span>
+
+    <span class="k">do </span><span class="n">igpt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span>
+      <span class="k">do </span><span class="n">ilay</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nlay</span>
+        <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+          <span class="n">f</span>  <span class="o">=</span> <span class="n">g</span>  <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">*</span> <span class="n">g</span>  <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span>
+          <span class="n">wf</span> <span class="o">=</span> <span class="n">ssa</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">*</span> <span class="n">f</span>
+          <span class="n">tau</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1._wp</span> <span class="o">-</span> <span class="n">wf</span><span class="p">)</span> <span class="o">*</span> <span class="n">tau</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span>
+          <span class="n">ssa</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">ssa</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">-</span> <span class="n">wf</span><span class="p">)</span> <span class="o">/</span>  <span class="nb">max</span><span class="p">(</span><span class="n">eps</span><span class="p">,(</span><span class="mf">1.0_wp</span> <span class="o">-</span> <span class="n">wf</span><span class="p">))</span>
+          <span class="n">g</span>  <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">g</span>  <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">-</span>  <span class="n">f</span><span class="p">)</span> <span class="o">/</span>  <span class="nb">max</span><span class="p">(</span><span class="n">eps</span><span class="p">,(</span><span class="mf">1.0_wp</span> <span class="o">-</span>  <span class="n">f</span><span class="p">))</span>
+        <span class="k">end do</span>
+<span class="k">      end do</span>
+<span class="k">    end do</span>
+
+<span class="k">  end subroutine </span><span class="n">delta_scale_2str_k</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

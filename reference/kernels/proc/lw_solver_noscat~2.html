@@ -110,7 +110,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/lw_solver_noscat~2.html#src">lw_solver_noscat</a>
+  </div>
+</div>
 
 </div>
 
@@ -126,19 +131,19 @@
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-ncol~43"></span>integer,</td>
+  <td><span class="anchor" id="variable-ncol~66"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>ncol</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-nlay~42"></span>integer,</td>
+  <td><span class="anchor" id="variable-nlay~65"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>nlay</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-ngpt~41"></span>integer,</td>
+  <td><span class="anchor" id="variable-ngpt~64"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>ngpt</strong></td><td></td>
@@ -162,7 +167,7 @@
   <td><strong>weight</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-tau~15"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-tau~17"></span>real(kind=wp),</td>
 <td>intent(in),</td>
   <td></td>  <td>dimension(ncol,nlay,  ngpt)</td><td>::</td>
   <td><strong>tau</strong></td><td></td>
@@ -258,13 +263,13 @@
   <td><strong>do_rescaling</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-ssa~8"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-ssa~10"></span>real(kind=wp),</td>
 <td>intent(in),</td>
   <td></td>  <td>dimension(ncol,nlay  ,ngpt)</td><td>::</td>
   <td><strong>ssa</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-g~8"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-g~10"></span>real(kind=wp),</td>
 <td>intent(in),</td>
   <td></td>  <td>dimension(ncol,nlay  ,ngpt)</td><td>::</td>
   <td><strong>g</strong></td><td></td>
@@ -378,7 +383,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/lw_solver_noscat~2.html#src">lw_solver_noscat</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -392,6 +402,214 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">lw_solver_noscat</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span>                              <span class="p">&amp;</span>
+                              <span class="n">tau</span><span class="p">,</span> <span class="n">lay_source</span><span class="p">,</span> <span class="n">lev_source_inc</span><span class="p">,</span> <span class="n">lev_source_dec</span><span class="p">,</span> <span class="n">sfc_emis</span><span class="p">,</span> <span class="n">sfc_src</span><span class="p">,</span> <span class="p">&amp;</span>
+                              <span class="n">incident_flux</span><span class="p">,</span>    <span class="p">&amp;</span>
+                              <span class="n">flux_up</span><span class="p">,</span> <span class="n">flux_dn</span><span class="p">,</span> <span class="p">&amp;</span>
+                              <span class="n">do_broadband</span><span class="p">,</span> <span class="n">broadband_up</span><span class="p">,</span> <span class="n">broadband_dn</span><span class="p">,</span> <span class="p">&amp;</span>
+                              <span class="n">do_Jacobians</span><span class="p">,</span> <span class="n">sfc_srcJac</span><span class="p">,</span> <span class="n">flux_upJac</span><span class="p">,</span>               <span class="p">&amp;</span>
+                              <span class="n">do_rescaling</span><span class="p">,</span> <span class="n">ssa</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="k">bind</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lw_solver_noscat&quot;</span><span class="p">)</span>
+    <span class="kt">integer</span><span class="p">,</span>                               <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span> <span class="c">! Number of columns, layers, g-points</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">),</span>                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">top_at_1</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span>       <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">D</span>            <span class="c">! secant of propagation angle  []</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span>                              <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">weight</span>       <span class="c">! quadrature weight</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span>  <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">tau</span>          <span class="c">! Absorption optical thickness []</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span>  <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">lay_source</span>   <span class="c">! Planck source at layer average temperature [W/m2]</span>
+    <span class="c">! Planck source at layer edge for radiation in increasing/decreasing ilay direction</span>
+    <span class="c">! lev_source_dec applies the mapping in layer i to the Planck function at layer i</span>
+    <span class="c">! lev_source_inc applies the mapping in layer i to the Planck function at layer i+1</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span>  <span class="n">ngpt</span><span class="p">),</span> <span class="k">target</span><span class="p">,</span> <span class="p">&amp;</span>
+                                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">lev_source_inc</span><span class="p">,</span> <span class="n">lev_source_dec</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span>       <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">sfc_emis</span>     <span class="c">! Surface emissivity      []</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span>       <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">sfc_src</span>      <span class="c">! Surface source function [W/m2]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span>       <span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">incident_flux</span><span class="c">! Boundary condition for flux [W/m2]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="k">target</span><span class="p">,</span> <span class="p">&amp;</span>
+                                           <span class="k">intent</span><span class="p">(</span>  <span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">flux_up</span><span class="p">,</span> <span class="n">flux_dn</span>
+                                                                         <span class="c">! Fluxes [W/m2]</span>
+
+    <span class="c">!</span>
+    <span class="c">! Optional variables - arrays aren&#39;t referenced if corresponding logical  == False</span>
+    <span class="c">!</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">),</span>                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">do_broadband</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span>     <span class="p">),</span> <span class="k">intent</span><span class="p">(</span>  <span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">broadband_up</span><span class="p">,</span> <span class="n">broadband_dn</span> <span class="c">! Spectrally-integrated fluxes [W/m2]</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">),</span>                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">do_Jacobians</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span>       <span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">sfc_srcJac</span>    <span class="c">! surface temperature Jacobian of surface source function [W/m2/K]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span>     <span class="p">),</span> <span class="k">intent</span><span class="p">(</span>  <span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">flux_upJac</span>    <span class="c">! surface temperature Jacobian of Radiances [W/m2-str / K]</span>
+    <span class="kt">logical</span><span class="p">(</span><span class="n">wl</span><span class="p">),</span>                           <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">do_rescaling</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span>  <span class="p">,</span><span class="n">ngpt</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">ssa</span><span class="p">,</span> <span class="n">g</span>    <span class="c">! single-scattering albedo, asymmetry parameter</span>
+    <span class="c">! -------------------------------------------------------------------------------------------------</span>
+    <span class="c">! Local variables</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">icol</span><span class="p">,</span> <span class="n">ilay</span><span class="p">,</span> <span class="n">ilev</span><span class="p">,</span> <span class="n">igpt</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">top_level</span><span class="p">,</span> <span class="n">sfc_level</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">ngpt</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tau_loc</span><span class="p">,</span> <span class="p">&amp;</span>  <span class="c">! path length (tau/mu)</span>
+                                           <span class="n">trans</span>       <span class="c">! transmissivity  = exp(-tau)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">ngpt</span><span class="p">)</span> <span class="kd">::</span> <span class="n">source_dn</span><span class="p">,</span> <span class="n">source_up</span>
+
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">lev_source_up</span><span class="p">,</span> <span class="n">lev_source_dn</span> <span class="c">! Mapping increasing/decreasing indicies to up/down</span>
+
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">pi</span> <span class="o">=</span> <span class="nb">acos</span><span class="p">(</span><span class="o">-</span><span class="mf">1._wp</span><span class="p">)</span>
+
+    <span class="c">!</span>
+    <span class="c">! For Jacobians</span>
+    <span class="c">!</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">ngpt</span><span class="p">)</span> <span class="kd">::</span> <span class="n">gpt_Jac</span>
+    <span class="c">!</span>
+    <span class="c">! Used when approximating scattering</span>
+    <span class="c">!</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>                            <span class="kd">::</span> <span class="n">ssal</span><span class="p">,</span> <span class="n">wb</span><span class="p">,</span> <span class="n">scaleTau</span><span class="p">,</span> <span class="n">scaling</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">ngpt</span><span class="p">)</span> <span class="kd">::</span> <span class="n">An</span><span class="p">,</span> <span class="n">Cn</span>
+    <span class="c">! ------------------------------------</span>
+    <span class="c">! Which way is up?</span>
+    <span class="c">! Level Planck sources for upward and downward radiation</span>
+    <span class="c">! When top_at_1, lev_source_up =&gt; lev_source_dec</span>
+    <span class="c">!                lev_source_dn =&gt; lev_source_inc, and vice-versa</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">top_at_1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">top_level</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="n">sfc_level</span> <span class="o">=</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span>
+      <span class="n">lev_source_up</span> <span class="o">=&gt;</span> <span class="n">lev_source_dec</span>
+      <span class="n">lev_source_dn</span> <span class="o">=&gt;</span> <span class="n">lev_source_inc</span>
+    <span class="k">else</span>
+<span class="k">      </span><span class="n">top_level</span> <span class="o">=</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span>
+      <span class="n">sfc_level</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="n">lev_source_up</span> <span class="o">=&gt;</span> <span class="n">lev_source_inc</span>
+      <span class="n">lev_source_dn</span> <span class="o">=&gt;</span> <span class="n">lev_source_dec</span>
+    <span class="k">end if</span>
+
+    <span class="c">!$acc        data create(   tau_loc,trans,source_dn,source_up ) &amp;</span>
+    <span class="c">!$acc             copyin(   D, tau,lev_source_up,lev_source_dn)</span>
+    <span class="c">!$omp target data map(alloc:tau_loc,trans,source_dn,source_up ) &amp;</span>
+    <span class="c">!$omp             map(to:   D, tau,lev_source_up,lev_source_dn)</span>
+
+    <span class="c">!$acc        enter data create(   flux_dn,flux_up)</span>
+    <span class="c">!$omp target enter data map(alloc:flux_dn,flux_up)</span>
+
+    <span class="c">!$acc                         parallel loop    collapse(2)</span>
+    <span class="c">!$omp target teams distribute parallel do simd collapse(2)</span>
+    <span class="k">do </span><span class="n">igpt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span>
+      <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+        <span class="c">!</span>
+        <span class="c">! Transport is for intensity</span>
+        <span class="c">!   convert flux at top of domain to intensity assuming azimuthal isotropy</span>
+        <span class="c">!</span>
+        <span class="n">flux_dn</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">top_level</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">incident_flux</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2._wp</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">weight</span><span class="p">)</span>
+      <span class="k">end do</span>
+<span class="k">    end do</span>
+
+    <span class="c">!$acc        data create(   An, Cn)  copyin(g)          if(do_rescaling)</span>
+    <span class="c">!$omp target data map(alloc:An, Cn)  map(to:g)          if(do_rescaling)</span>
+    <span class="c">!$acc        data copyin(sfc_srcJac) create(   gpt_Jac) if(do_Jacobians)</span>
+    <span class="c">!$omp target data map(to:sfc_srcJac) map(alloc:gpt_Jac) if(do_Jacobians)</span>
+
+    <span class="c">!$acc parallel loop no_create(An, Cn, gpt_Jac, g) collapse(3)</span>
+    <span class="c">!$omp target teams distribute parallel do simd collapse(3)</span>
+    <span class="k">do </span><span class="n">igpt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span>
+      <span class="k">do </span><span class="n">ilay</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nlay</span>
+        <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+          <span class="c">!</span>
+          <span class="c">! The wb and scaleTau terms are independent of propagation</span>
+          <span class="c">!   angle D and could be pre-computed if several values of D are used</span>
+          <span class="c">! We re-compute them here to keep not have to localize memory use</span>
+          <span class="c">!</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">do_rescaling</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            </span><span class="n">ssal</span> <span class="o">=</span> <span class="n">ssa</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span> <span class="n">ilay</span><span class="p">,</span> <span class="n">igpt</span><span class="p">)</span>
+            <span class="n">wb</span> <span class="o">=</span> <span class="n">ssal</span><span class="o">*</span><span class="p">(</span><span class="mf">1._wp</span> <span class="o">-</span> <span class="n">g</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span> <span class="n">ilay</span><span class="p">,</span> <span class="n">igpt</span><span class="p">))</span> <span class="o">*</span> <span class="mf">0.5_wp</span>
+            <span class="n">scaleTau</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1._wp</span> <span class="o">-</span> <span class="n">ssal</span> <span class="o">+</span> <span class="n">wb</span><span class="p">)</span>
+            <span class="c">! here wb/scaleTau is parameter wb/(1-w(1-b)) of Eq.21 of the Tang paper</span>
+            <span class="c">! actually it is in line of parameter rescaling defined in Eq.7</span>
+            <span class="c">! potentialy if g=ssa=1  then  wb/scaleTau = NaN</span>
+            <span class="c">! it should not happen because g is never 1 in atmospheres</span>
+            <span class="c">! explanation of factor 0.4 note A of Table</span>
+            <span class="n">Cn</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.4_wp</span><span class="o">*</span><span class="n">wb</span><span class="o">/</span><span class="n">scaleTau</span>
+            <span class="c">! Eq.15 of the paper, multiplied by path length</span>
+            <span class="n">tau_loc</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">tau</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span><span class="o">*</span><span class="n">D</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span><span class="o">*</span><span class="n">scaleTau</span>
+            <span class="n">trans</span>  <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">tau_loc</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">))</span>
+            <span class="n">An</span>     <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1._wp</span><span class="o">-</span><span class="n">trans</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+          <span class="k">else</span>
+            <span class="c">!</span>
+            <span class="c">! Optical path and transmission, used in source function and transport calculations</span>
+            <span class="c">!</span>
+            <span class="n">tau_loc</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">tau</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span><span class="o">*</span><span class="n">D</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span>
+            <span class="n">trans</span>  <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">tau_loc</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">))</span>
+          <span class="k">end if</span>
+<span class="k">          call </span><span class="n">lw_source_noscat</span><span class="p">(</span><span class="n">lay_source</span>   <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">),</span> <span class="p">&amp;</span>
+                                <span class="n">lev_source_up</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">),</span> <span class="n">lev_source_dn</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">),</span>  <span class="p">&amp;</span>
+                                <span class="n">tau_loc</span>      <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">),</span> <span class="n">trans</span>        <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">),</span>  <span class="p">&amp;</span>
+                                <span class="n">source_dn</span>    <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">),</span> <span class="n">source_up</span>    <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">ilay</span><span class="p">,</span><span class="n">igpt</span><span class="p">))</span>
+        <span class="k">end do</span>
+<span class="k">      end do</span>
+<span class="k">    end do</span>
+    <span class="c">!</span>
+    <span class="c">! Transport down</span>
+    <span class="c">!</span>
+    <span class="k">call </span><span class="n">lw_transport_noscat_dn</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">source_dn</span><span class="p">,</span> <span class="n">flux_dn</span><span class="p">)</span>
+    <span class="c">!</span>
+    <span class="c">! Surface reflection and emission</span>
+    <span class="c">!</span>
+    <span class="c">!$acc                         parallel loop    collapse(2) no_create(gpt_Jac, sfc_srcJac)</span>
+    <span class="c">!$omp target teams distribute parallel do simd collapse(2)</span>
+    <span class="k">do </span><span class="n">igpt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span>
+      <span class="k">do </span><span class="n">icol</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncol</span>
+        <span class="c">!</span>
+        <span class="c">! Surface albedo, surface source function</span>
+        <span class="c">!</span>
+        <span class="n">flux_up</span>  <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">sfc_level</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">flux_dn</span>   <span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">sfc_level</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">1._wp</span> <span class="o">-</span> <span class="n">sfc_emis</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">igpt</span><span class="p">))</span> <span class="o">+</span> <span class="p">&amp;</span>
+                                         <span class="n">sfc_src</span>   <span class="p">(</span><span class="n">icol</span><span class="p">,</span>          <span class="n">igpt</span><span class="p">)</span><span class="o">*</span>         <span class="n">sfc_emis</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">do_Jacobians</span><span class="p">)</span> <span class="p">&amp;</span>
+          <span class="n">gpt_Jac</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">sfc_level</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span> <span class="o">=</span> <span class="n">sfc_srcJac</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span>          <span class="n">igpt</span><span class="p">)</span><span class="o">*</span>         <span class="n">sfc_emis</span><span class="p">(</span><span class="n">icol</span><span class="p">,</span><span class="n">igpt</span><span class="p">)</span>
+      <span class="k">end do</span>
+<span class="k">    end do</span>
+    <span class="c">!</span>
+    <span class="c">! Transport up, or up and down again if using rescaling</span>
+    <span class="c">!</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">do_rescaling</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      call </span><span class="n">lw_transport_1rescl</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="p">&amp;</span>
+                               <span class="n">source_dn</span><span class="p">,</span> <span class="n">source_up</span><span class="p">,</span>              <span class="p">&amp;</span>
+                               <span class="n">flux_up</span><span class="p">,</span> <span class="n">flux_dn</span><span class="p">,</span> <span class="n">An</span><span class="p">,</span> <span class="n">Cn</span><span class="p">,</span>          <span class="p">&amp;</span>
+                               <span class="n">do_Jacobians</span><span class="p">,</span> <span class="n">gpt_Jac</span><span class="p">)</span>
+    <span class="k">else</span>
+<span class="k">      call </span><span class="n">lw_transport_noscat_up</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">source_up</span><span class="p">,</span> <span class="n">flux_up</span><span class="p">,</span> <span class="p">&amp;</span>
+                                  <span class="n">do_Jacobians</span><span class="p">,</span> <span class="n">gpt_Jac</span><span class="p">)</span>
+    <span class="k">end if</span>
+
+<span class="k">    if</span><span class="p">(</span><span class="n">do_broadband</span><span class="p">)</span> <span class="k">then</span>
+      <span class="c">!</span>
+      <span class="c">! Broadband reduction including</span>
+      <span class="c">!   conversion from intensity to flux assuming azimuthal isotropy and quadrature weight</span>
+      <span class="c">!</span>
+      <span class="k">call </span><span class="n">sum_broadband_factor</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="mf">2._wp</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">weight</span><span class="p">,</span> <span class="n">flux_dn</span><span class="p">,</span> <span class="n">broadband_dn</span><span class="p">)</span>
+      <span class="k">call </span><span class="n">sum_broadband_factor</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="mf">2._wp</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">weight</span><span class="p">,</span> <span class="n">flux_up</span><span class="p">,</span> <span class="n">broadband_up</span><span class="p">)</span>
+      <span class="c">!$acc        exit data delete(     flux_dn,flux_up)</span>
+      <span class="c">!$omp target exit data map(release:flux_dn,flux_up)</span>
+    <span class="k">else</span>
+      <span class="c">!</span>
+      <span class="c">! Convert intensity to flux assuming azimuthal isotropy and quadrature weight</span>
+      <span class="c">!</span>
+      <span class="k">call </span><span class="n">apply_factor_3D</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="mf">2._wp</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">weight</span><span class="p">,</span> <span class="n">flux_dn</span><span class="p">)</span>
+      <span class="k">call </span><span class="n">apply_factor_3D</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="mf">2._wp</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">weight</span><span class="p">,</span> <span class="n">flux_up</span><span class="p">)</span>
+      <span class="c">!$acc        exit data copyout( flux_dn,flux_up)</span>
+      <span class="c">!$omp target exit data map(from:flux_dn,flux_up)</span>
+    <span class="k">end if</span>
+    <span class="c">!</span>
+    <span class="c">! Only broadband-integrated Jacobians are provided</span>
+    <span class="c">!</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">do_Jacobians</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      call </span><span class="n">sum_broadband_factor</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="mf">2._wp</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">weight</span><span class="p">,</span> <span class="n">gpt_Jac</span><span class="p">,</span> <span class="n">flux_upJac</span><span class="p">)</span>
+    <span class="k">end if</span>
+
+    <span class="c">!$acc        end data</span>
+    <span class="c">!$omp end target data</span>
+    <span class="c">!$acc        end data</span>
+    <span class="c">!$omp end target data</span>
+    <span class="c">!$acc        end data</span>
+    <span class="c">!$omp end target data</span>
+  <span class="k">end subroutine </span><span class="n">lw_solver_noscat</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

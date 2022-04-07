@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/reorder123x321.html#src">reorder123x321</a>
+  </div>
+</div>
 
 </div>
 
@@ -247,7 +252,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/reorder123x321.html#src">reorder123x321</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -261,6 +271,18 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">subroutine </span><span class="n">reorder123x321</span><span class="p">(</span><span class="k">array</span><span class="p">,</span> <span class="n">array_out</span><span class="p">)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="k">array</span>
+<span class="k">    </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:,:),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">array_out</span>
+
+    <span class="k">call </span><span class="n">reorder_123x321_kernel</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">size</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">size</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="k">array</span><span class="p">,</span> <span class="n">array_out</span><span class="p">)</span>
+  <span class="k">end subroutine </span><span class="n">reorder123x321</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

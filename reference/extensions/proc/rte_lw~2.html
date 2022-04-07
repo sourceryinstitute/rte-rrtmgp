@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/rte_lw~2.html#src">rte_lw</a>
+  </div>
+</div>
 
 </div>
 
@@ -130,13 +135,13 @@
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-k_dist"></span>class(<a href='../type/ty_gas_optics.html'>ty_gas_optics</a>),</td>
+  <td><span class="anchor" id="variable-k_dist~2"></span>class(<a href='../type/ty_gas_optics.html'>ty_gas_optics</a>),</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>k_dist</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-gas_concs"></span>type(<a href='../type/ty_gas_concs.html'>ty_gas_concs</a>),</td>
+  <td><span class="anchor" id="variable-gas_concs~2"></span>type(<a href='../type/ty_gas_concs.html'>ty_gas_concs</a>),</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>gas_concs</strong></td><td></td>
@@ -222,7 +227,7 @@
 </tbody>
 </table>
 
-   <h3>Return Value <small><span class="anchor" id="variable-error_msg~14"></span>character(len=128)</small></h3>
+   <h3>Return Value <small><span class="anchor" id="variable-error_msg~16"></span>character(len=128)</small></h3>
     
     <br>
     <div class="panel panel-default">
@@ -262,74 +267,74 @@
 <path fill="none" stroke="#000000" d="M54.4,-117C62.39,-117 71.31,-117 79.82,-117"/>
 <polygon fill="#000000" stroke="#000000" points="79.92,-120.5 89.92,-117 79.92,-113.5 79.92,-120.5"/>
 </g>
-<!-- interface~zero_array -->
-<g id="proc~~rte_lw~2~~CallsGraph_node3" class="node">
-<title>interface~zero_array</title>
-<g id="a_proc~~rte_lw~2~~CallsGraph_node3"><a xlink:href=".././interface/zero_array.html" xlink:title="zero_array">
-<polygon fill="#a7506f" stroke="#a7506f" points="297,-234 228,-234 228,-210 297,-210 297,-234"/>
-<text text-anchor="middle" x="262.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">zero_array</text>
-</a>
-</g>
-</g>
-<!-- proc~rte_lw&#45;&gt;interface~zero_array -->
-<g id="proc~~rte_lw~2~~CallsGraph_edge2" class="edge">
-<title>proc~rte_lw&#45;&gt;interface~zero_array</title>
-<path fill="none" stroke="#000000" d="M123.54,-129.07C132.64,-147.5 152.5,-182.45 180,-201 191.09,-208.48 204.66,-213.3 217.53,-216.4"/>
-<polygon fill="#000000" stroke="#000000" points="217.13,-219.89 227.64,-218.53 218.58,-213.04 217.13,-219.89"/>
-</g>
-<!-- interface~extents_are -->
-<g id="proc~~rte_lw~2~~CallsGraph_node4" class="node">
-<title>interface~extents_are</title>
-<g id="a_proc~~rte_lw~2~~CallsGraph_node4"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
-<polygon fill="#a7506f" stroke="#a7506f" points="299,-192 226,-192 226,-168 299,-168 299,-192"/>
-<text text-anchor="middle" x="262.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
-</a>
-</g>
-</g>
-<!-- proc~rte_lw&#45;&gt;interface~extents_are -->
-<g id="proc~~rte_lw~2~~CallsGraph_edge3" class="edge">
-<title>proc~rte_lw&#45;&gt;interface~extents_are</title>
-<path fill="none" stroke="#000000" d="M132.92,-129.28C144.96,-138.63 162.7,-151.19 180,-159 191.24,-164.07 203.92,-168.08 215.88,-171.18"/>
-<polygon fill="#000000" stroke="#000000" points="215.16,-174.6 225.7,-173.57 216.81,-167.8 215.16,-174.6"/>
-</g>
-<!-- lw_solver_noscat_gaussquad -->
-<g id="proc~~rte_lw~2~~CallsGraph_node5" class="node">
-<title>lw_solver_noscat_gaussquad</title>
-<polygon fill="#777777" stroke="#777777" points="345,-150 180,-150 180,-126 345,-126 345,-150"/>
-<text text-anchor="middle" x="262.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lw_solver_noscat_gaussquad</text>
-</g>
-<!-- proc~rte_lw&#45;&gt;lw_solver_noscat_gaussquad -->
-<g id="proc~~rte_lw~2~~CallsGraph_edge4" class="edge">
-<title>proc~rte_lw&#45;&gt;lw_solver_noscat_gaussquad</title>
-<path fill="none" stroke="#000000" d="M144.32,-120.85C151.87,-121.96 160.55,-123.23 169.71,-124.57"/>
-<polygon fill="#000000" stroke="#000000" points="169.4,-128.06 179.8,-126.04 170.42,-121.13 169.4,-128.06"/>
-</g>
 <!-- lw_solver_2stream -->
-<g id="proc~~rte_lw~2~~CallsGraph_node6" class="node">
+<g id="proc~~rte_lw~2~~CallsGraph_node3" class="node">
 <title>lw_solver_2stream</title>
-<polygon fill="#777777" stroke="#777777" points="317.5,-108 207.5,-108 207.5,-84 317.5,-84 317.5,-108"/>
-<text text-anchor="middle" x="262.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lw_solver_2stream</text>
+<polygon fill="#777777" stroke="#777777" points="317.5,-234 207.5,-234 207.5,-210 317.5,-210 317.5,-234"/>
+<text text-anchor="middle" x="262.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lw_solver_2stream</text>
 </g>
 <!-- proc~rte_lw&#45;&gt;lw_solver_2stream -->
-<g id="proc~~rte_lw~2~~CallsGraph_edge5" class="edge">
+<g id="proc~~rte_lw~2~~CallsGraph_edge2" class="edge">
 <title>proc~rte_lw&#45;&gt;lw_solver_2stream</title>
-<path fill="none" stroke="#000000" d="M144.32,-113.15C159.27,-110.96 178.69,-108.12 197.41,-105.38"/>
-<polygon fill="#000000" stroke="#000000" points="198.02,-108.83 207.41,-103.92 197.01,-101.9 198.02,-108.83"/>
+<path fill="none" stroke="#000000" d="M123.54,-129.07C132.64,-147.5 152.5,-182.45 180,-201 185.33,-204.59 191.23,-207.57 197.35,-210.04"/>
+<polygon fill="#000000" stroke="#000000" points="196.5,-213.45 207.1,-213.52 198.85,-206.86 196.5,-213.45"/>
+</g>
+<!-- lw_solver_noscat_gaussquad -->
+<g id="proc~~rte_lw~2~~CallsGraph_node4" class="node">
+<title>lw_solver_noscat_gaussquad</title>
+<polygon fill="#777777" stroke="#777777" points="345,-192 180,-192 180,-168 345,-168 345,-192"/>
+<text text-anchor="middle" x="262.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">lw_solver_noscat_gaussquad</text>
+</g>
+<!-- proc~rte_lw&#45;&gt;lw_solver_noscat_gaussquad -->
+<g id="proc~~rte_lw~2~~CallsGraph_edge3" class="edge">
+<title>proc~rte_lw&#45;&gt;lw_solver_noscat_gaussquad</title>
+<path fill="none" stroke="#000000" d="M132.92,-129.28C144.96,-138.63 162.7,-151.19 180,-159 184.71,-161.12 189.67,-163.06 194.72,-164.82"/>
+<polygon fill="#000000" stroke="#000000" points="193.93,-168.24 204.52,-168 196.09,-161.59 193.93,-168.24"/>
 </g>
 <!-- interface~any_vals_less_than -->
-<g id="proc~~rte_lw~2~~CallsGraph_node7" class="node">
+<g id="proc~~rte_lw~2~~CallsGraph_node5" class="node">
 <title>interface~any_vals_less_than</title>
-<g id="a_proc~~rte_lw~2~~CallsGraph_node7"><a xlink:href=".././interface/any_vals_less_than.html" xlink:title="any_vals_less_than">
-<polygon fill="#a7506f" stroke="#a7506f" points="319,-66 206,-66 206,-42 319,-42 319,-66"/>
-<text text-anchor="middle" x="262.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">any_vals_less_than</text>
+<g id="a_proc~~rte_lw~2~~CallsGraph_node5"><a xlink:href=".././interface/any_vals_less_than.html" xlink:title="any_vals_less_than">
+<polygon fill="#a7506f" stroke="#a7506f" points="319,-150 206,-150 206,-126 319,-126 319,-150"/>
+<text text-anchor="middle" x="262.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">any_vals_less_than</text>
 </a>
 </g>
 </g>
 <!-- proc~rte_lw&#45;&gt;interface~any_vals_less_than -->
-<g id="proc~~rte_lw~2~~CallsGraph_edge6" class="edge">
+<g id="proc~~rte_lw~2~~CallsGraph_edge4" class="edge">
 <title>proc~rte_lw&#45;&gt;interface~any_vals_less_than</title>
-<path fill="none" stroke="#000000" d="M132.92,-104.72C144.96,-95.37 162.7,-82.81 180,-75 185.08,-72.71 190.45,-70.64 195.92,-68.76"/>
-<polygon fill="#000000" stroke="#000000" points="197.35,-71.98 205.82,-65.61 195.23,-65.31 197.35,-71.98"/>
+<path fill="none" stroke="#000000" d="M144.32,-120.85C158.86,-122.98 177.63,-125.73 195.87,-128.4"/>
+<polygon fill="#000000" stroke="#000000" points="195.52,-131.88 205.92,-129.87 196.53,-124.96 195.52,-131.88"/>
+</g>
+<!-- interface~zero_array -->
+<g id="proc~~rte_lw~2~~CallsGraph_node6" class="node">
+<title>interface~zero_array</title>
+<g id="a_proc~~rte_lw~2~~CallsGraph_node6"><a xlink:href=".././interface/zero_array.html" xlink:title="zero_array">
+<polygon fill="#a7506f" stroke="#a7506f" points="297,-108 228,-108 228,-84 297,-84 297,-108"/>
+<text text-anchor="middle" x="262.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">zero_array</text>
+</a>
+</g>
+</g>
+<!-- proc~rte_lw&#45;&gt;interface~zero_array -->
+<g id="proc~~rte_lw~2~~CallsGraph_edge5" class="edge">
+<title>proc~rte_lw&#45;&gt;interface~zero_array</title>
+<path fill="none" stroke="#000000" d="M144.32,-113.15C164.85,-110.14 193.81,-105.91 217.81,-102.39"/>
+<polygon fill="#000000" stroke="#000000" points="218.36,-105.85 227.75,-100.94 217.35,-98.92 218.36,-105.85"/>
+</g>
+<!-- interface~extents_are -->
+<g id="proc~~rte_lw~2~~CallsGraph_node7" class="node">
+<title>interface~extents_are</title>
+<g id="a_proc~~rte_lw~2~~CallsGraph_node7"><a xlink:href=".././interface/extents_are.html" xlink:title="extents_are">
+<polygon fill="#a7506f" stroke="#a7506f" points="299,-66 226,-66 226,-42 299,-42 299,-66"/>
+<text text-anchor="middle" x="262.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">extents_are</text>
+</a>
+</g>
+</g>
+<!-- proc~rte_lw&#45;&gt;interface~extents_are -->
+<g id="proc~~rte_lw~2~~CallsGraph_edge6" class="edge">
+<title>proc~rte_lw&#45;&gt;interface~extents_are</title>
+<path fill="none" stroke="#000000" d="M132.92,-104.72C144.96,-95.37 162.7,-82.81 180,-75 191.24,-69.93 203.92,-65.92 215.88,-62.82"/>
+<polygon fill="#000000" stroke="#000000" points="216.81,-66.2 225.7,-60.43 215.16,-59.4 216.81,-66.2"/>
 </g>
 <!-- interface~any_vals_outside -->
 <g id="proc~~rte_lw~2~~CallsGraph_node8" class="node">
@@ -414,7 +419,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/rte_lw~2.html#src">rte_lw</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -428,6 +438,147 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">rte_lw</span><span class="p">(</span><span class="n">k_dist</span><span class="p">,</span> <span class="n">gas_concs</span><span class="p">,</span> <span class="n">p_lay</span><span class="p">,</span> <span class="n">t_lay</span><span class="p">,</span> <span class="n">p_lev</span><span class="p">,</span>    <span class="p">&amp;</span>
+                     <span class="n">t_sfc</span><span class="p">,</span> <span class="n">sfc_emis</span><span class="p">,</span> <span class="n">cloud_props</span><span class="p">,</span>           <span class="p">&amp;</span>
+                     <span class="n">allsky_fluxes</span><span class="p">,</span> <span class="n">clrsky_fluxes</span><span class="p">,</span>           <span class="p">&amp;</span>
+                     <span class="n">aer_props</span><span class="p">,</span> <span class="n">col_dry</span><span class="p">,</span> <span class="n">t_lev</span><span class="p">,</span> <span class="n">inc_flux</span><span class="p">,</span> <span class="n">n_gauss_angles</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_gas_optics</span><span class="p">),</span>              <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">k_dist</span>       <span class="c">!&lt; derived type with spectral information</span>
+    <span class="k">type</span><span class="p">(</span><span class="n">ty_gas_concs</span><span class="p">),</span>                <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">gas_concs</span>    <span class="c">!&lt; derived type encapsulating gas concentrations</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span>          <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">p_lay</span><span class="p">,</span> <span class="n">t_lay</span> <span class="c">!&lt; pressure [Pa], temperature [K] at layer centers (ncol,nlay)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span>          <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">p_lev</span>        <span class="c">!&lt; pressure at levels/interfaces [Pa] (ncol,nlay+1)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:),</span>            <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">t_sfc</span>     <span class="c">!&lt; surface temperature           [K]  (ncol)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span>          <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">sfc_emis</span>  <span class="c">!&lt; emissivity at surface         []   (nband, ncol)</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_optical_props_arry</span><span class="p">),</span>      <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">cloud_props</span> <span class="c">!&lt; cloud optical properties (ncol,nlay,ngpt)</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_fluxes</span><span class="p">),</span>                  <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">allsky_fluxes</span><span class="p">,</span> <span class="n">clrsky_fluxes</span>
+
+    <span class="c">! Optional inputs</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_optical_props_arry</span><span class="p">),</span>  <span class="p">&amp;</span>
+              <span class="k">optional</span><span class="p">,</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">aer_props</span>   <span class="c">!&lt; aerosol optical properties</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="p">&amp;</span>
+              <span class="k">optional</span><span class="p">,</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">col_dry</span> <span class="c">!&lt; Molecular number density (ncol, nlay)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">target</span><span class="p">,</span> <span class="p">&amp;</span>
+              <span class="k">optional</span><span class="p">,</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">t_lev</span>     <span class="c">!&lt; temperature at levels [K] (ncol, nlay+1)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">target</span><span class="p">,</span> <span class="p">&amp;</span>
+              <span class="k">optional</span><span class="p">,</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">inc_flux</span>   <span class="c">!&lt; incident flux at domain top [W/m2] (ncol, ngpts)</span>
+    <span class="kt">integer</span><span class="p">,</span>  <span class="k">optional</span><span class="p">,</span>       <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">n_gauss_angles</span> <span class="c">! Number of angles used in Gaussian quadrature (no-scattering solution)</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">error_msg</span>
+    <span class="c">! --------------------------------</span>
+    <span class="c">! Local variables</span>
+    <span class="c">!</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_optical_props_arry</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">optical_props</span>
+    <span class="k">type</span><span class="p">(</span><span class="n">ty_source_func_lw</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">sources</span>
+
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">,</span> <span class="n">nband</span><span class="p">,</span> <span class="n">nstr</span>
+    <span class="kt">logical</span> <span class="kd">::</span> <span class="n">top_at_1</span>
+    <span class="c">! --------------------------------</span>
+    <span class="c">! Problem sizes</span>
+    <span class="c">!</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="n">ncol</span>  <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">p_lay</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">nlay</span>  <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">p_lay</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">ngpt</span>  <span class="o">=</span> <span class="n">k_dist</span><span class="p">%</span><span class="n">get_ngpt</span><span class="p">()</span>
+    <span class="n">nband</span> <span class="o">=</span> <span class="n">k_dist</span><span class="p">%</span><span class="n">get_nband</span><span class="p">()</span>
+
+    <span class="c">!$acc kernels copyout(top_at_1)</span>
+    <span class="c">!$omp target map(from:top_at_1)</span>
+    <span class="n">top_at_1</span> <span class="o">=</span> <span class="n">p_lay</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">p_lay</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nlay</span><span class="p">)</span>
+    <span class="c">!$acc end kernels</span>
+    <span class="c">!$omp end target</span>
+
+    <span class="c">! ------------------------------------------------------------------------------------</span>
+    <span class="c">!  Error checking</span>
+    <span class="c">!</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">aer_props</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      if</span><span class="p">(</span><span class="nb">any</span><span class="p">([</span><span class="n">aer_props</span><span class="p">%</span><span class="n">get_ncol</span><span class="p">(),</span> <span class="p">&amp;</span>
+              <span class="n">aer_props</span><span class="p">%</span><span class="n">get_nlay</span><span class="p">()]</span> <span class="o">/=</span> <span class="p">[</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">]))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rrtmpg_lw: aerosol properties inconsistently sized&quot;</span>
+      <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="nb">any</span><span class="p">(</span><span class="n">aer_props</span><span class="p">%</span><span class="n">get_ngpt</span><span class="p">()</span> <span class="o">/=</span> <span class="p">[</span><span class="n">ngpt</span><span class="p">,</span> <span class="n">nband</span><span class="p">]))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rrtmpg_lw: aerosol properties inconsistently sized&quot;</span>
+    <span class="k">end if</span>
+
+<span class="k">    if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">t_lev</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      if</span><span class="p">(</span><span class="nb">any</span><span class="p">([</span><span class="n">size</span><span class="p">(</span><span class="n">t_lev</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">&amp;</span>
+              <span class="n">size</span><span class="p">(</span><span class="n">t_lev</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="o">/=</span> <span class="p">[</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">]))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rrtmpg_lw: t_lev inconsistently sized&quot;</span>
+    <span class="k">end if</span>
+
+<span class="k">    if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">inc_flux</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      if</span><span class="p">(</span><span class="nb">any</span><span class="p">([</span><span class="n">size</span><span class="p">(</span><span class="n">inc_flux</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">&amp;</span>
+              <span class="n">size</span><span class="p">(</span><span class="n">inc_flux</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="o">/=</span> <span class="p">[</span><span class="n">ncol</span><span class="p">,</span> <span class="n">ngpt</span><span class="p">]))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;rrtmpg_lw: incident flux inconsistently sized&quot;</span>
+    <span class="k">end if</span>
+<span class="k">    if</span><span class="p">(</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+
+    <span class="c">! ------------------------------------------------------------------------------------</span>
+    <span class="c">! Optical properties arrays</span>
+    <span class="c">!</span>
+    <span class="k">select type</span><span class="p">(</span><span class="n">cloud_props</span><span class="p">)</span>
+      <span class="k">class is</span> <span class="p">(</span><span class="n">ty_optical_props_1scl</span><span class="p">)</span> <span class="c">! No scattering</span>
+        <span class="k">allocate</span><span class="p">(</span><span class="n">ty_optical_props_1scl</span><span class="kd">::</span><span class="n">optical_props</span><span class="p">)</span>
+      <span class="k">class is</span> <span class="p">(</span><span class="n">ty_optical_props_2str</span><span class="p">)</span>
+        <span class="k">allocate</span><span class="p">(</span><span class="n">ty_optical_props_2str</span><span class="kd">::</span><span class="n">optical_props</span><span class="p">)</span>
+      <span class="k">class is</span> <span class="p">(</span><span class="n">ty_optical_props_nstr</span><span class="p">)</span>
+        <span class="k">allocate</span><span class="p">(</span><span class="n">ty_optical_props_nstr</span><span class="kd">::</span><span class="n">optical_props</span><span class="p">)</span>
+        <span class="n">nstr</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">cloud_props</span><span class="p">%</span><span class="n">tau</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">end select</span>
+
+<span class="k">    </span><span class="n">error_msg</span> <span class="o">=</span> <span class="n">optical_props</span><span class="p">%</span><span class="n">init</span><span class="p">(</span><span class="n">k_dist</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">    select type</span> <span class="p">(</span><span class="n">optical_props</span><span class="p">)</span>
+      <span class="k">class is</span> <span class="p">(</span><span class="n">ty_optical_props_1scl</span><span class="p">)</span> <span class="c">! No scattering</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="n">optical_props</span><span class="p">%</span><span class="n">alloc_1scl</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">)</span>
+      <span class="k">class is</span> <span class="p">(</span><span class="n">ty_optical_props_2str</span><span class="p">)</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="n">optical_props</span><span class="p">%</span><span class="n">alloc_2str</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">)</span>
+      <span class="k">class is</span> <span class="p">(</span><span class="n">ty_optical_props_nstr</span><span class="p">)</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="n">optical_props</span><span class="p">%</span><span class="n">alloc_nstr</span><span class="p">(</span><span class="n">nstr</span><span class="p">,</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">)</span>
+    <span class="k">end select</span>
+<span class="k">    if</span> <span class="p">(</span><span class="n">error_msg</span> <span class="o">/=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">return</span>
+
+    <span class="c">!</span>
+    <span class="c">! Source function</span>
+    <span class="c">!</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="n">sources</span><span class="p">%</span><span class="n">init</span><span class="p">(</span><span class="n">k_dist</span><span class="p">)</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="n">sources</span><span class="p">%</span><span class="n">alloc</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">error_msg</span> <span class="o">/=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">return</span>
+    <span class="c">! ------------------------------------------------------------------------------------</span>
+    <span class="c">! Clear skies</span>
+    <span class="c">!</span>
+    <span class="c">! Gas optical depth -- pressure need to be expressed as Pa</span>
+    <span class="c">!</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="n">k_dist</span><span class="p">%</span><span class="n">gas_optics</span><span class="p">(</span><span class="n">p_lay</span><span class="p">,</span> <span class="n">p_lev</span><span class="p">,</span> <span class="n">t_lay</span><span class="p">,</span> <span class="n">t_sfc</span><span class="p">,</span> <span class="n">gas_concs</span><span class="p">,</span> <span class="p">&amp;</span>
+                                  <span class="n">optical_props</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span>                <span class="p">&amp;</span>
+                                  <span class="n">col_dry</span><span class="p">,</span> <span class="n">t_lev</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">error_msg</span> <span class="o">/=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">return</span>
+    <span class="c">! ----------------------------------------------------</span>
+    <span class="c">! Clear sky is gases + aerosols (if they&#39;re supplied)</span>
+    <span class="c">!</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">aer_props</span><span class="p">))</span> <span class="n">error_msg</span> <span class="o">=</span> <span class="n">aer_props</span><span class="p">%</span><span class="n">increment</span><span class="p">(</span><span class="n">optical_props</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">error_msg</span> <span class="o">/=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">return</span>
+
+<span class="k">    </span><span class="n">error_msg</span> <span class="o">=</span> <span class="n">base_rte_lw</span><span class="p">(</span><span class="n">optical_props</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span> <span class="p">&amp;</span>
+                            <span class="n">sfc_emis</span><span class="p">,</span> <span class="n">clrsky_fluxes</span><span class="p">,</span>          <span class="p">&amp;</span>
+                            <span class="n">inc_flux</span><span class="p">,</span> <span class="n">n_gauss_angles</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">error_msg</span> <span class="o">/=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">return</span>
+    <span class="c">! ------------------------------------------------------------------------------------</span>
+    <span class="c">! All-sky fluxes = clear skies + clouds</span>
+    <span class="c">!</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="n">cloud_props</span><span class="p">%</span><span class="n">increment</span><span class="p">(</span><span class="n">optical_props</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">error_msg</span> <span class="o">/=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">return</span>
+
+<span class="k">    </span><span class="n">error_msg</span> <span class="o">=</span> <span class="n">base_rte_lw</span><span class="p">(</span><span class="n">optical_props</span><span class="p">,</span> <span class="n">top_at_1</span><span class="p">,</span> <span class="n">sources</span><span class="p">,</span> <span class="p">&amp;</span>
+                            <span class="n">sfc_emis</span><span class="p">,</span> <span class="n">allsky_fluxes</span><span class="p">,</span>          <span class="p">&amp;</span>
+                            <span class="n">inc_flux</span><span class="p">,</span> <span class="n">n_gauss_angles</span><span class="p">)</span>
+
+    <span class="k">call </span><span class="n">sources</span><span class="p">%</span><span class="n">finalize</span><span class="p">()</span>
+    <span class="k">call </span><span class="n">optical_props</span><span class="p">%</span><span class="n">finalize</span><span class="p">()</span>
+  <span class="k">end function </span><span class="n">rte_lw</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/draw_samples.html#src">draw_samples</a>
+  </div>
+</div>
 
 </div>
 
@@ -157,7 +162,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/draw_samples.html#src">draw_samples</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -171,6 +181,97 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">draw_samples</span><span class="p">(</span><span class="n">cloud_mask</span><span class="p">,</span><span class="n">clouds</span><span class="p">,</span><span class="n">clouds_sampled</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+    <span class="kt">logical</span><span class="p">,</span> <span class="k">dimension</span><span class="p">(:,:,:),</span>      <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">cloud_mask</span>     <span class="c">! Dimensions ncol,nlay,ngpt</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_optical_props_arry</span><span class="p">),</span>   <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">clouds</span>         <span class="c">! Defined by band</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_optical_props_arry</span><span class="p">),</span>   <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">clouds_sampled</span> <span class="c">! Defined by g-point</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>                            <span class="kd">::</span> <span class="n">error_msg</span>
+    <span class="c">! ------------------------</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">nbnd</span><span class="p">,</span><span class="n">ngpt</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">imom</span>
+    <span class="c">! ------------------------</span>
+    <span class="c">!</span>
+    <span class="c">! Error checking</span>
+    <span class="c">!</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">clouds</span><span class="p">%</span><span class="n">is_initialized</span><span class="p">())</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;draw_samples: cloud optical properties are not initialized&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+<span class="k">    if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">clouds_sampled</span><span class="p">%</span><span class="n">is_initialized</span><span class="p">())</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;draw_samples: sampled cloud optical properties are not initialized&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+
+    <span class="c">!</span>
+    <span class="c">! Variables clouds and clouds_sampled have to be of the same type (have the same set of fields)</span>
+    <span class="c">!   nstr isn&#39;t supported</span>
+    <span class="c">!   2str is checked at assignment</span>
+    <span class="c">!</span>
+    <span class="k">select type</span><span class="p">(</span><span class="n">clouds</span><span class="p">)</span>
+    <span class="k">type is</span> <span class="p">(</span><span class="n">ty_optical_props_1scl</span><span class="p">)</span>
+      <span class="k">select type</span><span class="p">(</span><span class="n">clouds_sampled</span><span class="p">)</span>
+      <span class="k">type is</span> <span class="p">(</span><span class="n">ty_optical_props_2str</span><span class="p">)</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;draw_samples: by-band and sampled cloud properties need to be the same variable type&quot;</span>
+        <span class="k">return</span>
+<span class="k">      type is</span> <span class="p">(</span><span class="n">ty_optical_props_nstr</span><span class="p">)</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;draw_samples: by-band and sampled cloud properties need to be the same variable type&quot;</span>
+        <span class="k">return</span>
+<span class="k">      end select</span>
+<span class="k">    type is</span> <span class="p">(</span><span class="n">ty_optical_props_nstr</span><span class="p">)</span>
+      <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;draw_samples: sampling isn&#39;t implemented yet for ty_optical_props_nstr&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end select</span>
+
+    <span class="c">!</span>
+    <span class="c">! Spectral discretization</span>
+    <span class="c">!</span>
+    <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">clouds</span><span class="p">%</span><span class="n">bands_are_equal</span><span class="p">(</span><span class="n">clouds_sampled</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;draw_samples: by-band and sampled cloud properties spectral structure is different&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+
+    <span class="c">!</span>
+    <span class="c">! Array extents</span>
+    <span class="c">!</span>
+    <span class="n">ncol</span> <span class="o">=</span> <span class="n">clouds</span><span class="p">%</span><span class="n">get_ncol</span><span class="p">()</span>
+    <span class="n">nlay</span> <span class="o">=</span> <span class="n">clouds</span><span class="p">%</span><span class="n">get_nlay</span><span class="p">()</span>
+    <span class="n">nbnd</span> <span class="o">=</span> <span class="n">clouds</span><span class="p">%</span><span class="n">get_nband</span><span class="p">()</span>
+    <span class="n">ngpt</span> <span class="o">=</span> <span class="n">clouds_sampled</span><span class="p">%</span><span class="n">get_ngpt</span><span class="p">()</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">any</span><span class="p">([</span><span class="n">size</span><span class="p">(</span><span class="n">cloud_mask</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">size</span><span class="p">(</span><span class="n">cloud_mask</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">size</span><span class="p">(</span><span class="n">cloud_mask</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span> <span class="o">/=</span> <span class="p">[</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">ngpt</span><span class="p">]))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;draw_samples: cloud mask and cloud optical properties have different ncol, nlay and/or ngpt&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+<span class="k">    if</span> <span class="p">(</span><span class="nb">any</span><span class="p">([</span><span class="n">clouds_sampled</span><span class="p">%</span><span class="n">get_ncol</span><span class="p">(),</span> <span class="n">clouds_sampled</span><span class="p">%</span><span class="n">get_nlay</span><span class="p">()]</span> <span class="o">/=</span> <span class="p">[</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">]))</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;draw_samples: sampled/unsampled cloud optical properties have different ncol and/or nlay&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+    <span class="c">! ------------------------</span>
+    <span class="c">!</span>
+    <span class="c">! Finally - sample fields according to the cloud mask</span>
+    <span class="c">!</span>
+    <span class="c">! Optical depth assignment works for 1scl, 2str (also nstr)</span>
+    <span class="k">call </span><span class="n">apply_cloud_mask</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">nbnd</span><span class="p">,</span><span class="n">ngpt</span><span class="p">,</span><span class="n">clouds_sampled</span><span class="p">%</span><span class="n">get_band_lims_gpoint</span><span class="p">(),</span><span class="n">cloud_mask</span><span class="p">,</span><span class="n">clouds</span><span class="p">%</span><span class="n">tau</span><span class="p">,</span><span class="n">clouds_sampled</span><span class="p">%</span><span class="n">tau</span><span class="p">)</span>
+    <span class="c">!</span>
+    <span class="c">! For 2-stream</span>
+    <span class="c">!</span>
+    <span class="k">select type</span><span class="p">(</span><span class="n">clouds</span><span class="p">)</span>
+    <span class="k">type is</span> <span class="p">(</span><span class="n">ty_optical_props_2str</span><span class="p">)</span>
+      <span class="k">select type</span><span class="p">(</span><span class="n">clouds_sampled</span><span class="p">)</span>
+      <span class="k">type is</span> <span class="p">(</span><span class="n">ty_optical_props_2str</span><span class="p">)</span>
+        <span class="k">call </span><span class="n">apply_cloud_mask</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">nbnd</span><span class="p">,</span><span class="n">ngpt</span><span class="p">,</span><span class="n">clouds_sampled</span><span class="p">%</span><span class="n">get_band_lims_gpoint</span><span class="p">(),</span><span class="n">cloud_mask</span><span class="p">,</span><span class="n">clouds</span><span class="p">%</span><span class="n">ssa</span><span class="p">,</span><span class="n">clouds_sampled</span><span class="p">%</span><span class="n">ssa</span><span class="p">)</span>
+        <span class="k">call </span><span class="n">apply_cloud_mask</span><span class="p">(</span><span class="n">ncol</span><span class="p">,</span><span class="n">nlay</span><span class="p">,</span><span class="n">nbnd</span><span class="p">,</span><span class="n">ngpt</span><span class="p">,</span><span class="n">clouds_sampled</span><span class="p">%</span><span class="n">get_band_lims_gpoint</span><span class="p">(),</span><span class="n">cloud_mask</span><span class="p">,</span><span class="n">clouds</span><span class="p">%</span><span class="n">g</span><span class="p">,</span>  <span class="n">clouds_sampled</span><span class="p">%</span><span class="n">g</span>  <span class="p">)</span>
+      <span class="k">class </span><span class="n">default</span>
+          <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;draw_samples: by-band and sampled cloud properties need to be the same variable type&quot;</span>
+      <span class="k">end select</span>
+<span class="k">    end select</span>
+<span class="k">  end function </span><span class="n">draw_samples</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

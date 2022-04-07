@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/get_subset_range_lw.html#src">get_subset_range_lw</a>
+  </div>
+</div>
 
 </div>
 
@@ -130,25 +135,25 @@
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-full~5"></span>class(<a href='../type/ty_source_func_lw.html'>ty_source_func_lw</a>),</td>
+  <td><span class="anchor" id="variable-full~2"></span>class(<a href='../type/ty_source_func_lw.html'>ty_source_func_lw</a>),</td>
 <td>intent(inout)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>full</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-start~6"></span>integer,</td>
+  <td><span class="anchor" id="variable-start~3"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>start</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-n~6"></span>integer,</td>
+  <td><span class="anchor" id="variable-n~3"></span>integer,</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>n</strong></td><td></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-subset~6"></span>class(<a href='../type/ty_source_func_lw.html'>ty_source_func_lw</a>),</td>
+  <td><span class="anchor" id="variable-subset~3"></span>class(<a href='../type/ty_source_func_lw.html'>ty_source_func_lw</a>),</td>
 <td>intent(inout)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>subset</strong></td><td></td>
@@ -156,14 +161,19 @@
 </tbody>
 </table>
 
-   <h3>Return Value <small><span class="anchor" id="variable-err_message~32"></span>character(len=128)</small></h3>
+   <h3>Return Value <small><span class="anchor" id="variable-err_message~8"></span>character(len=128)</small></h3>
     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/get_subset_range_lw.html#src">get_subset_range_lw</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -177,6 +187,39 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">get_subset_range_lw</span><span class="p">(</span><span class="n">full</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">subset</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">err_message</span><span class="p">)</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_source_func_lw</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">full</span>
+    <span class="kt">integer</span><span class="p">,</span>                  <span class="k">intent</span><span class="p">(</span><span class="n">in</span>   <span class="p">)</span> <span class="kd">::</span> <span class="n">start</span><span class="p">,</span> <span class="n">n</span>
+    <span class="k">class</span><span class="p">(</span><span class="n">ty_source_func_lw</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">subset</span>
+    <span class="kt">character</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">err_message</span>
+
+    <span class="n">err_message</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">full</span><span class="p">%</span><span class="n">is_allocated</span><span class="p">())</span> <span class="k">then</span>
+<span class="k">      </span><span class="n">err_message</span> <span class="o">=</span> <span class="s2">&quot;source_func_lw%subset: Asking for a subset of unallocated data&quot;</span>
+      <span class="k">return</span>
+<span class="k">    end if</span>
+<span class="k">    if</span><span class="p">(</span><span class="n">start</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">start</span> <span class="o">+</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="n">full</span><span class="p">%</span><span class="n">get_ncol</span><span class="p">())</span> <span class="p">&amp;</span>
+       <span class="n">err_message</span> <span class="o">=</span> <span class="s2">&quot;optical_props%subset: Asking for columns outside range&quot;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">err_message</span> <span class="o">/=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">return</span>
+
+    <span class="c">!</span>
+    <span class="c">! Could check to see if subset is correctly sized, has consistent spectral discretization</span>
+    <span class="c">!</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">subset</span><span class="p">%</span><span class="n">is_allocated</span><span class="p">())</span> <span class="k">call </span><span class="n">subset</span><span class="p">%</span><span class="n">finalize</span><span class="p">()</span>
+    <span class="n">err_message</span> <span class="o">=</span> <span class="n">subset</span><span class="p">%</span><span class="n">alloc</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">full</span><span class="p">%</span><span class="n">get_nlay</span><span class="p">(),</span> <span class="n">full</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">err_message</span> <span class="o">/=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">    </span><span class="n">subset</span><span class="p">%</span><span class="n">sfc_source</span>    <span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">,</span>  <span class="p">:)</span> <span class="o">=</span> <span class="n">full</span><span class="p">%</span><span class="n">sfc_source</span>    <span class="p">(</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="p">:)</span>
+    <span class="n">subset</span><span class="p">%</span><span class="n">sfc_source_Jac</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">,</span>  <span class="p">:)</span> <span class="o">=</span> <span class="n">full</span><span class="p">%</span><span class="n">sfc_source_Jac</span><span class="p">(</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="p">:)</span>
+    <span class="n">subset</span><span class="p">%</span><span class="n">lay_source</span>    <span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">,:,:)</span> <span class="o">=</span> <span class="n">full</span><span class="p">%</span><span class="n">lay_source</span>    <span class="p">(</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:)</span>
+    <span class="n">subset</span><span class="p">%</span><span class="n">lev_source_inc</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">,:,:)</span> <span class="o">=</span> <span class="n">full</span><span class="p">%</span><span class="n">lev_source_inc</span><span class="p">(</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:)</span>
+    <span class="n">subset</span><span class="p">%</span><span class="n">lev_source_dec</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">,:,:)</span> <span class="o">=</span> <span class="n">full</span><span class="p">%</span><span class="n">lev_source_dec</span><span class="p">(</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,:,:)</span>
+  <span class="k">end function </span><span class="n">get_subset_range_lw</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>

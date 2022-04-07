@@ -114,7 +114,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/compute_heating_rate.html#src">compute_heating_rate</a>
+  </div>
+</div>
 
 </div>
 
@@ -156,7 +161,7 @@
 </tbody>
 </table>
 
-   <h3>Return Value <small><span class="anchor" id="variable-error_msg~17"></span>character(len=128)</small></h3>
+   <h3>Return Value <small><span class="anchor" id="variable-error_msg~15"></span>character(len=128)</small></h3>
     
     <br>
     <div class="panel panel-default">
@@ -264,7 +269,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/compute_heating_rate.html#src">compute_heating_rate</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -278,6 +288,41 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>  <span class="k">function </span><span class="n">compute_heating_rate</span><span class="p">(</span><span class="n">flux_up</span><span class="p">,</span> <span class="n">flux_dn</span><span class="p">,</span> <span class="n">plev</span><span class="p">,</span> <span class="n">heating_rate</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">error_msg</span><span class="p">)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span> <span class="p">)</span> <span class="kd">::</span> <span class="n">flux_up</span><span class="p">,</span> <span class="n">flux_dn</span><span class="p">,</span> <span class="p">&amp;</span> <span class="c">!&lt; fluxes at interfaces [W/m2]</span>
+                                             <span class="n">plev</span>                <span class="c">!&lt; pressure at interfaces [Pa]</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">dimension</span><span class="p">(:,:),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">heating_rate</span>        <span class="c">!&lt; heating rate within layer [K/sec]</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">error_msg</span>
+    <span class="c">! ---------</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">,</span> <span class="n">ilay</span>
+    <span class="c">! ---------</span>
+    <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">ncol</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">flux_up</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">nlay</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">flux_up</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">check_extents</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">      if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">extents_are</span><span class="p">(</span><span class="n">flux_dn</span><span class="p">,</span>      <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;heating_rate: flux_dn array inconsistently sized.&quot;</span>
+      <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">extents_are</span><span class="p">(</span><span class="n">plev</span><span class="p">,</span>         <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;heating_rate: plev array inconsistently sized.&quot;</span>
+      <span class="k">if</span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span> <span class="n">extents_are</span><span class="p">(</span><span class="n">heating_rate</span><span class="p">,</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">nlay</span><span class="p">))</span> <span class="p">&amp;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s2">&quot;heating_rate: heating_rate array inconsistently sized.&quot;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">error_msg</span> <span class="o">/=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">    end if</span>
+
+<span class="k">    do </span><span class="n">ilay</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">nlay</span>
+      <span class="n">heating_rate</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ncol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">flux_up</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ncol</span><span class="p">,</span><span class="n">ilay</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">flux_up</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ncol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)</span> <span class="o">-</span> <span class="p">&amp;</span>
+                                   <span class="n">flux_dn</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ncol</span><span class="p">,</span><span class="n">ilay</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">flux_dn</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ncol</span><span class="p">,</span><span class="n">ilay</span><span class="p">))</span> <span class="o">*</span> <span class="p">&amp;</span>
+                                  <span class="n">grav</span> <span class="o">/</span> <span class="p">(</span><span class="n">cp_dry</span> <span class="o">*</span> <span class="p">(</span><span class="n">plev</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ncol</span><span class="p">,</span><span class="n">ilay</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">plev</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">ncol</span><span class="p">,</span><span class="n">ilay</span><span class="p">)))</span>
+    <span class="k">end do</span>
+
+<span class="k">  end function </span><span class="n">compute_heating_rate</span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>
